@@ -1,8 +1,22 @@
-﻿@{
+﻿@model ICollection<User>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="text-left">
+        @foreach (var item in Model)
+        {
+            <h4 class="display-4">id             :@item.id</h4>
+            <h4 class="display-4">Tag Name       :@item.TagName</h4>
+            <h4 class="display-4">First name     :@item.Firstname</h4>
+            <h4 class="display-4">Last name      :@item.Lastname</h4>
+            <h4 class="display-4">Email          :@item.Email</h4>
+            <h4 class="display-4">Password       :@item.Password</h4>
+            <h4 class="display-4">PasswordQuality:@PasswordCheck.GetPasswordStrength(item.Password)</h4>
+            <h4 class="display-4">Role           :@item.Role</h4>
+            <h4 class="display-4">Is Active      :@item.IsActive</h4>
+            <h4 class="display-4">Create Date    :@item.CreateDate</h4>
+            <h4 class="display-4">Create User id :@item.CreateUserid</h4>
+            <br/>
+        }
+    </div>

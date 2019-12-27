@@ -2,6 +2,59 @@
 @{
     ViewData["Title"] = "Index";
 }
+<!-- basic table -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
 
-<h1 class="text-danger">Admin Page</h1>
+
+
+
+                <div class="table-responsive">
+                    <table id="zero_config" class="table table-striped table-bordered no-wrap">
+                        <thead>
+                            <tr>
+                                <th>Üye Sıra</th>
+                                <th>Ad Soyad</th>
+                                <th>Rolü</th>
+                                <th>Son Giriş Tarihi</th>
+                                <th>Kayıt Tarihi</th>
+                                <th>Statü</th>
+                                <th>Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Berat İnceçam</td>
+                                <td>Alfa Admin</td>
+                                <td>2018/05/01</td>
+                                <td>2018/05/01</td>
+                                <td><span class="badge badge-light-success">Aktif</span></td>
+                                <td>
+                                    <button type="button" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
+                                    <button type="button" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Üye Sıra</th>
+                                <th>Ad Soyad</th>
+                                <th>Rolü</th>
+                                <th>Son Giriş Tarihi</th>
+                                <th>Kayıt Tarihi</th>
+                                <th>Statü</th>
+                                <th>Durum</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

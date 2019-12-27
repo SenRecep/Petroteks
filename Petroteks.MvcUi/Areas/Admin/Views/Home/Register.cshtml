@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<!-- Login box.scss -->
+<!-- ============================================================== -->
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative">
+    <div class="auth-box row text-center">
+        <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(../../Admin/assets/images/anasayfa-petroteks-1-2.png);">
+        </div>
+        <div class="col-lg-5 col-md-7 bg-white">
+            <div class="p-3">
+                <img src="../../Admin/assets/images/logopetroteks.png" alt="wrapkit" width="160px">
+                <p class="mt-3 text-center text-info">Editörlük için petroteks.com mailinizin olması gerekir</p>
+                <p class="text-center text-danger" style="display:none;">Hatalı mail uzantısı lütfen tekrar deneyin</p>
+                <form class="mt-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Ad">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Soy Ad">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input class="form-control" type="email" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input class="form-control" type="password" placeholder="Şifre">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <button type="submit" class="btn btn-block btn-dark">Kayıt Ol</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- Login box.scss -->

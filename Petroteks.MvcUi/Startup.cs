@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Petroteks.Bll.Abstract;
+using Petroteks.Bll.Concreate;
+using Petroteks.Dal.Abstract;
+using Petroteks.Dal.Concreate.EntityFramework;
 
 namespace Petroteks.MvcUi
 {
@@ -22,6 +26,10 @@ namespace Petroteks.MvcUi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IUserService,UserManager>();
+            services.AddSingleton<IUserDal,EfUserDal>();
+
+
             services.AddControllersWithViews();
             services.AddSession();
             services.AddDistributedMemoryCache();

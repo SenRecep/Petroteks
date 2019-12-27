@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutLogin.cshtml";
+}
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative">
+    <div class="auth-box row">
+        <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(../../Admin/assets/images/anasayfa-petroteks-1-2.png);">
+        </div>
+        <div class="col-lg-5 col-md-7 bg-white">
+            <div class="p-3">
+                <div class="text-center">
+                    <img src="~/Admin/assets/images/logopetroteks.png" alt="wrapkit" width="160px">
+                </div>
+                <h2 class="mt-3 text-center">Giriş</h2>
+                <p class="text-center text-danger" style="display:none;">Hatalı Giriş Lütfen Tekrar Deneyin</p>
+                <form class="mt-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="text-dark" for="email">Email</label>
+                                <input class="form-control" id="email" type="text"
+                                       placeholder="Lütfen email giriniz">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="text-dark" for="sifre">Şifre</label>
+                                <input class="form-control" id="sifre" type="password"
+                                       placeholder="Lütfen şifreyi giriniz">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <button type="submit" class="btn btn-block rounded btn-dark">Giriş</button>
+                        </div>
+                        <div class="col-lg-12 text-center mt-5">
+                            Editörlük için --> <a asp-area="Admin" asp-controller="Home" asp-action="Register"  class="text-info">Kayıt Ol</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

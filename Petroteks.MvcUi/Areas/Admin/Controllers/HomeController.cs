@@ -14,5 +14,13 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         {
             return View();
         }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }

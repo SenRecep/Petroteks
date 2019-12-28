@@ -1,7 +1,46 @@
-﻿
+﻿@model ICollection<User>
 @{
     ViewData["Title"] = "Index";
 }
+
+<div id="auth-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center mt-2 mb-4">
+                    <a href="index.html" class="text-success">
+                        <span><img class="mr-2" src="../assets/images/logo-icon.png" alt="" height="18"><img src="../assets/images/logo-text.png" alt="" height="18"></span>
+                    </a>
+                </div>
+
+                <form>
+
+
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <label for="SelectAuth">Password</label>
+                            <select id="SelectAuth">
+                                <option value="0">Admin</option>
+                                <option value="1">Editör</option>
+                                <option value="2">İzinsiz</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center">
+
+                        <button class="btn btn-rounded btn-success" id="modalButton" onclick="SelectAuth($('#SelectAuth option:selected').val())" type="submit">
+                            Kaydet
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div><!-- /.modal -->
+</div>
 <!-- basic table -->
 <div class="row">
     <div class="col-12">
@@ -15,28 +54,41 @@
                     <table id="zero_config" class="table table-striped table-bordered no-wrap">
                         <thead>
                             <tr>
-                                <th>Üye Sıra</th>
                                 <th>Ad Soyad</th>
                                 <th>Rolü</th>
-                                <th>Son Giriş Tarihi</th>
                                 <th>Kayıt Tarihi</th>
                                 <th>Statü</th>
                                 <th>Durum</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Berat İnceçam</td>
-                                <td>Alfa Admin</td>
-                                <td>2018/05/01</td>
-                                <td>2018/05/01</td>
-                                <td><span class="badge badge-light-success">Aktif</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
-                                    <button type="button" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </button>
-                                </td>
-                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td>@item.Firstname @item.Lastname</td>
+
+                                    @if (item.Role == 0)
+                                    {
+                                        <td>Admin</td>
+                                    }
+                                    else if (item.Role == 1)
+                                    {
+                                        <td>Editör</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Izinsiz</td>
+                                    }
+                                    <td>2018/05/01</td>
+                                    <td><span class="badge badge-light-success">Aktif</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
+                                        <button type="button" data-id="@item.id" data-role="@item.Role" data-toggle="modal" data-target="#auth-modal" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </button>
+                                    </td>
+                                </tr>
+                            }
+
 
                         </tbody>
                         <tfoot>
@@ -57,4 +109,29 @@
         </div>
     </div>
 </div>
+<script>
+    $('#auth-modal').on('shown', function (event) {
+        var Id = $(event.relatedTarget).data('id');
+        var Role = $(event.relatedTarget).data('role');
+        $(this).find("#SelectAuth").val(Role);
+        $(this).find("#modalButton").data('EditUserId', Id);
+    });
+    
 
+
+    function SelectAuth(id, role) {
+        $.ajax({
+            type: "GET",
+            url: "../Admin/Home/SelectAuth/" + id + "/" + role,
+            success: function (response) {
+                toastr.success('İşlem tamamlandı.');
+            },
+            failure: function (response) {
+                toastr.error('Sunucu ile bağlantı kurulamadı.');
+            },
+            error: function (response) {
+                toastr.error('Sunucu ile bağlantı kurulamadı.');
+            }
+        });
+    }
+</script>

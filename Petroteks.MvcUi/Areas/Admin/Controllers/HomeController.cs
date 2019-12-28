@@ -27,7 +27,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            ICollection<User> allUsers = _userService.GetMany(x => x.IsActive == true);
+            return View(allUsers);
         }
         public IActionResult Login()
         {
@@ -84,7 +85,27 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpGet("SelectAuth/{id}/{role}")]
+        public JsonResult SelectAuth(int id, int role)
+        {
+            User user = _userService.Get(x => x.id == id);
+            if (user != null)
+            {
+                user.Role = (short)role;
+                _userService.Update(user);
+                try
+                {
+                    _userService.Save();
+                    return Json("Islem Basari ile tamamlandi");
+                }
+                catch
+                {
+                    return Json("İşlem tamamlanamadı");
+                }
 
+            }
+            return Json("İşlem tamamlanamadı");
+        }
 
         public IActionResult Register()
         {
@@ -103,7 +124,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 }
                 if (_userService.GetMany(user => user.Email.Equals(model.Email) && user.Role != 2).Count > 0)
                 {
-                  
+
                     TempData["errorMassage"] += "Bu mail adresi daha önceden kayıtlıdır.";
                 }
                 else
@@ -117,20 +138,23 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                         Password = model.Password,
                         Email = model.Email,
                         TagName = model.UserName,
-                        Role=2,
+                        Role = 2,
                     };
-                   
-                    try {
+
+                    try
+                    {
                         _userService.Add(user);
                         _userService.Save();
-                    } catch {
+                    }
+                    catch
+                    {
                         TempData["errorMassage"] += "Veri tabanına eklerken hata ile karşılaşıldı.";
                     }
 
                 }
             }
             else
-            { 
+            {
                 TempData["errorMassage"] = "Tüm değerleri doğru biçimde giriniz";
             }
             return RedirectToAction("Login", "Home");

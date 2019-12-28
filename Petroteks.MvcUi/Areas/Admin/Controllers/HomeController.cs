@@ -9,6 +9,7 @@ using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Helpers;
 using Petroteks.Entities.Concrete;
 using Petroteks.MvcUi.Areas.Admin.Models;
+using Petroteks.MvcUi.Attributes;
 using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Services;
 
@@ -25,6 +26,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             this._userService = userService;
             this._userSessionService = userSessionService;
         }
+        [AdminAuthorize]
         public IActionResult Index()
         {
             return View();

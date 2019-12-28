@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Attributes\" />
     <Folder Include="TagHelpers\" />
     <Folder Include="ViewComponents\" />
   </ItemGroup>

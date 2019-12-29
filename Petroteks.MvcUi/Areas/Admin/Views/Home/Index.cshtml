@@ -39,11 +39,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-body">
-
-
-
-
+            <div class="card-body"> 
                 <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered no-wrap text-center">
                         <thead>
@@ -51,36 +47,38 @@
                                 <th>Ad Soyad</th>
                                 <th>Rolü</th>
                                 <th>Kayıt Tarihi</th>
-                                <th>Statü</th>
+                                <th>Email</th>
+                                <th>Kullanıcı Adı</th>
                                 <th>Durum</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                            <tr>
 
-                                    <td>@item.Firstname @item.Lastname</td>
+                                <td>@item.Firstname @item.Lastname</td>
 
-                                    @if (item.Role == 0)
-                                    {
-                                        <td>Admin</td>
-                                    }
-                                    else if (item.Role == 1)
-                                    {
-                                        <td>Editör</td>
-                                    }
-                                    else
-                                    {
-                                        <td>Izinsiz</td>
-                                    }
-                                    <td>2018/05/01</td>
-                                    <td><span class="badge badge-light-success">Aktif</span></td>
-                                    <td>
-                                        <button type="button" onclick="DeleteUser(@item.id)" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
-                                        <button id="EditButton" type="button" onclick="OpenModalButton(this)" data-id="@item.id" data-role="@item.Role" data-toggle="modal" data-target="#auth-modal" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </button>
-                                    </td>
-                                </tr>
+                                @if (item.Role == 0)
+                                {
+                                    <td>Admin</td>
+                                }
+                                else if (item.Role == 1)
+                                {
+                                    <td>Editör</td>
+                                }
+                                else
+                                {
+                                    <td>Izinsiz</td>
+                                }
+                                <td>2018/05/01</td>
+                                <td><span class="badge badge-light-success">@item.Email</span></td>
+                                <td><span class="badge badge-light-success">@item.TagName</span></td>
+                                <td>
+                                    <button type="button" onclick="DeleteUser(@item.id)" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
+                                    <button id="EditButton" type="button" onclick="OpenModalButton(this)" data-id="@item.id" data-role="@item.Role" data-toggle="modal" data-target="#auth-modal" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </button>
+                                </td>
+                            </tr>
                             }
 
 

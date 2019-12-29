@@ -142,7 +142,7 @@
                                     {
                                         <span>Izinsiz:</span>
                                     } <span class="text-dark">@LoginUser.Firstname @LoginUser.Lastname</span> <i data-feather="chevron-down"
-                                                                                 class="svg-icon"></i>
+                                                                                                                 class="svg-icon"></i>
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
@@ -151,6 +151,15 @@
                                        class="svg-icon mr-2 ml-1"></i>
                                     Profilim
                                 </a>
+                                <a class="dropdown-item" href="javascript:void(0)">
+                                    <i data-feather="credit-card"
+                                       class="svg-icon mr-2 ml-1"></i>
+                                    Ana
+                                </a>
+
+
+
+
                                 <a class="dropdown-item" href="javascript:void(0)">
                                     <i data-feather="credit-card"
                                        class="svg-icon mr-2 ml-1"></i>
@@ -163,6 +172,9 @@
                                        class="svg-icon mr-2 ml-1"></i>
                                     Çıkış
                                 </a>
+
+
+
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -185,12 +197,33 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="sidebar-item">
-                            <a class="sidebar-link sidebar-link" href="index.html"
-                               aria-expanded="false">
+                            <a class="sidebar-link sidebar-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                                aria-expanded="false">
                                 <i data-feather="user" class="feather-icon"></i><span class="hide-menu">Üyeler</span>
                             </a>
                         </li>
-
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                               aria-expanded="false">
+                                <i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Sabit Sayfalar </span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="HomePage" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            Ana Sayfa
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="AboutPage" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            Hakkımızda
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -259,7 +292,7 @@
     <script src="~/Admin/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="~/Admin/dist/js/custom.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> 
     @RenderSection("Scripts", required: false)
     <script>
 
@@ -281,6 +314,7 @@
             "hideMethod": "fadeOut"
         }
     </script>
+     
 </body>
 
 </html>

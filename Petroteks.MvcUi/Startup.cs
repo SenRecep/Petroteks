@@ -30,8 +30,8 @@ namespace Petroteks.MvcUi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IUserService,UserManager>();
-            services.AddSingleton<IUserDal,EfUserDal>();
+            services.AddScoped<IUserService,UserManager>();
+            services.AddScoped<IUserDal,EfUserDal>();
 
             services.AddSingleton<IUserSessionService, UserSessionService>();
             services.AddSingleton<IUserCookieService, UserCookieService>();

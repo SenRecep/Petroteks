@@ -13,34 +13,28 @@
                         <span><img class="mr-2" src="../assets/images/logo-icon.png" alt="" height="18"><img src="../assets/images/logo-text.png" alt="" height="18"></span>
                     </a>
                 </div>
-
-                <form>
-
-
-                    <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                            <label for="SelectAuth">Password</label>
-                            <select id="SelectAuth">
-                                <option value="0">Admin</option>
-                                <option value="1">Editör</option>
-                                <option value="2">İzinsiz</option>
-                            </select>
-                        </div>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <label for="SelectAuth">Password</label>
+                        <select id="SelectAuth">
+                            <option value="0">Admin</option>
+                            <option value="1">Editör</option>
+                            <option value="2">İzinsiz</option>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="form-group text-center">
+                <div class="form-group text-center">
 
-                        <button class="btn btn-rounded btn-success" id="modalButton" onclick="SelectAuth($('#SelectAuth option:selected').val())" type="submit">
-                            Kaydet
-                        </button>
-                    </div>
-
-                </form>
-
+                    <button class="btn btn-rounded btn-success" onclick="ModalFormSubmit()" id="modalButton" type="submit">
+                        Kaydet
+                    </button>
+                </div>
             </div>
         </div>
     </div><!-- /.modal -->
 </div>
+
 <!-- basic table -->
 <div class="row">
     <div class="col-12">
@@ -51,7 +45,7 @@
 
 
                 <div class="table-responsive">
-                    <table id="zero_config" class="table table-striped table-bordered no-wrap">
+                    <table id="zero_config" class="table table-striped table-bordered no-wrap text-center">
                         <thead>
                             <tr>
                                 <th>Ad Soyad</th>
@@ -83,8 +77,8 @@
                                     <td>2018/05/01</td>
                                     <td><span class="badge badge-light-success">Aktif</span></td>
                                     <td>
-                                        <button type="button" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
-                                        <button type="button" data-id="@item.id" data-role="@item.Role" data-toggle="modal" data-target="#auth-modal" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </button>
+                                        <button type="button" onclick="DeleteUser(@item.id)" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
+                                        <button id="EditButton" type="button" onclick="OpenModalButton(this)" data-id="@item.id" data-role="@item.Role" data-toggle="modal" data-target="#auth-modal" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </button>
                                     </td>
                                 </tr>
                             }
@@ -93,10 +87,8 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Üye Sıra</th>
                                 <th>Ad Soyad</th>
                                 <th>Rolü</th>
-                                <th>Son Giriş Tarihi</th>
                                 <th>Kayıt Tarihi</th>
                                 <th>Statü</th>
                                 <th>Durum</th>
@@ -109,29 +101,57 @@
         </div>
     </div>
 </div>
-<script>
-    $('#auth-modal').on('shown', function (event) {
-        var Id = $(event.relatedTarget).data('id');
-        var Role = $(event.relatedTarget).data('role');
-        $(this).find("#SelectAuth").val(Role);
-        $(this).find("#modalButton").data('EditUserId', Id);
-    });
-    
 
 
-    function SelectAuth(id, role) {
-        $.ajax({
-            type: "GET",
-            url: "../Admin/Home/SelectAuth/" + id + "/" + role,
-            success: function (response) {
-                toastr.success('İşlem tamamlandı.');
-            },
-            failure: function (response) {
-                toastr.error('Sunucu ile bağlantı kurulamadı.');
-            },
-            error: function (response) {
-                toastr.error('Sunucu ile bağlantı kurulamadı.');
-            }
-        });
-    }
-</script>
+@section Scripts{
+    <script>
+        var EditDataId = 0;
+
+        function OpenModalButton(btn) {
+            var Id = $(btn).data('id');
+            var Role = $(btn).data('role');
+            EditDataId = Id;
+            $("#SelectAuth").val(Role);
+        }
+
+        function ModalFormSubmit() {
+            var ChangedRole = $("#SelectAuth").val();
+            SelectAuth(EditDataId, ChangedRole);
+            $('#auth-modal').modal('toggle');
+        }
+
+        function DeleteUser(id) {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/Home/DeleteUser?id=" + id,
+                success: function (response) {
+                    toastr.success('İşlem tamamlandı.');
+                    location.reload();
+                },
+                failure: function (response) {
+                    toastr.error('Sunucu ile bağlantı kurulamadı.');
+                },
+                error: function (response) {
+                    toastr.error('Sunucu ile bağlantı kurulamadı.');
+                }
+            });
+        }
+
+        function SelectAuth(id, role) {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/Home/SelectAuth?id=" + id + "&role=" + role,
+                success: function (response) {
+                    toastr.success('İşlem tamamlandı.');
+                    location.reload();
+                },
+                failure: function (response) {
+                    toastr.error('Sunucu ile bağlantı kurulamadı.');
+                },
+                error: function (response) {
+                    toastr.error('Sunucu ile bağlantı kurulamadı.');
+                }
+            });
+        }
+    </script>
+}

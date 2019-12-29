@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Petroteks.Core.Dal
 {
-    public interface IEntityRepostory<T> where T : EntityBase,new()
+    public interface IEntityRepostory<T> where T : EntityBase, new()
     {
         T Get(Expression<Func<T, bool>> filter, params string[] navigations);
         ICollection<T> GetAll(params string[] navigations);

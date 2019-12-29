@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+    User LoginUser = (User)ViewBag.LoginUser;
 }
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -16,6 +17,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/favicon.png">
     <title>Petroteks Kullanıcı Bilgisi</title>
     <!-- This page css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="~/Admin/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -128,8 +130,19 @@
                                 <img src="http://wallperio.com/data/out/371/profile-pictures_617150496.png" alt="user" class="rounded-circle"
                                      width="40">
                                 <span class="ml-2 d-none d-lg-inline-block">
-                                    <span>Editör:</span> <span class="text-dark">Ad Soyad</span> <i data-feather="chevron-down"
-                                                                                                    class="svg-icon"></i>
+                                    @if (LoginUser.Role == 0)
+                                    {
+                                        <span>Admin:</span>
+                                    }
+                                    else if (LoginUser.Role == 1)
+                                    {
+                                        <span>Editör:</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Izinsiz:</span>
+                                    } <span class="text-dark">@LoginUser.Firstname @LoginUser.Lastname</span> <i data-feather="chevron-down"
+                                                                                 class="svg-icon"></i>
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
@@ -246,6 +259,28 @@
     <script src="~/Admin/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="~/Admin/dist/js/custom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @RenderSection("Scripts", required: false)
+    <script>
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
 </body>
 
 </html>

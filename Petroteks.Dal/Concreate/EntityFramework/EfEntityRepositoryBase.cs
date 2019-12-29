@@ -9,12 +9,13 @@ using System.Text;
 
 namespace Petroteks.Dal.Concreate.EntityFramework
 {
-   public class EfEntityRepostoryBase<TEntity, TContext> : IEntityRepostory<TEntity>
-         where TEntity : EntityBase, new()
-         where TContext : DbContext, new()
+    public class EfEntityRepostoryBase<TEntity, TContext> : IEntityRepostory<TEntity>
+          where TEntity : EntityBase, new()
+          where TContext : DbContext, new()
     {
         private DbContext dbContext = null;
         private DbSet<TEntity> table = null;
+        private object LockObj=new object();
 
         public EfEntityRepostoryBase()
         {
@@ -45,7 +46,8 @@ namespace Petroteks.Dal.Concreate.EntityFramework
         public virtual TEntity Get(Expression<Func<TEntity, bool>> filter, params string[] navigations)
         {
             var set = table.AsQueryable();
-            navigations.ToList().ForEach(item => {
+            navigations.ToList().ForEach(item =>
+            {
                 set.Include(item);
             });
             return set.FirstOrDefault(filter);
@@ -54,7 +56,8 @@ namespace Petroteks.Dal.Concreate.EntityFramework
         public virtual ICollection<TEntity> GetAll(params string[] navigations)
         {
             var set = table.AsQueryable();
-            navigations.ToList().ForEach(item => {
+            navigations.ToList().ForEach(item =>
+            {
                 set.Include(item);
             });
             return set.ToList();
@@ -63,7 +66,8 @@ namespace Petroteks.Dal.Concreate.EntityFramework
         public virtual ICollection<TEntity> GetMany(Expression<Func<TEntity, bool>> filter = null, params string[] navigations)
         {
             var set = table.AsQueryable();
-            navigations.ToList().ForEach(item => {
+            navigations.ToList().ForEach(item =>
+            {
                 set.Include(item);
             });
             return filter == null ? set.ToList() : set.Where(filter).ToList();
@@ -91,7 +95,9 @@ namespace Petroteks.Dal.Concreate.EntityFramework
         }
         public virtual void Build()
         {
-            dbContext = new TContext();
+            lock (LockObj)
+                if (dbContext == null || !(dbContext is TContext))
+                    dbContext = new TContext();
         }
     }
 }

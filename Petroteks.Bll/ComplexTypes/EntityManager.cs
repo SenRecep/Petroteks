@@ -58,14 +58,13 @@ namespace Petroteks.Bll.Concreate
         {
             _repostory.Update(entity);
         }
-        
 
-        public virtual void Dispose()
+        public void Dispose()
         {
             _repostory.Dispose();
         }
 
-        public virtual void Build()
+        public void Build()
         {
             _repostory.Build();
         }

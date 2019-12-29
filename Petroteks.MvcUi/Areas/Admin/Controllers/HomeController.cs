@@ -30,6 +30,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         public IActionResult Index()
         {
             ICollection<User> allUsers = _userService.GetMany(x => x.IsActive == true);
+            ViewBag.LoginUser = _userSessionService.Get("LoginAdmin");
             return View(allUsers);
         }
         public IActionResult Login()
@@ -46,7 +47,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 if (res.Password != model.Password)
                 {
                     TempData["message"] = "Hata";
-                    TempData["message2"] = "Kullanıcı adı veya şifre hatalı.";
+                    TempData["message2"] = "Girdiğiniz parolalar eşleşmiyor.";
                     goto Finish;
                 }
 
@@ -87,7 +88,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return View();
         }
 
-        [HttpGet("SelectAuth/{id}/{role}")]
         public JsonResult SelectAuth(int id, int role)
         {
             User user = _userService.Get(x => x.id == id);
@@ -106,7 +106,27 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 }
 
             }
-            return Json("İşlem tamamlanamadı");
+            return new JsonResult("İşlem tamamlanamadı");
+        }
+
+        public JsonResult DeleteUser(int id)
+        {
+            User user = _userService.Get(x => x.id == id);
+            if (user != null)
+            {
+                _userService.Delete(user);
+                try
+                {
+                    _userService.Save();
+                    return Json("Islem Basari ile tamamlandi");
+                }
+                catch
+                {
+                    return Json("İşlem tamamlanamadı");
+                }
+
+            }
+            return new JsonResult("İşlem tamamlanamadı");
         }
 
         public IActionResult Register()

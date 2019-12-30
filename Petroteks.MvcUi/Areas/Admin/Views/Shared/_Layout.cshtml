@@ -26,6 +26,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        .ck-editor__editable {
+            min-height: 400px;
+        }
+    </style>
 </head>
 
 <body>
@@ -292,7 +297,20 @@
     <script src="~/Admin/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="~/Admin/dist/js/custom.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+    <script>
+        const config = {
+            filebrowserImageBrowseUrl: "~/Pages/ImageBrowser",
+            filebrowserImageWindowWidth: 750,
+            filebrowserImageWindowHeight: 606,
+            filebrowserBrowseUrl: "~/Pages/LinkBrowser",
+            filebrowserWindowWidth: 350,
+            filebrowserWindowHeight: 500
+        };
+        const editor = document.getElementById("editor");
+        CKEDITOR.replace(editor, config);
+    </script>
     @RenderSection("Scripts", required: false)
     <script>
 
@@ -314,7 +332,7 @@
             "hideMethod": "fadeOut"
         }
     </script>
-     
+
 </body>
 
 </html>

@@ -4,6 +4,7 @@ using Petroteks.Bll.Concreate;
 using Petroteks.Bll.Helpers;
 using Petroteks.Core.Dal;
 using Petroteks.Entities.Concrete;
+using Petroteks.MvcUi.Models;
 using System;
 using System.Collections.Generic;
 
@@ -20,7 +21,12 @@ namespace Petroteks.MvcUi.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(new PageViewModel());
+        }
+        [HttpPost]
+        public IActionResult Index(PageViewModel pageViewModel)
+        {
+            return View(pageViewModel);
         }
     }
 }

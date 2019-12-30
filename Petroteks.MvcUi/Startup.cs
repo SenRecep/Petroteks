@@ -37,10 +37,13 @@ namespace Petroteks.MvcUi
             services.AddSingleton<IUserCookieService, UserCookieService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.LatinExtendedA }));
+            
+            services.AddRazorPages();
             var mvcBuilder = services.AddControllersWithViews();
             #if DEBUG
               mvcBuilder.AddRazorRuntimeCompilation();
             #endif
+
             services.AddSession();
             services.AddDistributedMemoryCache();
         }
@@ -69,6 +72,7 @@ namespace Petroteks.MvcUi
             
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");

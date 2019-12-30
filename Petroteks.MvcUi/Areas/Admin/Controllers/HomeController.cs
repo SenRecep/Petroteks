@@ -11,6 +11,7 @@ using Petroteks.Entities.Concrete;
 using Petroteks.MvcUi.Areas.Admin.Models;
 using Petroteks.MvcUi.Attributes;
 using Petroteks.MvcUi.ExtensionMethods;
+using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
 
 namespace Petroteks.MvcUi.Areas.Admin.Controllers
@@ -31,8 +32,17 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         {
             ICollection<User> allUsers = _userService.GetMany(x => x.IsActive == true);
             ViewBag.LoginUser = _userSessionService.Get("LoginAdmin");
+            ViewBag.PageViewModel = new PageViewModel();
             return View(allUsers);
         }
+
+        [AdminAuthorize]
+        [HttpPost]
+        public IActionResult Index(PageViewModel model)
+        {
+            return View(model);
+        }
+
         public IActionResult Login()
         {
             return View();

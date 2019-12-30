@@ -42,6 +42,11 @@
             color: #413e66;
         }
     </style>
+    <style>
+        .ck-editor__editable {
+            min-height: 400px;
+        }
+    </style>
 
 </head>
 <body class="appear-animate">
@@ -202,7 +207,7 @@
                              data-easing="Power4.easeOut"
                              data-endspeed="500"
                              data-endeasing="Power4.easeIn">
-                            <img src="images/petroteks ürün 2.png" style="width:200px!important;;height:300px!important;" />
+                            <img src="images/petroteks ürün 2.png" style="width:200px!important;height:300px!important;" />
 
 
                         </div>
@@ -625,7 +630,7 @@
                 <!-- End Footer Text -->
 
 
-                </div>
+            </div>
         </footer>
 
 
@@ -666,6 +671,19 @@
     <script type="text/javascript" src="../js/rev-slider.js"></script>
     <script type="text/javascript" src="../js/tiltfx.js"></script>
     <!--[if lt IE 10]><script type="text/javascript" src="../js/placeholder.js"></script><![endif]-->
+    <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+    <script>
+        const config = {
+            filebrowserImageBrowseUrl: "/imagebrowser",
+            filebrowserImageWindowWidth: 750,
+            filebrowserImageWindowHeight: 606,
+            filebrowserBrowseUrl: "/linkbrowser",
+            filebrowserWindowWidth: 350,
+            filebrowserWindowHeight: 500
+        };
+        const editor = document.getElementById("editor");
+        CKEDITOR.replace(editor, config);
+    </script>
 
 </body>
 </html>

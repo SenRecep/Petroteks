@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
+using Petroteks.MvcUi.Attributes;
+using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
 
 namespace Petroteks.MvcUi.Areas.Admin.Controllers
@@ -29,5 +31,27 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         {
             return View();
         }
+
+
+
+        [AdminAuthorize]
+        public IActionResult AnaSayfaEdit()
+        {
+            ViewBag.LoginUser = _userSessionService.Get("LoginAdmin");
+            ViewBag.PageViewModel = new PageViewModel();
+            return View();
+        }
+
+
+        [AdminAuthorize]
+        [HttpPost]
+        public IActionResult AnaSayfaEdit(PageViewModel model)
+        {
+            return View(model);
+        }
+
+
+
+
     }
 }

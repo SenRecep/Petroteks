@@ -43,6 +43,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return View(model);
         }
 
+     
+
+
+
         public IActionResult Login()
         {
             return View();
@@ -191,6 +195,45 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return RedirectToAction("Login", "Home");
         }
+
+
+
+
+        [AdminAuthorize]
+        public IActionResult AnaSayfaEdit()
+        {
+            ViewBag.LoginUser = _userSessionService.Get("LoginAdmin");
+            ViewBag.PageViewModel = new PageViewModel();
+            return View();
+        }
+         
+
+        [AdminAuthorize]
+        [HttpPost]
+        public IActionResult AnaSayfaEdit(PageViewModel model)
+        {
+            return View(model);
+        }
+
+
+
+
+        [AdminAuthorize]
+        public IActionResult Hakkımızda()
+        {
+            ViewBag.LoginUser = _userSessionService.Get("LoginAdmin");
+            ViewBag.PageViewModel = new PageViewModel();
+            return View();
+        }
+
+
+        [AdminAuthorize]
+        [HttpPost]
+        public IActionResult Hakkımızda(PageViewModel model)
+        {
+            return View(model);
+        }
+
 
 
     }

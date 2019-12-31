@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Helpers;
 using Petroteks.Entities.Concrete;
 using Petroteks.MvcUi.Areas.Admin.Models;
 using Petroteks.MvcUi.Attributes;
-using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
 

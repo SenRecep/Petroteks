@@ -1,10 +1,11 @@
-﻿using Petroteks.Entities.Abstract;
+﻿using Petroteks.Core.Entities;
+using Petroteks.Entities.Abstract;
 
 namespace Petroteks.Entities.Concreate
 {
-    public class WebsiteObject : IWebsiteObject
+    public class WebsiteObject :EntityBase, IWebsiteObject
     {
         public int WebSiteid { get; set; }
-        public IWebsite WebSite { get; set; }
+        public Website WebSite { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Petroteks.Entities.Concrete;
+using Petroteks.Entities.Concreate;
 
 namespace Petroteks.Dal.Concreate.EntityFramework.Contexts
 {
@@ -11,5 +11,12 @@ namespace Petroteks.Dal.Concreate.EntityFramework.Contexts
             base.OnConfiguring(optionsBuilder);
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Website> Websites { get; set; }
+        public DbSet<SliderObject> SliderObjects { get; set; }
+        public DbSet<AboutUsObject> AboutUsObjects { get; set; }
+        public DbSet<PrivacyPolicyObject> PrivacyPolicyObjects { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<MainPage> MainPages { get; set; }
     }
 }

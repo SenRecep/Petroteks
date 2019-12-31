@@ -1,4 +1,4 @@
-﻿using Petroteks.Entities.Concrete;
+﻿using Petroteks.Entities.Concreate;
 using System;
 using System.Collections.Generic;
 using System.Linq;

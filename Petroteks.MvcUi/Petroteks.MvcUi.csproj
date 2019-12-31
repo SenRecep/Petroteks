@@ -16,6 +16,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Imageflow.NativeRuntime.win-x86_64" Version="1.1.0-rc18" />
     <PackageReference Include="Imageflow.Net" Version="0.2.6" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">

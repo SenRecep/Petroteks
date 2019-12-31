@@ -2,7 +2,7 @@
 using Petroteks.Entities.Abstract;
 using System.ComponentModel.DataAnnotations;
 
-namespace Petroteks.Entities.Concrete
+namespace Petroteks.Entities.Concreate
 {
    public class User :EntityBase, IUser
     {

@@ -6,6 +6,6 @@ namespace Petroteks.Entities.Concreate
     public class WebsiteObject :EntityBase, IWebsiteObject
     {
         public int WebSiteid { get; set; }
-        public IWebsite WebSite { get; set; }
+        public Website WebSite { get; set; }
     }
 }

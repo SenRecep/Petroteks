@@ -33,6 +33,28 @@ namespace Petroteks.MvcUi
             services.AddScoped<IUserService,UserManager>();
             services.AddScoped<IUserDal,EfUserDal>();
 
+            services.AddScoped<IWebsiteService, WebsiteManager>();
+            services.AddScoped<IWebsiteDal, EfWebsiteDal>();
+
+            services.AddScoped<ISliderObjectService, SliderObjectManager>();
+            services.AddScoped<ISliderObjectDal, EfSliderObjectDal>();
+
+            services.AddScoped<IAboutUsObjectService, AboutUsObjectManager>();
+            services.AddScoped<IAboutUsObjectDal, EfAboutUsObjectDal>();
+
+            services.AddScoped<IPrivacyPolicyObjectService, PrivacyPolicyObjectManager>();
+            services.AddScoped<IPrivacyPolicyObjectDal, EfPrivacyPolicyObjectDal>();
+
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ICategoryDal, EfCategoryDal>();
+
+            services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<IProductDal, EfProductDal>();
+
+            services.AddScoped<IMainPageService, MainPageManager>();
+            services.AddScoped<IMainPageDal, EfMainPageDal>();
+
+
             services.AddSingleton<IUserSessionService, UserSessionService>();
             services.AddSingleton<IUserCookieService, UserCookieService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
+using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Attributes;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
@@ -45,7 +46,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpPost]
-        public IActionResult AnaSayfaEdit(PageViewModel model)
+        public IActionResult AnaSayfaEdit(MainPage model)
         {
             return View(model);
         }

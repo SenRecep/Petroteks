@@ -40,7 +40,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Index(PageViewModel model)
         {
-            return View(model);
+            ICollection<User> allUsers = _userService.GetMany(x => x.IsActive == true);
+            ViewBag.LoginUser = _userSessionService.Get("LoginAdmin");
+            ViewBag.PageViewModel = model;
+            return View(allUsers);
         }
 
         public IActionResult Login()

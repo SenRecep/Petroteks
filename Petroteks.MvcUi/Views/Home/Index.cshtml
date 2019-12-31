@@ -1,18 +1,6 @@
-﻿@model PageViewModel
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-
-@using (Html.BeginForm())
-{
-    <textarea id="editor" name="Content">
-        @Html.Raw(Model.Content)
-    </textarea>
-    <br />
-    <input type="submit" value="Save" />
-}
-
 
 <!-- About Section -->
 <section class="page-section pt-80 pt-sm-60 pt-xs-40 bg-gray-lighter">

@@ -5,7 +5,9 @@ using Petroteks.Entities.Concreate;
 namespace Petroteks.Bll.Abstract
 {
     public interface IUserService : IEntityRepostory<User> { }
-    public interface IWebsiteService : IEntityRepostory<Website> { }
+    public interface IWebsiteService : IEntityRepostory<Website> {
+        public Website findByUrl(string url);
+    }
     public interface ISliderObjectService : IEntityRepostory<SliderObject> { }
     public interface IAboutUsObjectService : IEntityRepostory<AboutUsObject> { }
     public interface IPrivacyPolicyObjectService : IEntityRepostory<PrivacyPolicyObject> { }

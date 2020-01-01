@@ -1,56 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model MainPage
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.Description;
+    ViewData["MetaTags"] = Model.MetaTags;
+    ViewData["Keywords"] = Model.Keywords;
 }
-<!-- About Section -->
-<section class="page-section pt-80 pt-sm-60 pt-xs-40 bg-gray-lighter">
-    <div class="relative">
-
-        <div class="container-fluid">
-
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
 
 
-                    <div class="row">
+@Html.Raw(Model.Slider)
+@Html.Raw(Model.TopContent)
 
-                        <div class="col-sm-6">
-
-                            <div class="section-text mb-70 mb-xs-40">
-
-                                <h2 class="section-title align-left hs-line-12 color-navy-blue">YENİLİKÇİ ÇÖZÜMLER</h2>
-
-                                <p>
-                                    Kuruluşumuzdan bu yana Uygun fiyat, maksimum fayda ilkesi ile sondaj makineleri, sondaj ekipmanları gibi sondaj operasyonlarında neye ihtiyaç duyulursa taleplerinizi eksiksiz karşılamak ve sizlere en kaliteli hizmeti sunma arzusundayız.
-                                </p>
-
-
-
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-6">
-
-                            <!-- Photo -->
-                            <div class="tilt-wrap mb-80 mb-xs-50">
-                                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/WeChat-Image_20191015151414.png" width="500" height="500" alt="" />
-                                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/WeChat-Image_20191015151414.png" width="500" height="500" alt="" class="tilt-effect" />
-                            </div>
-                            <!-- End Photo -->
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-<!-- End About Section -->
 
 
 
@@ -95,3 +54,4 @@
 
     </div>
 </section>
+@Html.Raw(Model.BottomContent)

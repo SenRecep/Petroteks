@@ -6,10 +6,21 @@ namespace Petroteks.Entities.Concreate
     {
         public string Content { get; set; }
     }
+
+
+
+
+
     public class AboutUsObject : WebsiteObject, IHtmlObject
     {
         public string Content { get; set; }
     }
+
+
+
+
+
+
     public class PrivacyPolicyObject : WebsiteObject, IHtmlObject
     {
         public string Content { get; set; }

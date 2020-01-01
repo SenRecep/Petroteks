@@ -307,8 +307,14 @@
             filebrowserWindowWidth: 350,
             filebrowserWindowHeight: 500
         };
-        const editor = document.getElementById("editor");
-        CKEDITOR.replace(editor, config);
+        config.allowedContent = true;
+        config.removeFormatAttributes = '';
+        const editor1 = document.getElementById("editor1");
+        const editor2 = document.getElementById("editor2");
+        const editor3 = document.getElementById("editor3");
+        CKEDITOR.replace(editor1, config);
+        CKEDITOR.replace(editor2, config);
+        CKEDITOR.replace(editor3, config);
     </script>
     @RenderSection("Scripts", required: false)
     <script>

@@ -5,7 +5,14 @@ using Petroteks.Entities.Concreate;
 namespace Petroteks.Bll.Concreate
 {
     public class UserManager : EntityManager<User>, IUserService { public UserManager(IUserDal repostory) : base(repostory) { } }
-    public class WebsiteManager : EntityManager<Website>, IWebsiteService { public WebsiteManager(IWebsiteDal repostory) : base(repostory) { } }
+    public class WebsiteManager : EntityManager<Website>, IWebsiteService { public WebsiteManager(IWebsiteDal repostory) : base(repostory) { }
+
+        public Website findByUrl(string url)
+        {
+            Website wb = _repostory.Get(x=>x.BaseUrl.Equals(url));
+            return wb;
+        }
+    }
     public class SliderObjectManager : EntityManager<SliderObject>, ISliderObjectService { public SliderObjectManager(ISliderObjectDal repostory) : base(repostory) { } }
     public class AboutUsObjectManager : EntityManager<AboutUsObject>, IAboutUsObjectService { public AboutUsObjectManager(IAboutUsObjectDal repostory) : base(repostory) { } }
     public class PrivacyPolicyObjectManager : EntityManager<PrivacyPolicyObject>, IPrivacyPolicyObjectService { public PrivacyPolicyObjectManager(IPrivacyPolicyObjectDal repostory) : base(repostory) { } }

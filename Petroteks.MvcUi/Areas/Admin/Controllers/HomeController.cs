@@ -17,12 +17,17 @@ using Petroteks.MvcUi.Services;
 namespace Petroteks.MvcUi.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class HomeController : Controller
+    public class HomeController : AdminBaseController
     {
         private readonly IUserService _userService;
         private readonly IUserSessionService _userSessionService;
 
-        public HomeController(IUserService userService, IUserSessionService userSessionService)
+        public HomeController(
+            IUserService userService,
+            IUserSessionService userSessionService,
+            IWebsiteService websiteService,
+            IHttpContextAccessor httpContextAccessor ) :
+            base(userSessionService, websiteService, httpContextAccessor)
         {
             this._userService = userService;
             this._userSessionService = userSessionService;
@@ -31,20 +36,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         public IActionResult Index()
         {
             ICollection<User> allUsers = _userService.GetMany(x => x.IsActive == true);
-            ViewBag.LoginUser = _userSessionService.Get("LoginAdmin");
-            ViewBag.PageViewModel = new PageViewModel();
             return View(allUsers);
         }
-
-        [AdminAuthorize]
-        [HttpPost]
-        public IActionResult Index(PageViewModel model)
-        {
-            return View(model);
-        }
-
-     
-
 
 
         public IActionResult Login()
@@ -194,46 +187,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 TempData["errorMassage"] = "Tüm değerleri doğru biçimde giriniz";
             }
             return RedirectToAction("Login", "Home");
-        }
-
-
-
-
-        [AdminAuthorize]
-        public IActionResult AnaSayfaEdit()
-        {
-            ViewBag.LoginUser = _userSessionService.Get("LoginAdmin");
-            ViewBag.PageViewModel = new PageViewModel();
-            return View();
-        }
-         
-
-        [AdminAuthorize]
-        [HttpPost]
-        public IActionResult AnaSayfaEdit(PageViewModel model)
-        {
-            return View(model);
-        }
-
-
-
-
-        [AdminAuthorize]
-        public IActionResult Hakkımızda()
-        {
-            ViewBag.LoginUser = _userSessionService.Get("LoginAdmin");
-            ViewBag.PageViewModel = new PageViewModel();
-            return View();
-        }
-
-
-        [AdminAuthorize]
-        [HttpPost]
-        public IActionResult Hakkımızda(PageViewModel model)
-        {
-            return View(model);
-        }
-
+        } 
 
 
     }

@@ -123,6 +123,9 @@ namespace Petroteks.Dal.Migrations
                     b.Property<string>("MetaTags")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Slider")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -243,9 +246,6 @@ namespace Petroteks.Dal.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("MainPageid")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
@@ -256,8 +256,6 @@ namespace Petroteks.Dal.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("id");
-
-                    b.HasIndex("MainPageid");
 
                     b.HasIndex("WebSiteid");
 
@@ -389,10 +387,6 @@ namespace Petroteks.Dal.Migrations
 
             modelBuilder.Entity("Petroteks.Entities.Concreate.SliderObject", b =>
                 {
-                    b.HasOne("Petroteks.Entities.Concreate.MainPage", null)
-                        .WithMany("sliderObjects")
-                        .HasForeignKey("MainPageid");
-
                     b.HasOne("Petroteks.Entities.Concreate.Website", "WebSite")
                         .WithMany()
                         .HasForeignKey("WebSiteid")

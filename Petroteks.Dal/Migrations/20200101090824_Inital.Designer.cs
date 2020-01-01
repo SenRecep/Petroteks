@@ -10,8 +10,8 @@ using Petroteks.Dal.Concreate.EntityFramework.Contexts;
 namespace Petroteks.Dal.Migrations
 {
     [DbContext(typeof(PetroteksDbContext))]
-    [Migration("20191231175814_Initial")]
-    partial class Initial
+    [Migration("20200101090824_Inital")]
+    partial class Inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -123,6 +123,9 @@ namespace Petroteks.Dal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MetaTags")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slider")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -245,9 +248,6 @@ namespace Petroteks.Dal.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("MainPageid")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
@@ -258,8 +258,6 @@ namespace Petroteks.Dal.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("id");
-
-                    b.HasIndex("MainPageid");
 
                     b.HasIndex("WebSiteid");
 
@@ -391,10 +389,6 @@ namespace Petroteks.Dal.Migrations
 
             modelBuilder.Entity("Petroteks.Entities.Concreate.SliderObject", b =>
                 {
-                    b.HasOne("Petroteks.Entities.Concreate.MainPage", null)
-                        .WithMany("sliderObjects")
-                        .HasForeignKey("MainPageid");
-
                     b.HasOne("Petroteks.Entities.Concreate.Website", "WebSite")
                         .WithMany()
                         .HasForeignKey("WebSiteid")

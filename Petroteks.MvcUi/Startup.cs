@@ -36,9 +36,6 @@ namespace Petroteks.MvcUi
             services.AddScoped<IWebsiteService, WebsiteManager>();
             services.AddScoped<IWebsiteDal, EfWebsiteDal>();
 
-            services.AddScoped<ISliderObjectService, SliderObjectManager>();
-            services.AddScoped<ISliderObjectDal, EfSliderObjectDal>();
-
             services.AddScoped<IAboutUsObjectService, AboutUsObjectManager>();
             services.AddScoped<IAboutUsObjectDal, EfAboutUsObjectDal>();
 
@@ -53,6 +50,9 @@ namespace Petroteks.MvcUi
 
             services.AddScoped<IMainPageService, MainPageManager>();
             services.AddScoped<IMainPageDal, EfMainPageDal>();
+
+            services.AddScoped<IEmailService, EmailManager>();
+            services.AddScoped<IEmailDal, EfEmailDal>();
 
 
             services.AddSingleton<IUserSessionService, UserSessionService>();

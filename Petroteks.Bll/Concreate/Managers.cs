@@ -13,10 +13,10 @@ namespace Petroteks.Bll.Concreate
             return wb;
         }
     }
-    public class SliderObjectManager : EntityManager<SliderObject>, ISliderObjectService { public SliderObjectManager(ISliderObjectDal repostory) : base(repostory) { } }
     public class AboutUsObjectManager : EntityManager<AboutUsObject>, IAboutUsObjectService { public AboutUsObjectManager(IAboutUsObjectDal repostory) : base(repostory) { } }
     public class PrivacyPolicyObjectManager : EntityManager<PrivacyPolicyObject>, IPrivacyPolicyObjectService { public PrivacyPolicyObjectManager(IPrivacyPolicyObjectDal repostory) : base(repostory) { } }
     public class CategoryManager : EntityManager<Category>, ICategoryService { public CategoryManager(ICategoryDal repostory) : base(repostory) { } }
     public class ProductManager : EntityManager<Product>, IProductService { public ProductManager(IProductDal repostory) : base(repostory) { } }
     public class MainPageManager : EntityManager<MainPage>, IMainPageService { public MainPageManager(IMainPageDal repostory) : base(repostory) { } }
+    public class EmailManager : EntityManager<Email>, IEmailService { public EmailManager(IEmailDal repostory) : base(repostory) { } }
 }

@@ -11,11 +11,11 @@ namespace Petroteks.Bll.Helpers
 {
     public class EmailSender
     {
-        public string Host { get; set; } = "smtp-mail.outlook.com";
+        public string Host { get; set; } = "smtp.gmail.com";
         public int Port { get; set; } = 587;
         public bool EnableSsl { get; set; } = true;
-        public string CredentialEmailAdress { get; set; } = "isim@outlook.com";
-        public string CredentialEmailAdressPassword { get; set; } = "parola";
+        public string CredentialEmailAdress { get; set; } = "incecamberat@gmail.com";
+        public string CredentialEmailAdressPassword { get; set; } = "12ve23kez";
         public string CredentialDisplay { get; set; } = "Petroteks.com";
         public string Subject { get; set; }
         public string Body { get; set; }
@@ -49,7 +49,10 @@ namespace Petroteks.Bll.Helpers
             if (emails.Length > 0)
             {
                 foreach (string email in emails)
-                    emailService.Add(new Email() { EmailAddress = email, WebSite = Website });
+                {
+                    if (emailService.Get(x => x.EmailAddress == email && x.WebSiteid == Website.id) == null)
+                        emailService.Add(new Email() { EmailAddress = email, WebSite = Website });
+                }
                 emailService.Save();
             }
         }
@@ -60,7 +63,7 @@ namespace Petroteks.Bll.Helpers
         {
             StringBuilder stringBuilder = new StringBuilder();
             foreach (Email email in emails)
-                stringBuilder.Append($"{email}, ");
+                stringBuilder.Append($"{email.EmailAddress}, ");
             if (stringBuilder.ToString().EndsWith(", "))
                 stringBuilder = stringBuilder.Remove(stringBuilder.Length - 2, 2);
             return stringBuilder.ToString();
@@ -78,7 +81,8 @@ namespace Petroteks.Bll.Helpers
             smtp.Credentials = new NetworkCredential(CredentialEmailAdress, CredentialEmailAdressPassword);
             MailMessage email = new MailMessage();
             email.From = new MailAddress(CredentialEmailAdress, CredentialDisplay);
-            email.To.Add(EmailsToString(emails));
+            string EmailString = EmailsToString(emails);
+            email.To.Add(EmailString);
             email.Subject = Subject;
             email.Body = Body;
             foreach (string file in files)

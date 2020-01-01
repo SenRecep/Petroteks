@@ -1,0 +1,48 @@
+﻿@model ICollection<Email>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mail Adresi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.EmailAddress</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <center><button onclick="SendMail();">fgdgfcgf</button></center>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        function SendMail() {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/Home/SendMail",
+                success: function (response) {
+                    toastr.success(response);
+                    location.reload();
+                },
+                failure: function (response) {
+                    toastr.error('Sunucu ile bağlantı kurulamadı.');
+                },
+                error: function (response) {
+                    toastr.error('Sunucu ile bağlantı kurulamadı.');
+                }
+            });
+        }
+            
+    </script>
+}

@@ -9,7 +9,6 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Pages\" />
     <Folder Include="TagHelpers\" />
-    <Folder Include="ViewComponents\" />
     <Folder Include="wwwroot\UploadImages\" />
     <Folder Include="wwwroot\UploadFiles\" />
   </ItemGroup>

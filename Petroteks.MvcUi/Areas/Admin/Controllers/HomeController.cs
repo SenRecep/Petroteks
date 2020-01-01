@@ -21,16 +21,19 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
     {
         private readonly IUserService _userService;
         private readonly IUserSessionService _userSessionService;
-
+        private readonly IEmailService emailService;
+        EmailSender emailSender;
         public HomeController(
             IUserService userService,
             IUserSessionService userSessionService,
             IWebsiteService websiteService,
-            IHttpContextAccessor httpContextAccessor ) :
+            IHttpContextAccessor httpContextAccessor,
+            IEmailService emailService) :
             base(userSessionService, websiteService, httpContextAccessor)
         {
             this._userService = userService;
             this._userSessionService = userSessionService;
+            this.emailService = emailService;
         }
         [AdminAuthorize]
         public IActionResult Index()
@@ -136,6 +139,20 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return new JsonResult("İşlem tamamlanamadı");
         }
 
+        public JsonResult SendMail()
+        {
+            if (emailSender==null)
+                emailSender = new EmailSender(emailService);
+            emailSender.Body = "Merhaba";
+            emailSender.Subject = "HEY";
+            if (emailSender.Send(emailSender.LoadWebsiteEmails(ThisWebsite.id)))
+            {
+                return new JsonResult("İşlem tamamlandi");
+            }
+            return new JsonResult("İşlem tamamlanamadi");
+
+        }
+
         public IActionResult Register()
         {
             return View();
@@ -187,7 +204,14 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 TempData["errorMassage"] = "Tüm değerleri doğru biçimde giriniz";
             }
             return RedirectToAction("Login", "Home");
-        } 
+        }
+        [AdminAuthorize]
+        public IActionResult Bilgilendirme()
+        {
+            emailSender = new EmailSender(emailService);
+            ICollection<Email> emails = emailSender.LoadWebsiteEmails(ThisWebsite.id);
+            return View(emails);
+        }
 
 
     }

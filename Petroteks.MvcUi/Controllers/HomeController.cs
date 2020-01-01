@@ -16,12 +16,14 @@ namespace Petroteks.MvcUi.Controllers
         private readonly IMainPageService mainPageService;
         private readonly IAboutUsObjectService aboutUsObjectService;
         private readonly IPrivacyPolicyObjectService privacyPolicyObjectService;
+        private readonly IEmailService emailService;
 
-        public HomeController(IAboutUsObjectService aboutUsObjectService, IMainPageService mainPageService, IPrivacyPolicyObjectService privacyPolicyObjectService, IWebsiteService websiteService, IHttpContextAccessor httpContextAccessor) : base(websiteService, httpContextAccessor)
+        public HomeController(IAboutUsObjectService aboutUsObjectService, IMainPageService mainPageService, IEmailService emailService, IPrivacyPolicyObjectService privacyPolicyObjectService, IWebsiteService websiteService, IHttpContextAccessor httpContextAccessor) : base(websiteService, httpContextAccessor)
         {
             this.aboutUsObjectService = aboutUsObjectService;
             this.mainPageService = mainPageService;
             this.privacyPolicyObjectService = privacyPolicyObjectService;
+            this.emailService = emailService;
         }
         //url/Home/Index
         public IActionResult Index()
@@ -52,6 +54,25 @@ namespace Petroteks.MvcUi.Controllers
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
 
             return View(gizlilikpolitikasi);
+        }
+
+
+        public JsonResult BilgilendirmeMail(string email)
+        {
+            Email Email;
+            Email = emailService.Get(x=>x.EmailAddress.Equals(email) && x.WebSiteid==ThisWebsite.id);
+            if (Email==null)
+            {
+                bool IsValid = RegexUtilities.IsValidEmail(email);
+                if (IsValid)
+                {
+                    emailService.Add(new Email() { EmailAddress=email,WebSite=ThisWebsite});
+                    emailService.Save();
+                    return Json("Başarılı bi şekilde abone oldunuz.");
+                }
+                return Json("Lütfen Mail Adresinizi Doğru bir Şekilde Giriniz");
+            }
+            return Json("Zaten Abonesiniz.");
         }
 
 

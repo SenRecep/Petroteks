@@ -55,3 +55,29 @@
     </div>
 </section>
 @Html.Raw(Model.BottomContent)
+
+
+
+@section Scripts{
+
+    <script>
+        function BilgilendirmeMail() {
+            var mailadress = $("#email").val();
+            $.ajax({
+                type: "GET",
+                url: "/Home/BilgilendirmeMail?email=" + mailadress ,
+                success: function (response) { 
+                    toastr.success(response);
+                },
+                failure: function (response) {
+                    toastr.error('Sunucu ile bağlantı kurulamadı.');
+                },
+                error: function (response) {
+                    toastr.error('Sunucu ile bağlantı kurulamadı.');
+                }
+            });
+        }
+    </script>
+
+
+}

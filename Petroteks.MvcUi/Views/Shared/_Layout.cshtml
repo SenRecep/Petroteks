@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="../css/magnific-popup.css">
     <link rel="stylesheet" href="../css/rev-slider.css">
     <link rel="stylesheet" href="../rs-plugin/css/settings.css" media="screen" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     <style>
 
         .font-alt-type {
@@ -55,7 +56,6 @@
     <div class="page" id="top">
 
         <!-- Home Section -->
-    
         <!-- End Home Section -->
         <!-- Navigation panel -->
         <nav class="main-nav transparent stick-fixed">
@@ -79,6 +79,38 @@
                             <a asp-controller="Home" asp-action="Index" class="mn-has-sub active">ANA SAYFA</a>
                         </li>
                         <li>
+                            <a href="#" class="mn-has-sub">ÜRÜNLER <i class="fa fa-angle-down"></i></a>
+
+                            <!-- Sub -->
+                            <ul class="mn-sub">
+
+                                <li>
+                                    <a href="#" class="mn-has-sub to-left">Ürün1 <i class="fa fa-angle-right right"></i></a>
+
+                                    <ul class="mn-sub">
+                                        <li>
+                                            <a class="mn-has-sub" href="blog-classic-sidebar-left.html">Alt Ürün <i class="fa fa-angle-right right"></i></a>
+                                            <ul class="mn-sub">
+                                                <li>
+                                                    <a href="blog-classic-sidebar-left.html">En Alt Ürün</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+                                    </ul>
+
+                                </li>
+                                <li>
+                                    <a href="#" class="mn-has-sub">Ürün1 <i class="fa fa-angle-right right"></i></a>
+                                </li>
+
+
+                            </ul>
+                            <!-- End Sub -->
+
+                        </li>
+                        <li>
                             <a asp-controller="Home" asp-action="Hakkimizda" class="mn-has-sub active">HAKKIMIZDA</a>
                         </li>
                         <li>
@@ -86,30 +118,6 @@
                         </li>
                         <!-- End Item With Sub -->
                         <!-- Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">ÜRÜNLER <i class="fa fa-angle-down"></i></a>
-
-                            <!-- Sub -->
-                            <ul class="mn-sub">
-
-                                <li>
-                                    <a href="#" class="mn-has-sub">Ürün1 <i class="fa fa-angle-right right"></i></a>
-
-                                    <ul class="mn-sub">
-                                        <li>
-                                            <a href="blog-classic-sidebar-left.html">Alt Ürün</a>
-                                        </li>
-
-                                    </ul>
-
-                                </li>
-
-
-
-                            </ul>
-                            <!-- End Sub -->
-
-                        </li>
                         <!-- End Item With Sub -->
                         <!-- Divider -->
                         <li><a>&nbsp;</a></li>
@@ -160,7 +168,7 @@
             </div>
         </nav>
         <!-- End Navigation panel -->
-          
+
         @RenderBody()
 
         <footer class="small-section bg-gray-lighter footer pb-60">
@@ -346,6 +354,28 @@
     <script type="text/javascript" src="../rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script type="text/javascript" src="../js/rev-slider.js"></script>
     <script type="text/javascript" src="../js/tiltfx.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
     <!--[if lt IE 10]><script type="text/javascript" src="../js/placeholder.js"></script><![endif]-->
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

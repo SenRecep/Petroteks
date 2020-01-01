@@ -220,9 +220,16 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a asp-area="Admin" asp-controller="Pages" asp-action="AboutPage" class="sidebar-link">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="HakkimizdaEdit" class="sidebar-link">
                                         <span class="hide-menu">
                                             Hakkımızda
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="GizlilikPolitikasiEdit" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            Gizlilik Politikası
                                         </span>
                                     </a>
                                 </li>
@@ -312,9 +319,11 @@
         const editor1 = document.getElementById("editor1");
         const editor2 = document.getElementById("editor2");
         const editor3 = document.getElementById("editor3");
+        const editor4 = document.getElementById("editor4");
         CKEDITOR.replace(editor1, config);
         CKEDITOR.replace(editor2, config);
         CKEDITOR.replace(editor3, config);
+        CKEDITOR.replace(editor4, config);
     </script>
     @RenderSection("Scripts", required: false)
     <script>

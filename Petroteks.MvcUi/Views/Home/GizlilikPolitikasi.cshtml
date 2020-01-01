@@ -1,0 +1,9 @@
+﻿@model PrivacyPolicyObject
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.Description;
+    ViewData["MetaTags"] = Model.MetaTags;
+    ViewData["Keywords"] = Model.Keywords;
+}
+  
+@Html.Raw(Model.Content)

@@ -18,12 +18,16 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         private readonly IUserService _userService;
         private readonly IUserSessionService _userSessionService;
         private readonly IMainPageService mainPageService;
+        private readonly IAboutUsObjectService aboutUsObjectService;
+        private readonly IPrivacyPolicyObjectService privacyPolicyObjectService;
 
-        public PagesController(IUserService userService, IUserSessionService userSessionService, IMainPageService mainPageService,IWebsiteService websiteService, IHttpContextAccessor  httpContextAccessor) :base(userSessionService, websiteService,httpContextAccessor)
+        public PagesController(IUserService userService, IUserSessionService userSessionService, IMainPageService mainPageService, IAboutUsObjectService aboutUsObjectService, IPrivacyPolicyObjectService privacyPolicyObjectService,IWebsiteService websiteService, IHttpContextAccessor  httpContextAccessor) :base(userSessionService, websiteService,httpContextAccessor)
         {
             this._userService = userService;
             this._userSessionService = userSessionService;
             this.mainPageService = mainPageService;
+            this.aboutUsObjectService = aboutUsObjectService;
+            this.privacyPolicyObjectService = privacyPolicyObjectService;
         }
 
        
@@ -65,5 +69,89 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             mainPageService.Save();
             return View(mainPage);
         }
+
+
+
+
+        [AdminAuthorize]
+        public IActionResult HakkimizdaEdit()
+        {
+            AboutUsObject aboutus;
+            aboutus = aboutUsObjectService.Get(x => x.WebSiteid == ThisWebsite.id);
+            if (aboutus == null)
+                aboutus = new AboutUsObject();
+            return View(aboutus);
+        }
+
+
+        [AdminAuthorize]
+        [HttpPost]
+        public IActionResult HakkimizdaEdit(AboutUsObject model)
+        {
+            AboutUsObject aboutus;
+            aboutus = aboutUsObjectService.Get(x => x.WebSiteid == ThisWebsite.id);
+            if (aboutus == null)
+            {
+                aboutus = model;
+                aboutus.WebSite = ThisWebsite;
+                aboutUsObjectService.Add(aboutus);
+            }
+            else
+            {
+                aboutus.Keywords = model.Keywords;
+                aboutus.Title = model.Title;
+                aboutus.MetaTags = model.MetaTags;
+                aboutus.Description = model.Description;
+                aboutus.Content = model.Content;
+                aboutUsObjectService.Update(aboutus);
+            }
+            aboutUsObjectService.Save();
+            return View(aboutus);
+        }
+
+
+
+
+        [AdminAuthorize]
+        public IActionResult GizlilikPolitikasiEdit()
+        {
+            PrivacyPolicyObject privacyPage;
+            privacyPage = privacyPolicyObjectService.Get(x => x.WebSiteid == ThisWebsite.id);
+            if (privacyPage == null)
+                privacyPage = new PrivacyPolicyObject();
+            return View(privacyPage);
+        }
+
+
+        [AdminAuthorize]
+        [HttpPost]
+        public IActionResult GizlilikPolitikasiEdit(PrivacyPolicyObject model)
+        {
+            PrivacyPolicyObject privacyPage;
+            privacyPage = privacyPolicyObjectService.Get(x => x.WebSiteid == ThisWebsite.id);
+            if (privacyPage == null)
+            {
+                privacyPage = model;
+                privacyPage.WebSite = ThisWebsite;
+                privacyPolicyObjectService.Add(privacyPage);
+            }
+            else
+            {
+                privacyPage.Keywords = model.Keywords;
+                privacyPage.Title = model.Title;
+                privacyPage.MetaTags = model.MetaTags;
+                privacyPage.Description = model.Description;
+                privacyPage.Content = model.Content;
+                privacyPolicyObjectService.Update(privacyPage);
+            }
+            privacyPolicyObjectService.Save();
+            return View(privacyPage);
+        }
+
+
+
+
+
+
     }
 }

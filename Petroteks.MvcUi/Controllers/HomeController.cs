@@ -15,11 +15,13 @@ namespace Petroteks.MvcUi.Controllers
     {
         private readonly IMainPageService mainPageService;
         private readonly IAboutUsObjectService aboutUsObjectService;
+        private readonly IPrivacyPolicyObjectService privacyPolicyObjectService;
 
-        public HomeController(IAboutUsObjectService aboutUsObjectService, IMainPageService mainPageService, IWebsiteService websiteService, IHttpContextAccessor httpContextAccessor) : base(websiteService, httpContextAccessor)
+        public HomeController(IAboutUsObjectService aboutUsObjectService, IMainPageService mainPageService, IPrivacyPolicyObjectService privacyPolicyObjectService, IWebsiteService websiteService, IHttpContextAccessor httpContextAccessor) : base(websiteService, httpContextAccessor)
         {
             this.aboutUsObjectService = aboutUsObjectService;
             this.mainPageService = mainPageService;
+            this.privacyPolicyObjectService = privacyPolicyObjectService;
         }
         //url/Home/Index
         public IActionResult Index()
@@ -42,7 +44,15 @@ namespace Petroteks.MvcUi.Controllers
             return View(hakkimizda);
         }
 
+        public IActionResult GizlilikPolitikasi()
+        {
+            PrivacyPolicyObject gizlilikpolitikasi;
+            gizlilikpolitikasi = privacyPolicyObjectService.Get(x => x.WebSiteid == ThisWebsite.id);
+            if (gizlilikpolitikasi == null)
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
 
+            return View(gizlilikpolitikasi);
+        }
 
 
     }

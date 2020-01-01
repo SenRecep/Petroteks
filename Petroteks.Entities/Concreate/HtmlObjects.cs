@@ -11,7 +11,7 @@ namespace Petroteks.Entities.Concreate
 
 
 
-    public class AboutUsObject : WebsiteObject, IHtmlObject
+    public class AboutUsObject : BasePage, IHtmlObject
     {
         public string Content { get; set; }
     }

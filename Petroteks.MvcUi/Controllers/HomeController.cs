@@ -14,12 +14,14 @@ namespace Petroteks.MvcUi.Controllers
     public class HomeController : GlobalController
     {
         private readonly IMainPageService mainPageService;
+        private readonly IAboutUsObjectService aboutUsObjectService;
 
-        public HomeController(IMainPageService mainPageService, IWebsiteService websiteService, IHttpContextAccessor httpContextAccessor) : base(websiteService, httpContextAccessor)
+        public HomeController(IAboutUsObjectService aboutUsObjectService, IMainPageService mainPageService, IWebsiteService websiteService, IHttpContextAccessor httpContextAccessor) : base(websiteService, httpContextAccessor)
         {
+            this.aboutUsObjectService = aboutUsObjectService;
             this.mainPageService = mainPageService;
         }
-
+        //url/Home/Index
         public IActionResult Index()
         {
             MainPage mainPage; 
@@ -29,5 +31,19 @@ namespace Petroteks.MvcUi.Controllers
 
             return View(mainPage);
         }
+         
+        public IActionResult Hakkimizda()
+        {
+            AboutUsObject hakkimizda;
+            hakkimizda = aboutUsObjectService.Get(x => x.WebSiteid == ThisWebsite.id);
+            if (hakkimizda == null)
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
+
+            return View(hakkimizda);
+        }
+
+
+
+
     }
 }

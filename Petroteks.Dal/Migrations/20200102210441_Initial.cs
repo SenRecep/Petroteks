@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Petroteks.Dal.Migrations
 {
-    public partial class Inital : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -205,7 +205,11 @@ namespace Petroteks.Dal.Migrations
                     PhotoPath = table.Column<string>(nullable: true),
                     SupTitle = table.Column<string>(nullable: true),
                     SubTitle = table.Column<string>(nullable: true),
-                    Content = table.Column<string>(nullable: true)
+                    Content = table.Column<string>(nullable: true),
+                    Keywords = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    MetaTags = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

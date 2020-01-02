@@ -261,8 +261,17 @@ namespace Petroteks.Dal.Migrations
                     b.Property<int>("CreateUserid")
                         .HasColumnType("int");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Keywords")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaTags")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhotoPath")
                         .HasColumnType("nvarchar(max)");
@@ -271,6 +280,9 @@ namespace Petroteks.Dal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SupTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateDate")

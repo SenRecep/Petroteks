@@ -165,18 +165,17 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult ProductAdd()
         {
-            return View();
+            ViewBag.ThisWebsite = ThisWebsite;
+
+            return View(new Product());
         }
 
         [AdminAuthorize]
         [HttpGet]
         public IActionResult CategoryAdd()
         {
-            return View(new CategoryListViewModel(categoryService)
-            {
-                MainCategories = categoryService.GetMany(category => category.WebSiteid == ThisWebsite.id && category.Parentid == 0),
-                AllSubCategory = categoryService.GetMany(category => category.WebSiteid == ThisWebsite.id && category.Parentid != 0)
-            });
+            ViewBag.ThisWebsite = ThisWebsite;
+            return View();
         }
         [AdminAuthorize]
         [HttpPost]

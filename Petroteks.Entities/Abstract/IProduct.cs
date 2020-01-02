@@ -12,5 +12,11 @@ namespace Petroteks.Entities.Abstract
         string PhotoPath { get; set; }
         string SupTitle { get; set; }
         string SubTitle { get; set; }
+
+        string Keywords { get; set; }
+        string Description { get; set; }
+        string MetaTags { get; set; }
+        string Title { get; set; }
+
     }
 }

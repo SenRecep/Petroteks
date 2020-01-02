@@ -212,7 +212,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             ICollection<Email> emails = emailSender.LoadWebsiteEmails(ThisWebsite.id);
             return View(emails);
         }
-
-
+      
     }
 }

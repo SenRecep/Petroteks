@@ -11,7 +11,7 @@ namespace Petroteks.MvcUi.Controllers
         private readonly IWebsiteService websiteService;
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public GlobalController( IWebsiteService websiteService, IHttpContextAccessor httpContextAccessor)
+        public GlobalController(IWebsiteService websiteService, IHttpContextAccessor httpContextAccessor)
         {
             this.websiteService = websiteService;
             this.httpContextAccessor = httpContextAccessor;

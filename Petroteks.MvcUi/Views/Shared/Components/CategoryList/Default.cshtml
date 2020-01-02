@@ -1,0 +1,33 @@
+﻿@model CategoryListViewModel
+@{
+    object LoadSubMenu(Category category)
+    {
+        ICollection<Category> categories = Model.GetCategoryies(category.id);
+        foreach (Category subCategory in categories)
+        {
+
+            <li>
+                <a class="mn-has-sub" href="blog-classic-sidebar-left.html">@subCategory.Name <i class="fa fa-angle-right right"></i></a>
+                <ul class="mn-sub">
+                    @LoadSubMenu(subCategory)
+                </ul>
+            </li>
+
+
+        }
+        return null;
+    }
+}
+@{
+
+    foreach (Category MainCategory in Model.MainCategories)
+    {
+        <li>
+            <a href="#" class="mn-has-sub to-left">@MainCategory.Name <i class="fa fa-angle-right right"></i></a>
+            <ul class="mn-sub">
+                @LoadSubMenu(MainCategory)
+            </ul>
+        </li>
+    }
+
+}

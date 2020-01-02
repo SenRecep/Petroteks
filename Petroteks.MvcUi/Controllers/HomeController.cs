@@ -11,20 +11,29 @@ using System.Collections.Generic;
 
 namespace Petroteks.MvcUi.Controllers
 {
-    public class HomeController : GlobalController
+    public class HomeController : PublicController
     {
         private readonly IMainPageService mainPageService;
         private readonly IAboutUsObjectService aboutUsObjectService;
         private readonly IPrivacyPolicyObjectService privacyPolicyObjectService;
         private readonly IEmailService emailService;
 
-        public HomeController(IAboutUsObjectService aboutUsObjectService, IMainPageService mainPageService, IEmailService emailService, IPrivacyPolicyObjectService privacyPolicyObjectService, IWebsiteService websiteService, IHttpContextAccessor httpContextAccessor) : base(websiteService, httpContextAccessor)
+        public HomeController(
+            IAboutUsObjectService aboutUsObjectService,
+            IMainPageService mainPageService,
+            IEmailService emailService,
+            IPrivacyPolicyObjectService privacyPolicyObjectService,
+            IWebsiteService websiteService,
+            IHttpContextAccessor httpContextAccessor) :
+            base(websiteService, httpContextAccessor)
         {
             this.aboutUsObjectService = aboutUsObjectService;
             this.mainPageService = mainPageService;
             this.privacyPolicyObjectService = privacyPolicyObjectService;
             this.emailService = emailService;
         }
+
+
         //url/Home/Index
         public IActionResult Index()
         {

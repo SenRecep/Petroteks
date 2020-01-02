@@ -8,24 +8,42 @@ using System.Threading.Tasks;
 
 namespace Petroteks.MvcUi.ViewComponents
 {
-    public class CategoryList:ViewComponent
+    public class CategoryList : ViewComponent
     {
         private readonly ICategoryService categoryService;
-        private readonly Website website;
 
-        public CategoryList(ICategoryService categoryService, Website website)
+        public CategoryList(ICategoryService categoryService)
         {
             this.categoryService = categoryService;
-            this.website = website;
-        }
-        public Category GetCategory(int parentId)
-        {
-            return categoryService.Get(x => x.id == parentId && x.WebSiteid == website.id);
         }
 
-        public IViewComponentResult Invoke()
+
+        public async Task<IViewComponentResult> InvokeAsync(Website website)
         {
-            return View();
+            return View(new CategoryListViewModel(categoryService)
+            {
+                MainCategories = categoryService.GetMany(category => category.WebSiteid == website.id && category.Parentid == 0),
+                AllSubCategory = categoryService.GetMany(category => category.WebSiteid == website.id && category.Parentid != 0)
+            });
         }
+    }
+
+    public class CategoryListViewModel
+    {
+        private readonly ICategoryService categoryService;
+
+        public CategoryListViewModel(ICategoryService categoryService)
+        {
+            this.categoryService = categoryService;
+        }
+
+        public ICollection<Category> MainCategories { get; set; }
+        public ICollection<Category> AllSubCategory { get; set; }
+
+        public ICollection<Category> GetCategoryies(int parentId)
+        {
+            return AllSubCategory.Where(x => x.Parentid == parentId).ToList();
+        }
+
     }
 }

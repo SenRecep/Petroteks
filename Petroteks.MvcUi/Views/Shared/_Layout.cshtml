@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+}
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewData["Title"]</title>
@@ -83,29 +85,8 @@
 
                             <!-- Sub -->
                             <ul class="mn-sub">
-
-                                <li>
-                                    <a href="#" class="mn-has-sub to-left">Ürün1 <i class="fa fa-angle-right right"></i></a>
-
-                                    <ul class="mn-sub">
-                                        <li>
-                                            <a class="mn-has-sub" href="blog-classic-sidebar-left.html">Alt Ürün <i class="fa fa-angle-right right"></i></a>
-                                            <ul class="mn-sub">
-                                                <li>
-                                                    <a href="blog-classic-sidebar-left.html">En Alt Ürün</a>
-                                                </li>
-
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-
-                                </li>
-                                <li>
-                                    <a href="#" class="mn-has-sub">Ürün1 <i class="fa fa-angle-right right"></i></a>
-                                </li>
-
-
+                                @await Component.InvokeAsync("CategoryList",new { website=(Website)ViewBag.ThisWebsite})
+                                
                             </ul>
                             <!-- End Sub -->
 

@@ -1,0 +1,178 @@
+﻿
+<style>
+    .nested, .CategoryTreeView {
+        list-style-type: none !important;
+    }
+
+    .CategoryTreeView {
+        margin: 0;
+        padding: 0;
+    }
+
+    .caret {
+        cursor: pointer;
+        -webkit-user-select: none; /* Safari 3.1+ */
+        -moz-user-select: none; /* Firefox 2+ */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none;
+    }
+
+        .caret::before {
+            content: "\25B6";
+            color: black;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+    .caret-down::before {
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); /* Safari */
+        transform: rotate(90deg);
+    }
+
+    .nested {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+</style>
+
+@model CategoryListViewModel
+@{
+    object LoadSubMenu(Category category, ICollection<Category> categories)
+    {
+        if (categories?.Count > 0)
+        {
+            <ul class="nested">
+                @foreach (Category subCategory in categories)
+                {
+                    <li>
+
+                        @{
+                            ICollection<Category> subcategories = Model.GetCategoryies(subCategory.id);
+                            if (subcategories.Count > 0)
+                            {
+                                <span class="caret">@Model.NameId(subCategory)</span>
+                                @LoadSubMenu(subCategory, subcategories);
+                            }
+                            else
+                            {
+                                @Model.NameId(subCategory)
+                            }
+                        }
+                    </li>
+
+                }
+
+            </ul>
+
+        }
+        else if (category.Parentid != 0)
+        {
+            <li>@Model.NameId(category)</li>
+        }
+
+        return null;
+    }
+}
+@{
+    <ul class="CategoryTreeView">
+        @foreach (Category MainCategory in Model.MainCategories)
+        {
+            ICollection<Category> subcategories = Model.GetCategoryies(MainCategory.id);
+            if (subcategories.Count > 0)
+            {
+                <li>
+                    <span class="caret">@Model.NameId(MainCategory)</span>
+                    @LoadSubMenu(MainCategory, subcategories)
+                </li>
+            }
+            else
+            {
+                <li>@Model.NameId(MainCategory)</li>
+            }
+
+        }
+    </ul>
+
+}
+
+<form enctype="multipart/form-data" method="post">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Kategori İD</h4>
+                    <h6 class="card-subtitle">Kategori ağacında numarayı burada giriniz.</h6>
+
+                    <div class="form-group">
+                        <input type="number"  name="ParentId" id="ParentId" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Kategori İsmi</h4>
+                    <h6 class="card-subtitle">Kategori İsmini burada giriniz</h6>
+
+                    <div class="form-group">
+                        <input type="text" name="Name" id="Name"  class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Resim Yükle</h4>
+                    <h6 class="card-subtitle">Kategori Fotoğrafını burada giriniz.</h6>
+                    <div class="input-group mb-3">
+
+                        <div class="custom-file">
+                            <input type="file"  name="Image" id="Image"   class="custom-file-input">
+                            <label class="custom-file-label">Dosya Seç</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>
+        <div class="row">
+            <button class="btn btn-success" type="submit">Kaydet</button>
+        </div>
+    </center>
+</form>
+
+
+
+
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            $('.custom-file-input').on(function () {
+                var filename = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(filename);
+            });
+        });
+
+
+        var toggler = document.getElementsByClassName("caret");
+        var i;
+
+        for (i = 0; i < toggler.length; i++) {
+            toggler[i].addEventListener("click", function () {
+                this.parentElement.querySelector(".nested").classList.toggle("active");
+                this.classList.toggle("caret-down");
+            });
+        }
+    </script>
+}
+
+

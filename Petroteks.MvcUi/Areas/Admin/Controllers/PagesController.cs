@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
@@ -9,35 +11,45 @@ using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Attributes;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
+using Petroteks.MvcUi.ViewComponents;
 
 namespace Petroteks.MvcUi.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class PagesController : AdminBaseController
     {
-        private readonly IUserService _userService;
-        private readonly IUserSessionService _userSessionService;
         private readonly IMainPageService mainPageService;
         private readonly IAboutUsObjectService aboutUsObjectService;
         private readonly IPrivacyPolicyObjectService privacyPolicyObjectService;
+        private readonly ICategoryService categoryService;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-        public PagesController(IUserService userService, IUserSessionService userSessionService, IMainPageService mainPageService, IAboutUsObjectService aboutUsObjectService, IPrivacyPolicyObjectService privacyPolicyObjectService,IWebsiteService websiteService, IHttpContextAccessor  httpContextAccessor) :base(userSessionService, websiteService,httpContextAccessor)
+        public PagesController(IUserService userService,
+            IUserSessionService userSessionService,
+            IMainPageService mainPageService,
+            IAboutUsObjectService aboutUsObjectService,
+            IPrivacyPolicyObjectService privacyPolicyObjectService,
+            IWebsiteService websiteService,
+            IHttpContextAccessor httpContextAccessor,
+            ICategoryService categoryService,
+            IHostingEnvironment hostingEnvironment)
+            : base(userSessionService, websiteService, httpContextAccessor)
         {
-            this._userService = userService;
-            this._userSessionService = userSessionService;
             this.mainPageService = mainPageService;
             this.aboutUsObjectService = aboutUsObjectService;
             this.privacyPolicyObjectService = privacyPolicyObjectService;
+            this.categoryService = categoryService;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
-       
+
 
         [AdminAuthorize]
         public IActionResult AnaSayfaEdit()
         {
             MainPage mainPage;
             mainPage = mainPageService.Get(x => x.WebSiteid == ThisWebsite.id);
-            if (mainPage==null)
+            if (mainPage == null)
                 mainPage = new MainPage();
             return View(mainPage);
         }
@@ -49,7 +61,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         {
             MainPage mainPage;
             mainPage = mainPageService.Get(x => x.WebSiteid == ThisWebsite.id);
-            if (mainPage==null)
+            if (mainPage == null)
             {
                 mainPage = model;
                 mainPage.WebSite = ThisWebsite;
@@ -149,9 +161,57 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         }
 
 
+        [AdminAuthorize]
+        [HttpGet]
+        public IActionResult ProductAdd()
+        {
+            return View();
+        }
 
-
-
-
+        [AdminAuthorize]
+        [HttpGet]
+        public IActionResult CategoryAdd()
+        {
+            return View(new CategoryListViewModel(categoryService)
+            {
+                MainCategories = categoryService.GetMany(category => category.WebSiteid == ThisWebsite.id && category.Parentid == 0),
+                AllSubCategory = categoryService.GetMany(category => category.WebSiteid == ThisWebsite.id && category.Parentid != 0)
+            });
+        }
+        [AdminAuthorize]
+        [HttpPost]
+        public IActionResult CategoryAdd(CategoryViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName = null;
+                if (model.Image != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "CategoryImages");
+                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                Category category = new Category()
+                {
+                    Name = model.Name,
+                    Parentid = model.ParentId,
+                    PhotoPath = uniqueFileName,
+                    WebSite=ThisWebsite
+                };
+                Category findedCategory = categoryService.Get(x => x.Name.Equals(category.Name) && x.WebSite == ThisWebsite);
+                if (findedCategory != null)
+                {
+                    findedCategory.Parentid = category.Parentid;
+                    if (!string.IsNullOrWhiteSpace(category.PhotoPath))
+                        findedCategory.PhotoPath = category.PhotoPath;
+                    categoryService.Update(findedCategory);
+                }
+                else
+                    categoryService.Add(category);
+                categoryService.Save();
+            }
+            return RedirectToAction("CategoryAdd", "Pages", new { area = "Admin" });
+        }
     }
 }

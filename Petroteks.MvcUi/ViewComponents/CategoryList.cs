@@ -37,12 +37,19 @@ namespace Petroteks.MvcUi.ViewComponents
             this.categoryService = categoryService;
         }
 
+        public CategoryViewModel CategoryViewModel { get; set; }
+
         public ICollection<Category> MainCategories { get; set; }
         public ICollection<Category> AllSubCategory { get; set; }
 
         public ICollection<Category> GetCategoryies(int parentId)
         {
             return AllSubCategory.Where(x => x.Parentid == parentId).ToList();
+        }
+
+        public string NameId(Category category)
+        {
+            return $"[{category.id}] {category.Name}";
         }
 
     }

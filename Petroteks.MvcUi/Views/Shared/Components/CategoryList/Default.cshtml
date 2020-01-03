@@ -7,7 +7,7 @@
         {
 
             <li>
-                <a  href="/Detail/CategoryDetail?page=1&category=@subCategory.id"  class="mn-has-sub" >@subCategory.Name <i class="fa fa-angle-right right"></i></a>
+                <a  href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id"  class="mn-has-sub" >@subCategory.Name <i class="fa fa-angle-right right"></i></a>
                 <ul class="mn-sub">
                     @LoadSubMenu(subCategory)
                 </ul>
@@ -23,7 +23,7 @@
     foreach (Category MainCategory in Model.MainCategories)
     {
         <li>
-            <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" class="mn-has-sub to-left">@MainCategory.Name <i class="fa fa-angle-right right"></i></a>
+            <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name" class="mn-has-sub to-left">@MainCategory.Name <i class="fa fa-angle-right right"></i></a>
             <ul class="mn-sub">
                 @LoadSubMenu(MainCategory)
             </ul>

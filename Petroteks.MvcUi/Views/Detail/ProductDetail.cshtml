@@ -1,0 +1,32 @@
+﻿@model Product
+@{
+}
+
+<div class="row mt-2">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>@Model.SupTitle</h4>
+                <h6>@Model.SubTitle</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <img class="img-fluid" src="~/ProductImages/@Model.PhotoPath" alt="@Model.SupTitle" asp-append-version="true" />
+                    </div>
+                    <div class="col-sm-7">
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p>@Model.Keywords</p>
+                    </div>
+                    <div class="col-sm-4 text-right">
+                        <p>@Model.CreateDate.ToString()</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

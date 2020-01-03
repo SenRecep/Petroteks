@@ -102,6 +102,14 @@ namespace Petroteks.MvcUi
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                //endpoints.MapControllerRoute(
+                //    name: "categoryDetail",
+                //    pattern: "{controller=Detail}/{action=CategoryDetail}/{categoryName}/{page}/{category}");
+
+                //endpoints.MapControllerRoute(
+                //    name: "productDetail",
+                //    pattern: "{controller=Detail}/{action=ProductDetail}/{produtname}/{product}");
             });
         }
     }

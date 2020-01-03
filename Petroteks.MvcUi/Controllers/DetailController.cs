@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
+using Petroteks.Entities.Concreate;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -21,7 +22,7 @@ namespace Petroteks.MvcUi.Controllers
 
 
 
-        public IActionResult CategoryDetail(int page=1,int category=0)
+        public IActionResult CategoryDetail(string categoryName, int page=1,int category=0)
         {
             int pagesize = 10;
             var Category = categoryService.Get(x=>x.id==category && x.WebSite==ThisWebsite);
@@ -33,6 +34,12 @@ namespace Petroteks.MvcUi.Controllers
                     CurrentCategory=Category,
                     CurrentPage=page
             });
+        }
+        [HttpGet]
+        public IActionResult ProductDetail(string produtname,int product)
+        {
+            Product Product = productService.Get(x=>x.id==product); 
+            return View(Product);
         }
     }
 }

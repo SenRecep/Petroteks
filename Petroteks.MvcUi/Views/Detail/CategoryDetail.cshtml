@@ -26,7 +26,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>@product.SupTitle</h4>
+                    <h4><a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id">@product.SupTitle</a></h4>
                     <h6>@product.SubTitle</h6>
                 </div>
                 <div class="card-body">

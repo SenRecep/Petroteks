@@ -1,18 +1,47 @@
-﻿@model ICollection<Email>
+﻿@model MailViewModel
 @{
     ViewData["Title"] = "Index";
 }
 
 <div class="card">
     <div class="card-body">
-        <table class="table table-striped">
+
+
+        <form enctype="multipart/form-data" method="post">
+            <h4 class="card-title">Konu Basligi</h4>
+            <div class="form-group">
+                <input type="text" class="form-control" asp-for="Subject" aria-describedby="Konu Basligi" placeholder="Konu Basligi">
+            </div>
+
+            <h4 class="card-title">Mesaj</h4>
+            <div class="form-group">
+                <textarea id="editor1" name="Slider">
+                    @Html.Raw(Model.Body)
+                </textarea>
+            </div>
+
+            <h4 class="card-title">Gonderilecek Dosyalar</h4>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" asp-for="File" class="custom-file-input">
+                    <label class="custom-file-label">Dosya Seç</label>
+                </div>
+            </div>
+
+
+            <center><button class="btn btn-success" type="submit">Gonder</button></center>
+        </form>
+
+
+
+        <table class="table table-striped mt-3">
             <thead>
                 <tr>
                     <th>Mail Adresi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Emails)
                 {
                     <tr>
                         <td>@item.EmailAddress</td>
@@ -20,29 +49,12 @@
                 }
             </tbody>
         </table>
-        <center><button onclick="SendMail();">fgdgfcgf</button></center>
     </div>
 
 </div>
 
 @section Scripts{
     <script>
-        function SendMail() {
-            $.ajax({
-                type: "GET",
-                url: "/Admin/Home/SendMail",
-                success: function (response) {
-                    toastr.success(response);
-                    location.reload();
-                },
-                failure: function (response) {
-                    toastr.error('Sunucu ile bağlantı kurulamadı.');
-                },
-                error: function (response) {
-                    toastr.error('Sunucu ile bağlantı kurulamadı.');
-                }
-            });
-        }
-            
+
     </script>
 }

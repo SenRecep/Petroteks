@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +24,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         private readonly IUserService _userService;
         private readonly IUserSessionService _userSessionService;
         private readonly IEmailService emailService;
-        private  EmailSender emailSender;
+        private EmailSender emailSender;
         public HomeController(
             IUserService userService,
             IUserSessionService userSessionService,
@@ -149,19 +151,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return new JsonResult("İşlem tamamlanamadı");
         }
 
-        public JsonResult SendMail()
-        {
-            if (emailSender==null)
-                emailSender = new EmailSender(emailService);
-            emailSender.Body = "Merhaba";
-            emailSender.Subject = "HEY";
-            if (emailSender.Send(emailSender.LoadWebsiteEmails(ThisWebsite.id)))
-            {
-                return new JsonResult("İşlem tamamlandi");
-            }
-            return new JsonResult("İşlem tamamlanamadi");
-
-        }
 
         public IActionResult Register()
         {
@@ -215,13 +204,42 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return RedirectToAction("Login", "Home");
         }
+
+
+
         [AdminAuthorize]
         public IActionResult Bilgilendirme()
         {
             emailSender = new EmailSender(emailService);
             ICollection<Email> emails = emailSender.LoadWebsiteEmails(ThisWebsite.id);
-            return View(emails);
+            MailViewModel model = new MailViewModel()
+            {
+                Emails = emails
+            };
+            return View(model);
         }
-      
+
+        [AdminAuthorize]
+        [HttpPost]
+        public IActionResult Bilgilendirme(MailViewModel model)
+        {
+            if (emailSender == null)
+                emailSender = new EmailSender(emailService);
+            emailSender.Body = model.Body;
+            emailSender.Subject = model.Subject;
+            Attachment file=null;
+            if (model.File != null)
+            {
+                string fileName = Path.GetFileName(model.File.FileName);
+                file = new Attachment(model.File.OpenReadStream(), fileName);
+            }
+
+            if (emailSender.Send(emailSender.LoadWebsiteEmails(ThisWebsite.id), file))
+            {
+                return RedirectToAction("Bilgilendirme", "Home", new { area = "Admin" });
+            }
+            return View(model);
+        }
+
     }
 }

@@ -69,7 +69,7 @@ namespace Petroteks.Bll.Helpers
             return stringBuilder.ToString();
         }
 
-        public bool Send(ICollection<Email> emails, params string[] files)
+        public bool Send(ICollection<Email> emails, params Attachment[] files)
         {
             if (emails.Count == 0)
                 return false;
@@ -85,8 +85,8 @@ namespace Petroteks.Bll.Helpers
             email.To.Add(EmailString);
             email.Subject = Subject;
             email.Body = Body;
-            foreach (string file in files)
-                email.Attachments.Add(new Attachment(file));
+            foreach (var file in files)
+                email.Attachments.Add(file);
             try
             {
                 smtp.Send(email);

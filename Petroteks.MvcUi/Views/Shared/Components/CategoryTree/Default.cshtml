@@ -43,6 +43,7 @@
 @{
     object LoadSubMenu(Category category, ICollection<Category> categories)
     {
+        ICollection<Product> localProducts = Model.AllProduct.Where(x => x.Categoryid == category.id).ToList();
         if (categories?.Count > 0)
         {
             <ul class="nested">
@@ -55,11 +56,20 @@
                             if (subcategories.Count > 0)
                             {
                                 <span class="caret">@Model.NameId(subCategory)</span>
-                                @LoadSubMenu(subCategory, subcategories);
+                                @LoadSubMenu(subCategory, subcategories)
+                                @LoadProducts(subCategory,localProducts)
                             }
                             else
                             {
-                                @Model.NameId(subCategory)
+                                if (localProducts.Count > 0)
+                                {
+                                    <span class="caret">@Model.NameId(subCategory)</span>
+                                    @LoadProducts(subCategory, localProducts)
+                                }
+                                else
+                                {
+                                    @Model.NameId(subCategory)
+                                }
                             }
                         }
                     </li>
@@ -71,27 +81,82 @@
         }
         else if (category.Parentid != 0)
         {
-            <li>@Model.NameId(category)</li>
+            if (localProducts.Count > 0)
+            {
+                <li>
+                    <span class="caret">X @Model.NameId(category)</span>
+                    @LoadProducts(category, localProducts)
+                </li>
+            }
+            else
+            {
+                <li>@Model.NameId(category)</li>
+            }
         }
 
         return null;
     }
+
+
+    object LoadProducts(Category category, ICollection<Product> localProducts)
+    {
+
+        <ul class="nested">
+            @foreach (Product product in localProducts)
+            {
+                <li>
+                    @product.SupTitle
+                </li>
+
+            }
+
+        </ul>
+
+
+        return null;
+    }
+
+
+
 }
 @{
     <ul class="CategoryTreeView">
         @foreach (Category MainCategory in Model.MainCategories)
         {
             ICollection<Category> subcategories = Model.GetCategoryies(MainCategory.id);
+            ICollection<Product> localProducts = Model.AllProduct.Where(x => x.Categoryid == MainCategory.id).ToList();
+
             if (subcategories.Count > 0)
             {
                 <li>
                     <span class="caret">@Model.NameId(MainCategory)</span>
                     @LoadSubMenu(MainCategory, subcategories)
+                    @LoadProducts(MainCategory,localProducts)
                 </li>
+            }
+            else if (MainCategory.Name != "ROOT")
+            {
+                if (localProducts.Count > 0)
+                {
+                    <li>
+                        <span class="caret">@Model.NameId(MainCategory)</span>
+                        @LoadProducts(MainCategory, localProducts)
+                    </li>
+                }
+                else
+                {
+                    <li>@Model.NameId(MainCategory)</li>
+                }
+
             }
             else
             {
-                <li>@Model.NameId(MainCategory)</li>
+                @foreach (Product product in localProducts)
+                {
+                    <li>
+                        @product.SupTitle
+                    </li>
+                }
             }
 
         }

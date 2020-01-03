@@ -197,11 +197,29 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                     model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
                 }
+                Category category;
+                category = categoryService.Get(x => x.id == model.Categoryid);
+                if (category == null && model.Categoryid == 0)
+                {
+                    Category rootCategory = categoryService.Get(x => x.Name == "ROOT" && x.WebSite == ThisWebsite);
+                    if (rootCategory == null)
+                    {
+                        rootCategory = new Category()
+                        {
+                            Name = "ROOT",
+                            Parentid = 0,
+                            WebSite = ThisWebsite,
+                        };
+                        categoryService.Add(rootCategory);
+                        categoryService.Save();
+                    }
+                    category = rootCategory;
+                }
                 Product product = new Product()
                 {
                     SupTitle = model.SupTitle,
                     SubTitle = model.SubTitle,
-                    Category = categoryService.Get(x=>x.id== model.Categoryid),
+                    Category = category,
                     PhotoPath = uniqueFileName,
                     Description = model.Description,
                     MetaTags = model.MetaTags,
@@ -221,8 +239,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedProduct.Keywords = product.Keywords;
                     findedProduct.Content = product.Content;
                     findedProduct.Title = product.Title;
-                    findedProduct.UpdateDate =DateTime.UtcNow;
-                    findedProduct.UpdateUserid =product.CreateUserid;
+                    findedProduct.UpdateDate = DateTime.UtcNow;
+                    findedProduct.UpdateUserid = product.CreateUserid;
                     if (!string.IsNullOrWhiteSpace(product.PhotoPath))
                         findedProduct.PhotoPath = product.PhotoPath;
                     productService.Update(findedProduct);
@@ -260,7 +278,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     Name = model.Name,
                     Parentid = model.ParentId,
                     PhotoPath = uniqueFileName,
-                    WebSite=ThisWebsite,
+                    WebSite = ThisWebsite,
                     CreateUserid = LoginUser.id
                 };
                 Category findedCategory = categoryService.Get(x => x.Name.Equals(category.Name) && x.WebSite == ThisWebsite);

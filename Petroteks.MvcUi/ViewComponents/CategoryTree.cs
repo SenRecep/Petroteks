@@ -11,19 +11,36 @@ namespace Petroteks.MvcUi.ViewComponents
     public class CategoryTree:ViewComponent
     {
         private readonly ICategoryService categoryService;
+        private readonly IProductService productService;
 
-        public CategoryTree(ICategoryService categoryService)
+        public CategoryTree(ICategoryService categoryService,IProductService productService)
         {
             this.categoryService = categoryService;
+            this.productService = productService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync(Website website)
         {
-            return View(new CategoryListViewModel(categoryService)
+            ICollection<Category> categories = categoryService.GetMany(category => category.WebSiteid == website.id && category.IsActive == true);
+            ICollection<Product> products = Products(categories).ToList();
+            return View(new CategoryListViewModel(categoryService, productService)
             {
-                MainCategories = categoryService.GetMany(category => category.WebSiteid == website.id && category.Parentid == 0),
-                AllSubCategory = categoryService.GetMany(category => category.WebSiteid == website.id && category.Parentid != 0)
+                MainCategories = categories.Where(x => x.Parentid == 0).ToList(),
+                AllSubCategory = categories.Where(x => x.Parentid != 0).ToList(),
+                AllProduct = products
             });
+
+        }
+
+        public IEnumerable<Product> Products(ICollection<Category> categories)
+        {
+            var products = productService.GetMany(x => x.IsActive == true);
+            foreach (Product item in products)
+            {
+                Category category = categories.Where(x => x.id == item.Categoryid).FirstOrDefault();
+                if (category != null && item.IsActive == true)
+                    yield return item;
+            }
         }
     }
 }

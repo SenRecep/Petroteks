@@ -12,4 +12,5 @@ namespace Petroteks.Dal.Concreate.EntityFramework
     public class EfProductDal : EfEntityRepostoryBase<Product, PetroteksDbContext>, IProductDal { }
     public class EfMainPageDal : EfEntityRepostoryBase<MainPage, PetroteksDbContext>, IMainPageDal { }
     public class EfEmailDal : EfEntityRepostoryBase<Email, PetroteksDbContext>, IEmailDal { }
+    public class EfBlogDal : EfEntityRepostoryBase<Blog, PetroteksDbContext>, IBlogDal { }
 }

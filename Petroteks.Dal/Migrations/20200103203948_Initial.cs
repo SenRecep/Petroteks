@@ -79,6 +79,36 @@ namespace Petroteks.Dal.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Blogs",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateUserid = table.Column<int>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateUserid = table.Column<int>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    WebSiteid = table.Column<int>(nullable: false),
+                    Keywords = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    MetaTags = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    PhotoPath = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Blogs", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Blogs_Websites_WebSiteid",
+                        column: x => x.WebSiteid,
+                        principalTable: "Websites",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -228,6 +258,11 @@ namespace Petroteks.Dal.Migrations
                 column: "WebSiteid");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Blogs_WebSiteid",
+                table: "Blogs",
+                column: "WebSiteid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Categories_WebSiteid",
                 table: "Categories",
                 column: "WebSiteid");
@@ -257,6 +292,9 @@ namespace Petroteks.Dal.Migrations
         {
             migrationBuilder.DropTable(
                 name: "AboutUsObjects");
+
+            migrationBuilder.DropTable(
+                name: "Blogs");
 
             migrationBuilder.DropTable(
                 name: "Emails");

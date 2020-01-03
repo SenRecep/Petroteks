@@ -66,6 +66,56 @@ namespace Petroteks.Dal.Migrations
                     b.ToTable("AboutUsObjects");
                 });
 
+            modelBuilder.Entity("Petroteks.Entities.Concreate.Blog", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreateUserid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Keywords")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaTags")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhotoPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdateUserid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WebSiteid")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("WebSiteid");
+
+                    b.ToTable("Blogs");
+                });
+
             modelBuilder.Entity("Petroteks.Entities.Concreate.Category", b =>
                 {
                     b.Property<int>("id")
@@ -377,6 +427,15 @@ namespace Petroteks.Dal.Migrations
                 });
 
             modelBuilder.Entity("Petroteks.Entities.Concreate.AboutUsObject", b =>
+                {
+                    b.HasOne("Petroteks.Entities.Concreate.Website", "WebSite")
+                        .WithMany()
+                        .HasForeignKey("WebSiteid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Petroteks.Entities.Concreate.Blog", b =>
                 {
                     b.HasOne("Petroteks.Entities.Concreate.Website", "WebSite")
                         .WithMany()

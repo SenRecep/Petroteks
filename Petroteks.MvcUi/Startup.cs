@@ -54,6 +54,9 @@ namespace Petroteks.MvcUi
             services.AddScoped<IEmailService, EmailManager>();
             services.AddScoped<IEmailDal, EfEmailDal>();
 
+            services.AddScoped<IBlogService, BlogManager>();
+            services.AddScoped<IBlogDal, EfBlogDal>();
+
 
             services.AddSingleton<IUserSessionService, UserSessionService>();
             services.AddSingleton<IUserCookieService, UserCookieService>();

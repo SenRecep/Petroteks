@@ -19,5 +19,6 @@ namespace Petroteks.Dal.Concreate.EntityFramework.Contexts
         public DbSet<Product> Products { get; set; }
         public DbSet<MainPage> MainPages { get; set; }
         public DbSet<Email> Emails { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
     }
 }

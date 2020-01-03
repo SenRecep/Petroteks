@@ -23,6 +23,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         private readonly IPrivacyPolicyObjectService privacyPolicyObjectService;
         private readonly ICategoryService categoryService;
         private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IProductService productService;
 
         public PagesController(IUserService userService,
             IUserSessionService userSessionService,
@@ -32,7 +33,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             IWebsiteService websiteService,
             IHttpContextAccessor httpContextAccessor,
             ICategoryService categoryService,
-            IHostingEnvironment hostingEnvironment)
+            IHostingEnvironment hostingEnvironment,
+            IProductService productService)
             : base(userSessionService, websiteService, httpContextAccessor)
         {
             this.mainPageService = mainPageService;
@@ -40,6 +42,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             this.privacyPolicyObjectService = privacyPolicyObjectService;
             this.categoryService = categoryService;
             this.hostingEnvironment = hostingEnvironment;
+            this.productService = productService;
         }
 
 
@@ -64,6 +67,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             if (mainPage == null)
             {
                 mainPage = model;
+                mainPage.CreateUserid = LoginUser.id;
                 mainPage.WebSite = ThisWebsite;
                 mainPageService.Add(mainPage);
             }
@@ -76,6 +80,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 mainPage.BottomContent = model.BottomContent;
                 mainPage.Description = model.Description;
                 mainPage.Slider = model.Slider;
+                mainPage.UpdateUserid = LoginUser.id;
+                mainPage.UpdateDate = DateTime.UtcNow;
                 mainPageService.Update(mainPage);
             }
             mainPageService.Save();
@@ -106,6 +112,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             {
                 aboutus = model;
                 aboutus.WebSite = ThisWebsite;
+                aboutus.CreateUserid = LoginUser.id;
                 aboutUsObjectService.Add(aboutus);
             }
             else
@@ -115,6 +122,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 aboutus.MetaTags = model.MetaTags;
                 aboutus.Description = model.Description;
                 aboutus.Content = model.Content;
+                aboutus.UpdateUserid = LoginUser.id;
+                aboutus.UpdateDate = DateTime.UtcNow;
                 aboutUsObjectService.Update(aboutus);
             }
             aboutUsObjectService.Save();
@@ -145,6 +154,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             {
                 privacyPage = model;
                 privacyPage.WebSite = ThisWebsite;
+                privacyPage.CreateUserid = LoginUser.id;
                 privacyPolicyObjectService.Add(privacyPage);
             }
             else
@@ -154,6 +164,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 privacyPage.MetaTags = model.MetaTags;
                 privacyPage.Description = model.Description;
                 privacyPage.Content = model.Content;
+                privacyPage.UpdateUserid = LoginUser.id;
+                privacyPage.UpdateDate = DateTime.UtcNow;
                 privacyPolicyObjectService.Update(privacyPage);
             }
             privacyPolicyObjectService.Save();
@@ -167,7 +179,59 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         {
             ViewBag.ThisWebsite = ThisWebsite;
 
-            return View(new Product());
+            return View(new ProductViewModel());
+        }
+
+        [AdminAuthorize]
+        [HttpPost]
+        public IActionResult ProductAdd(ProductViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName = null;
+                if (model.Image != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "ProductImages");
+                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                Product product = new Product()
+                {
+                    SupTitle = model.SupTitle,
+                    SubTitle = model.SubTitle,
+                    Category = categoryService.Get(x=>x.id== model.Categoryid),
+                    PhotoPath = uniqueFileName,
+                    Description = model.Description,
+                    MetaTags = model.MetaTags,
+                    Keywords = model.Keywords,
+                    Content = model.Content,
+                    Title = model.Title,
+                    CreateUserid = LoginUser.id,
+                };
+                Product findedProduct = productService.Get(x => x.SupTitle.Equals(product.SupTitle) && x.Category.WebSite == ThisWebsite);
+                if (findedProduct != null)
+                {
+                    findedProduct.SupTitle = product.SupTitle;
+                    findedProduct.SubTitle = product.SubTitle;
+                    findedProduct.Category = product.Category;
+                    findedProduct.Description = product.Description;
+                    findedProduct.MetaTags = product.MetaTags;
+                    findedProduct.Keywords = product.Keywords;
+                    findedProduct.Content = product.Content;
+                    findedProduct.Title = product.Title;
+                    findedProduct.UpdateDate =DateTime.UtcNow;
+                    findedProduct.UpdateUserid =product.CreateUserid;
+                    if (!string.IsNullOrWhiteSpace(product.PhotoPath))
+                        findedProduct.PhotoPath = product.PhotoPath;
+                    productService.Update(findedProduct);
+                }
+                else
+                    productService.Add(product);
+                productService.Save();
+            }
+            return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
 
         [AdminAuthorize]
@@ -196,12 +260,15 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     Name = model.Name,
                     Parentid = model.ParentId,
                     PhotoPath = uniqueFileName,
-                    WebSite=ThisWebsite
+                    WebSite=ThisWebsite,
+                    CreateUserid = LoginUser.id
                 };
                 Category findedCategory = categoryService.Get(x => x.Name.Equals(category.Name) && x.WebSite == ThisWebsite);
                 if (findedCategory != null)
                 {
                     findedCategory.Parentid = category.Parentid;
+                    findedCategory.UpdateDate = DateTime.UtcNow;
+                    findedCategory.UpdateUserid = category.CreateUserid;
                     if (!string.IsNullOrWhiteSpace(category.PhotoPath))
                         findedCategory.PhotoPath = category.PhotoPath;
                     categoryService.Update(findedCategory);

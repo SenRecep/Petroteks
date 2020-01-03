@@ -12,11 +12,18 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
     {
         private readonly IUserSessionService userSessionService;
 
-        public AdminBaseController(IUserSessionService userSessionService,IWebsiteService websiteService, IHttpContextAccessor httpContextAccessor) : base(websiteService, httpContextAccessor)
+        public AdminBaseController(IUserSessionService userSessionService, IWebsiteService websiteService, IHttpContextAccessor httpContextAccessor) : base(websiteService, httpContextAccessor)
         {
             this.userSessionService = userSessionService;
         }
-
+        public User LoginUser
+        {
+            get
+            {
+                ViewBag.LoginUser = userSessionService.Get("LoginAdmin");
+                return userSessionService.Get("LoginAdmin");
+            }
+        }
         public override void OnActionExecuted(ActionExecutedContext context)
         {
             ViewBag.LoginUser = userSessionService.Get("LoginAdmin");

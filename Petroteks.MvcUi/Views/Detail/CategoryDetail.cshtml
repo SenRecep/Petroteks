@@ -1,0 +1,55 @@
+﻿@model ProductListViewModel
+@{
+}
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <img class="img-fluid" src="~/CategoryImages/@Model.CurrentCategory.PhotoPath" alt="@Model.CurrentCategory.Name" asp-append-version="true" />
+                    </div>
+                    <div class="col-sm-7">
+                        <h4 class="text-center">@Model.CurrentCategory.Name</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@foreach (Product product in Model.Products)
+{
+    <div class="row mt-2">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>@product.SupTitle</h4>
+                    <h6>@product.SubTitle</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <img class="img-fluid" src="~/ProductImages/@product.PhotoPath" alt="@product.SupTitle" asp-append-version="true" />
+                        </div>
+                        <div class="col-sm-7">
+                            @Html.Raw(product.Content)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <p>@product.Keywords</p>
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            <p>@product.CreateDate.ToString()</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<product-list-pager Page-Size="@Model.PageSize" Page-Count="@Model.PageCount" Current-Category="@Model.CurrentCategory.id" Currnt-Page="@Model.CurrentPage"></product-list-pager>

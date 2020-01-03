@@ -1,7 +1,7 @@
 ﻿
-@await Component.InvokeAsync("CategoryTree",new { website=(Website)ViewBag.ThisWebsite})
+@await Component.InvokeAsync("CategoryTree", new { website = (Website)ViewBag.ThisWebsite })
 
-<form enctype="multipart/form-data" method="post">
+<form enctype="multipart/form-data" method="post" class="mt-2">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card">
@@ -10,7 +10,7 @@
                     <h6 class="card-subtitle">Kategori ağacında numarayı burada giriniz.</h6>
 
                     <div class="form-group">
-                        <input type="number"  name="ParentId" id="ParentId" class="form-control">
+                        <input type="number" name="ParentId" id="ParentId" class="form-control">
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                     <h6 class="card-subtitle">Kategori İsmini burada giriniz</h6>
 
                     <div class="form-group">
-                        <input type="text" name="Name" id="Name"  class="form-control">
+                        <input type="text" name="Name" id="Name" class="form-control">
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                     <div class="input-group mb-3">
 
                         <div class="custom-file">
-                            <input type="file"  name="Image" id="Image"   class="custom-file-input">
+                            <input type="file" name="Image" id="Image" class="custom-file-input">
                             <label class="custom-file-label">Dosya Seç</label>
                         </div>
                     </div>
@@ -44,9 +44,7 @@
         </div>
     </div>
     <center>
-        <div class="row">
-            <button class="btn btn-success" type="submit">Kaydet</button>
-        </div>
+        <button class="btn btn-success" type="submit">Kaydet</button>
     </center>
 </form>
 
@@ -57,11 +55,10 @@
 @section Scripts{
     <script>
 
-        $(document).ready(function () {
-            $('.custom-file-input').on(function () {
-                var filename = $(this).val().split("\\").pop();
-                $(this).next('.custom-file-label').html(filename);
-            });
+        $('.custom-file-input').on(function () {
+            var filename = $(this).val().split("\\").pop();
+            console.log(filename);
+            $(this).next('.custom-file-label').html(filename);
         });
     </script>
 }

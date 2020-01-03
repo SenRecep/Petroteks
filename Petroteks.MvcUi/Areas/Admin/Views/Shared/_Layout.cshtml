@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/images/favicon.png">
     <title>Petroteks Kullanıcı Bilgisi</title>
     <!-- This page css -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
@@ -132,8 +132,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                <img src="http://wallperio.com/data/out/371/profile-pictures_617150496.png" alt="user" class="rounded-circle"
-                                     width="40">
+                                <img src="~/images/DefaultProfilePhoto.png" alt="user" class="rounded-circle" width="40" />
                                 <span class="ml-2 d-none d-lg-inline-block">
                                     @if (LoginUser.Role == 0)
                                     {
@@ -241,6 +240,28 @@
 
                             </ul>
                         </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                               aria-expanded="false">
+                                <i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Diğer Sayfalar </span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="ProductAdd" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            Ürün Yönetimi
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="CategoryAdd" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            Kategori Yönetimi
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -326,10 +347,10 @@
         const editor2 = document.getElementById("editor2");
         const editor3 = document.getElementById("editor3");
         const editor4 = document.getElementById("editor4");
-        CKEDITOR.replace(editor1, config);
-        CKEDITOR.replace(editor2, config);
-        CKEDITOR.replace(editor3, config);
-        CKEDITOR.replace(editor4, config);
+        if (editor1 != null) CKEDITOR.replace(editor1, config);
+        if (editor2 != null) CKEDITOR.replace(editor2, config);
+        if (editor3 != null) CKEDITOR.replace(editor3, config);
+        if (editor4 != null) CKEDITOR.replace(editor4, config);
     </script>
     @RenderSection("Scripts", required: false)
     <script>

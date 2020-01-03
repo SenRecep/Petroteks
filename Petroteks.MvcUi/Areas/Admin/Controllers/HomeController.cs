@@ -22,7 +22,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         private readonly IUserService _userService;
         private readonly IUserSessionService _userSessionService;
         private readonly IEmailService emailService;
-        EmailSender emailSender;
+        private  EmailSender emailSender;
         public HomeController(
             IUserService userService,
             IUserSessionService userSessionService,
@@ -38,6 +38,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [AdminAuthorize]
         public IActionResult Index()
         {
+            ViewBag.LoginUser = ViewBag.LoginUser;
             ICollection<User> allUsers = _userService.GetMany(x => x.IsActive == true);
             return View(allUsers);
         }
@@ -65,9 +66,14 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 {
                     if (res.Role != 2)
                     {
+                        res.UpdateDate = DateTime.UtcNow;
+                        res.UpdateUserid = res.id;
                         _userSessionService.Set(res, "LoginAdmin");
                         TempData["message"] = "Başarılı";
                         TempData["message2"] = "Giriş başarılı.";
+                        _userService.Update(res);
+                        _userService.Save();
+
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -104,6 +110,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             if (user != null)
             {
                 user.Role = (short)role;
+                user.UpdateDate = DateTime.UtcNow;
+                user.UpdateUserid = LoginUser.id;
                 _userService.Update(user);
                 try
                 {
@@ -124,6 +132,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             User user = _userService.Get(x => x.id == id);
             if (user != null)
             {
+                user.UpdateDate = DateTime.UtcNow;
+                user.UpdateUserid = LoginUser.id;
                 _userService.Delete(user);
                 try
                 {

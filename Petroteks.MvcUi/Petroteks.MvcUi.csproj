@@ -8,8 +8,8 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Pages\" />
-    <Folder Include="TagHelpers\" />
     <Folder Include="wwwroot\CategoryImages\" />
+    <Folder Include="wwwroot\ProductImages\" />
     <Folder Include="wwwroot\UploadImages\" />
     <Folder Include="wwwroot\UploadFiles\" />
   </ItemGroup>

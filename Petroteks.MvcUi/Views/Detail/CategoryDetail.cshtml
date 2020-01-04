@@ -1,55 +1,117 @@
 ﻿@model ProductListViewModel
 @{
 }
+<section class="small-section bg-dark-alfa-30 parallax-2" >
+    <div class="relative container align-left mt-20">
 
+        <div class="row">
 
-<div class="row">
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-5">
-                        <img class="img-fluid" src="~/CategoryImages/@Model.CurrentCategory.PhotoPath" alt="@Model.CurrentCategory.Name" asp-append-version="true" />
-                    </div>
-                    <div class="col-sm-7">
-                        <h4 class="text-center">@Model.CurrentCategory.Name</h4>
-                    </div>
+            <div class="col-md-8">
+                <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">   @Model.CurrentCategory.Name</h1>
+                <div class="hs-line-4 font-alt">
+                 
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 
-@foreach (Product product in Model.Products)
-{
-    <div class="row mt-2">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4><a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id">@product.SupTitle</a></h4>
-                    <h6>@product.SubTitle</h6>
+            <div class="col-md-4 mt-30">
+                <div class="mod-breadcrumbs font-alt align-right">
+                    <a href="../Home/Index">Ana Sayfa</a>&nbsp;/&nbsp;<span>@Model.CurrentCategory.Name</span>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <img class="img-fluid" src="~/ProductImages/@product.PhotoPath" alt="@product.SupTitle" asp-append-version="true" />
-                        </div>
-                        <div class="col-sm-7">
-                            @Html.Raw(product.Content)
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <p>@product.Keywords</p>
-                        </div>
-                        <div class="col-sm-4 text-right">
-                            <p>@product.CreateDate.ToString()</p>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
+
     </div>
-}
+</section>
+
+
+<section class="page-section" id="about">
+    <div class="container relative">
+
+
+
+        <div class="row">
+            <div class="col-sm-4 col-md-3 sidebar">
+                <!-- Search Widget -->
+                <!-- End Search Widget -->
+
+                <div class="widget">
+                    <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/logopetroteks-1.png" />
+                    <h5 class="widget-title font-alt"></h5>
+                    <div class="widget-body">
+                        <div class="widget-text clearfix">
+                            PETROTEKS profesyonelliği hedef edinen ve sektörün mutlak gereklilikleri olan,üstün hizmet anlayışı,kültür birikimi ve iş ahlakına sahip kadrosu ile tecrübeli, iddialı ve dinamik yapısını korumaktadır.
+                        </div>
+                    </div>
+                </div>
+                <!-- End Widget -->
+
+            </div>
+            <div class="col-sm-8 col-md-offset-1">
+                <!-- Works Grid -->
+                <ul class="works-grid work-grid-2 work-grid-gut clearfix font-alt hover-white" id="work-grid" style="position: relative; height: 936px;">
+
+                    @foreach (Product product in Model.Products)
+                    {
+                        <li class="work-item mix branding design" style="position: absolute; left: 0px; top: 0px;">
+                            <a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id" class="work-ext-link">
+                                <div class="work-img">
+                                    <img class="work-img" style="width:550px;height:218px;" src="@product.PhotoPath" alt="@product.SupTitle">
+                                </div>
+                                <div class="work-intro">
+                                    <h3 class="work-title">@product.SupTitle</h3>
+                                    <div class="work-descr">
+                                        @product.SubTitle
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        @*<div class="row mt-2">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id">@product.SupTitle</a></h4>
+                            <h6>@product.SubTitle</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <img class="img-fluid" src="~/ProductImages/@product.PhotoPath" alt="@product.SupTitle" asp-append-version="true" />
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <p>@product.Keywords</p>
+                                </div>
+                                <div class="col-sm-4 text-right">
+                                    <p>@product.CreateDate.ToString()</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+                    }
+
+                    <!-- Work Item (External Page) -->
+                    <!-- Work Item (External Page) -->
+                    <!-- End Work Item -->
+                    <!-- End Work Item -->
+
+
+
+                </ul>
+                <!-- End Works Grid -->
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+
+ 
+
 
 <product-list-pager Page-Size="@Model.PageSize" Page-Count="@Model.PageCount" Current-Category="@Model.CurrentCategory.id" Currnt-Page="@Model.CurrentPage"></product-list-pager>

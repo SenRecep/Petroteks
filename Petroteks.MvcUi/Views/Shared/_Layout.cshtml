@@ -47,7 +47,7 @@
         }
     </style>
 </head>
-<body class="appear-animate">
+<body class="appear-animate" itemscope="" itemtype="http://schema.org/WebPage">
 
     <!-- Page Loader -->
     <div class="page-loader">
@@ -65,7 +65,7 @@
                 <!-- Logo ( * your text or image into link tag *) -->
                 <div class="nav-logo-wrap local-scroll">
                     <a href="mp-index.html" class="logo">
-                        <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/logopetroteks-1.png" alt="" />
+                        <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/logopetroteks-1.png" itemprop="logo" alt="logo" />
                     </a>
                 </div>
                 <div class="mobile-nav">
@@ -78,13 +78,13 @@
 
                         <!-- Item With Sub -->
                         <li>
-                            <a asp-controller="Home" asp-action="Index" class="mn-has-sub active">ANA SAYFA</a>
+                            <a asp-controller="Home" asp-action="Index" class="mn-has-sub active"   itemprop="url">ANA SAYFA</a>
                         </li>
-                        <li>
+                        <li itemscope itemtype="http://schema.org/Product">
                             <a href="#" class="mn-has-sub">ÜRÜNLER <i class="fa fa-angle-down"></i></a>
 
                             <!-- Sub -->
-                            <ul class="mn-sub">
+                            <ul class="mn-sub" >
                                 @await Component.InvokeAsync("CategoryList",new { website=(Website)ViewBag.ThisWebsite})
                                 
                             </ul>
@@ -92,10 +92,10 @@
 
                         </li>
                         <li>
-                            <a asp-controller="Home" asp-action="Hakkimizda" class="mn-has-sub active">HAKKIMIZDA</a>
+                            <a asp-controller="Home" asp-action="Hakkimizda" itemprop="url"class="mn-has-sub active">HAKKIMIZDA</a>
                         </li>
                         <li>
-                            <a asp-controller="Home" asp-action="GizlilikPolitikasi" class="mn-has-sub active">GİZLİLİK POLİTİKASI</a>
+                            <a asp-controller="Home" asp-action="GizlilikPolitikasi" itemprop="url" class="mn-has-sub active">GİZLİLİK POLİTİKASI</a>
                         </li>
                         <!-- End Item With Sub -->
                         <!-- Item With Sub -->
@@ -104,27 +104,7 @@
                         <li><a>&nbsp;</a></li>
                         <!-- End Divider -->
                         <!-- Search -->
-                        <li>
-                            <a href="#" class="mn-has-sub"><i class="fa fa-search"></i> ARAMA</a>
-
-                            <ul class="mn-sub">
-
-                                <li>
-                                    <div class="mn-wrap">
-                                        <form method="post" class="form">
-                                            <div class="search-wrap">
-                                                <button class="search-button animate" type="submit" title="Aramaya Başla">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                                <input type="text" class="form-control search-field" placeholder="ARAMA...">
-                                            </div>
-                                        </form>
-                                    </div>
-                                </li>
-
-                            </ul>
-
-                        </li>
+                    
                         <!-- End Search -->
                         <!-- Cart -->
                         <!-- End Cart -->
@@ -169,19 +149,19 @@
                             <div class="widget-body">
                                 <ul class="clearlist widget-menu">
                                     <li>
-                                        <a href="#" title="">ANA SAYFA<i class="fa fa-angle-right right"></i></a>
+                                        <a href="#" itemprop="url" title="">ANA SAYFA<i class="fa fa-angle-right right"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#" title="">HAKKIMIZDA <i class="fa fa-angle-right right"></i></a>
+                                        <a href="#" itemprop="url"  title="">HAKKIMIZDA <i class="fa fa-angle-right right"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#" title="">ÜRÜNLER<i class="fa fa-angle-right right"></i></a>
+                                        <a href="#"  itemprop="url"  title="">ÜRÜNLER<i class="fa fa-angle-right right"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#" title="">GİZLİLİK POLİTİKASI <i class="fa fa-angle-right right"></i></a>
+                                        <a href="#" itemprop="url"  title="">GİZLİLİK POLİTİKASI <i class="fa fa-angle-right right"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#" title="">İLETİŞİM<i class="fa fa-angle-right right"></i></a>
+                                        <a href="#" itemprop="url"   title="">İLETİŞİM<i class="fa fa-angle-right right"></i></a>
                                     </li>
 
 
@@ -197,13 +177,21 @@
 
                             <h5 class="widget-title font-alt">TOKAT DEPO </h5>
 
-                            <div class="widget-body">
+                            <div class="widget-body"itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                                 <ul class="clearlist widget-posts">
                                     <li class="clearfix">
                                         <div class="widget-posts-descr">
-                                            <a href="#" title="">
+                                            
+                                            <span itemprop="streetAddress">
                                                 Amasya – Erzincan Yolu Boğazbaşı Mahallesi</br>
-                                                Mevkii No:177/1-1</br>Niksar / TOKAT
+                                                Mevkii No:177/1-1</br>
+                                            </span>
+                                            
+                                            <span>
+                                                Niksar / TOKAT
+                                            </span>
+
+                                      
                                         </div>
                                     </li>
 

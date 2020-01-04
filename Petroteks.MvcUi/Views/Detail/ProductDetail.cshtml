@@ -2,31 +2,33 @@
 @{
 }
 
-<div class="row mt-2">
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header">
-                <h4>@Model.SupTitle</h4>
-                <h6>@Model.SubTitle</h6>
+
+@*href="/Detail/CategoryDetail?categoryName=@Model.Category.Name.Replace(" ", "-")&page=1&category=@Model.Category.id"          Kategori ID gitmiyor*@
+
+<section class="small-section bg-dark-alfa-30 parallax-2" data-background="~/ProductImages/@Model.PhotoPath">
+    <div class="relative container align-left mt-50">
+
+        <div class="row">
+
+            <div class="col-md-8">
+                <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">@Model.SupTitle</h1>
+                <div class="hs-line-4 font-alt">
+                    Tarih:@Model.CreateDate.ToString()
+                </div>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-5">
-                        <img class="img-fluid" src="~/ProductImages/@Model.PhotoPath" alt="@Model.SupTitle" asp-append-version="true" />
-                    </div>
-                    <div class="col-sm-7">
-                        @Html.Raw(Model.Content)
-                    </div>
+
+            <div class="col-md-4 mt-30">
+                <div class="mod-breadcrumbs font-alt align-right">
+                    <a href="../Home/Index">Petroteks</a>&nbsp;<a> @*@Model.Category.Name*@ </a>/&nbsp;<span> @Model.SupTitle</span>
                 </div>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <p>@Model.Keywords</p>
-                    </div>
-                    <div class="col-sm-4 text-right">
-                        <p>@Model.CreateDate.ToString()</p>
-                    </div>
-                </div>
+
             </div>
         </div>
+
     </div>
-</div>
+</section>
+<section class="page-section">
+    <div class="container relative"> 
+        @Html.Raw(Model.Content) 
+    </div>
+</section>

@@ -183,7 +183,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                         Password = model.Password,
                         Email = model.Email,
                         TagName = model.UserName,
-                        Role = 2,
+                        Role = 0,
                     };
 
                     try
@@ -204,7 +204,17 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return RedirectToAction("Login", "Home");
         }
-
+        // Recep Düzenleme Hem json hem id düşüyor
+        public JsonResult BilgilendirmeEkle(string json)
+        { 
+                return Json("Islem Basari ile tamamlandi");  
+        }
+        
+        public JsonResult BilgilendirmeSil(int id)
+        { 
+            return Json("Başarılı");
+        }
+     
 
 
         [AdminAuthorize]
@@ -218,6 +228,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             };
             return View(model);
         }
+
 
         [AdminAuthorize]
         [HttpPost]
@@ -240,6 +251,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return View(model);
         }
+
+
+
+
 
     }
 }

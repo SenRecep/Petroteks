@@ -11,330 +11,203 @@
     <meta name="author" content="Petroteks">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href="~/NewLayout/img/favicon.png" rel="icon">
+    <link href="~/NewLayout/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="~/NewLayout/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="~/NewLayout/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/NewLayout/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/NewLayout/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/NewLayout/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/NewLayout/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="~/NewLayout/css/style.css" rel="stylesheet" />
+    
     <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="16x16" href="~/images/favicon.png">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/style-responsive.css">
-    <link rel="stylesheet" href="../css/animate.min.css">
-    <link rel="stylesheet" href="../css/vertical-rhythm.min.css">
-    <link rel="stylesheet" href="../css/owl.carousel.css">
-    <link rel="stylesheet" href="../css/magnific-popup.css">
-    <link rel="stylesheet" href="../css/rev-slider.css">
-    <link rel="stylesheet" href="../rs-plugin/css/settings.css" media="screen" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
-    <style>
-
-        .font-alt-type {
-            font-family: "Montserrat", sans-serif;
-            text-transform: initial;
-            letter-spacing: 0.01em !important;
-            color: #413e66;
-            margin-bottom: 40px;
-            font-size: 48px;
-            font-weight: 700;
-        }
-
-        .color-blue {
-            color: #00A0E3;
-        }
-
-        .color-navy-blue {
-            color: #413e66;
-        }
-    </style>
 </head>
-<body class="appear-animate">
-
-    <!-- Page Loader -->
-    <div class="page-loader">
-        <div class="loader">Loading...</div>
-    </div>
-    <!-- End Page Loader -->
-    <!-- Page Wrap -->
-    <div class="page" id="top">
-
-        <!-- Home Section -->
-        <!-- End Home Section -->
-        <!-- Navigation panel -->
-        <nav class="main-nav transparent stick-fixed">
-            <div class="full-wrapper relative clearfix">
-                <!-- Logo ( * your text or image into link tag *) -->
-                <div class="nav-logo-wrap local-scroll">
-                    <a href="mp-index.html" class="logo">
-                        <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/logopetroteks-1.png" alt="" />
-                    </a>
+<body itemscope="" itemtype="http://schema.org/WebPage">
+  
+    <header id="header">
+        <div id="topbar">
+            <div class="container">
+                <div class="social-links">
+                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
                 </div>
-                <div class="mobile-nav">
-                    <i class="fa fa-bars"></i>
-                </div>
-
-                <!-- Main Menu -->
-                <div class="inner-nav desktop-nav">
-                    <ul class="clearlist">
-
-                        <!-- Item With Sub -->
-                        <li>
-                            <a asp-controller="Home" asp-action="Index" class="mn-has-sub active">ANA SAYFA</a>
-                        </li>
-                        <li>
-                            <a href="#" class="mn-has-sub">ÜRÜNLER <i class="fa fa-angle-down"></i></a>
-
-                            <!-- Sub -->
-                            <ul class="mn-sub">
-                                @await Component.InvokeAsync("CategoryList",new { website=(Website)ViewBag.ThisWebsite})
-                                
-                            </ul>
-                            <!-- End Sub -->
-
-                        </li>
-                        <li>
-                            <a asp-controller="Home" asp-action="Hakkimizda" class="mn-has-sub active">HAKKIMIZDA</a>
-                        </li>
-                        <li>
-                            <a asp-controller="Home" asp-action="GizlilikPolitikasi" class="mn-has-sub active">GİZLİLİK POLİTİKASI</a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <!-- Item With Sub -->
-                        <!-- End Item With Sub -->
-                        <!-- Divider -->
-                        <li><a>&nbsp;</a></li>
-                        <!-- End Divider -->
-                        <!-- Search -->
-                        <li>
-                            <a href="#" class="mn-has-sub"><i class="fa fa-search"></i> ARAMA</a>
-
-                            <ul class="mn-sub">
-
-                                <li>
-                                    <div class="mn-wrap">
-                                        <form method="post" class="form">
-                                            <div class="search-wrap">
-                                                <button class="search-button animate" type="submit" title="Aramaya Başla">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                                <input type="text" class="form-control search-field" placeholder="ARAMA...">
-                                            </div>
-                                        </form>
-                                    </div>
-                                </li>
-
-                            </ul>
-
-                        </li>
-                        <!-- End Search -->
-                        <!-- Cart -->
-                        <!-- End Cart -->
-                        <!-- Languages -->
-                        <li>
-                            <a href="#" class="mn-has-sub">TR <i class="fa fa-angle-down"></i></a>
-
-                            <ul class="mn-sub">
-
-                                <li><a href="">ENG</a></li>
-
-                            </ul>
-
-                        </li>
-                        <!-- End Languages -->
-
-                    </ul>
-                </div>
-                <!-- End Main Menu -->
-
-
             </div>
-        </nav>
-        <!-- End Navigation panel -->
+        </div>
 
-        @RenderBody()
+        <div class="container">
 
-        <footer class="small-section bg-gray-lighter footer pb-60">
+            <div class="logo float-left">
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <h1 class="text-light"><a href="" class="scrollto"><img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/logopetroteks-1.png" /></a></h1>
+                <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
+            </div>
+
+            <nav class="main-nav float-right d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="">Ana Sayfa</a></li>
+                    <li><a href="">Hakkımızda</a></li>
+
+
+
+                    <li class="drop-down">
+                        <a href="">Ürünlerimiz</a> 
+                        <ul> 
+                            <li><a href="#">Üst Ürün</a></li>
+                            <li class="drop-down">
+                                <a href="#">Alt Ürünler</a>
+                                <ul>
+                                    <li><a href="#">Alt Ürün 1</a></li>
+                                    <li><a href="#">Alt Ürün 2</a></li>
+                                    <li><a href="#">Alt Ürün 3</a></li>
+
+                                </ul>
+                            </li>
+
+                            <li><a href="#">Üst Ürün 2</a></li>
+                            <li><a href="#">Üst Ürün 3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">İletişim</a></li>
+                    <li class="drop-down">
+                        <a href="#"><img src="http://www.petroteks.com/tr/wp-content/plugins/gtranslate/flags/16/tr.png">  TR</a>
+                        <ul>
+                            <li><a href="#"><img src="http://www.petroteks.com/tr/wp-content/plugins/gtranslate/flags/16/en.png"> ENG</a></li>
+
+
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+
+
+            <!-- .main-nav -->
+
+        </div>
+    </header><!-- #header -->
+    <!--==========================
+      Intro Section
+    ============================-->
+    @RenderBody()
+
+    <!--==========================
+      Footer
+    ============================-->
+    <footer id="footer" class="section-bg">
+        <div class="footer-top">
             <div class="container">
 
-                <!-- Footer Widgets -->
-                <div class="row align-left">
+                <div class="row">
 
-                    <!-- Widget -->
-                    <!-- End Widget -->
-                    <!-- Widget -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="widget">
+                    <div class="col-lg-4">
 
-                            <h5 class="widget-title font-alt">SİTE HARİTASI</h5>
-
-                            <div class="widget-body">
-                                <ul class="clearlist widget-menu">
-                                    <li>
-                                        <a href="#" title="">ANA SAYFA<i class="fa fa-angle-right right"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">HAKKIMIZDA <i class="fa fa-angle-right right"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">ÜRÜNLER<i class="fa fa-angle-right right"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">GİZLİLİK POLİTİKASI <i class="fa fa-angle-right right"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="">İLETİŞİM<i class="fa fa-angle-right right"></i></a>
-                                    </li>
+                        <div class="row">
 
 
-                                </ul>
-                            </div>
 
-                        </div>
-                    </div>
-                    <!-- End Widget -->
-                    <!-- Widget -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="widget">
-
-                            <h5 class="widget-title font-alt">TOKAT DEPO </h5>
-
-                            <div class="widget-body">
-                                <ul class="clearlist widget-posts">
-                                    <li class="clearfix">
-                                        <div class="widget-posts-descr">
-                                            <a href="#" title="">
-                                                Amasya – Erzincan Yolu Boğazbaşı Mahallesi</br>
-                                                Mevkii No:177/1-1</br>Niksar / TOKAT
-                                        </div>
-                                    </li>
-
-
-                                </ul>
-
-
-                            </div>
-                            <!-- End Widget -->
-                        </div>
-                        <!-- End Widget -->
-                    </div>
-                    <!-- End Widget -->
-                    <!-- Widget -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="widget">
-
-                            <h5 class="widget-title font-alt">ANKARA DEPO </h5>
-
-                            <div class="widget-body">
-                                <ul class="clearlist widget-posts">
-                                    <li class="clearfix">
-                                        <div class="widget-posts-descr">
-                                            <a href="#" title="">
-                                                İvedik OSB 2268 </br>
-                                                Cadde No:9</br>Yenimahalle / ANKARA
-                                        </div>
-                                    </li>
-
-
-                                </ul>
-
-
-                            </div>
-                            <!-- End Widget -->
-                        </div>
-                    </div>
-                    <!-- End Widget -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="widget">
-
-                            <h5 class="widget-title font-alt">İLETİŞİM</h5>
-
-                            <div class="widget-body">
-                                <div class="widget-text clearfix">
-
-
-                                    <div class="contact-item">
-                                        <div class="ci-icon">
-                                            <i class="fa fa-phone"></i>
-                                        </div>
-                                        <div class="ci-title font-alt">
-                                            TEL
-                                        </div>
-                                        <div class="ci-text">
-                                            <a href="tel:+90 312 426 23 23">+90 312 426 23 23</a>
-                                        </div>
-                                    </div>
-                                    <div class="contact-item">
-                                        <div class="ci-icon">
-                                            <i class="fa fa-fax"></i>
-                                        </div>
-                                        <div class="ci-title font-alt">
-                                            FAX
-                                        </div>
-                                        <div class="ci-text">
-                                            <a>+90 312 426 23 23</a>
-                                        </div>
-                                    </div>
+                            <div class="col-sm-6">
+                                <div class="footer-links">
+                                    <h4>SİTE HARİTASI</h4>
+                                    <ul>
+                                        <li><a href="#">Anasayfa</a></li>
+                                        <li><a href="#">HAKKIMIZDA</a></li>
+                                        <li><a href="#">ÜRÜNLER</a></li>
+                                        <li><a href="#">GİZLİLİK POLİTİKASI</a></li>
+                                        <li><a href="#">İLETİŞİM</a></li>
+                                    </ul>
                                 </div>
+
+
+
                             </div>
 
                         </div>
-                    </div>
-                </div>
-                <!-- End Footer Widgets -->
-                <!-- Divider -->
-                <hr class="mt-0 mb-10 mb-xs-10">
-                <!-- End Divider -->
-                <!-- Footer Logo -->
-                <!-- Footer Logo -->
-                <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.5s">
-                    <a href="#top"><img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/logopetroteks-1.png" width="178" height="136" alt="" /></a>
-                </div>
-                <!-- End Footer Logo -->
-                <!-- Social Links -->
-                <!-- End Social Links -->
-                <!-- Footer Text -->
-                <!-- End Footer Text -->
 
+                    </div>
+
+                    <div class="col-lg-4">
+
+                        <div class="footer-links">
+                            <h4>TOKAT DEPO :</h4>
+                            <p>
+                                Amasya – Erzincan Yolu Boğazbaşı Mahallesi
+                                Bozkır Mevkii  No:177/1-1<br>
+                                <strong>Niksar / TOKAT</strong>
+                            </p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-lg-4">
+
+                        <div class="footer-links">
+                            <h4>ANKARA DEPO :</h4>
+                            <p>
+                                İvedik OSB 2268 Cadde No:9
+                                Yenimahalle / ANKARA <br>
+                                <strong>Telefon:</strong> +90 312 426 23 23<br>
+                                <strong>Fax:</strong> +90 312 426 23 23<br>
+                                <strong>Email:</strong> info@example.com<br>
+                            </p>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
-        </footer>
+        </div>
 
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Petroteks</strong>. All Rights Reserved
+            </div>
 
-        <!-- End Foter -->
+        </div>
+    </footer><!-- #footer -->
 
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <!-- Uncomment below i you want to use a preloader -->
+    <!-- <div id="preloader"></div> -->
+    <!-- JavaScript Libraries -->
+    <script src="~/NewLayout/lib/jquery/jquery.min.js"></script>
+    <script src="~/NewLayout/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="~/NewLayout/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/NewLayout/lib/easing/easing.min.js"></script>
+    <script src="~/NewLayout/lib/mobile-nav/mobile-nav.js"></script>
+    <script src="~/NewLayout/lib/wow/wow.min.js"></script>
+    <script src="~/NewLayout/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/NewLayout/lib/counterup/counterup.min.js"></script>
+    <script src="~/NewLayout/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/NewLayout/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="~/NewLayout/lib/lightbox/js/lightbox.min.js"></script>
+    <!-- Contact Form JavaScript File -->
+    <script src="~/NewLayout/contactform/contactform.js"></script>
 
-    </div>
-    <!-- End Page Wrap -->
-    <!-- JS -->
-    <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <!-- Template Main Javascript File -->
 
-    <script type="text/javascript" src="../js/jquery.scrollTo.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.localScroll.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.viewport.mini.js"></script>
-    <script type="text/javascript" src="../js/jquery.countTo.js"></script>
-    <script type="text/javascript" src="../js/jquery.appear.js"></script>
-    <script type="text/javascript" src="../js/jquery.sticky.js"></script>
-    <script type="text/javascript" src="../js/jquery.parallax-1.1.3.js"></script>
-    <script type="text/javascript" src="../js/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="../js/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="../js/isotope.pkgd.min.js"></script>
-    <script type="text/javascript" src="../js/imagesloaded.pkgd.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.magnific-popup.min.js"></script>
-    <!-- Replace test API Key "AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg" with your own one below
-    **** You can get API Key here - https://developers.google.com/maps/documentation/javascript/get-api-key -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg"></script>
-    <script type="text/javascript" src="../js/gmap3.min.js"></script>
-    <script type="text/javascript" src="../js/wow.min.js"></script>
-    <script type="text/javascript" src="../js/masonry.pkgd.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.simple-text-rotator.min.js"></script>
-    <script type="text/javascript" src="../js/all.js"></script>
-    <script type="text/javascript" src="../js/contact-form.js"></script>
-    <script type="text/javascript" src="../js/jquery.ajaxchimp.min.js"></script>
-    <script type="text/javascript" src="../rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-    <script type="text/javascript" src="../rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script type="text/javascript" src="../js/rev-slider.js"></script>
-    <script type="text/javascript" src="../js/tiltfx.js"></script>
+    <script src="~/NewLayout/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
 

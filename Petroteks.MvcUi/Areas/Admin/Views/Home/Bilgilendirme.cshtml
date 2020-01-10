@@ -3,6 +3,37 @@
     ViewData["Title"] = "Index";
 }
 
+<div id="mail-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center mt-2 mb-4">
+                </div>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <label for="mail">Email:</label>
+                        <input type="text" id="mail" name="mail" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Kategori">Kategori:</label>
+                    <select id="Kategori">
+                        <option value="Kategori2">Kategori2</option>
+                        <option value="Kategori1">Kategori1</option>
+                    </select>
+
+                </div>
+                <div class="form-group text-center">
+
+                    <button class="btn btn-rounded btn-success" onclick="BilgilendirmeEkle();" type="submit">
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal -->
+</div>
 <div class="card">
     <div class="card-body">
 
@@ -45,16 +76,213 @@
                 {
                     <tr>
                         <td>@item.EmailAddress</td>
+                        <td>Kategori</td>
+                        <td>
+                            <button type="button" onclick="BilgilendirmeSil(@item.id)" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
+
+
+
     </div>
 
 </div>
+<div class="card">
+    <div class="card-body">
+        <div class="table-controls-legend">Selection Controls</div>
+        <div class="table-controls">
+            <button id="MailButton" type="button" data-toggle="modal" data-target="#mail-modal" class="btn waves-effect waves-light btn-outline-dark btn-rounded"><i class="fas fa-plus"></i> Mail Adresi Ekle </button>
+            <button id="select-row" class="btn waves-effect waves-light btn-primary btn-rounded"> <i class="fas fa-check"></i> Kategori 2 Seç</button>
+            <button id="select-all" class="btn waves-effect waves-light btn-secondary btn-rounded"><i class="fas fa-check"></i>  Hepsini Seç</button>
+            <button id="deselect-all" class="btn waves-effect waves-light btn-light btn-rounded"><i class="fas fa-unlink"></i> Tüm seçilenleri Bırak</button>
+            <button id="select-manual" class="btn waves-effect waves-light btn-success btn-rounded"> <i class="fas fa-share"></i> Seçtiklerine Gönder</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+        <div id="example-table"></div>
+    </div>
+</div>
+
+
+
 
 @section Scripts{
     <script>
+        var table;
+        function BilgilendirmeEkle() {
+            var lastid = table.getRows().length + 1;
+            lastid++;
+            var mail = $("#mail").val();
+            var Kategori = $("#Kategori option:selected").val();
+            try {
+                toastr.success("Başarı ile Mail eklendi");
+                table.addRow({
+                    id: lastid,
+                    mail: mail,
+                    kategori: Kategori,
+                });
+                console.log(lastid, mail, Kategori)
+            }
+            catch (error) {
+
+                toastr.success("Hata:" + error);
+            }
+
+
+
+
+
+
+
+
+
+
+
+            //$.ajax({
+            //    type: "GET",
+            //    url: "/Admin/Home/BilgilendirmeEkle?mail=" + mail,
+            //    success: function (response) {
+            //        toastr.success(response);
+            //        location.reload();
+            //    },
+            //    failure: function (response) {
+            //        toastr.error('Sunucu ile bağlantı kurulamadı.');
+            //    },
+            //    error: function (response) {
+            //        toastr.error('Sunucu ile bağlantı kurulamadı.');
+            //    }
+            //});
+        }
+
+        setTimeout(function () {
+            $(".tabulator-col-title").eq(0).click();
+        }, 300);
+
+        var tabledata = [
+            { id: 1, kategori: "Kategori2", mail: "incecamberat@gmail1.com" },
+            { id: 2, kategori: "Kategori1", mail: "incecamberat@gmail2.com" },
+            { id: 3, kategori: "Kategori1", mail: "incecamberat@gmail3.com" },
+            { id: 4, kategori: "Kategori1", mail: "incecamberat@gmail4.com" },
+            { id: 5, kategori: "Kategori2", mail: "incecamberat@gmail5.com" },
+            { id: 6, kategori: "Kategori1", mail: "incecamberat@gmail6.com" },
+            { id: 7, kategori: "Kategori1", mail: "incecamberat@gmail7.com" },
+            { id: 8, kategori: "Kategori1", mail: "incecamberat@gmail8.com" },
+            { id: 9, kategori: "Kategori2", mail: "incecamberat@gmail9.com" },
+            { id: 10, kategori: "Kategori1", mail: "incecamberat@gmail0.com" },
+        ];
+
+
+
+        table = new Tabulator("#example-table", {
+            data: tabledata,
+            selectable: true, //make rows selectable
+            movableColumns: true,
+            pagination: "local",
+            layout: "fitColumns",
+            paginationSize: 6,
+            paginationSizeSelector: [3, 6, 8, 10],
+
+            columns: [
+
+                {
+                    title: "Kategori", field: "kategori", align: "left", editor: "select", editorParams: {
+                        values: {
+                            "Kategori1": "Kategori1",
+                            "Kategori2": "Kategori2",
+                        }
+                    },
+                    headerFilter: true, headerFilterParams: { values: { "Kategori1": "Kategori1", "Kategori2": "Kategori2" } }
+
+                },
+                { title: "Email", field: "mail", align: "left", headerFilter: "input" },
+
+
+                {
+                    title: "Durum", formatter: "buttonCross", align: "center", cellClick: function (e, cell) {
+                        var cellcontent = JSON.stringify(cell.getRow().getData().mail);
+                        var cellid = JSON.stringify(cell.getRow().getData().id);
+                        var dialog = $.confirm({
+                            title: "Dikkat!", icon: 'fa fa-trash', theme: 'modern', type: 'orange', content: cellcontent + " silmek üzeresiniz!", buttons: {
+                                VAZGEÇ: function () {
+                                    dialog.close();
+                                },
+                                SİL: function () {
+                                    dialog.close();
+                                    cell.getRow().delete();
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "/Admin/Home/BilgilendirmeSil?id=" + cellid,
+                                        success: function (response) {
+
+                                            toastr.success("Silindi")  
+                                        },
+                                        failure: function (response) {
+                                              toastr.success("Hata")  
+                                        },
+                                        error: function (response) {
+                                             toastr.success("Hata")  
+                                        }
+                                    });
+                                }
+                            }
+                        });
+
+                        //if (confirm('İlgili davalı silinecekt')) cell.getRow().delete();//Dialog Eklenicek
+                    }
+                },
+
+            ],
+
+        });
+
+        //select row on "select" button click
+        $("#select-row").click(function () {
+            table.selectRow(table.getRows().filter(row => row.getData().kategori == 'Kategori2'));
+            var selectedData = table.getSelectedData();
+            console.log(JSON.stringify(selectedData));
+        });
+
+        //deselect row on "deselect" button click
+        $("#select-manual").click(function () {
+            var selectedData = table.getSelectedData();
+            var mdl = JSON.stringify(selectedData);
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                cache: 'false',
+                url: '/Admin/Home/BilgilendirmeEkle',
+                data: { json: mdl },
+                success: function () {
+                    console.log("Başarılı");
+
+                }, error: function () {
+                    console.log("Hata");
+                }
+            });
+        });
+
+
+        //select row on "select all" button click
+        $("#select-all").click(function () {
+            table.selectRow();
+            var selectedData = table.getSelectedData();
+            console.log(JSON.stringify(selectedData));
+        });
+
+        //deselect row on "deselect all" button click
+        $("#deselect-all").click(function () {
+            table.deselectRow();
+        });
+
+        table.redraw();
+
 
     </script>
 }

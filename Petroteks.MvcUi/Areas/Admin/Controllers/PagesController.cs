@@ -175,6 +175,15 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpGet]
+        public IActionResult SayfaStandarti()
+        {
+            ViewBag.ThisWebsite = ThisWebsite;
+
+            return View(new ProductViewModel());
+        }
+
+        [AdminAuthorize]
+        [HttpGet]
         public IActionResult ProductAdd()
         {
             ViewBag.ThisWebsite = ThisWebsite;
@@ -251,7 +260,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
-
+        public IActionResult ProductList()
+        {
+            return View();
+        }
         [AdminAuthorize]
         [HttpGet]
         public IActionResult CategoryAdd()

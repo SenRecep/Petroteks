@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Helpers;
 using Petroteks.Entities.Concreate;
@@ -204,18 +205,19 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return RedirectToAction("Login", "Home");
         }
-        // Recep Düzenleme Hem json hem id düşüyor
-        [AllowAnonymous, HttpPost]
-        public IActionResult BilgilendirmeEkle(string json, MailViewModel model)
-        { 
-                return Json("Islem Basari ile tamamlandi");  
-        }
-        
+
         public JsonResult BilgilendirmeSil(int id)
-        { 
-            return Json("Başarılı");
+        {
+            Email email = emailService.Get(x=>x.id==id);
+            if (email!=null)
+            {
+                emailService.Delete(email);
+                emailService.Save();
+                return Json("Başarılı");
+            }
+            return Json("Basarisiz");
         }
-     
+
 
 
         [AdminAuthorize]
@@ -233,29 +235,28 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpPost]
-        public IActionResult Bilgilendirme(MailViewModel model)
+        public IActionResult Bilgilendirme(string json, MailViewModel model)
         {
             if (emailSender == null)
                 emailSender = new EmailSender(emailService);
+            ICollection<Email> emails = JsonConvert.DeserializeObject<IList<Email>>(json);
             emailSender.Body = model.Body;
             emailSender.Subject = model.Subject;
-            Attachment file=null;
+            Attachment file = null;
             if (model.File != null)
             {
                 string fileName = Path.GetFileName(model.File.FileName);
                 file = new Attachment(model.File.OpenReadStream(), fileName);
             }
 
-            if (emailSender.Send(emailSender.LoadWebsiteEmails(ThisWebsite.id), file))
+            if (emailSender.Send(emails, file))
             {
                 return RedirectToAction("Bilgilendirme", "Home", new { area = "Admin" });
             }
-            return View(model);
+            return View(new MailViewModel()
+            {
+                Emails = emailSender.LoadWebsiteEmails(ThisWebsite.id)
+            });
         }
-
-
-
-
-
     }
 }

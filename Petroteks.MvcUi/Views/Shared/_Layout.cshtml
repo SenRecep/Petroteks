@@ -57,17 +57,19 @@
 
             <nav class="main-nav float-right d-none d-lg-block">
                 <ul>
+                    <li class="drop-down">
+                        <a href="">Ürünlerimiz</a>
+                        <ul>
+                            @await Component.InvokeAsync("CategoryList", new { website = (Website)ViewBag.ThisWebsite })
+                        </ul>
+                    </li>
+
                     <li class="active"><a href="">Ana Sayfa</a></li>
                     <li><a href="">Hakkımızda</a></li>
 
 
 
-                    <li class="drop-down">
-                        <a href="">Ürünlerimiz</a> 
-                        <ul>
-                            @await Component.InvokeAsync("CategoryList", new { website = (Website)ViewBag.ThisWebsite })
-                        </ul>
-                    </li>
+
                     <li><a href="">İletişim</a></li>
                     <li class="drop-down">
                         <a href="#"><img src="http://www.petroteks.com/tr/wp-content/plugins/gtranslate/flags/16/tr.png">  TR</a>

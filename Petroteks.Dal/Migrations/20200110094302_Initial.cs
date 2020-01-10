@@ -147,7 +147,8 @@ namespace Petroteks.Dal.Migrations
                     UpdateUserid = table.Column<int>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     WebSiteid = table.Column<int>(nullable: false),
-                    EmailAddress = table.Column<string>(nullable: true)
+                    EmailAddress = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

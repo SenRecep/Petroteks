@@ -41,77 +41,60 @@
 
 @model CategoryListViewModel
 @{
+
+
+
     object LoadSubMenu(Category category, ICollection<Category> categories)
     {
-        ICollection<Product> localProducts = Model.AllProduct.Where(x => x.Categoryid == category.id).ToList();
-        if (categories?.Count > 0)
+        foreach (Category subCategory in categories)
         {
-            <ul class="nested">
-                @foreach (Category subCategory in categories)
-                {
-                    <li>
-
-                        @{
-                            ICollection<Category> subcategories = Model.GetCategoryies(subCategory.id);
-                            if (subcategories.Count > 0)
-                            {
-                                <span class="caret">@Model.NameId(subCategory)</span>
-                                @LoadSubMenu(subCategory, subcategories)
-                                @LoadProducts(subCategory,localProducts)
-                            }
-                            else
-                            {
-                                if (localProducts.Count > 0)
-                                {
-                                    <span class="caret">@Model.NameId(subCategory)</span>
-                                    @LoadProducts(subCategory, localProducts)
-                                }
-                                else
-                                {
-                                    @Model.NameId(subCategory)
-                                }
-                            }
-                        }
-                    </li>
-
-                }
-
-            </ul>
-
-        }
-        else if (category.Parentid != 0)
-        {
-            if (localProducts.Count > 0)
+            ICollection<Category> localcategories = Model.GetCategoryies(subCategory.id);
+            ICollection<Product> products = Model.AllProduct.Where(x => x.Categoryid == subCategory.id).ToList();
+            if (localcategories.Count > 0)
             {
                 <li>
-                    <span class="caret">X @Model.NameId(category)</span>
-                    @LoadProducts(category, localProducts)
+                    <span class="caret">
+                        <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@Model.NameId(subCategory)</a>
+                    </span>
+                    <ul class="nested">
+                        @LoadSubMenu(subCategory, localcategories)
+                        @if (products.Count > 0)
+                        {
+                            @LoadProduct(subCategory, products)
+                        }
+                    </ul>
+                </li>
+            }
+            else if (products.Count > 0)
+            {
+                <li>
+                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@Model.NameId(subCategory)</a>
+                    <ul class="nested">
+                        @LoadProduct(category, products)
+                    </ul>
                 </li>
             }
             else
             {
-                <li>@Model.NameId(category)</li>
+                <li>
+                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@Model.NameId(subCategory)</a>
+                </li>
             }
-        }
 
+        }
         return null;
     }
 
 
-    object LoadProducts(Category category, ICollection<Product> localProducts)
+
+    object LoadProduct(Category category, ICollection<Product> localProducts)
     {
-
-        <ul class="nested">
-            @foreach (Product product in localProducts)
-            {
-                <li>
-                    @product.SupTitle
-                </li>
-
-            }
-
-        </ul>
-
+        @foreach (Product product in localProducts)
+        {
+            <li>
+                <a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id">@product.SupTitle</a>
+            </li>
+        }
 
         return null;
     }
@@ -119,44 +102,55 @@
 
 
 }
+
+
+
+
 @{
+
+
     <ul class="CategoryTreeView">
         @foreach (Category MainCategory in Model.MainCategories)
         {
-            ICollection<Category> subcategories = Model.GetCategoryies(MainCategory.id);
-            ICollection<Product> localProducts = Model.AllProduct.Where(x => x.Categoryid == MainCategory.id).ToList();
+            ICollection<Product> products = Model.AllProduct.Where(x => x.Categoryid == MainCategory.id).ToList();
 
-            if (subcategories.Count > 0)
+            if (MainCategory.Name == "ROOT")
             {
-                <li>
-                    <span class="caret">@Model.NameId(MainCategory)</span>
-                    @LoadSubMenu(MainCategory, subcategories)
-                    @LoadProducts(MainCategory,localProducts)
-                </li>
+                @LoadProduct(MainCategory, products)
             }
-            else if (MainCategory.Name != "ROOT")
+            else
             {
-                if (localProducts.Count > 0)
+                ICollection<Category> categories = Model.GetCategoryies(MainCategory.id);
+                if (categories.Count > 0)
                 {
                     <li>
-                        <span class="caret">@Model.NameId(MainCategory)</span>
-                        @LoadProducts(MainCategory, localProducts)
+                        <span class="caret"><a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@Model.NameId(MainCategory)</a></span>
+                        <ul class="nested">
+                            @LoadSubMenu(MainCategory, categories)
+                            @if (products.Count > 0)
+                            {
+                                @LoadProduct(MainCategory, products)
+                            }
+                        </ul>
+
+                    </li>
+                }
+                else if (products.Count > 0)
+                {
+                    <li>
+                        <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@Model.NameId(MainCategory)</a>
+                        <ul class="nested">
+                            @LoadProduct(MainCategory, products)
+                        </ul>
                     </li>
                 }
                 else
                 {
-                    <li>@Model.NameId(MainCategory)</li>
-                }
-
-            }
-            else
-            {
-                @foreach (Product product in localProducts)
-                {
                     <li>
-                        @product.SupTitle
+                        <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@Model.NameId(MainCategory)</a>
                     </li>
                 }
+
             }
 
         }

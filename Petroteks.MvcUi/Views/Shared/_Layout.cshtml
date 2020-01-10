@@ -64,20 +64,8 @@
 
                     <li class="drop-down">
                         <a href="">Ürünlerimiz</a> 
-                        <ul> 
-                            <li><a href="#">Üst Ürün</a></li>
-                            <li class="drop-down">
-                                <a href="#">Alt Ürünler</a>
-                                <ul>
-                                    <li><a href="#">Alt Ürün 1</a></li>
-                                    <li><a href="#">Alt Ürün 2</a></li>
-                                    <li><a href="#">Alt Ürün 3</a></li>
-
-                                </ul>
-                            </li>
-
-                            <li><a href="#">Üst Ürün 2</a></li>
-                            <li><a href="#">Üst Ürün 3</a></li>
+                        <ul>
+                            @await Component.InvokeAsync("CategoryList", new { website = (Website)ViewBag.ThisWebsite })
                         </ul>
                     </li>
                     <li><a href="">İletişim</a></li>

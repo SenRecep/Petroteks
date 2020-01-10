@@ -236,6 +236,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     Content = model.Content,
                     Title = model.Title,
                     CreateUserid = LoginUser.id,
+                    IsActive=model.IsActive
                 };
                 Product findedProduct = productService.Get(x => x.SupTitle.Equals(product.SupTitle) && x.Category.WebSite == ThisWebsite);
                 if (findedProduct != null)
@@ -250,6 +251,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedProduct.Title = product.Title;
                     findedProduct.UpdateDate = DateTime.UtcNow;
                     findedProduct.UpdateUserid = product.CreateUserid;
+                    findedProduct.IsActive = product.IsActive;
                     if (!string.IsNullOrWhiteSpace(product.PhotoPath))
                         findedProduct.PhotoPath = product.PhotoPath;
                     productService.Update(findedProduct);

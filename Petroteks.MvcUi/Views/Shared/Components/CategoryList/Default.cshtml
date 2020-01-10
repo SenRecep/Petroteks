@@ -8,22 +8,22 @@
             ICollection<Product> products = Model.AllProduct.Where(x => x.Categoryid == subCategory.id).ToList();
             if (localcategories.Count > 0)
             {
-                <li>
-                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id" class="mn-has-sub">@subCategory.Name <i class="fa fa-angle-right right"></i></a>
-                    <ul class="mn-sub">
+                <li class="drop-down">
+                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@subCategory.Name</a>
+                    <ul>
                         @LoadSubMenu(subCategory, localcategories)
-                        @if(products.Count>0)
+                        @if (products.Count > 0)
                         {
-                            @LoadProduct(subCategory,products)
+                            @LoadProduct(subCategory, products)
                         }
                     </ul>
                 </li>
             }
             else if (products.Count > 0)
             {
-                <li>
-                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id" class="mn-has-sub">@subCategory.Name <i class="fa fa-angle-right right"></i></a>
-                    <ul class="mn-sub">
+                <li class="drop-down">
+                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@subCategory.Name</a>
+                    <ul>
                         @LoadProduct(category, products);
                     </ul>
                 </li>
@@ -31,7 +31,7 @@
             else
             {
                 <li>
-                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id" class="mn-has-sub">@subCategory.Name </a>
+                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@subCategory.Name </a>
                 </li>
             }
 
@@ -44,7 +44,7 @@
         foreach (Product product in products)
         {
             <li>
-                <a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id" class="mn-has-sub">@product.SubTitle</a>
+                <a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id">@product.SupTitle</a>
             </li>
         }
         return null;
@@ -66,9 +66,9 @@
             ICollection<Category> categories = Model.GetCategoryies(MainCategory.id);
             if (categories.Count > 0)
             {
-                <li>
-                    <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name" class="mn-has-sub to-left">@MainCategory.Name <i class="fa fa-angle-right right"></i></a>
-                    <ul class="mn-sub">
+                <li class="drop-down">
+                    <a  asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@MainCategory.Name</a>
+                    <ul>
                         @LoadSubMenu(MainCategory, categories)
                         @if (products.Count > 0)
                         {
@@ -79,9 +79,9 @@
             }
             else if (products.Count > 0)
             {
-                <li>
-                    <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name" class="mn-has-sub to-left">@MainCategory.Name <i class="fa fa-angle-right right"></i></a>
-                    <ul class="mn-sub">
+                <li  class="drop-down">
+                    <a  asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@MainCategory.Name</a>
+                    <ul>
                         @LoadProduct(MainCategory, products)
                     </ul>
                 </li>
@@ -89,7 +89,7 @@
             else
             {
                 <li>
-                    <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name" class="mn-has-sub to-left">@MainCategory.Name </a>
+                    <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name" >@MainCategory.Name </a>
                 </li>
             }
 

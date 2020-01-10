@@ -7,53 +7,126 @@
 }
 
 
-@Html.Raw(Model.Slider)
-@Html.Raw(Model.TopContent)
+@*@Html.Raw(Model.Slider)
+@Html.Raw(Model.TopContent)*@
 
 
-
-
-
-<section class="page-section bg-dark-lighter" data-background="images/finance/section-bg-2.jpg" style="background-image: url(&quot;images/finance/section-bg-2.jpg&quot;);">
-    <div class="container relative">
-
-        <div class="row alt-features-grid font-alt">
-
-            <!-- Features Item -->
-            <div class="col-sm-4 wow fadeInRight" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInRight;">
-                <div class="alt-features-item align-center">
-                    <div class="alt-features-icon white">
-                        <span class="icon-presentation"></span>
-                    </div>
-                    <h3 class="alt-features-title">Kaliteli Hizmet</h3>
+<section id="intro" class="clearfix">
+    <div class="container d-flex h-100">
+        <div class="row justify-content-center align-self-center">
+            <div class="col-md-6 intro-info order-md-first order-last">
+                <h2>Yenilikçi<br>Çözümler ve<span>Sondaj Ekipmanları</span></h2>
+                <div>
+                    <a href="#about" class="btn-get-started scrollto">İletişime Geç!</a>
                 </div>
             </div>
-            <!-- End Features Item -->
-            <!-- Features Item -->
-            <div class="col-sm-4 wow fadeInRight" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInRight;">
-                <div class="alt-features-item align-center">
-                    <div class="alt-features-icon white">
-                        <span class="icon-presentation"></span>
-                    </div>
-                    <h3 class="alt-features-title">Uygun Fiyat</h3>
-                </div>
-            </div>
-            <!-- End Features Item -->
-            <!-- Features Item -->
-            <div class="col-sm-4 wow fadeInRight" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInRight;">
-                <div class="alt-features-item align-center">
-                    <div class="alt-features-icon white">
-                        <span class="icon-presentation"></span>
-                    </div>
-                    <h3 class="alt-features-title">Maksimum Fayda</h3>
-                </div>
-            </div>
-            <!-- End Features Item -->
 
+            <div class="col-md-6 intro-img order-md-last order-first my-auto wow fadeInLeft" data-wow-delay="0.2s">
+                <img src="~/NewLayout/img/sondajanasayfa.png" alt="" class="img-fluid">
+            </div>
         </div>
 
     </div>
-</section>
+</section><!-- #intro -->
+
+<main id="main">
+
+    <!--==========================
+      About Us Section
+    ============================-->
+    <section id="about">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-5 col-md-6">
+                    <div class="about-img">
+                        <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/WeChat-Image_20191015151414.png" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-7 col-md-6">
+                    <div class="about-content">
+                        <h2>Yenilikçi Çözümler</h2>
+                        <p>Kuruluşumuzdan bu yana Uygun fiyat, maksimum fayda ilkesi ile sondaj makineleri, sondaj ekipmanları gibi sondaj operasyonlarında neye ihtiyaç duyulursa taleplerinizi eksiksiz karşılamak ve sizlere en kaliteli hizmeti sunma arzusundayız.</p>
+
+                        <ul>
+                            <li><i class="ion-android-checkmark-circle"></i> Kaliteli Hizmet</li>
+                            <li><i class="ion-android-checkmark-circle"></i>Uygun Fiyat</li>
+                            <li><i class="ion-android-checkmark-circle"></i>Maksimum Fayda</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section><!-- #about -->
+    <!--==========================
+      Services Section
+    ============================-->
+    <section id="services" class="section-bg">
+        <div class="container">
+
+            <header class="section-header">
+                <h3>PETROBLOG</h3>
+                <p>Sondaj ile ilgili gelişmeleri ve yenilikleri Petroblog'da bulabilirsiniz.</p>
+            </header>
+
+            <div class="row">
+
+
+
+                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon"> <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/anasayfa-petroteks-1-300x300.png" class="img-fluid align-unset" /></div>
+                        <h4 class="title"><a href="">Sondaj Nedir ?</a></h4>
+                        <p class="description">Sondaj; yeryüzünde çeşitli sebeplerle delik açmaya yarayan yöntemlere verilen isimdir. Kayaları parçalamak […]</p>
+                        <a class="button pulse text-white" href="#">Detay</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon"> <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/WeChat-Image_20191015151414.png" class="img-fluid align-unset" /></div>
+                        <h4 class="title"><a href="">Karotlu Sondajlarda Karot Randımanı</a></h4>
+                        <p class="description">Karotlu Sondajlarda Karot Randımanı Akademik Araştırma sonucu için buraya tıklayabilirsiniz.</p>
+                        <div class="box-footer"><a class="button pulse text-white" href="#">Detay</a></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon"> <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/anasayfa-petroteks-1-300x300.png" class="img-fluid align-unset" /></div>
+                        <h4 class="title"><a href="">Sondaj Nedir ?</a></h4>
+                        <p class="description">Sondaj; yeryüzünde çeşitli sebeplerle delik açmaya yarayan yöntemlere verilen isimdir. Kayaları parçalamak […]</p>
+                        <a class="button pulse text-white" href="#">Detay</a>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="clients" class="wow fadeInUp">
+        <div class="container">
+
+
+
+            <div class="owl-carousel clients-carousel">
+                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/drillben-logo-petroteks-joker-medya-1.png" alt="">
+                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/havas-sulfotex-logo-petroteks-joker-medya.png" alt="">
+                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/APIBARITE-logo-petroteks-joker-medya.png" alt="">
+                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/VISPOL-s%C4%B1v%C4%B1-sondaj-polimeri-logo-petroteks-joker-medya.png" alt="">
+                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/PELLETONIT-s%C4%B1v%C4%B1-sondaj-polimeri-logo-petroteks-joker-medya.png" alt="">
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
 @Html.Raw(Model.BottomContent)
 
 
@@ -65,8 +138,8 @@
             var mailadress = $("#email").val();
             $.ajax({
                 type: "GET",
-                url: "/Home/BilgilendirmeMail?email=" + mailadress ,
-                success: function (response) { 
+                url: "/Home/BilgilendirmeMail?email=" + mailadress,
+                success: function (response) {
                     toastr.success(response);
                 },
                 failure: function (response) {

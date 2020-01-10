@@ -204,25 +204,18 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return RedirectToAction("Login", "Home");
         }
-        public JsonResult BilgilendirmeEkle(string mail)
-        {
-
-
-            if (mail!=null)
-            {
-                emailSender = new EmailSender(emailService);
-                emailSender.EmailAdd(ThisWebsite, mail);
-                return Json("Islem Basari ile tamamlandi");
-            }
-            else
-            {
-
-                return Json("Hata: İşlem tamamlanamadı!");
-            }
-               
+        // Recep Düzenleme Hem json hem id düşüyor
+        public JsonResult BilgilendirmeEkle(string json)
+        { 
+                return Json("Islem Basari ile tamamlandi");  
         }
+        
+        public JsonResult BilgilendirmeSil(int id)
+        { 
+            return Json("Başarılı");
+        }
+     
 
-      
 
         [AdminAuthorize]
         public IActionResult Bilgilendirme()

@@ -57,7 +57,7 @@ namespace Petroteks.Bll.Helpers
             }
         }
 
-        public ICollection<Email> LoadWebsiteEmails(int WebsiteId) => emailService.GetMany(x => x.WebSiteid == WebsiteId);
+        public ICollection<Email> LoadWebsiteEmails(int WebsiteId) => emailService.GetMany(x => x.WebSiteid == WebsiteId&& x.IsActive==true);
 
         private string EmailsToString(ICollection<Email> emails)
         {
@@ -86,7 +86,8 @@ namespace Petroteks.Bll.Helpers
             email.Subject = Subject;
             email.Body = Body;
             foreach (var file in files)
-                email.Attachments.Add(file);
+                if (file != null)
+                    email.Attachments.Add(file);
             try
             {
                 smtp.Send(email);

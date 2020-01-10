@@ -19,8 +19,16 @@
                 <div class="form-group">
                     <label for="Kategori">Kategori:</label>
                     <select id="Kategori">
-                        <option value="Kategori2">Kategori2</option>
-                        <option value="Kategori1">Kategori1</option>
+                        <option value="@Model.Emails.ElementAt(0).Category">@Model.Emails.ElementAt(0).Category</option>
+                        @for (int i = 1; i < Model.Emails.Count; i++)
+                        {
+                            string temp = Model.Emails.ElementAt(i - 1).Category;
+                            string category = Model.Emails.ElementAt(i).Category;
+                            if (temp != category)
+                            {
+                                <option value="@category">@category</option>
+                            }
+                        }
                     </select>
 
                 </div>
@@ -38,7 +46,7 @@
     <div class="card-body">
 
 
-        <form enctype="multipart/form-data" method="post">
+        <form id="MailForm" enctype="multipart/form-data" method="post">
             <h4 class="card-title">Konu Basligi</h4>
             <div class="form-group">
                 <input type="text" class="form-control" asp-for="Subject" aria-describedby="Konu Basligi" placeholder="Konu Basligi">
@@ -59,58 +67,20 @@
                 </div>
             </div>
 
-
-            <center><button class="btn btn-success" type="submit">Gonder</button></center>
+            <div class="form-group table-controls text-center">
+                <button id="MailButton" type="button" data-toggle="modal" data-target="#mail-modal" class="btn waves-effect waves-light btn-outline-dark btn-rounded"><i class="fas fa-plus"></i> Mail Adresi Ekle </button>
+                <button id="select-all" class="btn waves-effect waves-light btn-secondary btn-rounded"><i class="fas fa-check"></i>  Hepsini Seç</button>
+                <button id="deselect-all" class="btn waves-effect waves-light btn-light btn-rounded"><i class="fas fa-unlink"></i> Tüm seçilenleri Bırak</button>
+                <button id="postSelecteds"  class="btn waves-effect waves-light btn-success btn-rounded"> <i class="fas fa-share"></i> Seçtiklerine Gönder</button>
+            </div>
+            <div class="form-group">
+                <div id="example-table"></div>
+            </div>
         </form>
 
-
-
-        <table class="table table-striped mt-3">
-            <thead>
-                <tr>
-                    <th>Mail Adresi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Emails)
-                {
-                    <tr>
-                        <td>@item.EmailAddress</td>
-                        <td>Kategori</td>
-                        <td>
-                            <button type="button" onclick="BilgilendirmeSil(@item.id)" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
-
-
     </div>
 
 </div>
-<div class="card">
-    <div class="card-body">
-        <div class="table-controls-legend">Selection Controls</div>
-        <div class="table-controls">
-            <button id="MailButton" type="button" data-toggle="modal" data-target="#mail-modal" class="btn waves-effect waves-light btn-outline-dark btn-rounded"><i class="fas fa-plus"></i> Mail Adresi Ekle </button>
-            <button id="select-row" class="btn waves-effect waves-light btn-primary btn-rounded"> <i class="fas fa-check"></i> Kategori 2 Seç</button>
-            <button id="select-all" class="btn waves-effect waves-light btn-secondary btn-rounded"><i class="fas fa-check"></i>  Hepsini Seç</button>
-            <button id="deselect-all" class="btn waves-effect waves-light btn-light btn-rounded"><i class="fas fa-unlink"></i> Tüm seçilenleri Bırak</button>
-            <button id="select-manual" class="btn waves-effect waves-light btn-success btn-rounded"> <i class="fas fa-share"></i> Seçtiklerine Gönder</button>
-        </div>
-    </div>
-</div>
-
-
-<div class="card">
-    <div class="card-body">
-        <div id="example-table"></div>
-    </div>
-</div>
-
-
 
 
 @section Scripts{
@@ -128,61 +98,26 @@
                     mail: mail,
                     kategori: Kategori,
                 });
-                console.log(lastid, mail, Kategori)
             }
             catch (error) {
 
-                toastr.success("Hata:" + error);
+                toastr.error("Hata:" + error);
             }
-
-
-
-
-
-
-
-
-
-
-
-            //$.ajax({
-            //    type: "GET",
-            //    url: "/Admin/Home/BilgilendirmeEkle?mail=" + mail,
-            //    success: function (response) {
-            //        toastr.success(response);
-            //        location.reload();
-            //    },
-            //    failure: function (response) {
-            //        toastr.error('Sunucu ile bağlantı kurulamadı.');
-            //    },
-            //    error: function (response) {
-            //        toastr.error('Sunucu ile bağlantı kurulamadı.');
-            //    }
-            //});
         }
 
         setTimeout(function () {
             $(".tabulator-col-title").eq(0).click();
         }, 300);
 
-        var tabledata = [
-            { id: 1, kategori: "Kategori2", mail: "incecamberat@gmail1.com" },
-            { id: 2, kategori: "Kategori1", mail: "incecamberat@gmail2.com" },
-            { id: 3, kategori: "Kategori1", mail: "incecamberat@gmail3.com" },
-            { id: 4, kategori: "Kategori1", mail: "incecamberat@gmail4.com" },
-            { id: 5, kategori: "Kategori2", mail: "incecamberat@gmail5.com" },
-            { id: 6, kategori: "Kategori1", mail: "incecamberat@gmail6.com" },
-            { id: 7, kategori: "Kategori1", mail: "incecamberat@gmail7.com" },
-            { id: 8, kategori: "Kategori1", mail: "incecamberat@gmail8.com" },
-            { id: 9, kategori: "Kategori2", mail: "incecamberat@gmail9.com" },
-            { id: 10, kategori: "Kategori1", mail: "incecamberat@gmail0.com" },
-        ];
-
-
+        var tabledata = [];
+        @foreach (var item in Model.Emails)
+        {
+            @:tabledata.push({ id: @item.id , Category: '@item.Category' , EmailAddress: '@item.EmailAddress' });
+        }
 
         table = new Tabulator("#example-table", {
             data: tabledata,
-            selectable: true, //make rows selectable
+            selectable: true,
             movableColumns: true,
             pagination: "local",
             layout: "fitColumns",
@@ -192,16 +127,18 @@
             columns: [
 
                 {
-                    title: "Kategori", field: "kategori", align: "left", editor: "select", editorParams: {
+                    title: "Kategori", field: "Category", align: "left", editor: "select",
+                    headerFilter: true, headerFilterParams: {
                         values: {
-                            "Kategori1": "Kategori1",
-                            "Kategori2": "Kategori2",
+                            @foreach (var item in Model.Emails)
+                            {
+                                @:"@item.Category": "@item.Category",
+                            }
                         }
-                    },
-                    headerFilter: true, headerFilterParams: { values: { "Kategori1": "Kategori1", "Kategori2": "Kategori2" } }
+                    }
 
                 },
-                { title: "Email", field: "mail", align: "left", headerFilter: "input" },
+                { title: "Email", field: "EmailAddress", align: "left", headerFilter: "input" },
 
 
                 {
@@ -215,26 +152,23 @@
                                 },
                                 SİL: function () {
                                     dialog.close();
-                                    cell.getRow().delete();
                                     $.ajax({
                                         type: "GET",
                                         url: "/Admin/Home/BilgilendirmeSil?id=" + cellid,
                                         success: function (response) {
-
-                                            toastr.success("Silindi")  
+                                            toastr.success("Silindi")
+                                            cell.getRow().delete();
                                         },
                                         failure: function (response) {
-                                              toastr.success("Hata")  
+                                              toastr.error("Hata")
                                         },
                                         error: function (response) {
-                                             toastr.success("Hata")  
+                                             toastr.error("Hata")
                                         }
                                     });
                                 }
                             }
                         });
-
-                        //if (confirm('İlgili davalı silinecekt')) cell.getRow().delete();//Dialog Eklenicek
                     }
                 },
 
@@ -242,31 +176,33 @@
 
         });
 
-        //select row on "select" button click
-        $("#select-row").click(function () {
-            table.selectRow(table.getRows().filter(row => row.getData().kategori == 'Kategori2'));
-            var selectedData = table.getSelectedData();
-            console.log(JSON.stringify(selectedData));
-        });
 
-        //deselect row on "deselect" button click
-        $("#select-manual").click(function () {
+        $("#postSelecteds").submit(function(e) {
+            e.preventDefault();
+
+            var form = $(this);
+            var url = form.attr('action');
+
             var selectedData = table.getSelectedData();
-            var mdl = JSON.stringify(selectedData);
+            var json = JSON.stringify(selectedData);
             $.ajax({
-                type: 'GET',
-                dataType: 'json',
+                type: 'Post',
                 cache: 'false',
-                url: '/Admin/Home/BilgilendirmeEkle',
-                data: { json: mdl },
+                url: url,
+                data: {
+                    json: json,
+                    model: form.serialize()
+                },
                 success: function () {
-                    console.log("Başarılı");
+                    toastr.success("Basarili")
 
                 }, error: function () {
-                    console.log("Hata");
+                    toastr.error("Hata")
                 }
             });
+
         });
+
 
 
         //select row on "select all" button click

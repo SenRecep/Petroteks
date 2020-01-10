@@ -24,7 +24,7 @@
                 <li class="drop-down">
                     <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@subCategory.Name</a>
                     <ul>
-                        @LoadProduct(category, products);
+                        @LoadProduct(category, products)
                     </ul>
                 </li>
             }

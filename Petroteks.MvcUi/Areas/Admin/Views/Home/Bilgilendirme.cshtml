@@ -38,7 +38,7 @@
     <div class="card-body">
 
 
-        <form enctype="multipart/form-data" method="post">
+        <form id="form1" enctype="multipart/form-data" method="post">
             <h4 class="card-title">Konu Basligi</h4>
             <div class="form-group">
                 <input type="text" class="form-control" asp-for="Subject" aria-describedby="Konu Basligi" placeholder="Konu Basligi">
@@ -221,13 +221,13 @@
                                         url: "/Admin/Home/BilgilendirmeSil?id=" + cellid,
                                         success: function (response) {
 
-                                            toastr.success("Silindi")  
+                                            toastr.success("Silindi")
                                         },
                                         failure: function (response) {
-                                              toastr.success("Hata")  
+                                            toastr.success("Hata")
                                         },
                                         error: function (response) {
-                                             toastr.success("Hata")  
+                                            toastr.success("Hata")
                                         }
                                     });
                                 }
@@ -250,15 +250,18 @@
         });
 
         //deselect row on "deselect" button click
-        $("#select-manual").click(function () {
-            var selectedData = table.getSelectedData();
-            var mdl = JSON.stringify(selectedData);
+        $("#select-manual").click(function () {  
+            var formData = $("#form1").serialize();
+            var selectedData = table.getSelectedData(); 
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 dataType: 'json',
                 cache: 'false',
                 url: '/Admin/Home/BilgilendirmeEkle',
-                data: { json: mdl },
+                data:{
+                    model: formData,
+                    json:selectedData
+                },
                 success: function () {
                     console.log("Başarılı");
 

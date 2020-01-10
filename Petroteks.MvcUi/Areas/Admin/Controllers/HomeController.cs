@@ -205,7 +205,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return RedirectToAction("Login", "Home");
         }
         // Recep Düzenleme Hem json hem id düşüyor
-        public JsonResult BilgilendirmeEkle(string json)
+        [AllowAnonymous, HttpPost]
+        public IActionResult BilgilendirmeEkle(string json, MailViewModel model)
         { 
                 return Json("Islem Basari ile tamamlandi");  
         }

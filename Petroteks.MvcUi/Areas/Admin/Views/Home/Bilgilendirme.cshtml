@@ -69,9 +69,9 @@
 
             <div class="form-group table-controls text-center">
                 <button id="MailButton" type="button" data-toggle="modal" data-target="#mail-modal" class="btn waves-effect waves-light btn-outline-dark btn-rounded"><i class="fas fa-plus"></i> Mail Adresi Ekle </button>
-                <button id="select-all" class="btn waves-effect waves-light btn-secondary btn-rounded"><i class="fas fa-check"></i>  Hepsini Seç</button>
-                <button id="deselect-all" class="btn waves-effect waves-light btn-light btn-rounded"><i class="fas fa-unlink"></i> Tüm seçilenleri Bırak</button>
-                <button id="postSelecteds"  class="btn waves-effect waves-light btn-success btn-rounded"> <i class="fas fa-share"></i> Seçtiklerine Gönder</button>
+                <button id="select-all" type="button" class="btn waves-effect waves-light btn-secondary btn-rounded"><i class="fas fa-check"></i>  Hepsini Seç</button>
+                <button id="deselect-all" type="button" class="btn waves-effect waves-light btn-light btn-rounded"><i class="fas fa-unlink"></i> Tüm seçilenleri Bırak</button>
+                <button id="postSelected" type="button" class="btn waves-effect waves-light btn-success btn-rounded"> <i class="fas fa-share"></i> Seçtiklerine Gönder</button>
             </div>
             <div class="form-group">
                 <div id="example-table"></div>
@@ -177,31 +177,25 @@
         });
 
 
-        $("#postSelecteds").submit(function(e) {
-            e.preventDefault();
-
-            var form = $(this);
-            var url = form.attr('action');
-
-            var selectedData = table.getSelectedData();
-            var json = JSON.stringify(selectedData);
-            $.ajax({
-                type: 'Post',
-                cache: 'false',
-                url: url,
-                data: {
-                    json: json,
-                    model: form.serialize()
-                },
-                success: function () {
-                    toastr.success("Basarili")
-
-                }, error: function () {
-                    toastr.error("Hata")
-                }
-            });
-
+    $("#postSelected").click(function (e) {
+        var selectedData = table.getSelectedData();
+        var jsonSelectedEmails = JSON.stringify(selectedData);
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            url: "/Admin/Home/BilgilendirmeEmails",
+            data: {
+                json:jsonSelectedEmails
+            },
+            success: function() {
+                toastr.success("Basarili")
+            },
+            error: function() {
+                toastr.error("Silindi")
+            }
         });
+    });
 
 
 

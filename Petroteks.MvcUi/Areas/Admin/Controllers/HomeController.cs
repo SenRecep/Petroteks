@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Helpers;
 using Petroteks.Entities.Concreate;
+using Petroteks.MvcUi.Areas.Admin.Data;
 using Petroteks.MvcUi.Areas.Admin.Models;
 using Petroteks.MvcUi.Attributes;
 using Petroteks.MvcUi.ExtensionMethods;
@@ -218,6 +219,13 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return Json("Basarisiz");
         }
 
+        public JsonResult BilgilendirmeEmails(string json)
+        {
+            DataTransferPoint.SelectedEmails = new List<Email>();
+            if (!string.IsNullOrWhiteSpace(json))
+                DataTransferPoint.SelectedEmails = JsonConvert.DeserializeObject<ICollection<Email>>(json);
+            return Json(true);
+        }
 
 
         [AdminAuthorize]
@@ -239,7 +247,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         {
             if (emailSender == null)
                 emailSender = new EmailSender(emailService);
-            ICollection<Email> emails = JsonConvert.DeserializeObject<IList<Email>>(json);
             emailSender.Body = model.Body;
             emailSender.Subject = model.Subject;
             Attachment file = null;
@@ -249,7 +256,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 file = new Attachment(model.File.OpenReadStream(), fileName);
             }
 
-            if (emailSender.Send(emails, file))
+            if (emailSender.Send(DataTransferPoint.SelectedEmails, file))
             {
                 return RedirectToAction("Bilgilendirme", "Home", new { area = "Admin" });
             }

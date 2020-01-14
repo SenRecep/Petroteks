@@ -24,6 +24,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         private readonly ICategoryService categoryService;
         private readonly IHostingEnvironment hostingEnvironment;
         private readonly IProductService productService;
+        private readonly IBlogService blogService;
 
         public PagesController(IUserService userService,
             IUserSessionService userSessionService,
@@ -33,6 +34,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             IWebsiteService websiteService,
             IHttpContextAccessor httpContextAccessor,
             ICategoryService categoryService,
+            IBlogService blogService,
             IHostingEnvironment hostingEnvironment,
             IProductService productService)
             : base(userSessionService, websiteService, httpContextAccessor)
@@ -43,6 +45,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             this.categoryService = categoryService;
             this.hostingEnvironment = hostingEnvironment;
             this.productService = productService;
+            this.blogService = blogService;
         }
 
 
@@ -174,12 +177,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
 
         [AdminAuthorize]
-        [HttpGet]
         public IActionResult SayfaStandarti()
         {
             ViewBag.ThisWebsite = ThisWebsite;
-
-            return View(new ProductViewModel());
+            return View();
         }
 
         [AdminAuthorize]
@@ -236,7 +237,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     Content = model.Content,
                     Title = model.Title,
                     CreateUserid = LoginUser.id,
-                    IsActive=model.IsActive
+                    IsActive = model.IsActive
                 };
                 Product findedProduct = productService.Get(x => x.SupTitle.Equals(product.SupTitle) && x.Category.WebSite == ThisWebsite);
                 if (findedProduct != null)
@@ -262,6 +263,138 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
+        [AdminAuthorize]
+        public IActionResult BlogAdd()
+        {
+            ViewBag.ThisWebsite = ThisWebsite;
+            return View(new BlogViewModel());
+        }
+        [AdminAuthorize]
+        [HttpPost]
+        public IActionResult BlogAdd(BlogViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName = null;
+                if (model.PhotoPath != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "BlogImages");
+                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.PhotoPath.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.PhotoPath.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                Blog blog = new Blog()
+                {
+                    Title = model.Title,
+                    PhotoPath = uniqueFileName,
+                    Description = model.Description,
+                    MetaTags = model.MetaTags,
+                    Keywords = model.Keywords,
+                    Content = model.Content,
+                    CreateUserid = LoginUser.id,
+                    IsActive = model.IsActive,
+                    WebSite = ThisWebsite
+                };
+                Blog findedBlog = blogService.Get(x => x.Title.Equals(blog.Title) && x.WebSite == ThisWebsite);
+                if (findedBlog != null)
+                {
+                    findedBlog.Description = blog.Description;
+                    findedBlog.MetaTags = blog.MetaTags;
+                    findedBlog.Keywords = blog.Keywords;
+                    findedBlog.Content = blog.Content;
+                    findedBlog.Title = blog.Title;
+                    findedBlog.UpdateDate = DateTime.UtcNow;
+                    findedBlog.UpdateUserid = blog.CreateUserid;
+                    findedBlog.IsActive = blog.IsActive;
+                    if (!string.IsNullOrWhiteSpace(blog.PhotoPath))
+                        findedBlog.PhotoPath = blog.PhotoPath;
+                    blogService.Update(findedBlog);
+                }
+                else
+                {
+                    blogService.Add(blog);
+                    blogService.Save();
+                }
+            }
+            return RedirectToAction("BlogAdd", "Pages", new { area = "Admin" });
+        }
+        [AdminAuthorize]
+        public IActionResult BlogEdit(int id)
+        {
+            var findedBlog = blogService.Get(m => m.id == id);
+            if (findedBlog != null)
+            {
+                return View(findedBlog);
+            }
+            else
+            {
+                return View();
+            }
+
+        }
+        [AdminAuthorize]
+        public JsonResult BlogDelete(int id)
+        {
+            Blog blog = blogService.Get(x => x.id == id);
+            if (blog != null)
+            {
+                blog.IsActive = false;
+                blogService.Save();
+                return Json("Başarılı");
+            }
+            return Json("Basarisiz");
+        }
+        [AdminAuthorize]
+        [HttpPost]
+        public IActionResult BlogEdit(int id, BlogViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var findedBlog = blogService.Get(m => m.id == id);
+
+                if (findedBlog != null)
+                {
+                    findedBlog.Description = model.Description;
+                    findedBlog.MetaTags = model.MetaTags;
+                    findedBlog.Keywords = model.Keywords;
+                    findedBlog.Content = model.Content;
+                    findedBlog.Title = model.Title;
+                    findedBlog.UpdateDate = DateTime.UtcNow;
+                    findedBlog.UpdateUserid = LoginUser.id;
+                    findedBlog.IsActive = model.IsActive;
+                    blogService.Update(findedBlog);
+                    blogService.Save();
+                }
+
+                else
+                {
+                    Blog blog = new Blog()
+                    {
+                        Title = model.Title,
+                        Description = model.Description,
+                        MetaTags = model.MetaTags,
+                        Keywords = model.Keywords,
+                        Content = model.Content,
+                        CreateUserid = LoginUser.id,
+                        IsActive = model.IsActive
+                    };
+                    blogService.Add(blog);
+                    blogService.Save();
+                }
+            }
+
+            return RedirectToAction("BlogList", "Pages", new { area = "Admin" });
+        }
+
+
+
+
+        private IActionResult HttpNotFound()
+        {
+            throw new NotImplementedException();
+        }
+
+        [AdminAuthorize]
         public IActionResult ProductList()
         {
             return View();
@@ -310,6 +443,13 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 categoryService.Save();
             }
             return RedirectToAction("CategoryAdd", "Pages", new { area = "Admin" });
+        }
+
+        [AdminAuthorize]
+        public IActionResult BlogList()
+        {
+            var data = blogService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true).ToList();
+            return View(data);
         }
     }
 }

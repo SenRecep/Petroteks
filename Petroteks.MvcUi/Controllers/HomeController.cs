@@ -7,7 +7,10 @@ using Petroteks.Core.Dal;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Models;
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Text;
+using Petroteks.MvcUi.Areas.Admin.Models;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -16,6 +19,7 @@ namespace Petroteks.MvcUi.Controllers
         private readonly IMainPageService mainPageService;
         private readonly IAboutUsObjectService aboutUsObjectService;
         private readonly IPrivacyPolicyObjectService privacyPolicyObjectService;
+        private readonly IBlogService blogService;
         private readonly IEmailService emailService;
 
         public HomeController(
@@ -24,12 +28,14 @@ namespace Petroteks.MvcUi.Controllers
             IEmailService emailService,
             IPrivacyPolicyObjectService privacyPolicyObjectService,
             IWebsiteService websiteService,
-            IHttpContextAccessor httpContextAccessor) :
+            IHttpContextAccessor httpContextAccessor,
+            IBlogService blogService) :
             base(websiteService, httpContextAccessor)
         {
             this.aboutUsObjectService = aboutUsObjectService;
             this.mainPageService = mainPageService;
             this.privacyPolicyObjectService = privacyPolicyObjectService;
+            this.blogService = blogService;
             this.emailService = emailService;
         }
 
@@ -37,14 +43,36 @@ namespace Petroteks.MvcUi.Controllers
         //url/Home/Index
         public IActionResult Index()
         {
+            ICollection<Blog> blogs = blogService.GetMany(x=>x.WebSiteid==ThisWebsite.id && x.IsActive==true).OrderByDescending(x=>x.CreateDate).Take(3).ToList();
             MainPage mainPage; 
             mainPage = mainPageService.Get(x => x.WebSiteid == ThisWebsite.id);
             if (mainPage==null)
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
 
-            return View(mainPage);
+            return View(new MainPageViewModel() { 
+                MainPage= mainPage,
+                Blogs=blogs
+            });
         }
-         
+        public IActionResult PetroBlog()
+        {
+            ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).ToList();
+            return View(blogs);
+        }
+       
+        public IActionResult BlogDetay(int id)
+        {
+            var findedBlog = blogService.Get(m => m.id == id);
+            if (findedBlog != null)
+            {
+                return View(findedBlog);
+            }
+            else
+            {
+                return View();
+            }
+        }
+
         public IActionResult Hakkimizda()
         {
             AboutUsObject hakkimizda;
@@ -53,6 +81,26 @@ namespace Petroteks.MvcUi.Controllers
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
 
             return View(hakkimizda);
+        } 
+        public IActionResult Iletisim()
+        { 
+            return View();
+        }
+        [HttpPost]
+        public JsonResult Iletisim(Iletisim model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var body = new StringBuilder();
+                body.AppendLine("İsim:" + model.İsim);
+                body.AppendLine("Konu:" + model.Konu);
+                body.AppendLine("Mesaj:" + model.Mesaj);
+                body.AppendLine("Eposta:" + model.Email);
+                Mail.SendMail(body.ToString()); 
+                return Json("Başarılı bir şekilde iletildi");
+            } 
+            return Json("Hata");
         }
 
         public IActionResult GizlilikPolitikasi()
@@ -83,7 +131,5 @@ namespace Petroteks.MvcUi.Controllers
             }
             return Json("Zaten Abonesiniz.");
         }
-
-
     }
 }

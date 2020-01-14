@@ -1,0 +1,50 @@
+﻿@model List<Blog>
+@{
+    ViewData["Title"] ="Petro Blog | Petroteks";
+    ViewData["Description"] = "Petrol, sondaj hakkında bilinmesi gerekenler";
+    ViewData["MetaTags"] = "";
+    ViewData["Keywords"] ="Petro Blog, Petroteks, Petroteks Blog, Sondaj";
+}
+
+    <section class="clearfix" id="intro2">
+        <div class="container d-flex h-100">
+            <div class="row justify-content-center align-self-center">
+                <div class="col-md-12 text-center intro-info order-md-first order-last">
+                    <div class="wow fadeInLeft" data-wow-delay="0.2s">
+                        <h2>Petro Blog</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-bg" style="background-color:white!important;">
+        <div class="container">
+
+            <header class="section-header">
+                <h3>PETROBLOG</h3>
+                <p>Sondaj ile ilgili gelişmeleri ve yenilikleri Petroblog'da bulabilirsiniz.</p>
+            </header>
+
+            <div class="row">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                        <div class="box">
+                            
+                            <div class="icon"> <img src="../BlogImages/@item.PhotoPath" class="img-fluid align-unset" /></div>
+                            <h4 class="title"><a href="">@item.Title</a></h4>
+                            <p class="description"> </p>
+                            <a class="button pulse text-white" href="../Home/BlogDetay?id=@item.id">Detay</a>
+                        </div>
+                    </div> 
+                }
+
+
+
+
+            </div>
+
+        </div>
+    </section>

@@ -21,6 +21,7 @@
     <!-- Custom CSS -->
     <link href="~/Admin/dist/css/tabulator.min.css" rel="stylesheet" />
     <link href="~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="~/Admin/dist/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -33,7 +34,15 @@
         .ck-editor__editable {
             min-height: 400px;
         }
+
+        ul.ui-autocomplete {
+            z-index: 1100;
+        }
     </style>
+
+
+
+
 </head>
 
 <body>
@@ -240,6 +249,13 @@
                                         </span>
                                     </a>
                                 </li>
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="SayfaStandarti" class="sidebar-link">
+                                        <span class="hide-menu">
+                                           Ana Sayfa Örnek Standart
+                                        </span>
+                                    </a>
+                                </li>
 
                             </ul>
                         </li>
@@ -260,6 +276,13 @@
                                     <a asp-area="Admin" asp-controller="Pages" asp-action="CategoryAdd" class="sidebar-link">
                                         <span class="hide-menu">
                                             Kategori Yönetimi
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="BlogList" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            Blog Yönetimi
                                         </span>
                                     </a>
                                 </li>
@@ -302,7 +325,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+                <a href="https://wrappixel.com">Petroteks</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -320,8 +343,11 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
 
+
     <script src="~/Admin/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
     <script src="~/Admin/dist/js/tabulator.js"></script>
     <script src="~/Admin/dist/js/resize_table.js"></script>
     <script src="~/Admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
@@ -372,7 +398,7 @@
         const editor1 = document.getElementById("editor1");
         const editor2 = document.getElementById("editor2");
         const editor3 = document.getElementById("editor3");
-        const editor4 = document.getElementById("editor4"); 
+        const editor4 = document.getElementById("editor4");
         if (editor1 != null) CKEDITOR.replace(editor1, config);
         if (editor2 != null) CKEDITOR.replace(editor2, config);
         if (editor3 != null) CKEDITOR.replace(editor3, config);

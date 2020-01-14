@@ -1,34 +1,9 @@
 ﻿@model Product
 @{
 }
+@Html.Raw(Model.Content)
 
 
-@*href="/Detail/CategoryDetail?categoryName=@Model.Category.Name.Replace(" ", "-")&page=1&category=@Model.Category.id"          Kategori ID gitmiyor*@
+ 
 
-<section class="small-section bg-dark-alfa-30 parallax-2" data-background="~/ProductImages/@Model.PhotoPath">
-    <div class="relative container align-left mt-50">
-
-        <div class="row">
-
-            <div class="col-md-8">
-                <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">@Model.SupTitle</h1>
-                <div class="hs-line-4 font-alt">
-                    Tarih:@Model.CreateDate.ToString()
-                </div>
-            </div>
-
-            <div class="col-md-4 mt-30">
-                <div class="mod-breadcrumbs font-alt align-right">
-                    <a href="../Home/Index">Petroteks</a>&nbsp;<a> @*@Model.Category.Name*@ </a>/&nbsp;<span> @Model.SupTitle</span>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-</section>
-<section class="page-section">
-    <div class="container relative"> 
-        @Html.Raw(Model.Content) 
-    </div>
-</section>
+ 

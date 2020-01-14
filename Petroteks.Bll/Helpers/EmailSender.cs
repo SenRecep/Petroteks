@@ -44,20 +44,29 @@ namespace Petroteks.Bll.Helpers
             return stringBuilder.ToString();
         }
 
-        public void EmailAdd(Website Website, params string[] emails)
+        public bool EmailAdd(Website Website, string email, string category)
         {
-            if (emails.Length > 0)
+            bool status = false;
+            if (emailService.Get(x => x.EmailAddress == email && x.WebSiteid == Website.id) == null)
             {
-                foreach (string email in emails)
+                status = true;
+                emailService.Add(new Email() { EmailAddress = email, Category = category, WebSite = Website });
+                try
                 {
-                    if (emailService.Get(x => x.EmailAddress == email && x.WebSiteid == Website.id) == null)
-                        emailService.Add(new Email() { EmailAddress = email, WebSite = Website });
+                    status = true;
+                    emailService.Save();
                 }
-                emailService.Save();
+                catch (Exception)
+                {
+                    status = false;
+                    throw;
+                }
+                
             }
+            return status;
         }
 
-        public ICollection<Email> LoadWebsiteEmails(int WebsiteId) => emailService.GetMany(x => x.WebSiteid == WebsiteId&& x.IsActive==true);
+        public ICollection<Email> LoadWebsiteEmails(int WebsiteId) => emailService.GetMany(x => x.WebSiteid == WebsiteId && x.IsActive == true);
 
         private string EmailsToString(ICollection<Email> emails)
         {

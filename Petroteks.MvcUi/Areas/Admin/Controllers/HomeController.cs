@@ -206,7 +206,27 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return RedirectToAction("Login", "Home");
         }
-
+        public JsonResult BilgilendirmeEkle(string mail, string category)
+        { 
+            try
+            {
+                emailSender = new EmailSender(emailService); 
+                if (emailSender.EmailAdd(ThisWebsite, mail, category) == true)
+                {
+                    return Json("Islem Basari ile tamamlandi");
+                }
+                else
+                {
+                    return Json("Üzgünüz Ters Giden Birşeyler var");
+                }
+              
+            }
+            catch
+            {
+                return Json("İşlem tamamlanamadı");
+            }
+        }
+     
         public JsonResult BilgilendirmeSil(int id)
         {
             Email email = emailService.Get(x=>x.id==id);
@@ -243,7 +263,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpPost]
-        public IActionResult Bilgilendirme(string json, MailViewModel model)
+        public IActionResult Bilgilendirme(MailViewModel model)
         {
             if (emailSender == null)
                 emailSender = new EmailSender(emailService);

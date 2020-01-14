@@ -26,55 +26,45 @@
     <link href="~/NewLayout/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
     <link href="~/NewLayout/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="~/NewLayout/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     <!-- Main Stylesheet File -->
     <link href="~/NewLayout/css/style.css" rel="stylesheet" />
-    
+
     <!-- Favicons -->
 
 </head>
 <body itemscope="" itemtype="http://schema.org/WebPage">
-  
+
     <header id="header">
-        <div id="topbar">
-            <div class="container">
-                <div class="social-links">
-                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
 
         <div class="container">
 
             <div class="logo float-left">
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <h1 class="text-light"><a href="" class="scrollto"><img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/logopetroteks-1.png" /></a></h1>
+                <h1 class="text-light"><a href="../Home/Index" class="scrollto"><img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/logopetroteks-1.png" /></a></h1>
                 <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
             </div>
 
             <nav class="main-nav float-right d-none d-lg-block">
                 <ul>
                     <li class="drop-down">
-                        <a href="">Ürünlerimiz</a>
+                        <a href="">ÜRÜNLERİMİZ</a>
                         <ul>
                             @await Component.InvokeAsync("CategoryList", new { website = (Website)ViewBag.ThisWebsite })
                         </ul>
                     </li>
 
-                    <li class="active"><a href="">Ana Sayfa</a></li>
-                    <li><a href="">Hakkımızda</a></li>
+                    <li class="active"><a href="../Home/Index">ANASAYFA</a></li>
+                    <li><a href="../Home/Hakkimizda">HAKKIMIZDA</a></li>
+                    <li><a href="../Home/PetroBlog">PETROBLOG</a></li>
 
 
 
-
-                    <li><a href="">İletişim</a></li>
+                    <li><a href="../Home/iletisim">İLETİŞİM</a></li>
                     <li class="drop-down">
                         <a href="#"><img src="http://www.petroteks.com/tr/wp-content/plugins/gtranslate/flags/16/tr.png">  TR</a>
                         <ul>
-                            <li><a href="#"><img src="http://www.petroteks.com/tr/wp-content/plugins/gtranslate/flags/16/en.png"> ENG</a></li>
+                            @*<li><a href="#"><img src="http://www.petroteks.com/tr/wp-content/plugins/gtranslate/flags/16/en.png"> ENG</a></li>*@
 
 
                         </ul>
@@ -196,7 +186,7 @@
     <script src="~/NewLayout/contactform/contactform.js"></script>
 
     <!-- Template Main Javascript File -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="~/NewLayout/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>

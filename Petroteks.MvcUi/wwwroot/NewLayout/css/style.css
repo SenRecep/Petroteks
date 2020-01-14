@@ -8,17 +8,60 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-
+#spanc {
+    cursor: pointer!important;
+}
 body {
-  background: #fff;
-  color: #444;
-  font-family: "Open Sans", sans-serif;
+    background: #fff;
+    color: #444;
+    font-family: "Open Sans", sans-serif;
+}
+.btnn {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    color: #5f5b96;
+    border-radius: 0;
+    padding: 10px 24px;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    display: inline-block;
+    background: #1bb1dc;
+    color: #fff;
 }
 
+.about-img img {
+    width: 100%;
+    border: 8px solid #fff;
+    transition: .5s;
+}
+ .about-img {
+    position: relative;
+    margin: 30px 30px 30px 30px;
+}
+.about-img::before {
+        position: absolute;
+        left: -31px;
+        top: -30px;
+        width: 90%;
+        height: 92%;
+        z-index: -1;
+        content: '';
+        background-color: #ebf1fa;
+        transition: .5s;
 
-
-
-
+}
+.about-img::after {
+    position: absolute;
+    right: -31px;
+    bottom: -30px;
+    width: 90%;
+    height: 92%;
+    z-index: -1;
+    content: '';
+    background-color: #ebf1fa;
+    transition: .5s;
+}
 @keyframes pulse {
   0% {
     transform: scale(0);
@@ -191,6 +234,47 @@ h6 {
   }
 }
 
+
+#intro2 {
+    background: url(http://www.kayensondaj.com/temalar/kayen/images/slider-bg.jpg) center top no-repeat;
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    background-size: 100% 100%;
+}
+#intro2 .intro-info h2 {
+    color: #413e66;
+    margin-bottom: 40px;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+    #intro2 .intro-info h2 span {
+        color: #1bb1dc;
+    }
+
+#intro2 .intro-info .btn-get-started,
+#intro2 .intro-info .btn-services {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 10px 32px;
+    border-radius: 4px;
+    transition: 0.5s;
+    color: #fff;
+    background: #1bb1dc;
+    color: #fff;
+}
+
+    #intro2 .intro-info .btn-get-started:hover,
+    #intro2 .intro-info .btn-services:hover {
+        background: #0a98c0;
+    }
+
+
 /*--------------------------------------------------------------
 # Top Bar
 --------------------------------------------------------------*/
@@ -225,17 +309,19 @@ h6 {
 --------------------------------------------------------------*/
 
 #header {
-  height: 110px;
-  transition: all 0.5s;
-  z-index: 997;
-  transition: all 0.5s;
-  padding: 20px 0;
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  transition: all 0.5s;
-  z-index: 997;
+    height: 70px;
+    transition: all 0.5s;
+    z-index: 997;
+    transition: all 0.5s;
+    padding: 15px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    transition: all 0.5s;
+    z-index: 997;
+    background: #ffffffc9;
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
 }
 
 #header.header-scrolled,
@@ -282,11 +368,11 @@ h6 {
 --------------------------------------------------------------*/
 
 #intro {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  background: #f5f8fd url("../img/anasayfa-petroteks-1-1.png") center top no-repeat;
-  background-size: cover; 
+    width: 100%;
+    height: 80vh;
+    position: relative;
+    background: #f5f8fd url("../img/anasayfa-petroteks-1-1.png") center top no-repeat;
+    background-size: 100% 100%;
 }
 
 #intro .intro-info h2 {
@@ -543,12 +629,14 @@ h6 {
 --------------------------------*/
 
 .section-header h3 {
-  font-size: 36px;
-  color: #413e66;
-  text-align: center;
-  font-weight: 700;
-  position: relative;
-  font-family: "Montserrat", sans-serif;
+    font-size: 36px;
+    color: #413e66;
+    text-align: center;
+    padding-bottom: 20px;
+    text-decoration: underline;
+    font-weight: 700;
+    position: relative;
+    font-family: "Montserrat", sans-serif;
 }
 
 .section-header p {
@@ -571,7 +659,7 @@ h6 {
 --------------------------------*/
 
 #about {
-  padding: 80px 0;
+  padding: 150px 0;
 }
 
 #about .about-content {
@@ -654,17 +742,17 @@ h6 {
   padding: 60px 0 40px 0;
 }
 
-#services .box {
-  
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  margin: 0 10px 40px 10px;
-  background: #fff;
-  box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1);
-  transition: all 0.3s ease-in-out;
-  text-align: center;
-}
+    #services .box {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        margin: 0 10px 40px 10px;
+        background: #fff;
+        box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1);
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+        height: 380px;
+    }
 
 #services .box:hover {
   -webkit-transform: scale(1.1);
@@ -1644,3 +1732,8 @@ h6 {
     margin-bottom: 25px;
   }
 }
+
+
+
+
+

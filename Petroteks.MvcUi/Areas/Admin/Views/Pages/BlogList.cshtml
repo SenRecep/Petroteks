@@ -1,0 +1,80 @@
+﻿@model List<Blog>
+
+@{
+    ViewData["Title"] = " Blog Liste";
+}
+<div class="card">
+    <div class="card-body">
+        <a class="btn waves-effect waves-light btn-success btn-rounded" href="/Admin/Pages/BlogAdd"> <i class="fas fa-plus"></i> Yeni Ekle</a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th> Resim</th>
+                    <th> Başlık</th>
+                    <th> Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/images/@item.PhotoPath" width="75" />
+                        </td>
+                        <td>
+                            @item.Title
+                        </td>
+                        <td>
+                            <button  class="btn btn-danger btn-rounded" onclick="BlogDelete(@item.id);"><i class="fas fa-trash"></i> </button>
+                            <a href="/Admin/Home/BlogEdit?id=@item.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+
+    <script>
+        function BlogDelete(id) { 
+             var dialog2 = $.confirm({
+               title: "Dikkat!", icon: 'fa fa-trash', theme: 'modern', type: 'orange', content:"silmek üzeresiniz!", buttons: {
+                VAZGEÇ: function () {
+                    dialog.close();
+                },
+                SİL: function () { 
+                    $.ajax({
+                        type: "GET",
+                        url: "/Admin/Pages/BlogDelete?id=" + id,
+                        success: function (response) {
+                            toastr.success(response) 
+                            location.reload();
+                            dialog.close();
+                          
+                        },
+                        failure: function (response) {
+                            toastr.error(response)
+                        },
+                        error: function (response) {
+                            toastr.error(response)
+                        }
+                    });
+                }
+            }
+        });
+
+
+        }
+       
+    </script>
+}

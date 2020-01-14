@@ -2,35 +2,26 @@
 @{
     ViewData["Title"] = "Index";
 }
+<script>
 
+</script>
 <div id="mail-modal" class="modal fade" tabindex="-1" role="dialog"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="text-center mt-2 mb-4">
-                </div>
+
                 <div class="form-group">
-                    <div class="custom-control custom-checkbox">
+                    <div class="custom-control">
                         <label for="mail">Email:</label>
                         <input type="text" id="mail" name="mail" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="Kategori">Kategori:</label>
-                    <select id="Kategori">
-                        <option value="@Model.Emails.ElementAt(0).Category">@Model.Emails.ElementAt(0).Category</option>
-                        @for (int i = 1; i < Model.Emails.Count; i++)
-                        {
-                            string temp = Model.Emails.ElementAt(i - 1).Category;
-                            string category = Model.Emails.ElementAt(i).Category;
-                            if (temp != category)
-                            {
-                                <option value="@category">@category</option>
-                            }
-                        }
-                    </select>
-
+                    <div class="custom-control">
+                        <label for="tags">Kategori:</label>
+                        <input id="Kategori" class="form-control" type="text">
+                    </div>
                 </div>
                 <div class="form-group text-center">
 
@@ -54,7 +45,7 @@
 
             <h4 class="card-title">Mesaj</h4>
             <div class="form-group">
-                <textarea id="editor1" name="Slider">
+                <textarea id="editor1" name="Body">
                     @Html.Raw(Model.Body)
                 </textarea>
             </div>
@@ -71,7 +62,7 @@
                 <button id="MailButton" type="button" data-toggle="modal" data-target="#mail-modal" class="btn waves-effect waves-light btn-outline-dark btn-rounded"><i class="fas fa-plus"></i> Mail Adresi Ekle </button>
                 <button id="select-all" type="button" class="btn waves-effect waves-light btn-secondary btn-rounded"><i class="fas fa-check"></i>  Hepsini Seç</button>
                 <button id="deselect-all" type="button" class="btn waves-effect waves-light btn-light btn-rounded"><i class="fas fa-unlink"></i> Tüm seçilenleri Bırak</button>
-                <button id="postSelected" type="button" class="btn waves-effect waves-light btn-success btn-rounded"> <i class="fas fa-share"></i> Seçtiklerine Gönder</button>
+                <button id="postSelected" type="submit" class="btn waves-effect waves-light btn-success btn-rounded"> <i class="fas fa-share"></i> Seçtiklerine Gönder</button>
             </div>
             <div class="form-group">
                 <div id="example-table"></div>
@@ -85,12 +76,27 @@
 
 @section Scripts{
     <script>
+
+        $(function () {
+            var autocomplateobj = [];
+         @foreach (var item in Model.Emails)
+         {
+            @:autocomplateobj.push('@item.Category');
+         }
+
+        //let x = (autocomplateobj) => autocomplateobj.filter((v, i) => autocomplateobj.indexOf(v) === i);
+         //console.log(x(autocomplateobj));
+        let unique = [...new Set(autocomplateobj)];
+          $("#Kategori").autocomplete({
+            source: unique
+          });
+        });
         var table;
         function BilgilendirmeEkle() {
             var lastid = table.getRows().length + 1;
             lastid++;
             var mail = $("#mail").val();
-            var Kategori = $("#Kategori option:selected").val();
+            var Kategori = $("#Kategori").val();
             try {
                 toastr.success("Başarı ile Mail eklendi");
                 table.addRow({
@@ -98,9 +104,22 @@
                     mail: mail,
                     kategori: Kategori,
                 });
+                 $.ajax({
+                     type: "GET",
+                     url: "/Admin/Home/BilgilendirmeEkle?mail=" + mail +"&category="+Kategori,
+                     success: function (response) {
+                         location.reload();
+                      toastr.success(response)
+                     },
+                     failure: function (response) {
+                      toastr.error(response)
+                     },
+                     error: function (response) {
+                      toastr.error(response)
+                     }
+                 });
             }
             catch (error) {
-
                 toastr.error("Hata:" + error);
             }
         }
@@ -138,7 +157,7 @@
                     }
 
                 },
-                { title: "Email", field: "EmailAddress", align: "left", headerFilter: "input" },
+                { title: "Email", field: "EmailAddress", align: "left", editor: "input", headerFilter: "input" },
 
 
                 {

@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewData["Title"] = "";
+    ViewData["Description"] = "";
+    ViewData["MetaTags"] = "";
+    ViewData["Keywords"] = "";
+}
+<section id="features" style="margin-top:2em;">
+    <div class="container">
+
+        <div class="row feature-item">
+            <div class="col-lg-6 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                <img src="http://www.thesaasinstitute.com/wp-content/uploads/2018/05/contact-image.svg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0" style="visibility: visible; animation-name: fadeInUp;">
+                
+
+                    <h4>İletişim</h4>
+                     
+                   
+                        <div class="form-group">
+                            <input type="text" name="İsim" id="İsim" class="form-control"  required  placeholder="İsim" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="Email" class="form-control" name="Email"  required  id="Email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email">
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="Konu"   required id="Konu" placeholder="Konu" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="Mesaj" id="Mesaj"  required rows="5"   placeholder="Mesaj"></textarea>
+                            <div class="validation"></div>
+                        </div> 
+
+                        <div class="text-center"><button id="gonder"  class="btn btn-info" title="Send Message">Gönder</button></div>
+                   
+                
+            </div>
+        </div>
+    </div>
+</section>
+@*<form class="form contact-form" id="contact_form" method="post" action="../Home/Iletisim">
+        <div class="clearfix">
+
+            <div class="cf-left-col">
+
+                 Name
+                <div class="form-group">
+                    <input type="text" name="İsim" id="İsim" class="input-md round form-control" placeholder="İSİM" pattern=".{3,100}" required>
+                </div>
+
+                 Email
+                <div class="form-group">
+                    <input type="email" name="Email" id="Email" class="input-md round form-control" placeholder="Email" pattern=".{5,100}" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Konu" id="Konu" class="input-md round form-control" placeholder="KONU" pattern=".{5,100}" required>
+                </div>
+            </div>
+
+            <div class="cf-right-col">
+
+                 Message
+                <div class="form-group">
+                    <textarea name="Mesaj" id="Mesaj" class="input-md round form-control" style="height: 84px;" placeholder="MESAJ"></textarea>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="clearfix">
+
+            <div class="cf-left-col">
+
+                 Inform Tip
+                <div class="form-tip pt-20">
+                    <i class="fa fa-info-circle"></i> Lütfen Belirtilen Alanları Eksiksiz Doldurunuz
+                </div>
+
+            </div>
+
+            <div class="cf-right-col">
+
+                 Send Button
+                <div class="align-right pt-10">
+                    <input class="submit_btn btn btn-mod btn-medium btn-round" type="submit" value="Gönder">
+                </div>
+
+            </div>
+
+        </div>
+         if (ViewBag.Success != null && ViewBag.Success)
+        {
+            <div id="result"><i class="fa fa-check-circle" style="color:limegreen"></i>&nbsp; <i>İletiniz Başarıyla gönderilmiştir.</i></div>
+        }
+
+    </form*@
+@section Scripts{
+    <script>
+        $('#gonder').click(function () {
+            var İsim = $("#İsim").val();
+            var Email = $("#Email").val();
+            var Konu = $("#Konu").val();
+            var Mesaj = $("#Mesaj").val();
+            var model={
+                İsim: İsim,
+                Email: Email,
+                Konu: Konu,
+                Mesaj: Mesaj
+            }; 
+             
+
+                $.ajax({
+                    url: "/Home/Iletisim",
+                    type:"POST",
+                    data: { model: model },
+                    success: function (response) {
+                        toastr.success(response);
+                    },
+                    failure: function (response) {
+                        toastr.error(response);
+                    },
+                    error: function (response) {
+                        toastr.error(response);
+                    }
+                }); 
+        });
+
+
+
+    </script>
+    @*<script>
+            var myJsVariable = @(ViewBag.Success);
+            if (myJsVariable != null && myJsVariable == false) {
+                $('#basarili').css('display', 'block');
+                  $('#hata').css('display', 'none');
+            }
+            else if (myJsVariable != null && myJsVariable == true) {
+                  $('#basarili').css('display', 'none');
+                  $('#hata').css('display', 'blocks');
+            }
+            else {
+                $('#basarili').css('display', 'none');
+                  $('#hata').css('display', 'none');
+            }
+        </script>*@
+
+
+
+}

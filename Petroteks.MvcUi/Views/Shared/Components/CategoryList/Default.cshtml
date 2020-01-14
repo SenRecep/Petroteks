@@ -9,7 +9,8 @@
             if (localcategories.Count > 0)
             {
                 <li class="drop-down">
-                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@subCategory.Name</a>
+                    <a href="">@subCategory.Name</a>
+                    @*/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id*@
                     <ul>
                         @LoadSubMenu(subCategory, localcategories)
                         @if (products.Count > 0)
@@ -22,7 +23,8 @@
             else if (products.Count > 0)
             {
                 <li class="drop-down">
-                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@subCategory.Name</a>
+                    <a href="">@subCategory.Name</a>
+                    @*/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ", "-")&page=1&category=@subCategory.id*@
                     <ul>
                         @LoadProduct(category, products)
                     </ul>
@@ -31,7 +33,8 @@
             else
             {
                 <li>
-                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@subCategory.Name </a>
+                    @*/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id*@
+                    <a href="">@subCategory.Name </a>
                 </li>
             }
 
@@ -67,7 +70,7 @@
             if (categories.Count > 0)
             {
                 <li class="drop-down">
-                    <a  asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@MainCategory.Name</a>
+                    <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@MainCategory.Name</a>
                     <ul>
                         @LoadSubMenu(MainCategory, categories)
                         @if (products.Count > 0)
@@ -79,8 +82,8 @@
             }
             else if (products.Count > 0)
             {
-                <li  class="drop-down">
-                    <a  asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@MainCategory.Name</a>
+                <li class="drop-down">
+                    <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@MainCategory.Name</a>
                     <ul>
                         @LoadProduct(MainCategory, products)
                     </ul>
@@ -89,7 +92,7 @@
             else
             {
                 <li>
-                    <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name" >@MainCategory.Name </a>
+                    <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@MainCategory.Name </a>
                 </li>
             }
 

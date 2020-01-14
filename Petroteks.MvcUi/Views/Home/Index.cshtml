@@ -1,70 +1,60 @@
-﻿@model MainPage
+﻿@model MainPageViewModel
 @{
-    ViewData["Title"] = Model.Title;
-    ViewData["Description"] = Model.Description;
-    ViewData["MetaTags"] = Model.MetaTags;
-    ViewData["Keywords"] = Model.Keywords;
+    ViewData["Title"] = Model.MainPage.Title;
+    ViewData["Description"] = Model.MainPage.Description;
+    ViewData["MetaTags"] = Model.MainPage.MetaTags;
+    ViewData["Keywords"] = Model.MainPage.Keywords;
 }
 
 
-@*@Html.Raw(Model.Slider)
-@Html.Raw(Model.TopContent)*@
+@Html.Raw(Model.MainPage.Slider)
 
 
-<section id="intro" class="clearfix">
-    <div class="container d-flex h-100">
-        <div class="row justify-content-center align-self-center">
-            <div class="col-md-6 intro-info order-md-first order-last">
-                <h2>Yenilikçi<br>Çözümler ve<span>Sondaj Ekipmanları</span></h2>
-                <div>
-                    <a href="#about" class="btn-get-started scrollto">İletişime Geç!</a>
-                </div>
-            </div>
 
-            <div class="col-md-6 intro-img order-md-last order-first my-auto wow fadeInLeft" data-wow-delay="0.2s">
-                <img src="~/NewLayout/img/sondajanasayfa.png" alt="" class="img-fluid">
-            </div>
-        </div>
+<!-- #intro -->
 
-    </div>
-</section><!-- #intro -->
+    <main id="main">
 
-<main id="main">
-
-    <!--==========================
+        <!--==========================
       About Us Section
     ============================-->
-    <section id="about">
-
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-5 col-md-6">
-                    <div class="about-img">
-                        <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/WeChat-Image_20191015151414.png" alt="">
-                    </div>
-                </div>
-
-                <div class="col-lg-7 col-md-6">
-                    <div class="about-content">
-                        <h2>Yenilikçi Çözümler</h2>
-                        <p>Kuruluşumuzdan bu yana Uygun fiyat, maksimum fayda ilkesi ile sondaj makineleri, sondaj ekipmanları gibi sondaj operasyonlarında neye ihtiyaç duyulursa taleplerinizi eksiksiz karşılamak ve sizlere en kaliteli hizmeti sunma arzusundayız.</p>
-
-                        <ul>
-                            <li><i class="ion-android-checkmark-circle"></i> Kaliteli Hizmet</li>
-                            <li><i class="ion-android-checkmark-circle"></i>Uygun Fiyat</li>
-                            <li><i class="ion-android-checkmark-circle"></i>Maksimum Fayda</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section><!-- #about -->
-    <!--==========================
+        @Html.Raw(Model.MainPage.TopContent)
+        <!-- #about -->
+        <!--==========================
       Services Section
     ============================-->
-    <section id="services" class="section-bg">
+
+
+
+        <section id="call-to-action" class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 text-center text-lg-left">
+                        <h3 class="cta-title">Sizi Haberdar Edelim</h3>
+                        <p class="cta-text"> Bildirim için mail adresinizi buraya bırakarak bizden haberdar olabilirsiniz veya iletişime geçebilirsiniz.</p>
+                        <div class="input-group mb-3 col-md-7">
+                            <input type="email" id="email"  class="form-control" placeholder="Mail" >
+                            <div class="input-group-append">
+                                <span class="input-group-text btn-outline-light" id="spanc" onclick="BilgilendirmeMail()" id="basic-addon2">Abone Ol</span>
+                            </div>
+                        </div>
+                          
+                      
+                    </div>
+                    <div class="col-lg-3 cta-btn-container text-center">
+                        <a class="cta-btn align-middle" href="../Home/Iletisim">İLETİŞİME GEÇ</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+@Html.Raw(Model.MainPage.BottomContent)
+
+
+
+    @*<section id="services" class="section-bg">
         <div class="container">
 
             <header class="section-header">
@@ -75,68 +65,34 @@
             <div class="row">
 
 
+                @foreach (Blog item in Model.Blogs)
+                {
 
-                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
-                    <div class="box">
-                        <div class="icon"> <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/anasayfa-petroteks-1-300x300.png" class="img-fluid align-unset" /></div>
-                        <h4 class="title"><a href="">Sondaj Nedir ?</a></h4>
-                        <p class="description">Sondaj; yeryüzünde çeşitli sebeplerle delik açmaya yarayan yöntemlere verilen isimdir. Kayaları parçalamak […]</p>
-                        <a class="button pulse text-white" href="#">Detay</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
-                    <div class="box">
-                        <div class="icon"> <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/WeChat-Image_20191015151414.png" class="img-fluid align-unset" /></div>
-                        <h4 class="title"><a href="">Karotlu Sondajlarda Karot Randımanı</a></h4>
-                        <p class="description">Karotlu Sondajlarda Karot Randımanı Akademik Araştırma sonucu için buraya tıklayabilirsiniz.</p>
-                        <div class="box-footer"><a class="button pulse text-white" href="#">Detay</a></div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
-                    <div class="box">
-                        <div class="icon"> <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/anasayfa-petroteks-1-300x300.png" class="img-fluid align-unset" /></div>
-                        <h4 class="title"><a href="">Sondaj Nedir ?</a></h4>
-                        <p class="description">Sondaj; yeryüzünde çeşitli sebeplerle delik açmaya yarayan yöntemlere verilen isimdir. Kayaları parçalamak […]</p>
-                        <a class="button pulse text-white" href="#">Detay</a>
-                    </div>
-                </div>
+                    <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                        <div class="box">
+                            <div class="icon"> <img src="~/BlogImages/@item.PhotoPath" class="img-fluid align-unset" /></div>
+                            <h4 class="title"><a href="">@item.Title</a></h4>
 
-
+                            <p class="description">@item.Description</p>
+                            <a class="button pulse text-white" href="#">Detay</a>
+                        </div>
+                    </div>
+                }
 
             </div>
 
         </div>
-    </section>
-
-    <section id="clients" class="wow fadeInUp">
-        <div class="container">
-
-
-
-            <div class="owl-carousel clients-carousel">
-                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/drillben-logo-petroteks-joker-medya-1.png" alt="">
-                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/havas-sulfotex-logo-petroteks-joker-medya.png" alt="">
-                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/APIBARITE-logo-petroteks-joker-medya.png" alt="">
-                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/VISPOL-s%C4%B1v%C4%B1-sondaj-polimeri-logo-petroteks-joker-medya.png" alt="">
-                <img src="http://www.petroteks.com/tr/wp-content/uploads/2019/12/PELLETONIT-s%C4%B1v%C4%B1-sondaj-polimeri-logo-petroteks-joker-medya.png" alt="">
-
-            </div>
-
-        </div>
-    </section>
-
-</main>
-
-@Html.Raw(Model.BottomContent)
-
+    </section>*@
 
 
 @section Scripts{
 
     <script>
+
         function BilgilendirmeMail() {
             var mailadress = $("#email").val();
-            $.ajax({
+            if (mailadress != null && mailadress!="") {
+                 $.ajax({
                 type: "GET",
                 url: "/Home/BilgilendirmeMail?email=" + mailadress,
                 success: function (response) {
@@ -149,6 +105,14 @@
                     toastr.error('Sunucu ile bağlantı kurulamadı.');
                 }
             });
+            }
+            else {
+                 toastr.error('Lütfen e-mail adresini doğru giriniz');
+            }
+
+
+
+           
         }
     </script>
 

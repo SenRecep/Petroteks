@@ -19,7 +19,8 @@ namespace Petroteks.MvcUi.Controllers
             {
 
                 string url = $"{httpContextAccessor.HttpContext.Request.Scheme}://{httpContextAccessor.HttpContext.Request.Host}";
-                Website website = websiteService.findByUrl(url);
+                string siteName = httpContextAccessor.HttpContext.Request.Host.Value.Replace("www.","",System.StringComparison.InvariantCultureIgnoreCase);
+                Website website = websiteService.findByUrl(siteName);
                 if (website != null)
                     ThisWebsite = website;
                 else
@@ -27,7 +28,7 @@ namespace Petroteks.MvcUi.Controllers
                     Website wb = new Website()
                     {
                         BaseUrl = url,
-                        Name = httpContextAccessor.HttpContext.Request.Host.Value
+                        Name = siteName
                     };
                     websiteService.Add(wb);
                     websiteService.Save();

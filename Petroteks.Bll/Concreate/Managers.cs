@@ -9,7 +9,7 @@ namespace Petroteks.Bll.Concreate
 
         public Website findByUrl(string url)
         {
-            Website wb = _repostory.Get(x=>x.BaseUrl.Equals(url));
+            Website wb = _repostory.Get(x=>x.Name.Equals(url));
             return wb;
         }
     }

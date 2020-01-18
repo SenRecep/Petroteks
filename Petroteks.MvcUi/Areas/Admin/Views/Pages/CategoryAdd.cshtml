@@ -1,7 +1,27 @@
-﻿
+﻿@model CategoryViewModel
 @await Component.InvokeAsync("CategoryTree", new { website = (Website)ViewBag.ThisWebsite })
+@{
+    var photoPath = $"~/CategoryImages/{Model.ImagePath}";
+}
 
 <form enctype="multipart/form-data" method="post" class="mt-2">
+    <input type="hidden" asp-for="id"  />
+    @if (!string.IsNullOrWhiteSpace(Model.ImagePath))
+    {
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle">Kategori Fotoğrafı</h6>
+                        <img class="img-fluid" src="@photoPath" alt="@Model.Name" asp-append-version="true" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card">
@@ -10,7 +30,7 @@
                     <h6 class="card-subtitle">Kategori ağacında numarayı burada giriniz.</h6>
 
                     <div class="form-group">
-                        <input type="number" name="ParentId" id="ParentId" class="form-control">
+                        <input type="number" asp-for="ParentId" class="form-control">
                     </div>
                 </div>
             </div>
@@ -22,7 +42,7 @@
                     <h6 class="card-subtitle">Kategori İsmini burada giriniz</h6>
 
                     <div class="form-group">
-                        <input type="text" name="Name" id="Name" class="form-control">
+                        <input type="text" asp-for="Name" class="form-control">
                     </div>
                 </div>
             </div>

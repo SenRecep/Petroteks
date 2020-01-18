@@ -55,6 +55,11 @@
                 <li>
                     <span class="caret">
                         <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@Model.NameId(subCategory)</a>
+                        [
+                        <a href="/Admin/Pages/CategoryDelete/@subCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
+                        |
+                        <a href="/Admin/Pages/CategoryEdit/@subCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+                        ]
                     </span>
                     <ul class="nested">
                         @LoadSubMenu(subCategory, localcategories)
@@ -70,6 +75,11 @@
                 <li>
                     <span class="caret">
                         <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@Model.NameId(subCategory)</a>
+                        [
+                        <a href="/Admin/Pages/CategoryDelete/@subCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
+                        |
+                        <a href="/Admin/Pages/CategoryEdit/@subCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+                        ]
                     </span>
                     <ul class="nested">
                         @LoadProduct(category, products)
@@ -80,6 +90,11 @@
             {
                 <li>
                     <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@Model.NameId(subCategory)</a>
+                    [
+                    <a href="/Admin/Pages/CategoryDelete/@subCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
+                    |
+                    <a href="/Admin/Pages/CategoryEdit/@subCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+                    ]
                 </li>
             }
 
@@ -95,6 +110,11 @@
         {
             <li>
                 <a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id">@product.SupTitle</a>
+                [
+                <a href="/Admin/Pages/ProductDelete/@product.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
+                |
+                <a href="/Admin/Pages/ProductEdit/@product.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+                ]
             </li>
         }
 
@@ -126,7 +146,14 @@
                 if (categories.Count > 0)
                 {
                     <li>
-                        <span class="caret"><a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@Model.NameId(MainCategory)</a></span>
+                        <span class="caret">
+                            <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@Model.NameId(MainCategory)</a>
+                            [
+                            <a href="/Admin/Pages/CategoryDelete/@MainCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
+                            |
+                            <a href="/Admin/Pages/CategoryEdit/@MainCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+                            ]
+                        </span>
                         <ul class="nested">
                             @LoadSubMenu(MainCategory, categories)
                             @if (products.Count > 0)
@@ -142,7 +169,11 @@
                     <li>
                         <span class="caret">
                             <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@Model.NameId(MainCategory)</a>
-
+                            [
+                            <a href="/Admin/Pages/CategoryDelete/@MainCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
+                            |
+                            <a href="/Admin/Pages/CategoryEdit/@MainCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+                            ]
                         </span>
                         <ul class="nested">
                             @LoadProduct(MainCategory, products)
@@ -153,6 +184,11 @@
                 {
                     <li>
                         <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@Model.NameId(MainCategory)</a>
+                        [
+                        <a href="/Admin/Pages/CategoryDelete/@MainCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
+                        |
+                        <a href="/Admin/Pages/CategoryEdit/@MainCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+                        ]
                     </li>
                 }
 

@@ -252,7 +252,7 @@
                                 <li class="sidebar-item">
                                     <a asp-area="Admin" asp-controller="Pages" asp-action="SayfaStandarti" class="sidebar-link">
                                         <span class="hide-menu">
-                                           Ana Sayfa Örnek Standart
+                                            Ana Sayfa Örnek Standart
                                         </span>
                                     </a>
                                 </li>
@@ -385,15 +385,19 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
+
         const config = {
             filebrowserImageBrowseUrl: "/ImageBrowser",
             filebrowserImageWindowWidth: 750,
             filebrowserImageWindowHeight: 606,
             filebrowserBrowseUrl: "/LinkBrowser",
             filebrowserWindowWidth: 350,
-            filebrowserWindowHeight: 500
+            filebrowserWindowHeight: 500,
+            allowedContent: 'ul li i(ion-android-checkmark-circle)'  
         };
+
         config.allowedContent = true;
+        config.extraAllowedContent = 'i(*)';
         config.removeFormatAttributes = '';
         const editor1 = document.getElementById("editor1");
         const editor2 = document.getElementById("editor2");
@@ -403,6 +407,7 @@
         if (editor2 != null) CKEDITOR.replace(editor2, config);
         if (editor3 != null) CKEDITOR.replace(editor3, config);
         if (editor4 != null) CKEDITOR.replace(editor4, config);
+         CKEDITOR.dtd.$removeEmpty.i = 0;
     </script>
 
 

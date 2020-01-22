@@ -37,103 +37,141 @@
     <!-- Favicons -->
     <style>
 
-
-        /*.trwpwhatsappballon {
-            font-size: 14px;
-            border-radius: 12px;
-            border: 1px solid #fff;
-            max-width: 250px;
+        /* jssor slider loading skin spin css */
+        .jssorl-009-spin img {
+            animation-name: jssorl-009-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
         }
 
-        .trwpwhatsapptitle {
-            background-color: #22c15e;
-            color: white;
-            padding: 14px;
-            border-radius: 12px 12px 0px 0px;
-            text-align: center;
-        }
-
-        .trwpwhatsappmessage {
-            padding: 16px 12px;
-            background-color: white;
-        }
-
-        .trwpwhatsappinput {
-            background-color: white;
-            border-radius: 0px 0px 12px 12px;
-        }
-
-            .trwpwhatsappinput input {
-                width: 206px;
-                border-radius: 10px;
-                margin: 1px 1px 0px 10px;
-                padding: 10px;
-                font-family: "Raleway", Arial, sans-serif;
-                font-weight: 300;
-                font-size: 13px;
-                background-color: #efefef;
-                border: 1px solid #d4d4d4;
+        @@keyframes jssorl-009-spin {
+            from {
+                transform: rotate(0deg);
             }
 
-        .trwpwhatsappbutton {
-            background-color: #22c15e;
-            border-radius: 20px;
-            padding: 8px 15px;
-            cursor: pointer;
-            color: #fff;
-            max-width: 220px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        .trwpwhatsappall {
-            position: fixed;
-            z-index: 9999999999999999999;
-            bottom: 0;
-            left: 10px;
-            font-family: "Raleway", Arial, sans-serif;
-            font-weight: 300;
-            font-size: 15px;
-        }
-
-        .trwpwhatsappsendbutton {
-            color: #22c15e;
-            cursor: pointer;
-        }
-
-        button {
-            border: none;
-        }
-
-            button i {
-                float: right;
-                position: absolute;
-                z-index: 999999999999;
-                right: 23px;
-                top: 11;
-                bottom: 81px;
-                font-size: 18px !important;
+            to {
+                transform: rotate(360deg);
             }
+        }
 
-        .kapat {
+        .jssorl-009-spin {
             position: absolute;
-            right: 8px;
-            top: 6px;
-            font-size: 13px;
-            border: 1px solid #fff;
-            border-radius: 99px;
-            padding: 2px 5px 2px 5px;
-            color: white;
-            font-size: 10px;
-            cursor: pointer;
-        }*/
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background-color: rgba(0,0,0,0.7);
+        }
 
+        #spin {
+            margin-top: -19px;
+            position: relative;
+            top: 50%;
+            width: 38px;
+            height: 38px;
+        }
+
+        #jssor_1 {
+            position: relative;
+            margin: 0 auto;
+            top: 70px;
+            left: 0px;
+            width: 1600px;
+            height: 560px;
+            overflow: hidden;
+            visibility: hidden;
+        }
+
+        /*jssor slider bullet skin 031 css*/
+        .jssorb031 {
+            position: absolute;
+        }
+
+            .jssorb031 .i {
+                position: absolute;
+                cursor: pointer;
+            }
+
+                .jssorb031 .i .b {
+                    fill: #000;
+                    fill-opacity: 0.6;
+                    stroke: #fff;
+                    stroke-width: 1400;
+                    stroke-miterlimit: 10;
+                    stroke-opacity: 0.8;
+                }
+
+                .jssorb031 .i:hover .b {
+                    fill: #fff;
+                    fill-opacity: 1;
+                    stroke: #000;
+                    stroke-opacity: 1;
+                }
+
+            .jssorb031 .iav .b {
+                fill: #fff;
+                stroke: #000;
+                stroke-width: 1600;
+                fill-opacity: .6;
+            }
+
+            .jssorb031 .i.idn {
+                opacity: .3;
+            }
+
+        .jssora051 {
+            display: block;
+            position: absolute;
+            cursor: pointer;
+        }
+
+            .jssora051 .a {
+                fill: none;
+                stroke: #fff;
+                stroke-width: 360;
+                stroke-miterlimit: 10;
+            }
+
+            .jssora051:hover {
+                opacity: .8;
+            }
+
+            .jssora051.jssora051dn {
+                opacity: .5;
+            }
+
+            .jssora051.jssora051ds {
+                opacity: .3;
+                pointer-events: none;
+            }
+
+        #slider-svg {
+            width: 600px;
+            height: 400px;
+            left: 255px;
+            top: 0px;
+            display: block;
+            position: absolute;
+            overflow: visible;
+        }
+
+        #slide-style {
+            cursor: default;
+            position: relative;
+            top: 0px;
+            left: 0px;
+            width: 1600px;
+            height: 560px;
+            overflow: hidden;
+        }
+
+        #navigator {
+            position: absolute;
+            bottom: 24px;
+            right: 16px;
+        }
     </style>
 </head>
 <body itemscope="" itemtype="http://schema.org/WebPage">
@@ -202,8 +240,6 @@
 
                         <div class="row">
 
-
-
                             <div class="col-sm-6">
                                 <div class="footer-links">
                                     <h4>SİTE HARİTASI</h4>
@@ -215,26 +251,9 @@
                                         <li><a href="#">İLETİŞİM</a></li>
                                     </ul>
                                 </div>
-
-
-
                             </div>
 
                         </div>
-
-                    </div>
-
-                    <div class="col-lg-4">
-
-                        <div class="footer-links">
-                            <h4>TOKAT FABRİKA :</h4>
-                            <p>
-                                Amasya – Erzincan Yolu Boğazbaşı Mahallesi
-                                Bozkır Mevkii  No:177/1-1<br>
-                                <strong>Niksar / TOKAT</strong>
-                            </p>
-                        </div>
-
 
                     </div>
 
@@ -249,6 +268,21 @@
                                 <strong>Telefon:</strong> +90 312 426 23 23<br>
                                 <strong>Fax:</strong> +90 312 426 23 50<br>
                                 <strong>Email:</strong> info@petroteks.com<br>
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-lg-4">
+
+                        <div class="footer-links">
+                            <h4>TOKAT FABRİKA :</h4>
+                            <p>
+                                Amasya – Erzincan Yolu Boğazbaşı Mahallesi
+                                Bozkır Mevkii  No:177/1-1<br>
+                                <strong>Niksar / TOKAT</strong>
                             </p>
                         </div>
 
@@ -303,60 +337,134 @@
 
         </div>*@
 
-        <!-- Uncomment below i you want to use a preloader -->
-        <!-- <div id="preloader"></div> -->
-        <!-- JavaScript Libraries -->
+    <!-- Uncomment below i you want to use a preloader -->
+    <!-- <div id="preloader"></div> -->
+    <!-- JavaScript Libraries -->
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="~/NewLayout/lib/jquery/jquery.min.js"></script>
-        <script src="~/NewLayout/lib/jquery/jquery-migrate.min.js"></script>
-        <script src="~/NewLayout/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="~/NewLayout/lib/easing/easing.min.js"></script>
-        <script src="~/NewLayout/lib/mobile-nav/mobile-nav.js"></script>
-        <script src="~/NewLayout/lib/wow/wow.min.js"></script>
-        <script src="~/NewLayout/lib/waypoints/waypoints.min.js"></script>
-        <script src="~/NewLayout/lib/counterup/counterup.min.js"></script>
-        <script src="~/NewLayout/lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="~/NewLayout/lib/isotope/isotope.pkgd.min.js"></script>
-        <script src="~/NewLayout/lib/lightbox/js/lightbox.min.js"></script>
-        <!-- Contact Form JavaScript File -->
-        <script src="~/NewLayout/contactform/contactform.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="~/NewLayout/lib/jquery/jquery.min.js"></script>
+    <script src="~/NewLayout/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="~/NewLayout/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/NewLayout/lib/easing/easing.min.js"></script>
+    <script src="~/NewLayout/lib/mobile-nav/mobile-nav.js"></script>
+    <script src="~/NewLayout/lib/wow/wow.min.js"></script>
+    <script src="~/NewLayout/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/NewLayout/lib/counterup/counterup.min.js"></script>
+    <script src="~/NewLayout/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/NewLayout/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="~/NewLayout/lib/lightbox/js/lightbox.min.js"></script>
+    <!-- Contact Form JavaScript File -->
+    <script src="~/NewLayout/contactform/contactform.js"></script>
 
-        <!-- Template Main Javascript File -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <script src="~/NewLayout/js/main.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <script>
+    <!-- Template Main Javascript File -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="~/NewLayout/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="~/NewLayout/js/jssor.slider-28.0.0.min.js" type="text/javascript"></script>
+    <script>
 
-            toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        //$(document).ready(function () {
+        //    $("#ackapa").click(function () {
+        //        $(".trwpwhatsappballon").toggle(1000);
+        //    });
+        //    $("#kapatac").click(function () {
+        //        $(".trwpwhatsappballon").toggle(1000);
+        //    });
+        //});
+        window.jssor_1_slider_init = function () {
+
+            var jssor_1_SlideoTransitions = [
+                [{ b: -1, d: 1, ls: 0.5 }, { b: 0, d: 1000, y: 5, e: { y: 6 } }],
+                [{ b: -1, d: 1, ls: 0.5 }, { b: 200, d: 1000, y: 25, e: { y: 6 } }],
+                [{ b: -1, d: 1, ls: 0.5 }, { b: 400, d: 1000, y: 45, e: { y: 6 } }],
+                [{ b: -1, d: 1, ls: 0.5 }, { b: 600, d: 1000, y: 65, e: { y: 6 } }],
+                [{ b: -1, d: 1, ls: 0.5 }, { b: 800, d: 1000, y: 85, e: { y: 6 } }],
+                [{ b: -1, d: 1, ls: 0.5 }, { b: 500, d: 1000, y: 195, e: { y: 6 } }],
+                [{ b: 0, d: 2000, y: 30, e: { y: 3 } }],
+                [{ b: -1, d: 1, rY: -15, tZ: 100 }, { b: 0, d: 1500, y: 30, o: 1, e: { y: 3 } }],
+                [{ b: -1, d: 1, rY: -15, tZ: -100 }, { b: 0, d: 1500, y: 100, o: 0.8, e: { y: 3 } }],
+                [{ b: 500, d: 1500, o: 1 }],
+                [{ b: 0, d: 1000, y: 380, e: { y: 6 } }],
+                [{ b: 300, d: 1000, x: 80, e: { x: 6 } }],
+                [{ b: 300, d: 1000, x: 330, e: { x: 6 } }],
+                [{ b: -1, d: 1, r: -110, sX: 5, sY: 5 }, { b: 0, d: 2000, o: 1, r: -20, sX: 1, sY: 1, e: { o: 6, r: 6, sX: 6, sY: 6 } }],
+                [{ b: 0, d: 600, x: 150, o: 0.5, e: { x: 6 } }],
+                [{ b: 0, d: 600, x: 1140, o: 0.6, e: { x: 6 } }],
+                [{ b: -1, d: 1, sX: 5, sY: 5 }, { b: 600, d: 600, o: 1, sX: 1, sY: 1, e: { sX: 3, sY: 3 } }]
+            ];
+
+            var jssor_1_options = {
+                $AutoPlay: 1,
+                $LazyLoading: 1,
+                $CaptionSliderOptions: {
+                    $Class: $JssorCaptionSlideo$,
+                    $Transitions: jssor_1_SlideoTransitions
+                },
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$
+                },
+                $BulletNavigatorOptions: {
+                    $Class: $JssorBulletNavigator$,
+                    $SpacingX: 20,
+                    $SpacingY: 20
+                }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*#region responsive code begin*/
+
+            var MAX_WIDTH = 1600;
+
+            function ScaleSlider() {
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
             }
 
-            //$(document).ready(function () {
-            //    $("#ackapa").click(function () {
-            //        $(".trwpwhatsappballon").toggle(1000);
-            //    });
-            //    $("#kapatac").click(function () {
-            //        $(".trwpwhatsappballon").toggle(1000);
-            //    });
-            //});
+            ScaleSlider();
 
-        </script>
-        <!--[if lt IE 10]><script type="text/javascript" src="../js/placeholder.js"></script><![endif]-->
-        @RenderSection("Scripts", required: false)
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+        jssor_1_slider_init();
+
+    </script>
+
+
+
+
+
+    <!--[if lt IE 10]><script type="text/javascript" src="../js/placeholder.js"></script><![endif]-->
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

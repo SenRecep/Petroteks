@@ -1,0 +1,9 @@
+﻿@model ICollection<DynamicPage>
+
+@foreach (var item in Model)
+{
+    <li><a asp-area="" asp-controller="Home" asp-action="DynamicPageView" asp-route-id="@item.id">@item.Name</a></li>
+}
+
+
+

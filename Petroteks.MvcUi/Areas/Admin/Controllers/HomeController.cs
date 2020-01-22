@@ -255,7 +255,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             ICollection<Email> emails = emailSender.LoadWebsiteEmails(ThisWebsite.id);
             MailViewModel model = new MailViewModel()
             {
-                Emails = emails
+                Emails = emails,
+                Body=emailSender.Body
             };
             return View(model);
         }

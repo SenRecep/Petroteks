@@ -8,34 +8,34 @@
             ICollection<Product> products = Model.AllProduct.Where(x => x.Categoryid == subCategory.id).ToList();
             if (localcategories.Count > 0)
             {
-    <li class="drop-down">
-        <a href="">@subCategory.Name</a>
-        @*/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id*@
-        <ul>
-            @LoadSubMenu(subCategory, localcategories)
-            @if (products.Count > 0)
+                <li class="drop-down">
+                    <a href="">@subCategory.Name</a>
+                    @*/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id*@
+                    <ul>
+                        @LoadSubMenu(subCategory, localcategories)
+                        @if (products.Count > 0)
                         {
-            @LoadProduct(subCategory, products)
+                            @LoadProduct(subCategory, products)
                         }
-        </ul>
-    </li>
+                    </ul>
+                </li>
             }
             else if (products.Count > 0)
             {
-    <li class="drop-down">
-        <a href="">@subCategory.Name</a>
-        @*/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ", "-")&page=1&category=@subCategory.id*@
-        <ul>
-            @LoadProduct(category, products)
-        </ul>
-    </li>
+                <li class="drop-down">
+                    <a href="">@subCategory.Name</a>
+                    @*/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ", "-")&page=1&category=@subCategory.id*@
+                    <ul>
+                        @LoadProduct(category, products)
+                    </ul>
+                </li>
             }
             else
             {
-    <li>
-        @*/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id*@
-        <a href="">@subCategory.Name </a>
-    </li>
+                <li>
+                    @*/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id*@
+                    <a href="">@subCategory.Name </a>
+                </li>
             }
 
         }
@@ -46,9 +46,9 @@
     {
         foreach (Product product in products)
         {
-    <li>
-        <a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id">@product.SupTitle</a>
-    </li>
+            <li>
+                <a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id">@product.SupTitle</a>
+            </li>
         }
         return null;
     }
@@ -62,41 +62,41 @@
 
         if (MainCategory.Name == "ROOT")
         {
-    @LoadProduct(MainCategory, products)
+            @LoadProduct(MainCategory, products)
         }
         else
         {
             ICollection<Category> categories = Model.GetCategoryies(MainCategory.id);
             if (categories.Count > 0)
             {
-    <li class="drop-down">
-        @*asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name"*@
-        <a>@MainCategory.Name</a>
-        <ul>
-            @LoadSubMenu(MainCategory, categories)
-            @if (products.Count > 0)
+                <li class="drop-down">
+                    @*asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name"*@
+                    <a>@MainCategory.Name</a>
+                    <ul>
+                        @LoadSubMenu(MainCategory, categories)
+                        @if (products.Count > 0)
                         {
-            @LoadProduct(MainCategory, products)
+                            @LoadProduct(MainCategory, products)
                         }
-        </ul>
-    </li>
+                    </ul>
+                </li>
             }
             else if (products.Count > 0)
             {
-    <li class="drop-down">
-        @*asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name"*@
-        <a>@MainCategory.Name</a>
-        <ul>
-            @LoadProduct(MainCategory, products)
-        </ul>
-    </li>
+                <li class="drop-down">
+                    @*asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name"*@
+                    <a>@MainCategory.Name</a>
+                    <ul>
+                        @LoadProduct(MainCategory, products)
+                    </ul>
+                </li>
             }
             else
             {
-    <li>
-        @*asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name"*@
-        <a>@MainCategory.Name </a>
-    </li>
+                <li>
+                    @*asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name"*@
+                    <a>@MainCategory.Name </a>
+                </li>
             }
 
         }

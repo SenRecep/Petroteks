@@ -10,7 +10,7 @@ using Petroteks.Dal.Concreate.EntityFramework.Contexts;
 namespace Petroteks.Dal.Migrations
 {
     [DbContext(typeof(PetroteksDbContext))]
-    [Migration("20200110094302_Initial")]
+    [Migration("20200122095207_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,6 +47,9 @@ namespace Petroteks.Dal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MetaTags")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -94,6 +97,9 @@ namespace Petroteks.Dal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MetaTags")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhotoPath")
@@ -157,6 +163,56 @@ namespace Petroteks.Dal.Migrations
                     b.HasIndex("WebSiteid");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Petroteks.Entities.Concreate.DynamicPage", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreateUserid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Keywords")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaTags")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdateUserid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WebSiteid")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("WebSiteid");
+
+                    b.ToTable("DynamicPages");
                 });
 
             modelBuilder.Entity("Petroteks.Entities.Concreate.Email", b =>
@@ -225,6 +281,9 @@ namespace Petroteks.Dal.Migrations
                     b.Property<string>("MetaTags")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Slider")
                         .HasColumnType("nvarchar(max)");
 
@@ -276,6 +335,9 @@ namespace Petroteks.Dal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MetaTags")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -450,6 +512,15 @@ namespace Petroteks.Dal.Migrations
                 });
 
             modelBuilder.Entity("Petroteks.Entities.Concreate.Category", b =>
+                {
+                    b.HasOne("Petroteks.Entities.Concreate.Website", "WebSite")
+                        .WithMany()
+                        .HasForeignKey("WebSiteid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Petroteks.Entities.Concreate.DynamicPage", b =>
                 {
                     b.HasOne("Petroteks.Entities.Concreate.Website", "WebSite")
                         .WithMany()

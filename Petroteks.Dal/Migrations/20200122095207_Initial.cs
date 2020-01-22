@@ -61,6 +61,7 @@ namespace Petroteks.Dal.Migrations
                     UpdateUserid = table.Column<int>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     WebSiteid = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     Keywords = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     MetaTags = table.Column<string>(nullable: true),
@@ -95,7 +96,8 @@ namespace Petroteks.Dal.Migrations
                     MetaTags = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
-                    PhotoPath = table.Column<string>(nullable: true)
+                    PhotoPath = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -129,6 +131,36 @@ namespace Petroteks.Dal.Migrations
                     table.PrimaryKey("PK_Categories", x => x.id);
                     table.ForeignKey(
                         name: "FK_Categories_Websites_WebSiteid",
+                        column: x => x.WebSiteid,
+                        principalTable: "Websites",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DynamicPages",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateUserid = table.Column<int>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateUserid = table.Column<int>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    WebSiteid = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Keywords = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    MetaTags = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DynamicPages", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_DynamicPages_Websites_WebSiteid",
                         column: x => x.WebSiteid,
                         principalTable: "Websites",
                         principalColumn: "id",
@@ -173,6 +205,7 @@ namespace Petroteks.Dal.Migrations
                     UpdateUserid = table.Column<int>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     WebSiteid = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     Keywords = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     MetaTags = table.Column<string>(nullable: true),
@@ -204,6 +237,7 @@ namespace Petroteks.Dal.Migrations
                     UpdateUserid = table.Column<int>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     WebSiteid = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     Keywords = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     MetaTags = table.Column<string>(nullable: true),
@@ -269,6 +303,11 @@ namespace Petroteks.Dal.Migrations
                 column: "WebSiteid");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DynamicPages_WebSiteid",
+                table: "DynamicPages",
+                column: "WebSiteid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Emails_WebSiteid",
                 table: "Emails",
                 column: "WebSiteid");
@@ -296,6 +335,9 @@ namespace Petroteks.Dal.Migrations
 
             migrationBuilder.DropTable(
                 name: "Blogs");
+
+            migrationBuilder.DropTable(
+                name: "DynamicPages");
 
             migrationBuilder.DropTable(
                 name: "Emails");

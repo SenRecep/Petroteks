@@ -158,6 +158,13 @@
                         </ul>
                     </li>
 
+                    <li class="drop-down">
+                        <a href="">SAYFALAR</a>
+                        <ul>
+                            @await Component.InvokeAsync("PagesList", new { website = (Website)ViewBag.ThisWebsite })
+                        </ul>
+                    </li>
+
                     <li class="active"><a href="../Home/Index">ANASAYFA</a></li>
                     <li><a href="../Home/Hakkimizda">HAKKIMIZDA</a></li>
                     <li><a href="../Home/PetroBlog">PETROBLOG</a></li>

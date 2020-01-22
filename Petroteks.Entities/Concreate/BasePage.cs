@@ -7,6 +7,7 @@ namespace Petroteks.Entities.Concreate
 {
     public class BasePage :WebsiteObject, IBasePage
     {
+        public string Name { get; set; }
         public string Keywords { get; set; }
         public string Description { get; set; }
         public string MetaTags { get; set; }

@@ -15,4 +15,5 @@ namespace Petroteks.Bll.Abstract
     public interface IMainPageService : IEntityRepostory<MainPage> { }
     public interface IEmailService : IEntityRepostory<Email> { }
     public interface IBlogService : IEntityRepostory<Blog> { }
+    public interface IDynamicPageService : IEntityRepostory<DynamicPage> { }
 }

@@ -20,4 +20,5 @@ namespace Petroteks.Bll.Concreate
     public class MainPageManager : EntityManager<MainPage>, IMainPageService { public MainPageManager(IMainPageDal repostory) : base(repostory) { } }
     public class EmailManager : EntityManager<Email>, IEmailService { public EmailManager(IEmailDal repostory) : base(repostory) { } }
     public class BlogManager : EntityManager<Blog>, IBlogService { public BlogManager(IBlogDal repostory) : base(repostory) { } }
+    public class DynamicPageManager : EntityManager<DynamicPage>, IDynamicPageService { public DynamicPageManager(IDynamicPageDal repostory) : base(repostory) { } }
 }

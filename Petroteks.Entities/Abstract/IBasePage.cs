@@ -6,9 +6,10 @@ namespace Petroteks.Entities.Abstract
 {
     public interface IBasePage
     {
-        public string Keywords { get; set; }
-        public string Description{ get; set; }
-        public string MetaTags { get; set; }
-        public string Title { get; set; }
+        string Name { get; set; }
+        string Keywords { get; set; }
+        string Description { get; set; }
+        string MetaTags { get; set; }
+        string Title { get; set; }
     }
 }

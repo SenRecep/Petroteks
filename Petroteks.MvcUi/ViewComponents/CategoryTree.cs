@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
 using Petroteks.Entities.Concreate;
+using Petroteks.MvcUi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -20,6 +20,7 @@ namespace Petroteks.MvcUi.Controllers
         private readonly IAboutUsObjectService aboutUsObjectService;
         private readonly IPrivacyPolicyObjectService privacyPolicyObjectService;
         private readonly IBlogService blogService;
+        private readonly IDynamicPageService dynamicPageService;
         private readonly IEmailService emailService;
 
         public HomeController(
@@ -29,13 +30,15 @@ namespace Petroteks.MvcUi.Controllers
             IPrivacyPolicyObjectService privacyPolicyObjectService,
             IWebsiteService websiteService,
             IHttpContextAccessor httpContextAccessor,
-            IBlogService blogService) :
+            IBlogService blogService,
+            IDynamicPageService dynamicPageService) :
             base(websiteService, httpContextAccessor)
         {
             this.aboutUsObjectService = aboutUsObjectService;
             this.mainPageService = mainPageService;
             this.privacyPolicyObjectService = privacyPolicyObjectService;
             this.blogService = blogService;
+            this.dynamicPageService = dynamicPageService;
             this.emailService = emailService;
         }
 
@@ -54,6 +57,13 @@ namespace Petroteks.MvcUi.Controllers
                 Blogs=blogs
             });
         }
+
+        public IActionResult DynamicPageView(int id)
+        {
+            DynamicPage dynamicPage = dynamicPageService.Get(x=>x.WebSiteid==ThisWebsite.id && x.IsActive==true && x.id==id);
+            return View(dynamicPage);
+        }
+
         public IActionResult PetroBlog()
         {
             ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).ToList();

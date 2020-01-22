@@ -57,6 +57,8 @@ namespace Petroteks.MvcUi
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<IBlogDal, EfBlogDal>();
 
+            services.AddScoped<IDynamicPageService, DynamicPageManager>();
+            services.AddScoped<IDynamicPageDal, EfDynamicPageDal>();
 
             services.AddSingleton<IUserSessionService, UserSessionService>();
             services.AddSingleton<IUserCookieService, UserCookieService>();

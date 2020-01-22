@@ -5,56 +5,131 @@
     ViewData["MetaTags"] = Model.MainPage.MetaTags;
     ViewData["Keywords"] = Model.MainPage.Keywords;
 }
+ 
+<div id="jssor_1">
+    <!-- Loading Screen -->
+    <div data-u="loading" class="jssorl-009-spin">
+        <img id="spin" src="~/images/spin.svg" />
+    </div>
+    <div data-u="slides" id="slide-style">
+        <div>
+            <img data-u="image" src="~/images/anasayfa-petroteks-1-1.png" />
+            <div class="col-md-6 intro-info order-md-first order-last">
+                <svg viewbox="0 0 800 72" data-to="50% 50%" width="800" height="72" data-t="11" style="left:-800px;top:78px;display:block;position:absolute;font-family:'Roboto Condensed',sans-serif;font-size:54px;font-weight:900;overflow:visible;">
+                    <text fill="#1bb1dc" text-anchor="middle" x="1100" y="72">
+
+                        Yenilikçi
+                        Çözümler ve
+                    </text>
+                </svg>
+                <svg viewbox="0 0 800 72" data-to="50% 50%" width="800" height="72" data-t="11" style="left:-800px;top:178px;display:block;position:absolute;font-family:'Roboto Condensed',sans-serif;font-size:54px;font-weight:900;overflow:visible;">
+                    <text fill="#413e66" text-anchor="middle" x="1100" y="72">
+
+                        Sondaj Ekipmanları
+                    </text>
+                </svg>
+
+            </div>
+            <img  data-t="8" style=" position: absolute; opacity: 0; left:10%; max-width: 600px; transform-origin: 0% 50% -100px; z-index: 1; transform: matrix3d(-1, 0, -1.22465e-16, 0, 0, 1, 0, 0, 1.22465e-16, 0, -1, 0, 0, 0, 0, 1); pointer-events: none;" src="~/NewLayout/img/sondajanasayfa.png" data-events="auto" data-display="block">
+          
 
 
-@Html.Raw(Model.MainPage.Slider)
+        </div>
+
+        <div>
+            <img data-u="image" src="~/images/petroteks.jpg" />
+
+            <div class="col-md-6 intro-info order-md-first order-last">
+                <svg viewbox="0 0 800 72" data-to="50% 50%" width="800" height="72" data-t="11" style="left:-800px;top:78px;display:block;position:absolute;font-family:'Roboto Condensed',sans-serif;font-size:54px;font-weight:900;overflow:visible;">
+                    <text fill="#413e66" text-anchor="middle" x="1100" y="72">
+
+                        Sondaj Kimyasalları
+                    </text>
+                </svg>
+                <svg viewbox="0 0 800 72" data-to="50% 50%" width="800" height="72" data-t="11" style="left:-800px;top:178px;display:block;position:absolute;font-family:'Roboto Condensed',sans-serif;font-size:54px;font-weight:900;overflow:visible;">
+                    <text fill="#1bb1dc" text-anchor="middle" x="1100" y="72">
+                        Soda, Kaçak Önleyiciler
+
+                    </text>
+                </svg>
+             
+            </div>
+ 
+            <img data-t="8" style=" position: absolute; opacity: 0; left:10%; max-width: 600px; transform-origin: 0% 50% -100px; z-index: 1; transform: matrix3d(-1, 0, -1.22465e-16, 0, 0, 1, 0, 0, 1.22465e-16, 0, -1, 0, 0, 0, 0, 1); pointer-events: none;" src="~/images/vispol kesik (1).png" data-events="auto" data-display="block">
+        </div>  
+    </div>
+    <!-- Bullet Navigator -->
+    <div data-u="navigator" id="navigator" class="jssorb031" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+        <div data-u="prototype" class="i" style="width:15px;height:15px;">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+            </svg>
+        </div>
+    </div>
+    <!-- Arrow Navigator -->
+    <div data-u="arrowleft" class="jssora051" style="        width: 55px;
+        height: 55px;
+        top: 0px;
+        left: 25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+        <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+            <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+        </svg>
+    </div>
+    <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+        <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+            <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+        </svg>
+    </div>
+</div>
+
+@*@Html.Raw(Model.MainPage.Slider)*@
 
 
 
 <!-- #intro -->
 
-    <main id="main">
+<main id="main">
 
-        <!--==========================
+    <!--==========================
       About Us Section
     ============================-->
-        @Html.Raw(Model.MainPage.TopContent)
-        <!-- #about -->
-        <!--==========================
+    @Html.Raw(Model.MainPage.TopContent)
+    <!-- #about -->
+    <!--==========================
       Services Section
     ============================-->
 
 
 
-        <section id="call-to-action" class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9 text-center text-lg-left">
-                        <h3 class="cta-title">Sizi Haberdar Edelim</h3>
-                        <p class="cta-text"> Bildirim için mail adresinizi buraya bırakarak bizden haberdar olabilirsiniz veya iletişime geçebilirsiniz.</p>
-                        <div class="input-group mb-3 col-md-7">
-                            <input type="email" id="email"  class="form-control" placeholder="Mail" >
-                            <div class="input-group-append">
-                                <span class="input-group-text btn-outline-light" id="spanc" onclick="BilgilendirmeMail()" id="basic-addon2">Abone Ol</span>
-                            </div>
+    <section id="call-to-action" class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 text-center text-lg-left">
+                    <h3 class="cta-title">Sizi Haberdar Edelim</h3>
+                    <p class="cta-text"> Bildirim için mail adresinizi buraya bırakarak bizden haberdar olabilirsiniz veya iletişime geçebilirsiniz.</p>
+                    <div class="input-group mb-3 col-md-7">
+                        <input type="email" id="email" class="form-control" placeholder="Mail">
+                        <div class="input-group-append">
+                            <span class="input-group-text btn-outline-light" id="spanc" onclick="BilgilendirmeMail()" id="basic-addon2">Abone Ol</span>
                         </div>
-                          
-                      
                     </div>
-                    <div class="col-lg-3 cta-btn-container text-center">
-                        <a class="cta-btn align-middle" href="../Home/Iletisim">İLETİŞİME GEÇ</a>
-                    </div>
-                </div>
 
+
+                </div>
+                <div class="col-lg-3 cta-btn-container text-center">
+                    <a class="cta-btn align-middle" href="../Home/Iletisim">İLETİŞİME GEÇ</a>
+                </div>
             </div>
-        </section>
-    </main>
+
+        </div>
+    </section>
+</main>
 
 @Html.Raw(Model.MainPage.BottomContent)
 
 
 
-    @*<section id="services" class="section-bg">
+@*<section id="services" class="section-bg">
         <div class="container">
 
             <header class="section-header">
@@ -91,28 +166,28 @@
 
         function BilgilendirmeMail() {
             var mailadress = $("#email").val();
-            if (mailadress != null && mailadress!="") {
-                 $.ajax({
-                type: "GET",
-                url: "/Home/BilgilendirmeMail?email=" + mailadress,
-                success: function (response) {
-                    toastr.success(response);
-                },
-                failure: function (response) {
-                    toastr.error('Sunucu ile bağlantı kurulamadı.');
-                },
-                error: function (response) {
-                    toastr.error('Sunucu ile bağlantı kurulamadı.');
-                }
-            });
+            if (mailadress != null && mailadress != "") {
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/BilgilendirmeMail?email=" + mailadress,
+                    success: function (response) {
+                        toastr.success(response);
+                    },
+                    failure: function (response) {
+                        toastr.error('Sunucu ile bağlantı kurulamadı.');
+                    },
+                    error: function (response) {
+                        toastr.error('Sunucu ile bağlantı kurulamadı.');
+                    }
+                });
             }
             else {
-                 toastr.error('Lütfen e-mail adresini doğru giriniz');
+                toastr.error('Lütfen e-mail adresini doğru giriniz');
             }
 
 
 
-           
+
         }
     </script>
 

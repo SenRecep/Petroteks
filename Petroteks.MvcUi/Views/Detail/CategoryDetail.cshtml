@@ -1,5 +1,9 @@
 ﻿@model ProductListViewModel
 @{
+    ViewData["Title"] = Model.CurrentCategory.Name;
+    ViewData["Description"] =Model.CurrentCategory.Name+" ürünleri ve özellikleri | Petroteks ";
+    ViewData["MetaTags"] ="<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='http://petroteks.com/Detail/CategoryDetail?categoryName="+Model.CurrentCategory.Name.Replace(" ","-")+"&page=1&category="+Model.CurrentCategory.id+"'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='"+Model.CurrentCategory.Name+"'> <meta property='og:type' content='website'> <meta property='og:description' content='"+Model.CurrentCategory.Name+" ürünleri ve özellikleri'> <meta property='og:image' content='http://petroteks.com/CategoryImages"+Model.CurrentCategory.PhotoPath+"'> <meta property='og:url' content='http://petroteks.com/Detail/CategoryDetail?categoryName="+Model.CurrentCategory.Name.Replace(" ","-")+"&page=1&category="+Model.CurrentCategory.id+"'/> <meta property='og:title' content='"+Model.CurrentCategory.Name+"' />";
+    ViewData["Keywords"] ="Petroteks kategori, Sondaj ürünleri, petroteks sondaj ürünleri"+ Model.CurrentCategory.Name; 
 }
 
 

@@ -24,14 +24,16 @@ namespace Petroteks.MvcUi.Controllers
         public IActionResult CategoryDetail(int page=1,int category=0)
         {
             int pagesize = 10;
-            var Category = categoryService.Get(x=>x.id==category && x.WebSite==ThisWebsite);
+            var Category = categoryService.Get(x=>x.id==category && x.WebSite==ThisWebsite && x.IsActive == true);
+            var subCategories= categoryService.GetMany(x => x.WebSite == ThisWebsite&& x.Parentid== Category.id && x.IsActive==true);
             var products = productService.GetMany(x=>x.Categoryid==Category.id && x.IsActive==true);
             return View(new ProductListViewModel() { 
                     Products=products.Skip((page-1)*pagesize).Take(pagesize).ToList(),
                     PageCount=(int)Math.Ceiling(products.Count/(double)pagesize),
                     PageSize=pagesize,
                     CurrentCategory=Category,
-                    CurrentPage=page
+                    CurrentPage=page,
+                    SubCategories = subCategories
             });
         }
         [Route("Urun-Detay/{produtname}-{id:int}")]

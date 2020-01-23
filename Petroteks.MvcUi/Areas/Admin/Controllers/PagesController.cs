@@ -255,7 +255,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         }
 
         [AdminAuthorize]
-        [Route("Duzenleme/Urun-{id}")]
         public IActionResult ProductEditMode(int id)
         {
             ViewBag.ThisWebsite = ThisWebsite;
@@ -280,7 +279,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpPost]
-        [Route("Urun-Duzenleme")]
         public IActionResult ProductEditMode(ProductViewModel model)
         {
             if (ModelState.IsValid)
@@ -487,7 +485,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpGet]
-        [Route("Duzenleme/Kategori-{id:int}")]
         public IActionResult CategoryEditMode(int id)
         {
             ViewBag.ThisWebsite = ThisWebsite;
@@ -499,7 +496,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         }
         [AdminAuthorize]
         [HttpPost]
-        [Route("Kategori-Duzenleme")]
         public IActionResult CategoryEditMode(CategoryViewModel model)
         {
             if (ModelState.IsValid)

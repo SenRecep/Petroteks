@@ -40,38 +40,50 @@
                         foreach (var item in Model.Categories)
                         {
 
-                            if (item.Name != "ROOT")
-                            {
-                                <a href="/Detail/CategoryDetail?categoryName=@item.Name.Replace(" ","-")&page=1&category=@item.id">
-                                    <div class="carda">
+                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(item.Name) , page=1 , category=item.id})">
+                                <div class="carda">
 
-                                        <div class="card_image">
-                                            @if (item.PhotoPath == null)
-                                            {
-                                                <img src="~/images/Lifta.jpg" />
-                                            }
-                                            else
-                                            {
-                                                <img src="../CategoryImages/@item.PhotoPath" />
-                                            }
-
-                                        </div>
-                                        <div class="card_title title-white">
-                                            <p>@item.Name</p>
-                                        </div>
+                                    <div class="card_image">
+                                        @if (item.PhotoPath == null)
+                                        {
+                                            <img src="~/images/Lifta.jpg" />
+                                        }
+                                        else
+                                        {
+                                            <img src="../CategoryImages/@item.PhotoPath" />
+                                        }
 
                                     </div>
-                                </a>
-                            }
-                            else
-                            {
+                                    <div class="card_title title-white">
+                                        <p>@item.Name</p>
+                                    </div>
 
-                            }
+                                </div>
+                            </a>
+                        }
+                        foreach (var item in Model.Products)
+                        {
 
+                            <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(item.SupTitle) , id=item.id})">
+                                <div class="carda">
 
+                                    <div class="card_image">
+                                        @if (item.PhotoPath == null)
+                                        {
+                                            <img src="~/images/Lifta.jpg" />
+                                        }
+                                        else
+                                        {
+                                            <img src="../ProductImages/@item.PhotoPath" />
+                                        }
 
+                                    </div>
+                                    <div class="card_title title-white">
+                                        <p>@item.SupTitle</p>
+                                    </div>
 
-
+                                </div>
+                            </a>
                         }
                     }
                 </div> 

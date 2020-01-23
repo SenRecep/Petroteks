@@ -22,6 +22,7 @@ namespace Petroteks.MvcUi.Controllers
         private readonly IBlogService blogService;
         private readonly ICategoryService categoryService;
         private readonly IDynamicPageService dynamicPageService;
+        private readonly IProductService productService;
         private readonly IEmailService emailService;
 
         public HomeController(
@@ -33,7 +34,8 @@ namespace Petroteks.MvcUi.Controllers
             IWebsiteService websiteService,
             IHttpContextAccessor httpContextAccessor,
             IBlogService blogService,
-            IDynamicPageService dynamicPageService) :
+            IDynamicPageService dynamicPageService,
+            IProductService productService) :
             base(websiteService, httpContextAccessor)
         {
             this.aboutUsObjectService = aboutUsObjectService;
@@ -41,6 +43,7 @@ namespace Petroteks.MvcUi.Controllers
             this.privacyPolicyObjectService = privacyPolicyObjectService;
             this.blogService = blogService;
             this.dynamicPageService = dynamicPageService;
+            this.productService = productService;
             this.emailService = emailService;
             this.categoryService = categoryService;
         }
@@ -49,7 +52,9 @@ namespace Petroteks.MvcUi.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            ICollection<Category> category = categoryService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).ToList();
+            ICollection<Category> category = categoryService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true &&x.Parentid==0 && x.Name!="ROOT" ).OrderByDescending(x => x.CreateDate).ToList();
+            Category ROOTCategory = categoryService.Get(x=>x.IsActive==true && x.Name=="ROOT" && x.WebSiteid==ThisWebsite.id);
+            ICollection<Product> products = productService.GetMany(x => x.IsActive == true && x.Categoryid == ROOTCategory.id);
             ICollection<Blog> blogs = blogService.GetMany(x=>x.WebSiteid==ThisWebsite.id && x.IsActive==true).OrderByDescending(x=>x.CreateDate).Take(3).ToList();
             MainPage mainPage; 
             mainPage = mainPageService.Get(x => x.WebSiteid == ThisWebsite.id);
@@ -59,7 +64,8 @@ namespace Petroteks.MvcUi.Controllers
             return View(new MainPageViewModel() { 
                 MainPage= mainPage,
                 Blogs=blogs,
-                Categories=category
+                Categories=category,
+                Products =products
             });
         }
         [Route("Sayfalar/{pageName}-{id:int}")]

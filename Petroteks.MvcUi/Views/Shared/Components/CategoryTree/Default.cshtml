@@ -40,6 +40,9 @@
 </style>
 
 @model CategoryListViewModel
+
+
+
 @{
 
 
@@ -96,10 +99,28 @@
     {
         @foreach (Product product in localProducts)
         {
+            <div id="product-modal-@product.id" class="modal fade" tabindex="-1" role="dialog"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="text-center mt-2 mb-4">
+                            </div>
+                            <div class="form-group">
+                                <h5>Silmek istediğinizden emin misiniz?</h5>
+                            </div>
+
+                            <div class="form-group text-center">
+                                <a class="btn btn-rounded btn-danger" href="@Url.Action("ProductDelete","Pages",new { area="Admin" ,id=product.id })">Sil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <li>
                 <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(product.SupTitle) , id=product.id})">@product.SupTitle</a>
                 [
-                <a href="@Url.Action("ProductDelete","Pages",new { area="Admin" ,id=product.id })" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
+                <button type="button" data-toggle="modal" data-target="#product-modal-@product.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
                 |
                 <a href="@Url.Action("ProductEditMode","Pages",new { area="Admin" ,id=product.id })" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
                 ]
@@ -111,8 +132,27 @@
 
     object CategoryControl(int category)
     {
+        <div id="category-modal-@category" class="modal fade" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center mt-2 mb-4">
+                        </div>
+                        <div class="form-group">
+                            <h5>Silmek istediğinizden emin misiniz?</h5>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <a class="btn btn-rounded btn-danger" href="@Url.Action("CategoryDelete","Pages",new { area="Admin" ,id=category })">Sil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @:[
-        <a href="@Url.Action("CategoryDelete","Pages",new { area="Admin" ,id=category })"  class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
+        <button type="button" data-toggle="modal" data-target="#category-modal-@category" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
         @:|
         <a href="@Url.Action("CategoryEditMode","Pages",new { area="Admin" ,id=category })" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
         @:]
@@ -206,6 +246,7 @@
             this.classList.toggle("caret-down");
         });
     }
+
 </script>
 
 

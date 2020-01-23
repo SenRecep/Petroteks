@@ -11,5 +11,6 @@ namespace Petroteks.MvcUi.Models
         public MainPage MainPage { get; set; }
         public ICollection<Blog> Blogs { get; set; }
         public ICollection<Category> Categories { get; set; }
+        public ICollection<Product> Products { get;  set; }
     }
 }

@@ -20,21 +20,40 @@
 
 <section id="team" class="section-bg">
     <div class="container">
-        <div class="section-header">
-            <h3>@Model.CurrentCategory.Name</h3>
-        </div>
-
         <div class="row">
             <div class="cards-list">
-                <div class="carda">
-                    <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" /> </div>
-                    <div class="card_title title-white">
-                        <p>Card Title</p>
-                    </div>
-                </div>
+
+
+                @foreach (var item in Model.SubCategories)
+                {
+                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(item.Name) , page=1 , category=item.id})">
+                        <div class="carda">
+                            <div class="card_image"> <img src="~/ProductImages/@item.PhotoPath" asp-append-version="true" alt="@item.Name" /> </div>
+                            <div class="card_title title-white">
+                                <p>@item.Name</p>
+                            </div>
+                        </div>
+                    </a>
+                }
+
+                @foreach (var item in Model.Products)
+                {
+                    <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(item.SupTitle) , id=item.id})">
+                        <div class="carda">
+                            <div class="card_image"> <img src="~/ProductImages/@item.PhotoPath" asp-append-version="true" alt="@item.Title" /> </div>
+                            <div class="card_title title-white">
+                                <p>@item.SupTitle</p>
+                            </div>
+                        </div>
+                    </a>
+                }
+
+
+
+
             </div>
         </div>
-        
+    
 
     </div>
 </section>

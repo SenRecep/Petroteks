@@ -113,11 +113,11 @@
             $("#SelectAuth").val(Role);
         }
 
-        function ModalFormSubmit() {
-            var ChangedRole = $("#SelectAuth").val();
-            SelectAuth(EditDataId, ChangedRole);
-            $('#auth-modal').modal('toggle');
-        }
+            function ModalFormSubmit() {
+                var ChangedRole = $("#SelectAuth").val();
+                SelectAuth(EditDataId, ChangedRole);
+                $('#auth-modal').modal('toggle');
+            }
 
         function DeleteUser(id) {
             $.ajax({

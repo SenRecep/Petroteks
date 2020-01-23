@@ -20,6 +20,7 @@ namespace Petroteks.MvcUi.Controllers
         private readonly IAboutUsObjectService aboutUsObjectService;
         private readonly IPrivacyPolicyObjectService privacyPolicyObjectService;
         private readonly IBlogService blogService;
+        private readonly ICategoryService categoryService;
         private readonly IDynamicPageService dynamicPageService;
         private readonly IEmailService emailService;
 
@@ -27,6 +28,7 @@ namespace Petroteks.MvcUi.Controllers
             IAboutUsObjectService aboutUsObjectService,
             IMainPageService mainPageService,
             IEmailService emailService,
+            ICategoryService categoryService,
             IPrivacyPolicyObjectService privacyPolicyObjectService,
             IWebsiteService websiteService,
             IHttpContextAccessor httpContextAccessor,
@@ -40,12 +42,14 @@ namespace Petroteks.MvcUi.Controllers
             this.blogService = blogService;
             this.dynamicPageService = dynamicPageService;
             this.emailService = emailService;
+            this.categoryService = categoryService;
         }
 
 
         [Route("")]
         public IActionResult Index()
         {
+            ICollection<Category> category = categoryService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).ToList();
             ICollection<Blog> blogs = blogService.GetMany(x=>x.WebSiteid==ThisWebsite.id && x.IsActive==true).OrderByDescending(x=>x.CreateDate).Take(3).ToList();
             MainPage mainPage; 
             mainPage = mainPageService.Get(x => x.WebSiteid == ThisWebsite.id);
@@ -54,7 +58,8 @@ namespace Petroteks.MvcUi.Controllers
 
             return View(new MainPageViewModel() { 
                 MainPage= mainPage,
-                Blogs=blogs
+                Blogs=blogs,
+                Categories=category
             });
         }
         [Route("Sayfalar/{pageName}-{id:int}")]

@@ -1,40 +1,40 @@
 ﻿@model ProductListViewModel
 @{
     ViewData["Title"] = Model.CurrentCategory.Name;
-    ViewData["Description"] =Model.CurrentCategory.Name+" ürünleri ve özellikleri | Petroteks ";
-    ViewData["MetaTags"] ="<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='http://petroteks.com/Detail/CategoryDetail?categoryName="+Model.CurrentCategory.Name.Replace(" ","-")+"&page=1&category="+Model.CurrentCategory.id+"'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='"+Model.CurrentCategory.Name+"'> <meta property='og:type' content='website'> <meta property='og:description' content='"+Model.CurrentCategory.Name+" ürünleri ve özellikleri'> <meta property='og:image' content='http://petroteks.com/CategoryImages"+Model.CurrentCategory.PhotoPath+"'> <meta property='og:url' content='http://petroteks.com/Detail/CategoryDetail?categoryName="+Model.CurrentCategory.Name.Replace(" ","-")+"&page=1&category="+Model.CurrentCategory.id+"'/> <meta property='og:title' content='"+Model.CurrentCategory.Name+"' />";
-    ViewData["Keywords"] ="Petroteks kategori, Sondaj ürünleri, petroteks sondaj ürünleri"+ Model.CurrentCategory.Name; 
+    ViewData["Description"] = Model.CurrentCategory.Name + " ürünleri ve özellikleri | Petroteks ";
+    ViewData["MetaTags"] = "<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='http://petroteks.com/Detail/CategoryDetail?categoryName=" + Model.CurrentCategory.Name.Replace(" ", "-") + "&page=1&category=" + Model.CurrentCategory.id + "'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='" + Model.CurrentCategory.Name + "'> <meta property='og:type' content='website'> <meta property='og:description' content='" + Model.CurrentCategory.Name + " ürünleri ve özellikleri'> <meta property='og:image' content='http://petroteks.com/CategoryImages" + Model.CurrentCategory.PhotoPath + "'> <meta property='og:url' content='http://petroteks.com/Detail/CategoryDetail?categoryName=" + Model.CurrentCategory.Name.Replace(" ", "-") + "&page=1&category=" + Model.CurrentCategory.id + "'/> <meta property='og:title' content='" + Model.CurrentCategory.Name + "' />";
+    ViewData["Keywords"] = "Petroteks kategori, Sondaj ürünleri, petroteks sondaj ürünleri" + Model.CurrentCategory.Name;
 }
+<section class="clearfix" id="intro2">
+    <div class="container d-flex h-100">
+        <div class="row justify-content-center align-self-center">
+            <div class="col-md-12 text-center intro-info order-md-first order-last">
+                <div class="wow fadeInLeft" data-wow-delay="0.2s">
+                    <h2>@Model.CurrentCategory.Name</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <section id="team" class="section-bg">
     <div class="container">
         <div class="section-header">
             <h3>@Model.CurrentCategory.Name</h3>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
         </div>
 
         <div class="row">
-
-            @foreach (Product product in Model.Products)
-            {
-                var ImagePath = $"~/ProductImages/{product.PhotoPath}";
-            <div class="col-lg-3 col-md-6 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                <a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id">
-                    <div class="member">
-                        <img src="@ImagePath" asp-append-version="true" class="img-fluid" alt="@product.SupTitle">
-                        <div class="member-info">
-                            <div class="member-info-content">
-                                <h4>@product.SupTitle</h4>
-                                <span>   @product.SubTitle</span>
-
-                            </div>
-                        </div>
+            <div class="cards-list">
+                <div class="carda">
+                    <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" /> </div>
+                    <div class="card_title title-white">
+                        <p>Card Title</p>
                     </div>
-                </a>
+                </div>
             </div>
-            }
         </div>
+        
 
     </div>
 </section>

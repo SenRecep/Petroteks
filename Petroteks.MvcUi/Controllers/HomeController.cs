@@ -43,7 +43,7 @@ namespace Petroteks.MvcUi.Controllers
         }
 
 
-        //url/Home/Index
+        [Route("")]
         public IActionResult Index()
         {
             ICollection<Blog> blogs = blogService.GetMany(x=>x.WebSiteid==ThisWebsite.id && x.IsActive==true).OrderByDescending(x=>x.CreateDate).Take(3).ToList();
@@ -57,20 +57,20 @@ namespace Petroteks.MvcUi.Controllers
                 Blogs=blogs
             });
         }
-
+        [Route("Sayfalar/{pageName}-{id:int}")]
         public IActionResult DynamicPageView(int id)
         {
             DynamicPage dynamicPage = dynamicPageService.Get(x=>x.WebSiteid==ThisWebsite.id && x.IsActive==true && x.id==id);
             return View(dynamicPage);
         }
-
+        [Route("Bloglar")]
         public IActionResult PetroBlog()
         {
             ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).ToList();
             return View(blogs);
         }
-       
-        public IActionResult BlogDetay(int id)
+        [Route("Blog-Detay-{id:int}")]
+        public IActionResult BlogDetail(int id)
         {
             var findedBlog = blogService.Get(m => m.id == id);
             if (findedBlog != null)
@@ -82,8 +82,8 @@ namespace Petroteks.MvcUi.Controllers
                 return View();
             }
         }
-
-        public IActionResult Hakkimizda()
+        [Route("Hakimizda")]
+        public IActionResult AboutUs()
         {
             AboutUsObject hakkimizda;
             hakkimizda = aboutUsObjectService.Get(x => x.WebSiteid == ThisWebsite.id);
@@ -91,13 +91,25 @@ namespace Petroteks.MvcUi.Controllers
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
 
             return View(hakkimizda);
-        } 
-        public IActionResult Iletisim()
+        }
+        [Route("Iletisim")]
+        public IActionResult Contact()
         { 
             return View();
         }
+        [Route("Gizlilik-Politikasi")]
+        public IActionResult PrivacyPolicy()
+        {
+            PrivacyPolicyObject gizlilikpolitikasi;
+            gizlilikpolitikasi = privacyPolicyObjectService.Get(x => x.WebSiteid == ThisWebsite.id);
+            if (gizlilikpolitikasi == null)
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
+
+            return View(gizlilikpolitikasi);
+        }
+
         [HttpPost]
-        public JsonResult Iletisim(Iletisim model)
+        public JsonResult Contact(Iletisim model)
         {
 
             if (ModelState.IsValid)
@@ -112,18 +124,7 @@ namespace Petroteks.MvcUi.Controllers
             } 
             return Json("Hata");
         }
-
-        public IActionResult GizlilikPolitikasi()
-        {
-            PrivacyPolicyObject gizlilikpolitikasi;
-            gizlilikpolitikasi = privacyPolicyObjectService.Get(x => x.WebSiteid == ThisWebsite.id);
-            if (gizlilikpolitikasi == null)
-                return RedirectToAction("Index", "Home", new { area = "Admin" });
-
-            return View(gizlilikpolitikasi);
-        }
-
-
+        
         public JsonResult BilgilendirmeMail(string email)
         {
             Email Email;

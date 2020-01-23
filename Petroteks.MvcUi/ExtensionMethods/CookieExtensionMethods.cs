@@ -11,7 +11,6 @@ namespace Petroteks.MvcUi.ExtensionMethods
     {
         public static T Get<T>(this IRequestCookieCollection cookie, string key) where T:class
         {
-
             string objectString=cookie[key];
             if (string.IsNullOrWhiteSpace(objectString))
                 return null;

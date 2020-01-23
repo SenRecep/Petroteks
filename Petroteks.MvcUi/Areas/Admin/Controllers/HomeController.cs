@@ -39,6 +39,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             this._userSessionService = userSessionService;
             this.emailService = emailService;
         }
+        [Route("Admin-Panel")]
         [AdminAuthorize]
         public IActionResult Index()
         {
@@ -46,13 +47,14 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             ICollection<User> allUsers = _userService.GetMany(x => x.IsActive == true);
             return View(allUsers);
         }
-
-
+        [AllowAnonymous]
+        [Route("Giris")]
         public IActionResult Login()
         {
             return View();
         }
         [AllowAnonymous, HttpPost]
+        [Route("Giris")]
         public IActionResult Login(LoginViewModel model)
         {
             if (!string.IsNullOrWhiteSpace(model.Password) && _userService.GetMany(user => user.Email.Equals(model.Email) && user.Role != 2).Count > 0)
@@ -78,7 +80,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                         _userService.Update(res);
                         _userService.Save();
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
                     }
                     else
                     {
@@ -108,57 +110,14 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return View();
         }
 
-        public JsonResult SelectAuth(int id, int role)
-        {
-            User user = _userService.Get(x => x.id == id);
-            if (user != null)
-            {
-                user.Role = (short)role;
-                user.UpdateDate = DateTime.UtcNow;
-                user.UpdateUserid = LoginUser.id;
-                _userService.Update(user);
-                try
-                {
-                    _userService.Save();
-                    return Json("Islem Basari ile tamamlandi");
-                }
-                catch
-                {
-                    return Json("İşlem tamamlanamadı");
-                }
-
-            }
-            return new JsonResult("İşlem tamamlanamadı");
-        }
-
-        public JsonResult DeleteUser(int id)
-        {
-            User user = _userService.Get(x => x.id == id);
-            if (user != null)
-            {
-                user.UpdateDate = DateTime.UtcNow;
-                user.UpdateUserid = LoginUser.id;
-                _userService.Delete(user);
-                try
-                {
-                    _userService.Save();
-                    return Json("Islem Basari ile tamamlandi");
-                }
-                catch
-                {
-                    return Json("İşlem tamamlanamadı");
-                }
-
-            }
-            return new JsonResult("İşlem tamamlanamadı");
-        }
-
-
+        [AllowAnonymous]
+        [Route("Kayit")]
         public IActionResult Register()
         {
             return View();
         }
         [AllowAnonymous, HttpPost]
+        [Route("Kayit")]
         public IActionResult Register(RegisterViewModel model)
         {
 
@@ -185,7 +144,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                         Password = model.Password,
                         Email = model.Email,
                         TagName = model.UserName,
-                        Role = 0,
+                        Role = 2,
                     };
 
                     try
@@ -204,51 +163,13 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             {
                 TempData["errorMassage"] = "Tüm değerleri doğru biçimde giriniz";
             }
-            return RedirectToAction("Login", "Home");
-        }
-        public JsonResult BilgilendirmeEkle(string mail, string category)
-        { 
-            try
-            {
-                emailSender = new EmailSender(emailService); 
-                if (emailSender.EmailAdd(ThisWebsite, mail, category) == true)
-                {
-                    return Json("Islem Basari ile tamamlandi");
-                }
-                else
-                {
-                    return Json("Üzgünüz Ters Giden Birşeyler var");
-                }
-              
-            }
-            catch
-            {
-                return Json("İşlem tamamlanamadı");
-            }
-        }
-     
-        public JsonResult BilgilendirmeSil(int id)
-        {
-            Email email = emailService.Get(x=>x.id==id);
-            if (email!=null)
-            {
-                emailService.Delete(email);
-                emailService.Save();
-                return Json("Başarılı");
-            }
-            return Json("Basarisiz");
+            return RedirectToAction("Login", "Home", new { area = "Admin" });
         }
 
-        public JsonResult BilgilendirmeEmails(string json)
-        {
-            DataTransferPoint.SelectedEmails = new List<Email>();
-            if (!string.IsNullOrWhiteSpace(json))
-                DataTransferPoint.SelectedEmails = JsonConvert.DeserializeObject<ICollection<Email>>(json);
-            return Json(true);
-        }
 
 
         [AdminAuthorize]
+        [Route("Bilgilendirme")]
         public IActionResult Bilgilendirme()
         {
             emailSender = new EmailSender(emailService);
@@ -256,14 +177,14 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             MailViewModel model = new MailViewModel()
             {
                 Emails = emails,
-                Body=emailSender.Body
+                Body = emailSender.Body
             };
             return View(model);
         }
 
-
-        [AdminAuthorize]
         [HttpPost]
+        [AdminAuthorize]
+        [Route("Bilgilendirme")]
         public IActionResult Bilgilendirme(MailViewModel model)
         {
             if (emailSender == null)
@@ -286,5 +207,95 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 Emails = emailSender.LoadWebsiteEmails(ThisWebsite.id)
             });
         }
+
+        [AdminAuthorize]
+        public JsonResult SelectAuth(int id, int role)
+        {
+            User user = _userService.Get(x => x.id == id);
+            if (user != null)
+            {
+                user.Role = (short)role;
+                user.UpdateDate = DateTime.UtcNow;
+                user.UpdateUserid = LoginUser.id;
+                _userService.Update(user);
+                try
+                {
+                    _userService.Save();
+                    return Json("Islem Basari ile tamamlandi");
+                }
+                catch
+                {
+                    return Json("İşlem tamamlanamadı");
+                }
+
+            }
+            return new JsonResult("İşlem tamamlanamadı");
+        }
+        [AdminAuthorize]
+        public JsonResult DeleteUser(int id)
+        {
+            User user = _userService.Get(x => x.id == id);
+            if (user != null)
+            {
+                user.UpdateDate = DateTime.UtcNow;
+                user.UpdateUserid = LoginUser.id;
+                _userService.Delete(user);
+                try
+                {
+                    _userService.Save();
+                    return Json("Islem Basari ile tamamlandi");
+                }
+                catch
+                {
+                    return Json("İşlem tamamlanamadı");
+                }
+
+            }
+            return new JsonResult("İşlem tamamlanamadı");
+        }
+
+        [AdminAuthorize]
+        public JsonResult BilgilendirmeEkle(string mail, string category)
+        {
+            try
+            {
+                emailSender = new EmailSender(emailService);
+                if (emailSender.EmailAdd(ThisWebsite, mail, category) == true)
+                {
+                    return Json("Islem Basari ile tamamlandi");
+                }
+                else
+                {
+                    return Json("Üzgünüz Ters Giden Birşeyler var");
+                }
+
+            }
+            catch
+            {
+                return Json("İşlem tamamlanamadı");
+            }
+        }
+        [AdminAuthorize]
+        public JsonResult BilgilendirmeSil(int id)
+        {
+            Email email = emailService.Get(x => x.id == id);
+            if (email != null)
+            {
+                emailService.Delete(email);
+                emailService.Save();
+                return Json("Başarılı");
+            }
+            return Json("Basarisiz");
+        }
+        [AdminAuthorize]
+        public JsonResult BilgilendirmeEmails(string json)
+        {
+            DataTransferPoint.SelectedEmails = new List<Email>();
+            if (!string.IsNullOrWhiteSpace(json))
+                DataTransferPoint.SelectedEmails = JsonConvert.DeserializeObject<ICollection<Email>>(json);
+            return Json(true);
+        }
+
+     
     }
 }

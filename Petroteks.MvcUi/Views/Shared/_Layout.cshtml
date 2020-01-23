@@ -183,7 +183,7 @@
 
             <div class="logo float-left">
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <h1 class="text-light"><a href="../Home/Index" class="scrollto"><img src="~/images/logopetroteks.png" /></a></h1>
+                <h1 class="text-light"><a asp-area="" asp-controller="Home" asp-action="Index" class="scrollto"><img src="~/images/logopetroteks.png" /></a></h1>
                 <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
             </div>
 
@@ -203,13 +203,13 @@
                         </ul>
                     </li>
 
-                    <li class="active"><a href="../Home/Index">ANASAYFA</a></li>
-                    <li><a href="../Home/Hakkimizda">HAKKIMIZDA</a></li>
-                    <li><a href="../Home/PetroBlog">PETROBLOG</a></li>
+                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">ANASAYFA</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">HAKKIMIZDA</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="PetroBlog">PETROBLOG</a></li>
 
 
 
-                    <li><a href="../Home/iletisim">İLETİŞİM</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">İLETİŞİM</a></li>
                     <li class="drop-down">
 
                         <a href="#"><img src="~/images/tr.png"> TR </a>
@@ -251,11 +251,12 @@
                                 <div class="footer-links">
                                     <h4>SİTE HARİTASI</h4>
                                     <ul>
-                                        <li><a href="#">Anasayfa</a></li>
-                                        <li><a href="#">HAKKIMIZDA</a></li>
-                                        <li><a href="#">ÜRÜNLER</a></li>
-                                        <li><a href="#">GİZLİLİK POLİTİKASI</a></li>
-                                        <li><a href="#">İLETİŞİM</a></li>
+                                        
+                                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">HAKKIMIZDA</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="Index">ÜRÜNLER</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="PrivacyPolicy">GİZLİLİK POLİTİKASI</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">İLETİŞİM</a></li>
                                     </ul>
                                 </div>
                             </div>

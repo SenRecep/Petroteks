@@ -54,12 +54,8 @@
             {
                 <li>
                     <span class="caret">
-                        <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@Model.NameId(subCategory)</a>
-                        [
-                        <a href="/Admin/Pages/CategoryDelete/@subCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
-                        |
-                        <a href="/Admin/Pages/CategoryEdit/@subCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
-                        ]
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})">@Model.NameId(subCategory)</a>
+                        @CategoryControl(subCategory.id)
                     </span>
                     <ul class="nested">
                         @LoadSubMenu(subCategory, localcategories)
@@ -74,12 +70,8 @@
             {
                 <li>
                     <span class="caret">
-                        <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@Model.NameId(subCategory)</a>
-                        [
-                        <a href="/Admin/Pages/CategoryDelete/@subCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
-                        |
-                        <a href="/Admin/Pages/CategoryEdit/@subCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
-                        ]
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})">@Model.NameId(subCategory)</a>
+                        @CategoryControl(subCategory.id)
                     </span>
                     <ul class="nested">
                         @LoadProduct(category, products)
@@ -89,12 +81,8 @@
             else
             {
                 <li>
-                    <a href="/Detail/CategoryDetail?categoryName=@subCategory.Name.Replace(" ","-")&page=1&category=@subCategory.id">@Model.NameId(subCategory)</a>
-                    [
-                    <a href="/Admin/Pages/CategoryDelete/@subCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
-                    |
-                    <a href="/Admin/Pages/CategoryEdit/@subCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
-                    ]
+                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})">@Model.NameId(subCategory)</a>
+                    @CategoryControl(subCategory.id)
                 </li>
             }
 
@@ -109,15 +97,25 @@
         @foreach (Product product in localProducts)
         {
             <li>
-                <a href="/Detail/ProductDetail?produtname=@product.SupTitle.Replace(" ","-")&product=@product.id">@product.SupTitle</a>
+                <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(product.SupTitle) , id=product.id})">@product.SupTitle</a>
                 [
-                <a href="/Admin/Pages/ProductDelete/@product.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
+                <a href="@Url.Action("ProductDelete","Pages",new { area="Admin" ,id=product.id })" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
                 |
-                <a href="/Admin/Pages/ProductEdit/@product.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+                <a href="@Url.Action("ProductEditMode","Pages",new { area="Admin" ,id=product.id })" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
                 ]
             </li>
         }
 
+        return null;
+    }
+
+    object CategoryControl(int category)
+    {
+        @:[
+        <a href="@Url.Action("CategoryDelete","Pages",new { area="Admin" ,id=category })"  class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
+        @:|
+        <a href="@Url.Action("CategoryEditMode","Pages",new { area="Admin" ,id=category })" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+        @:]
         return null;
     }
 
@@ -147,12 +145,10 @@
                 {
                     <li>
                         <span class="caret">
-                            <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@Model.NameId(MainCategory)</a>
-                           
-                            <a href="/Admin/Pages/CategoryDelete/@MainCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
-                            
-                            <a href="/Admin/Pages/CategoryEdit/@MainCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
-                           
+                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+
+                            @CategoryControl(MainCategory.id)
+
                         </span>
                         <ul class="nested">
                             @LoadSubMenu(MainCategory, categories)
@@ -168,12 +164,10 @@
                 {
                     <li>
                         <span class="caret">
-                            <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@Model.NameId(MainCategory)</a>
-                          
-                            <a href="/Admin/Pages/CategoryDelete/@MainCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
-                        
-                            <a href="/Admin/Pages/CategoryEdit/@MainCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
-                           
+                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+
+                            @CategoryControl(MainCategory.id)
+
                         </span>
                         <ul class="nested">
                             @LoadProduct(MainCategory, products)
@@ -183,12 +177,10 @@
                 else
                 {
                     <li>
-                        <a asp-area="" asp-controller="Detail" asp-action="CategoryDetail" asp-route-page="1" asp-route-category="@MainCategory.id" asp-route-categoryName="@MainCategory.Name">@Model.NameId(MainCategory)</a>
-                       
-                        <a href="/Admin/Pages/CategoryDelete/@MainCategory.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </a>
-                        
-                        <a href="/Admin/Pages/CategoryEdit/@MainCategory.id" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
-                        
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+
+                        @CategoryControl(MainCategory.id)
+
                     </li>
                 }
 

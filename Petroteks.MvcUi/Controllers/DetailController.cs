@@ -20,9 +20,8 @@ namespace Petroteks.MvcUi.Controllers
             this.categoryService = categoryService;
         }
 
-
-
-        public IActionResult CategoryDetail(string categoryName, int page=1,int category=0)
+        [Route("Kategori-Detay/{categoryName}-{page:int}-{category:int}")]
+        public IActionResult CategoryDetail(int page=1,int category=0)
         {
             int pagesize = 10;
             var Category = categoryService.Get(x=>x.id==category && x.WebSite==ThisWebsite);
@@ -35,10 +34,11 @@ namespace Petroteks.MvcUi.Controllers
                     CurrentPage=page
             });
         }
+        [Route("Urun-Detay/{produtname}-{id:int}")]
         [HttpGet]
-        public IActionResult ProductDetail(string produtname,int product)
+        public IActionResult ProductDetail(int id)
         {
-            Product Product = productService.Get(x=>x.id==product); 
+            Product Product = productService.Get(x=>x.id== id); 
             return View(Product);
         }
     }

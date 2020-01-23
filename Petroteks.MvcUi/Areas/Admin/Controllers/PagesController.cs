@@ -53,6 +53,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         #endregion
         #region Pages
         [AdminAuthorize]
+        [Route("Anasayfa-Duzenleme")]
         public IActionResult AnaSayfaEdit()
         {
             MainPage mainPage;
@@ -65,6 +66,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpPost]
+        [Route("Anasayfa-Duzenleme")]
         public IActionResult AnaSayfaEdit(MainPage model)
         {
             MainPage mainPage;
@@ -95,6 +97,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
 
         [AdminAuthorize]
+        [Route("Hakkimizda-Duzenleme")]
         public IActionResult HakkimizdaEdit()
         {
             AboutUsObject aboutus;
@@ -106,6 +109,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpPost]
+        [Route("Hakkimizda-Duzenleme")]
         public IActionResult HakkimizdaEdit(AboutUsObject model)
         {
             AboutUsObject aboutus;
@@ -134,6 +138,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
 
         [AdminAuthorize]
+        [Route("Gizlilik-Politikasi-Duzenleme")]
         public IActionResult GizlilikPolitikasiEdit()
         {
             PrivacyPolicyObject privacyPage;
@@ -146,6 +151,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpPost]
+        [Route("Gizlilik-Politikasi-Duzenleme")]
         public IActionResult GizlilikPolitikasiEdit(PrivacyPolicyObject model)
         {
             PrivacyPolicyObject privacyPage;
@@ -174,6 +180,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
 
         [AdminAuthorize]
+        [Route("Sayfa-Standarti")]
         public IActionResult SayfaStandarti()
         {
             ViewBag.ThisWebsite = ThisWebsite;
@@ -184,6 +191,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         #region Product
         [AdminAuthorize]
         [HttpGet]
+        [Route("Urun-Olustur")]
         public IActionResult ProductAdd()
         {
             ViewBag.ThisWebsite = ThisWebsite;
@@ -191,73 +199,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return View(new ProductViewModel());
         }
 
-        [AdminAuthorize]
-        [HttpGet]
-        public IActionResult ProductEditMode(int id)
-        {
-            ViewBag.ThisWebsite = ThisWebsite;
-            Product product = productService.Get(x => x.id == id);
-            if (product != null)
-                return View("ProductAdd", new ProductViewModel()
-                {
-                    Categoryid = product.Categoryid,
-                    SupTitle = product.SupTitle,
-                    SubTitle = product.SubTitle,
-                    Content = product.Content,
-                    Description = product.Description,
-                    IsActive = product.IsActive,
-                    Keywords = product.Keywords,
-                    MetaTags = product.MetaTags,
-                    Title = product.Title,
-                    PhotoPath = product.PhotoPath
-                }); ;
-            return View("ProductAdd", new CategoryViewModel());
-
-        }
 
         [AdminAuthorize]
         [HttpPost]
-        public IActionResult ProductEditMode(ProductViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                Product findedProduct = null;
-                Category category = categoryService.Get(x => x.id == model.Categoryid && x.WebSiteid == ThisWebsite.id);
-                findedProduct = productService.Get(x => x.id == model.id);
-                string uniqueFileName = null;
-                if (model.Image != null)
-                {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "ProductImages");
-                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
-                }
-                if (findedProduct != null)
-                {
-                    findedProduct.Content = model.Content;
-                    findedProduct.Description = model.Description;
-                    findedProduct.IsActive = model.IsActive;
-                    findedProduct.Keywords = model.Keywords;
-                    findedProduct.MetaTags = model.MetaTags;
-                    findedProduct.SubTitle = model.SubTitle;
-                    findedProduct.SupTitle = model.SupTitle;
-                    findedProduct.Title = model.Title;
-                    findedProduct.UpdateDate = DateTime.UtcNow;
-                    findedProduct.UpdateUserid = LoginUser.id;
-                    if (category != null)
-                        findedProduct.Categoryid = category.id;
-                    if (!string.IsNullOrWhiteSpace(uniqueFileName))
-                        findedProduct.PhotoPath = uniqueFileName;
-                    productService.Update(findedProduct);
-                    productService.Save();
-                }
-
-            }
-            return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
-        }
-
-        [AdminAuthorize]
-        [HttpPost]
+        [Route("Urun-Olustur")]
         public IActionResult ProductAdd(ProductViewModel model)
         {
 
@@ -309,15 +254,76 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
 
+        [AdminAuthorize]
+        [Route("Duzenleme/Urun-{id}")]
+        public IActionResult ProductEditMode(int id)
+        {
+            ViewBag.ThisWebsite = ThisWebsite;
+            Product product = productService.Get(x => x.id == id);
+            if (product != null)
+                return View("ProductAdd", new ProductViewModel()
+                {
+                    Categoryid = product.Categoryid,
+                    SupTitle = product.SupTitle,
+                    SubTitle = product.SubTitle,
+                    Content = product.Content,
+                    Description = product.Description,
+                    IsActive = product.IsActive,
+                    Keywords = product.Keywords,
+                    MetaTags = product.MetaTags,
+                    Title = product.Title,
+                    PhotoPath = product.PhotoPath
+                }); ;
+            return View("ProductAdd", new CategoryViewModel());
+
+        }
 
         [AdminAuthorize]
-        [HttpGet]
-        public IActionResult ProductEdit(int id)
+        [HttpPost]
+        [Route("Urun-Duzenleme")]
+        public IActionResult ProductEditMode(ProductViewModel model)
         {
-            return RedirectToAction("ProductEditMode", "Pages", new { area = "Admin", Id = id });
+            if (ModelState.IsValid)
+            {
+                Product findedProduct = null;
+                Category category = categoryService.Get(x => x.id == model.Categoryid && x.WebSiteid == ThisWebsite.id);
+                findedProduct = productService.Get(x => x.id == model.id);
+                string uniqueFileName = null;
+                if (model.Image != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "ProductImages");
+                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                if (findedProduct != null)
+                {
+                    findedProduct.Content = model.Content;
+                    findedProduct.Description = model.Description;
+                    findedProduct.IsActive = model.IsActive;
+                    findedProduct.Keywords = model.Keywords;
+                    findedProduct.MetaTags = model.MetaTags;
+                    findedProduct.SubTitle = model.SubTitle;
+                    findedProduct.SupTitle = model.SupTitle;
+                    findedProduct.Title = model.Title;
+                    findedProduct.UpdateDate = DateTime.UtcNow;
+                    findedProduct.UpdateUserid = LoginUser.id;
+                    if (category != null)
+                        findedProduct.Categoryid = category.id;
+                    if (!string.IsNullOrWhiteSpace(uniqueFileName))
+                        findedProduct.PhotoPath = uniqueFileName;
+                    productService.Update(findedProduct);
+                    productService.Save();
+                }
+
+            }
+            return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
+
+      
         [AdminAuthorize]
         [HttpGet]
+        [Route("Urun-Silme-{id:int}")]
         public IActionResult ProductDelete(int id)
         {
             Product product = productService.Get(x => x.id == id);
@@ -334,6 +340,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         #endregion
         #region Blog
         [AdminAuthorize]
+        [Route("Blog-Olustur")]
         public IActionResult BlogAdd()
         {
             ViewBag.ThisWebsite = ThisWebsite;
@@ -341,6 +348,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         }
         [AdminAuthorize]
         [HttpPost]
+        [Route("Blog-Olustur")]
         public IActionResult BlogAdd(BlogViewModel model)
         {
             if (ModelState.IsValid)
@@ -389,6 +397,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return RedirectToAction("BlogAdd", "Pages", new { area = "Admin" });
         }
         [AdminAuthorize]
+        [Route("Blog-Duzenleme-{id:int}")]
         public IActionResult BlogEdit(int id)
         {
             var findedBlog = blogService.Get(m => m.id == id);
@@ -403,6 +412,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         }
         [AdminAuthorize]
+        [Route("Blog-Silme-{id:int}")]
         public JsonResult BlogDelete(int id)
         {
             Blog blog = blogService.Get(x => x.id == id);
@@ -416,6 +426,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         }
         [AdminAuthorize]
         [HttpPost]
+        [Route("Blog-Duzenleme-{id:int}")]
         public IActionResult BlogEdit(int id, BlogViewModel model)
         {
             if (ModelState.IsValid)
@@ -456,6 +467,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return RedirectToAction("BlogList", "Pages", new { area = "Admin" });
         }
         [AdminAuthorize]
+        [Route("Admin-Panel/Bloglar")]
         public IActionResult BlogList()
         {
             var data = blogService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true).ToList();
@@ -466,6 +478,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         #region Category
         [AdminAuthorize]
         [HttpGet]
+        [Route("Kategori-Olustur")]
         public IActionResult CategoryAdd()
         {
             ViewBag.ThisWebsite = ThisWebsite;
@@ -474,6 +487,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpGet]
+        [Route("Duzenleme/Kategori-{id:int}")]
         public IActionResult CategoryEditMode(int id)
         {
             ViewBag.ThisWebsite = ThisWebsite;
@@ -485,6 +499,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         }
         [AdminAuthorize]
         [HttpPost]
+        [Route("Kategori-Duzenleme")]
         public IActionResult CategoryEditMode(CategoryViewModel model)
         {
             if (ModelState.IsValid)
@@ -517,6 +532,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpPost]
+        [Route("Kategori-Olustur")]
         public IActionResult CategoryAdd(CategoryViewModel model)
         {
             if (ModelState.IsValid)
@@ -545,12 +561,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [AdminAuthorize]
         [HttpGet]
-        public IActionResult CategoryEdit(int id)
-        {
-            return RedirectToAction("CategoryEditMode", "Pages", new { area = "Admin", Id = id });
-        }
-        [AdminAuthorize]
-        [HttpGet]
+        [Route("Kategori-Silme-{id:int}")]
         public IActionResult CategoryDelete(int id)
         {
             Category category = categoryService.Get(x => x.id == id && ThisWebsite.id == x.WebSiteid);

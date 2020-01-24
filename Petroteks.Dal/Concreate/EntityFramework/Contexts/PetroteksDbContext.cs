@@ -15,9 +15,10 @@ namespace Petroteks.Dal.Concreate.EntityFramework.Contexts
         public DbSet<Website> Websites { get; set; }
         public DbSet<AboutUsObject> AboutUsObjects { get; set; }
         public DbSet<PrivacyPolicyObject> PrivacyPolicyObjects { get; set; }
+        public DbSet<MainPage> MainPages { get; set; }
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<MainPage> MainPages { get; set; }
         public DbSet<Email> Emails { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<DynamicPage> DynamicPages { get; set; }

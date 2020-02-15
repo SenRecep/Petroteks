@@ -9,6 +9,8 @@
 # General
 --------------------------------------------------------------*/
 
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display:400,800);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
 #spanc {
     cursor: pointer!important;
 }
@@ -1737,4 +1739,335 @@ h6 {
 
 
 
+/* jssor slider loading skin spin css */
+.jssorl-009-spin img {
+    animation-name: jssorl-009-spin;
+    animation-duration: 1.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
 
+@@keyframes jssorl-009-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.jssorl-009-spin {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: rgba(0,0,0,0.7);
+}
+
+#spin {
+    margin-top: -19px;
+    position: relative;
+    top: 50%;
+    width: 38px;
+    height: 38px;
+}
+
+#jssor_1 {
+    position: relative;
+    margin: 0 auto;
+    top: 70px;
+    left: 0px;
+    width: 1600px;
+    height: 560px;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+/*jssor slider bullet skin 031 css*/
+.jssorb031 {
+    position: absolute;
+}
+
+    .jssorb031 .i {
+        position: absolute;
+        cursor: pointer;
+    }
+
+        .jssorb031 .i .b {
+            fill: #000;
+            fill-opacity: 0.6;
+            stroke: #fff;
+            stroke-width: 1400;
+            stroke-miterlimit: 10;
+            stroke-opacity: 0.8;
+        }
+
+        .jssorb031 .i:hover .b {
+            fill: #fff;
+            fill-opacity: 1;
+            stroke: #000;
+            stroke-opacity: 1;
+        }
+
+    .jssorb031 .iav .b {
+        fill: #fff;
+        stroke: #000;
+        stroke-width: 1600;
+        fill-opacity: .6;
+    }
+
+    .jssorb031 .i.idn {
+        opacity: .3;
+    }
+
+.jssora051 {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+}
+
+    .jssora051 .a {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 360;
+        stroke-miterlimit: 10;
+    }
+
+    .jssora051:hover {
+        opacity: .8;
+    }
+
+    .jssora051.jssora051dn {
+        opacity: .5;
+    }
+
+    .jssora051.jssora051ds {
+        opacity: .3;
+        pointer-events: none;
+    }
+
+#slider-svg {
+    width: 600px;
+    height: 400px;
+    left: 255px;
+    top: 0px;
+    display: block;
+    position: absolute;
+    overflow: visible;
+}
+
+#slide-style {
+    cursor: default;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 1600px;
+    height: 560px;
+    overflow: hidden;
+}
+
+#navigator {
+    position: absolute;
+    bottom: 24px;
+    right: 16px;
+}
+
+.cards-list {
+    z-index: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.carda {
+    margin: 30px auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 40px;
+    box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+    .carda .card_image {
+        width: inherit;
+        height: inherit;
+        border-radius: 40px;
+    }
+
+        .carda .card_image img {
+            width: inherit;
+            height: inherit;
+            border-radius: 40px;
+            object-fit: cover;
+        }
+
+    .carda .card_title {
+        text-align: center;
+        border-radius: 0px 0px 40px 40px;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 25px;
+        margin-top: -105px;
+        height: 40px;
+    }
+
+    .carda:hover {
+        transform: scale(0.9, 0.9);
+        box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), -5px -5px 30px 15px rgba(0,0,0,0.22);
+    }
+
+.title-white {
+    color: white;
+}
+
+.title-black {
+    color: black;
+}
+
+@@media all and (max-width: 500px) {
+    .card-list {
+        /* On small screens, we are no longer using row direction but column */
+        flex-direction: column;
+    }
+}
+
+
+
+
+
+.snip1401 {
+    font-family: 'Playfair Display', Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin: 10px; 
+    max-width: 350px;
+    max-height: 220px;
+    width: 100%;
+    color: #000000;
+    text-align: right;
+    font-size: 16px;
+    background-color: #000000;
+}
+
+    .snip1401 * {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: all 0.35s ease;
+        transition: all 0.35s ease;
+    }
+
+    .snip1401 img {
+        max-width: 100%;
+        backface-visibility: hidden;
+    }
+
+    .snip1401 figcaption {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        opacity: 1;
+        padding: 30px 0 30px 10px;
+        background-color: #ffffff;
+        width: 40%;
+        -webkit-transform: translateX(150%);
+        transform: translateX(150%);
+    }
+
+        .snip1401 figcaption:before {
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            right: 100%;
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 120px 120px 120px 0;
+            border-color: transparent #ffffff transparent transparent;
+        }
+
+    .snip1401:after {
+        position: absolute;
+        bottom: 50%;
+        right: 40%;
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 120px 120px 0 120px;
+        border-color: rgba(255, 255, 255, 0.5) transparent transparent transparent;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: all 0.35s ease;
+        transition: all 0.35s ease;
+    }
+
+    .snip1401 h3,
+    .snip1401 p {
+        line-height: 1.5em;
+        -webkit-transform: translateX(-30px);
+        transform: translateX(-30px);
+        margin: 0;
+    }
+
+    .snip1401 h3 {
+        margin: 0 0 5px;
+        line-height: 1.1em;
+        font-weight: 900;
+        font-size: 1.4em;
+        opacity: 0.75;
+    }
+
+    .snip1401 p {
+        font-size: 0.8em;
+    }
+
+    .snip1401 i {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 20px 30px;
+        font-size: 44px;
+        color: #ffffff;
+        opacity: 0;
+    }
+
+    .snip1401 a {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+    }
+
+    .snip1401:hover img,
+    .snip1401.hover img {
+        zoom: 1;
+        filter: alpha(opacity=50);
+        -webkit-opacity: 0.5;
+        opacity: 0.5;
+    }
+
+    .snip1401:hover:after,
+    .snip1401.hover:after,
+    .snip1401:hover figcaption,
+    .snip1401.hover figcaption,
+    .snip1401:hover i,
+    .snip1401.hover i {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+/*
+Removes white gap between slides
+*/
+ 

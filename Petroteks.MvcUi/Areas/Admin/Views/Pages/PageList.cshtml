@@ -1,0 +1,76 @@
+﻿@model List<DynamicPage>
+
+@{
+    ViewData["Title"] = " Blog Liste";
+}
+<div class="card">
+    <div class="card-body">
+        <a class="btn waves-effect waves-light btn-success btn-rounded" href="@Url.Action("PageAdd","Pages",new { area="Admin"})"> <i class="fas fa-plus"></i> Yeni Ekle</a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr> 
+                    <th> Başlık</th>
+                    <th> Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr> 
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            <button  class="btn btn-danger btn-rounded" onclick="PageDelete(@item.id);"><i class="fas fa-trash"></i></button>
+                            <a href="@Url.Action("PageEdit","Pages",new { area="Admin", id=item.id })" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+
+    <script>
+        function PageDelete(id) { 
+             var dialog2 = $.confirm({
+               title: "Dikkat!", icon: 'fa fa-trash', theme: 'modern', type: 'orange', content:"silmek üzeresiniz!", buttons: {
+                VAZGEÇ: function () {
+                    dialog.close();
+                },
+                SİL: function () { 
+                    $.ajax({
+                        type: "GET",
+                        url: "../Pages/PageDelete/" + id,
+                        success: function (response) {
+                            toastr.success(response) 
+                            location.reload();
+                            dialog.close();
+                          
+                        },
+                        failure: function (response) {
+                            toastr.error(response)
+                        },
+                        error: function (response) {
+                            toastr.error(response)
+                        }
+                    });
+                }
+            }
+        });
+
+
+        }
+       
+    </script>
+}

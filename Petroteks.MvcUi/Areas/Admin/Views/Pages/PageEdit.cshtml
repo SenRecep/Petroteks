@@ -1,0 +1,61 @@
+﻿@model DynamicPage
+@{
+    
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <h4 class="card-title">Meta Açıklama</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="Description" aria-describedby="Meta Açıklama" placeholder="MetaDescription">
+                        <small id="" class="form-text text-muted">Karakter sayısı kuralı girilecek</small>
+                    </div>
+
+                    <h4 class="card-title">Meta Anahtar kelime</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="Keywords" aria-describedby="MetaKeyword" placeholder="MetaKeyword">
+                        <small id="name" class="form-text text-muted">Anahtar Kelimeleri lütfen virgül ile ayırın.</small>
+                    </div>
+                    <h4 class="card-title">Sayfa Meta Başlığı</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="Title" aria-describedby="MetaTitle" placeholder="Meta Başlığı">
+                        <small id="name" class="form-text text-muted">Başlığı Türkçe Karakter kullanmadan yazmaya dikkat edin!</small>
+                    </div>
+
+                    <h4 class="card-title">Sayfa Gözüksünmü</h4>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" asp-for="IsActive" checked>
+                                <label class="custom-control-label" asp-for="IsActive">Makale Gözüksün Mü?</label>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="card-title">Sayfa Başlığı</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="Name" aria-describedby="Sayfa Başlığı" placeholder="Sayfa Başlığı">
+                        
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" asp-for="MetaTags" placeholder="Meta İnputları">
+                            
+                        </textarea>
+                    </div>
+                    <h4 class="card-title">Editör</h4>
+                    <div class="form-group">
+                        <textarea id="editor1" name="Content">
+                            @Html.Raw(Model.Content)
+                        </textarea>
+                    </div>
+                    <center><input type="submit" class="btn btn-success" value="Kaydet" /></center>
+                }
+            </div>
+                </div>
+    </div>
+</div>
+

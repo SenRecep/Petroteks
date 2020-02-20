@@ -1,6 +1,4 @@
-﻿@{
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -16,14 +14,13 @@
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <link href="~/images/cropped-favicon-32x32.png" rel="icon">
-    <link href="~/NewLayout/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+    <link href="~/NewLayout/img/apple-touch-icon.png" rel="apple-touch-icon"> 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet"> 
     <!-- Bootstrap CSS File -->
-    <link href="~/NewLayout/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="~/NewLayout/css/materialize.min.css" rel="stylesheet" />
     <!-- Libraries CSS Files -->
     <link href="~/NewLayout/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="~/NewLayout/lib/animate/animate.min.css" rel="stylesheet">
@@ -33,206 +30,27 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     <!-- Main Stylesheet File -->
     <link href="~/NewLayout/css/style.css" rel="stylesheet" />
-
-    <!-- Favicons -->
+    <link href="~/NewLayout/css/bootstrap-touch-slider.css" rel="stylesheet" />
     <style>
-
-        /* jssor slider loading skin spin css */
-        .jssorl-009-spin img {
-            animation-name: jssorl-009-spin;
-            animation-duration: 1.6s;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-        }
-
-        @@keyframes jssorl-009-spin {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .jssorl-009-spin {
-            position: absolute;
-            top: 0px;
-            left: 0px;
+        .slider .indicators .indicator-item {
+            background-color: #666666;
+            border: 3px solid #ffffff;
+            -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        } 
+            .slider .indicators .indicator-item.active {
+                background-color: #ffffff;
+            } 
+        .slider {
             width: 100%;
-            height: 100%;
-            text-align: center;
-            background-color: rgba(0,0,0,0.7);
-        }
-
-        #spin {
-            margin-top: -19px;
-            position: relative;
-            top: 50%;
-            width: 38px;
-            height: 38px;
-        }
-
-        #jssor_1 {
-            position: relative;
             margin: 0 auto;
-            top: 70px;
-            left: 0px;
-            width: 1600px;
-            height: 560px;
-            overflow: hidden;
-            visibility: hidden;
-        }
-
-        /*jssor slider bullet skin 031 css*/
-        .jssorb031 {
-            position: absolute;
-        }
-
-            .jssorb031 .i {
-                position: absolute;
-                cursor: pointer;
-            }
-
-                .jssorb031 .i .b {
-                    fill: #000;
-                    fill-opacity: 0.6;
-                    stroke: #fff;
-                    stroke-width: 1400;
-                    stroke-miterlimit: 10;
-                    stroke-opacity: 0.8;
-                }
-
-                .jssorb031 .i:hover .b {
-                    fill: #fff;
-                    fill-opacity: 1;
-                    stroke: #000;
-                    stroke-opacity: 1;
-                }
-
-            .jssorb031 .iav .b {
-                fill: #fff;
-                stroke: #000;
-                stroke-width: 1600;
-                fill-opacity: .6;
-            }
-
-            .jssorb031 .i.idn {
-                opacity: .3;
-            }
-
-        .jssora051 {
-            display: block;
-            position: absolute;
-            cursor: pointer;
-        }
-
-            .jssora051 .a {
-                fill: none;
-                stroke: #fff;
-                stroke-width: 360;
-                stroke-miterlimit: 10;
-            }
-
-            .jssora051:hover {
-                opacity: .8;
-            }
-
-            .jssora051.jssora051dn {
-                opacity: .5;
-            }
-
-            .jssora051.jssora051ds {
-                opacity: .3;
-                pointer-events: none;
-            }
-
-        #slider-svg {
-            width: 600px;
-            height: 400px;
-            left: 255px;
-            top: 0px;
-            display: block;
-            position: absolute;
-            overflow: visible;
-        }
-
-        #slide-style {
-            cursor: default;
-            position: relative;
-            top: 0px;
-            left: 0px;
-            width: 1600px;
-            height: 560px;
-            overflow: hidden;
-        }
-
-        #navigator {
-            position: absolute;
-            bottom: 24px;
-            right: 16px;
-        }
-
-        .cards-list {
-            z-index: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .carda {
-            margin: 30px auto;
-            width: 300px;
-            height: 300px;
-            border-radius: 40px;
-            box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
-            cursor: pointer;
-            transition: 0.4s;
-        }
-
-            .carda .card_image {
-                width: inherit;
-                height: inherit;
-                border-radius: 40px;
-            }
-
-                .carda .card_image img {
-                    width: inherit;
-                    height: inherit;
-                    border-radius: 40px;
-                    object-fit: cover;
-                }
-
-            .carda .card_title {
-                text-align: center;
-                border-radius: 0px 0px 40px 40px;
-                font-family: sans-serif;
-                font-weight: bold;
-                font-size: 30px;
-                margin-top: -105px;
-                height: 40px;
-            }
-
-            .carda:hover {
-                transform: scale(0.9, 0.9);
-                box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), -5px -5px 30px 15px rgba(0,0,0,0.22);
-            }
-
-        .title-white {
-            color: white;
-        }
-
-        .title-black {
-            color: black;
-        }
-
-        @@media all and (max-width: 500px) {
-            .card-list {
-                /* On small screens, we are no longer using row direction but column */
-                flex-direction: column;
-            }
-        }
+        } 
+       .slider .indicators {
+                bottom: 60px;
+                z-index: 100;
+                /* text-align: left; */
+       }
     </style>
 </head>
 <body itemscope="" itemtype="http://schema.org/WebPage">
@@ -244,12 +62,13 @@
 
             <div class="logo float-left">
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <h1 class="text-light"><a asp-area="" asp-controller="Home" asp-action="Index" class="scrollto"><img src="~/images/logopetroteks.png" /></a></h1>
+                <h1 class="text-light"><a asp-area="" asp-controller="Home" asp-action="Index" class="scrollto"><img src="~/images/logopetroteks.png" alt="logo" /></a></h1>
                 <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
             </div>
 
             <nav class="main-nav float-right d-none d-lg-block">
                 <ul>
+                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">ANASAYFA</a></li>
                     <li class="drop-down">
                         <a href="">ÜRÜNLERİMİZ</a>
                         <ul>
@@ -258,22 +77,22 @@
                     </li>
 
                     <li class="drop-down">
-                        <a href="">SAYFALAR</a>
-                        <ul>
-                            @await Component.InvokeAsync("PagesList", new { website = (Website)ViewBag.ThisWebsite })
-                        </ul>
-                    </li>
-
-                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">ANASAYFA</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">HAKKIMIZDA</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="PetroBlog">PETROBLOG</a></li>
+                            <a href="" title="Sayfalar">SAYFALAR</a>
+                            <ul>
+                                @await Component.InvokeAsync("PagesList", new { website = (Website)ViewBag.ThisWebsite })
+                            </ul>
+                        </li>
 
 
+                    <li><a asp-area="" asp-controller="Home" asp-action="AboutUs" title="HAKKIMIZDA">HAKKIMIZDA</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="PetroBlog" title="PETROBLOG">PETROBLOG</a></li>
 
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">İLETİŞİM</a></li>
+
+
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact"title="İLETİŞİM">İLETİŞİM</a></li>
                     <li class="drop-down">
 
-                        <a href="#"><img src="~/images/tr.png"> TR </a>
+                        <a href="#" title="tr"><img src="~/images/tr.png" alt="bayrak"> TR </a>
                         <ul>
 
                             @*<li><a href="#"><img src="~/images/en.png"> ENG</a></li>*@
@@ -313,11 +132,11 @@
                                     <h4>SİTE HARİTASI</h4>
                                     <ul>
 
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a></li>
-                                        <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">HAKKIMIZDA</a></li>
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Index">ÜRÜNLER</a></li>
-                                        <li><a asp-area="" asp-controller="Home" asp-action="PrivacyPolicy">GİZLİLİK POLİTİKASI</a></li>
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">İLETİŞİM</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="Index" title="ANASAYFA">ANASAYFA</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="AboutUs" title="HAKKIMIZDA">HAKKIMIZDA</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="Index" title="ÜRÜNLER">ÜRÜNLER</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="PrivacyPolicy" title="GİZLİLİK POLİTİKASI">GİZLİLİK POLİTİKASI</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="Contact" title="iletisim">İLETİŞİM</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -329,7 +148,7 @@
                     <div class="col-lg-4">
 
                         <div class="footer-links">
-                            <h4>ANKARA DEPO :</h4>
+                            <h4>ANKARA MERKEZ DEPO :</h4>
                             <p>
                                 İvedik OSB 2268 Cadde No:9
                                 Yenimahalle / ANKARA <br>
@@ -356,10 +175,10 @@
                         </div>
 
                         <div class="social-links">
-                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                            <a href="https://twitter.com/Petroteks" class="twitter" title="twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/petroteksdrilling" class="facebook" title="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/petroteks_sondaj_kimyasallari/" class="instagram" title="instagram"><i class="fa fa-instagram"></i></a>
+                            <a href="https://tr.linkedin.com/company/petroteks-kimya-dan-ltd-ti" class="linkedin"  title="instagram"><i class="fa fa-linkedin"></i></a>
                         </div>
 
                     </div>
@@ -411,10 +230,14 @@
     <!-- JavaScript Libraries -->
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="~/NewLayout/lib/jquery/jquery.min.js"></script>
-    <script src="~/NewLayout/lib/jquery/jquery-migrate.min.js"></script>
-    <script src="~/NewLayout/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="~/NewLayout/js/materialize.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
+    <script src="~/NewLayout/js/bootstrap-touch-slider.js"></script>
     <script src="~/NewLayout/lib/easing/easing.min.js"></script>
     <script src="~/NewLayout/lib/mobile-nav/mobile-nav.js"></script>
     <script src="~/NewLayout/lib/wow/wow.min.js"></script>
@@ -429,10 +252,7 @@
     <!-- Template Main Javascript File -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="~/NewLayout/js/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="~/NewLayout/js/jssor.slider-28.0.0.min.js" type="text/javascript"></script>
-    <script>
-
+    <script> 
         toastr.options = {
             "closeButton": false,
             "debug": false,
@@ -450,84 +270,26 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
-
-        //$(document).ready(function () {
-        //    $("#ackapa").click(function () {
-        //        $(".trwpwhatsappballon").toggle(1000);
-        //    });
-        //    $("#kapatac").click(function () {
-        //        $(".trwpwhatsappballon").toggle(1000);
-        //    });
-        //});
-        window.jssor_1_slider_init = function () {
-
-            var jssor_1_SlideoTransitions = [
-                [{ b: -1, d: 1, ls: 0.5 }, { b: 0, d: 1000, y: 5, e: { y: 6 } }],
-                [{ b: -1, d: 1, ls: 0.5 }, { b: 200, d: 1000, y: 25, e: { y: 6 } }],
-                [{ b: -1, d: 1, ls: 0.5 }, { b: 400, d: 1000, y: 45, e: { y: 6 } }],
-                [{ b: -1, d: 1, ls: 0.5 }, { b: 600, d: 1000, y: 65, e: { y: 6 } }],
-                [{ b: -1, d: 1, ls: 0.5 }, { b: 800, d: 1000, y: 85, e: { y: 6 } }],
-                [{ b: -1, d: 1, ls: 0.5 }, { b: 500, d: 1000, y: 195, e: { y: 6 } }],
-                [{ b: 0, d: 2000, y: 30, e: { y: 3 } }],
-                [{ b: -1, d: 1, rY: -15, tZ: 100 }, { b: 0, d: 1500, y: 30, o: 1, e: { y: 3 } }],
-                [{ b: -1, d: 1, rY: -15, tZ: -100 }, { b: 0, d: 1500, y: 100, o: 0.8, e: { y: 3 } }],
-                [{ b: 500, d: 1500, o: 1 }],
-                [{ b: 0, d: 1000, y: 380, e: { y: 6 } }],
-                [{ b: 300, d: 1000, x: 80, e: { x: 6 } }],
-                [{ b: 300, d: 1000, x: 330, e: { x: 6 } }],
-                [{ b: -1, d: 1, r: -110, sX: 5, sY: 5 }, { b: 0, d: 2000, o: 1, r: -20, sX: 1, sY: 1, e: { o: 6, r: 6, sX: 6, sY: 6 } }],
-                [{ b: 0, d: 600, x: 150, o: 0.5, e: { x: 6 } }],
-                [{ b: 0, d: 600, x: 1140, o: 0.6, e: { x: 6 } }],
-                [{ b: -1, d: 1, sX: 5, sY: 5 }, { b: 600, d: 600, o: 1, sX: 1, sY: 1, e: { sX: 3, sY: 3 } }]
-            ];
-
-            var jssor_1_options = {
-                $AutoPlay: 1,
-                $LazyLoading: 1,
-                $CaptionSliderOptions: {
-                    $Class: $JssorCaptionSlideo$,
-                    $Transitions: jssor_1_SlideoTransitions
-                },
-                $ArrowNavigatorOptions: {
-                    $Class: $JssorArrowNavigator$
-                },
-                $BulletNavigatorOptions: {
-                    $Class: $JssorBulletNavigator$,
-                    $SpacingX: 20,
-                    $SpacingY: 20
-                }
-            };
-
-            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-
-            /*#region responsive code begin*/
-
-            var MAX_WIDTH = 1600;
-
-            function ScaleSlider() {
-                var containerElement = jssor_1_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_1_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
+        $(".hover").mouseleave(
+            function () {
+                $(this).removeClass("hover");
             }
-
-            ScaleSlider();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-            /*#endregion responsive code end*/
-        };
-        jssor_1_slider_init();
-
+        ); $(document).ready(function () {
+            if ($(window).innerWidth() <= 900) {
+                $(".alignchange").removeClass("center-align my-auto");
+                $(".selected").removeClass("center-align"); 
+                $(".selected").css("cssText","left:0%!important;");
+            }
+            else {
+                  $(".selected").css("cssText","left:15%!important;");
+                $(".alignchange").addClass("center-align my-auto");
+                 $(".selected").addClass("center-align"); 
+            }
+            $('.slider').slider({
+                full_width: true,
+                height: 550, // default - height : 400 
+            });
+        }); 
     </script>
 
 

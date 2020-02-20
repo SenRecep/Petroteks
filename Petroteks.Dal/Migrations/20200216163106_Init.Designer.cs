@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Petroteks.Dal.Concreate.EntityFramework.Contexts;
 
 namespace Petroteks.Dal.Migrations
 {
     [DbContext(typeof(PetroteksDbContext))]
-    partial class PetroteksDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200216163106_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -283,9 +285,6 @@ namespace Petroteks.Dal.Migrations
 
                     b.Property<int>("CreateUserid")
                         .HasColumnType("int");
-
-                    b.Property<bool>("Default")
-                        .HasColumnType("bit");
 
                     b.Property<string>("IconCode")
                         .HasColumnType("nvarchar(max)");

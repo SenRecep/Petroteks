@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Petroteks.Dal.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,124 +50,6 @@ namespace Petroteks.Dal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AboutUsObjects",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateDate = table.Column<DateTime>(nullable: false),
-                    CreateUserid = table.Column<int>(nullable: false),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    UpdateUserid = table.Column<int>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    WebSiteid = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Keywords = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    MetaTags = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(nullable: true),
-                    Content = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AboutUsObjects", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_AboutUsObjects_Websites_WebSiteid",
-                        column: x => x.WebSiteid,
-                        principalTable: "Websites",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Blogs",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateDate = table.Column<DateTime>(nullable: false),
-                    CreateUserid = table.Column<int>(nullable: false),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    UpdateUserid = table.Column<int>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    WebSiteid = table.Column<int>(nullable: false),
-                    Keywords = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    MetaTags = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(nullable: true),
-                    Content = table.Column<string>(nullable: true),
-                    PhotoPath = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Blogs", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Blogs_Websites_WebSiteid",
-                        column: x => x.WebSiteid,
-                        principalTable: "Websites",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateDate = table.Column<DateTime>(nullable: false),
-                    CreateUserid = table.Column<int>(nullable: false),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    UpdateUserid = table.Column<int>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    WebSiteid = table.Column<int>(nullable: false),
-                    Parentid = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    PhotoPath = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Categories_Websites_WebSiteid",
-                        column: x => x.WebSiteid,
-                        principalTable: "Websites",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DynamicPages",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateDate = table.Column<DateTime>(nullable: false),
-                    CreateUserid = table.Column<int>(nullable: false),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    UpdateUserid = table.Column<int>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    WebSiteid = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Keywords = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    MetaTags = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(nullable: true),
-                    Content = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DynamicPages", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_DynamicPages_Websites_WebSiteid",
-                        column: x => x.WebSiteid,
-                        principalTable: "Websites",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Emails",
                 columns: table => new
                 {
@@ -194,6 +76,179 @@ namespace Petroteks.Dal.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Languages",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateUserid = table.Column<int>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateUserid = table.Column<int>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    WebSiteid = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    KeyCode = table.Column<string>(nullable: true),
+                    IconCode = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Languages", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Languages_Websites_WebSiteid",
+                        column: x => x.WebSiteid,
+                        principalTable: "Websites",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AboutUsObjects",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateUserid = table.Column<int>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateUserid = table.Column<int>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    WebSiteid = table.Column<int>(nullable: false),
+                    Languageid = table.Column<int>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Keywords = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    MetaTags = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AboutUsObjects", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_AboutUsObjects_Languages_Languageid",
+                        column: x => x.Languageid,
+                        principalTable: "Languages",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AboutUsObjects_Websites_WebSiteid",
+                        column: x => x.WebSiteid,
+                        principalTable: "Websites",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Blogs",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateUserid = table.Column<int>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateUserid = table.Column<int>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    WebSiteid = table.Column<int>(nullable: false),
+                    Languageid = table.Column<int>(nullable: true),
+                    Keywords = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    MetaTags = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    PhotoPath = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Blogs", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Blogs_Languages_Languageid",
+                        column: x => x.Languageid,
+                        principalTable: "Languages",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Blogs_Websites_WebSiteid",
+                        column: x => x.WebSiteid,
+                        principalTable: "Websites",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateUserid = table.Column<int>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateUserid = table.Column<int>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    WebSiteid = table.Column<int>(nullable: false),
+                    Languageid = table.Column<int>(nullable: true),
+                    Parentid = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    PhotoPath = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Categories_Languages_Languageid",
+                        column: x => x.Languageid,
+                        principalTable: "Languages",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Categories_Websites_WebSiteid",
+                        column: x => x.WebSiteid,
+                        principalTable: "Websites",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DynamicPages",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateUserid = table.Column<int>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    UpdateUserid = table.Column<int>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    WebSiteid = table.Column<int>(nullable: false),
+                    Languageid = table.Column<int>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Keywords = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    MetaTags = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DynamicPages", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_DynamicPages_Languages_Languageid",
+                        column: x => x.Languageid,
+                        principalTable: "Languages",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DynamicPages_Websites_WebSiteid",
+                        column: x => x.WebSiteid,
+                        principalTable: "Websites",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MainPages",
                 columns: table => new
                 {
@@ -205,6 +260,7 @@ namespace Petroteks.Dal.Migrations
                     UpdateUserid = table.Column<int>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     WebSiteid = table.Column<int>(nullable: false),
+                    Languageid = table.Column<int>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Keywords = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
@@ -217,6 +273,12 @@ namespace Petroteks.Dal.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MainPages", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_MainPages_Languages_Languageid",
+                        column: x => x.Languageid,
+                        principalTable: "Languages",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_MainPages_Websites_WebSiteid",
                         column: x => x.WebSiteid,
@@ -237,6 +299,7 @@ namespace Petroteks.Dal.Migrations
                     UpdateUserid = table.Column<int>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     WebSiteid = table.Column<int>(nullable: false),
+                    Languageid = table.Column<int>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Keywords = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
@@ -247,6 +310,12 @@ namespace Petroteks.Dal.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PrivacyPolicyObjects", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_PrivacyPolicyObjects_Languages_Languageid",
+                        column: x => x.Languageid,
+                        principalTable: "Languages",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PrivacyPolicyObjects_Websites_WebSiteid",
                         column: x => x.WebSiteid,
@@ -274,7 +343,8 @@ namespace Petroteks.Dal.Migrations
                     Keywords = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     MetaTags = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(nullable: true)
+                    Title = table.Column<string>(nullable: true),
+                    Languageid = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -285,7 +355,18 @@ namespace Petroteks.Dal.Migrations
                         principalTable: "Categories",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_Languages_Languageid",
+                        column: x => x.Languageid,
+                        principalTable: "Languages",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AboutUsObjects_Languageid",
+                table: "AboutUsObjects",
+                column: "Languageid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AboutUsObjects_WebSiteid",
@@ -293,14 +374,29 @@ namespace Petroteks.Dal.Migrations
                 column: "WebSiteid");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Blogs_Languageid",
+                table: "Blogs",
+                column: "Languageid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Blogs_WebSiteid",
                 table: "Blogs",
                 column: "WebSiteid");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Categories_Languageid",
+                table: "Categories",
+                column: "Languageid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Categories_WebSiteid",
                 table: "Categories",
                 column: "WebSiteid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DynamicPages_Languageid",
+                table: "DynamicPages",
+                column: "Languageid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DynamicPages_WebSiteid",
@@ -313,9 +409,24 @@ namespace Petroteks.Dal.Migrations
                 column: "WebSiteid");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Languages_WebSiteid",
+                table: "Languages",
+                column: "WebSiteid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MainPages_Languageid",
+                table: "MainPages",
+                column: "Languageid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MainPages_WebSiteid",
                 table: "MainPages",
                 column: "WebSiteid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PrivacyPolicyObjects_Languageid",
+                table: "PrivacyPolicyObjects",
+                column: "Languageid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PrivacyPolicyObjects_WebSiteid",
@@ -326,6 +437,11 @@ namespace Petroteks.Dal.Migrations
                 name: "IX_Products_Categoryid",
                 table: "Products",
                 column: "Categoryid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_Languageid",
+                table: "Products",
+                column: "Languageid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -356,6 +472,9 @@ namespace Petroteks.Dal.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Languages");
 
             migrationBuilder.DropTable(
                 name: "Websites");

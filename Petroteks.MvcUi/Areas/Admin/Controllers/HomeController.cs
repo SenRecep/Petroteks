@@ -31,9 +31,11 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             IUserService userService,
             IUserSessionService userSessionService,
             IWebsiteService websiteService,
+            ILanguageService languageService,
             IHttpContextAccessor httpContextAccessor,
+            ILanguageCookieService languageCookieService,
             IEmailService emailService) :
-            base(userSessionService, websiteService, httpContextAccessor)
+            base(userSessionService, websiteService,languageService,languageCookieService, httpContextAccessor)
         {
             this._userService = userService;
             this._userSessionService = userSessionService;

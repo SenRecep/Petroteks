@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
 using Petroteks.Entities.Concreate;
+using Petroteks.MvcUi.Areas.Admin.Models;
 using Petroteks.MvcUi.Attributes;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
@@ -25,7 +26,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
         private readonly IBlogService blogService;
-        private readonly IDynamicPageService dynamicPageService;
+        private readonly ILanguageService languageService;
         private readonly IHostingEnvironment hostingEnvironment;
         #endregion
         #region CTOR
@@ -38,18 +39,19 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             IHttpContextAccessor httpContextAccessor,
             ICategoryService categoryService,
             IBlogService blogService,
-            IDynamicPageService dynamicPageService,
+            ILanguageService languageService,
             IHostingEnvironment hostingEnvironment,
+            ILanguageCookieService languageCookieService,
             IProductService productService)
-            : base(userSessionService, websiteService, httpContextAccessor)
+            : base(userSessionService, websiteService,languageService,languageCookieService, httpContextAccessor)
         {
-            this.dynamicPageService = dynamicPageService;
             this.mainPageService = mainPageService;
             this.aboutUsObjectService = aboutUsObjectService;
             this.privacyPolicyObjectService = privacyPolicyObjectService;
             this.categoryService = categoryService;
             this.productService = productService;
             this.blogService = blogService;
+            this.languageService = languageService;
             this.hostingEnvironment = hostingEnvironment;
         }
 
@@ -365,7 +367,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 Blog blog = new Blog()
                 {
                     Title = model.Title,
-                    Name=model.Name,
                     PhotoPath = uniqueFileName,
                     Description = model.Description,
                     MetaTags = model.MetaTags,
@@ -375,7 +376,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     IsActive = model.IsActive,
                     WebSite = ThisWebsite
                 };
-                Blog findedBlog = blogService.Get(x => x.Name.Equals(blog.Name) && x.WebSite == ThisWebsite);
+                Blog findedBlog = blogService.Get(x => x.Title.Equals(blog.Title) && x.WebSite == ThisWebsite);
                 if (findedBlog != null)
                 {
                     findedBlog.Description = blog.Description;
@@ -383,7 +384,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedBlog.Keywords = blog.Keywords;
                     findedBlog.Content = blog.Content;
                     findedBlog.Title = blog.Title;
-                    findedBlog.Name = blog.Name;
                     findedBlog.UpdateDate = DateTime.UtcNow;
                     findedBlog.UpdateUserid = blog.CreateUserid;
                     findedBlog.IsActive = blog.IsActive;
@@ -398,20 +398,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 }
             }
             return RedirectToAction("BlogAdd", "Pages", new { area = "Admin" });
-        }
-       
-        [AdminAuthorize]
-        [Route("Blog-Silme-{id:int}")]
-        public JsonResult BlogDelete(int id)
-        {
-            Blog blog = blogService.Get(x => x.id == id);
-            if (blog != null)
-            {
-                blog.IsActive = false;
-                blogService.Save();
-                return Json("Başarılı");
-            }
-            return Json("Basarisiz");
         }
         [AdminAuthorize]
         [Route("Blog-Duzenleme-{id:int}")]
@@ -429,6 +415,19 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         }
         [AdminAuthorize]
+        [Route("Blog-Silme-{id:int}")]
+        public JsonResult BlogDelete(int id)
+        {
+            Blog blog = blogService.Get(x => x.id == id);
+            if (blog != null)
+            {
+                blog.IsActive = false;
+                blogService.Save();
+                return Json("Başarılı");
+            }
+            return Json("Basarisiz");
+        }
+        [AdminAuthorize]
         [HttpPost]
         [Route("Blog-Duzenleme-{id:int}")]
         public IActionResult BlogEdit(int id, BlogViewModel model)
@@ -444,7 +443,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedBlog.Keywords = model.Keywords;
                     findedBlog.Content = model.Content;
                     findedBlog.Title = model.Title;
-                    findedBlog.Name = model.Name;
                     findedBlog.UpdateDate = DateTime.UtcNow;
                     findedBlog.UpdateUserid = LoginUser.id;
                     findedBlog.IsActive = model.IsActive;
@@ -462,8 +460,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                         Keywords = model.Keywords,
                         Content = model.Content,
                         CreateUserid = LoginUser.id,
-                        IsActive = model.IsActive,
-                        Name=model.Name
+                        IsActive = model.IsActive
                     };
                     blogService.Add(blog);
                     blogService.Save();
@@ -477,132 +474,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         public IActionResult BlogList()
         {
             var data = blogService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true).ToList();
-            return View(data);
-        }
-
-        #endregion
-        #region DynamicPage
-        [AdminAuthorize] 
-        public IActionResult PageAdd()
-        {
-            ViewBag.ThisWebsite = ThisWebsite;
-            return View(new PagesViewModel());
-        }
-        [AdminAuthorize]
-        [HttpPost] 
-        public IActionResult PageAdd(PagesViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-
-                DynamicPage page = new DynamicPage()
-                {
-                    Name = model.Name,
-                    Title = model.Title, 
-                    Description = model.Description,
-                    MetaTags = model.MetaTags,
-                    Keywords = model.Keywords,
-                    Content = model.Content,
-                    CreateUserid = LoginUser.id,
-                    IsActive = true,
-                    WebSite = ThisWebsite
-
-                };
-                DynamicPage findedPage = dynamicPageService.Get(x => x.Name.Equals(page.Name) && x.WebSite == ThisWebsite);
-                if (findedPage != null)
-                {
-                    findedPage.Name = page.Name;
-                    findedPage.Description = page.Description;
-                    findedPage.MetaTags = page.MetaTags;
-                    findedPage.Keywords = page.Keywords;
-                    findedPage.Content = page.Content;
-                    findedPage.Title = page.Title;
-                    findedPage.UpdateDate = DateTime.UtcNow;
-                    findedPage.UpdateUserid = page.CreateUserid;
-                    findedPage.IsActive = page.IsActive;
-                    dynamicPageService.Update(findedPage);
-                }
-                else
-                {
-                    dynamicPageService.Add(page);
-                    dynamicPageService.Save();
-                }
-            }
-            return RedirectToAction("PageAdd", "Pages", new { area = "Admin" });
-        }
-        [AdminAuthorize] 
-        public IActionResult PageEdit(int id)
-        {
-            var findedPage = dynamicPageService.Get(m => m.id == id);
-            if (findedPage != null)
-            {
-                return View(findedPage);
-            }
-            else
-            {
-                return View();
-            }
-
-        }
-        [AdminAuthorize]
-        [HttpPost] 
-        public IActionResult PageEdit(int id, PagesViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var findedPage = dynamicPageService.Get(m => m.id == id);
-
-                if (findedPage != null)
-                {
-                    findedPage.Name = model.Name;
-                    findedPage.Description = model.Description;
-                    findedPage.MetaTags = model.MetaTags;
-                    findedPage.Keywords = model.Keywords;
-                    findedPage.Content = model.Content;
-                    findedPage.Title = model.Title;
-                    findedPage.UpdateDate = DateTime.UtcNow;
-                    findedPage.UpdateUserid = LoginUser.id;
-                    findedPage.IsActive = model.IsActive;
-                    dynamicPageService.Update(findedPage);
-                    dynamicPageService.Save();
-                }
-
-                else
-                {
-                    DynamicPage page = new DynamicPage()
-                    {
-                        Name = model.Name,
-                        Title = model.Title,
-                        Description = model.Description,
-                        MetaTags = model.MetaTags,
-                        Keywords = model.Keywords,
-                        Content = model.Content,
-                        CreateUserid = LoginUser.id,
-                        IsActive = model.IsActive
-                    };
-                    dynamicPageService.Add(page);
-                    dynamicPageService.Save();
-                }
-            }
-
-            return RedirectToAction("PageList", "Pages", new { area = "Admin" });
-        }
-        [AdminAuthorize]
-        public JsonResult PageDelete(int id)
-        {
-            DynamicPage page = dynamicPageService.Get(x => x.id == id);
-            if (page != null)
-            {
-                page.IsActive = false;
-                dynamicPageService.Save();
-                return Json("Başarılı");
-            }
-            return Json("Basarisiz");
-        }
-        [AdminAuthorize] 
-        public IActionResult PageList()
-        {
-            var data = dynamicPageService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true).ToList();
             return View(data);
         }
 
@@ -705,5 +576,38 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         #endregion
 
+        #region Language
+        [AdminAuthorize]
+        [Route("Dil-Olustur")]
+        public IActionResult LanguageAdd()
+        {
+            return View(new LanguageViewModel());
+        }
+        [AdminAuthorize]
+        [HttpPost]
+        [Route("Dil-Olustur")]
+        public IActionResult LanguageAdd(LanguageViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var findedLanguage = languageService.Get(x=>x.IsActive==true && x.KeyCode.Equals(model.KeyCode));
+                if (true)
+                {
+                    string uniqueFileName = null;
+                    if (model.IconCode != null)
+                    {
+                        string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "LanguageImages");
+                        string Extension = Path.GetExtension(model.IconCode.FileName);
+                        uniqueFileName = model.KeyCode + Extension;
+                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                        model.IconCode.CopyTo(new FileStream(filePath, FileMode.Create));
+                    }
+                }
+            }
+            
+            return View(model);
+        }
+        #endregion
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Petroteks.Entities.Concreate
 {
-    public class Product :EntityBase, IProduct, IHtmlObject
+    public class Product : EntityBase, IProduct, IHtmlObject
     {
         public int Categoryid { get; set; }
         public Category Category { get; set; }
@@ -19,5 +19,8 @@ namespace Petroteks.Entities.Concreate
         public string Description { get; set; }
         public string MetaTags { get; set; }
         public string Title { get; set; }
+
+        public int? Languageid { get; set; }
+        public virtual  Language Language { get; set; }
     }
 }

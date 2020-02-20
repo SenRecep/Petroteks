@@ -73,6 +73,12 @@ namespace Petroteks.MvcUi
 
             services.AddSession();
             services.AddDistributedMemoryCache();
+
+            services.Configure<IISServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

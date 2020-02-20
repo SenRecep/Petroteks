@@ -5,23 +5,30 @@
     ViewData["MetaTags"] = Model.MainPage.MetaTags;
     ViewData["Keywords"] = Model.MainPage.Keywords;
 }
- <style>
- @@media screen and (max-width: 1900px), (min-width: 900px) {
-  .caption{
-      transform: translateX(0px) translateY(-70px)!important;
-  }
-}
- .color-nav-blue{
-     color:#413e66;
-     font-weight: 600;
- }
-  .color-blue{
-     color:#413e66;
- }
-  .img-calign{
-      background-size: 100% auto!important; background-repeat: no-repeat!important;
-  }
- </style>
+<style>
+    @@media screen and (max-width: 1900px), (min-width: 900px) {
+        .caption {
+            transform: translateX(0px) translateY(-70px) !important;
+        }
+    }
+
+    .color-nav-blue {
+        color: #413e66;
+        font-weight: 600;
+    }
+
+    .color-blue {
+        color: #413e66;
+    }
+
+    .img-calign {
+        background-size: 100% auto !important;
+        background-repeat: no-repeat !important;
+    }
+</style>
+<!--==========================
+  Header Section
+ ============================-->
 @Html.Raw(Model.MainPage.Slider)
 
 <main id="main">

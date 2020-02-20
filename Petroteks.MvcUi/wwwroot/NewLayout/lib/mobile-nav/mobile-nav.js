@@ -2,7 +2,8 @@
   "use strict";
 
   // Mobile Navigation
-  if ($('.main-nav').length) {
+    if ($('.main-nav').length)
+    { 
     var $mobile_nav = $('.main-nav').clone().prop({
       class: 'mobile-nav d-lg-none'
     });
@@ -32,7 +33,9 @@
         }
       }
     });
-  } else if ($(".mobile-nav, .mobile-nav-toggle").length) {
+  }
+  else if ($(".mobile-nav, .mobile-nav-toggle").length)
+  {
     $(".mobile-nav, .mobile-nav-toggle").hide();
   }
 

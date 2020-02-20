@@ -110,7 +110,7 @@
 
 
                         <ul>
-                            <li><a id="tr-TR" title="tr"><img src="~/images/tr.png" alt="bayrak">TR</a></li>
+                            <li><a id="tr-TR" title="tr" data-code="tr_TR" onclick="selectlang(this.getAttribute('data-code'));"><img src="~/images/tr.png" alt="bayrak">TR</a></li>
                             <li><a id="en-GB" title="en"><img src="~/images/en.png" alt="bayrak">ENG</a></li>
                         </ul>
                     </li>
@@ -304,8 +304,18 @@
                 height: 550, // default - height : 400
             });
         });
- 
-   
+        function selectlang(code) {
+             var code = code;
+            $.ajax({
+                type: 'GET',
+                url: '/Global/ChangeCulture',
+                data: { lang: JSON.stringify(code) },
+                success: function (e) {
+
+                }
+
+            });
+        }
     </script>
 
 

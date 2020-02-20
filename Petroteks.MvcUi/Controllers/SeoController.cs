@@ -8,6 +8,7 @@ using Petroteks.Entities.Concreate;
 using static Petroteks.Bll.Helpers.FriendlyUrlHelper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Petroteks.MvcUi.Services;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -20,9 +21,11 @@ namespace Petroteks.MvcUi.Controllers
         public SeoController(ICategoryService categoryService,
             IWebsiteService websiteService,
             IProductService productService,
+            ILanguageCookieService languageCookieService,
+            ILanguageService languageService,
             IDynamicPageService dynamicPageService,
             IHttpContextAccessor httpContextAccessor)
-            : base(websiteService, httpContextAccessor)
+            : base(websiteService,languageService,languageCookieService, httpContextAccessor)
         {
             this.categoryService = categoryService;
             this.productService = productService;

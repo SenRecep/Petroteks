@@ -123,9 +123,9 @@
                         <li class="nav-item d-none d-md-block">
                             <a class="nav-link" href="javascript:void(0)">
                                 <div class="customize-input">
-                                    <select class="custom-select form-control bg-white custom-radius custom-shadow border-0">
-                                        <option selected>TR</option>
-                                        <option value="1">EN</option>
+                                    <select id="selectlang" class="custom-select form-control bg-white custom-radius custom-shadow border-0">
+                                        <option selected value="tr_TR">TR</option>
+                                        <option value="en_GB">EN</option>
                                     </select>
                                 </div>
                             </a>
@@ -393,7 +393,7 @@
             filebrowserBrowseUrl: "/LinkBrowser",
             filebrowserWindowWidth: 350,
             filebrowserWindowHeight: 500,
-            allowedContent: 'ul li i(ion-android-checkmark-circle)'  
+            allowedContent: 'ul li i(ion-android-checkmark-circle)'
         };
 
         config.allowedContent = true;
@@ -407,10 +407,24 @@
         if (editor2 != null) CKEDITOR.replace(editor2, config);
         if (editor3 != null) CKEDITOR.replace(editor3, config);
         if (editor4 != null) CKEDITOR.replace(editor4, config);
-         CKEDITOR.dtd.$removeEmpty.i = 0;
+        CKEDITOR.dtd.$removeEmpty.i = 0;
+
+        $('selectlang').on('change', function () {
+            var id = $(this).val();
+            $.ajax({
+                type: 'GET',
+                url: '/Language/ChangeCulture',
+                data: { lang: JSON.stringify(id) },
+                success: function (e) {
+
+                }
+
+            });
+        });
+
     </script>
 
-
+    
 
     @RenderSection("Scripts", required: false)
 

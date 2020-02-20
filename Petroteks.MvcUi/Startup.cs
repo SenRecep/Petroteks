@@ -60,9 +60,14 @@ namespace Petroteks.MvcUi
             services.AddScoped<IDynamicPageService, DynamicPageManager>();
             services.AddScoped<IDynamicPageDal, EfDynamicPageDal>();
 
+            services.AddScoped<ILanguageService, LanguageManager>();
+            services.AddScoped<ILanguageDal, EfLanguageDal>();
+
             services.AddSingleton<IUserSessionService, UserSessionService>();
             services.AddSingleton<IUserCookieService, UserCookieService>();
+            services.AddSingleton<ILanguageCookieService, LanguageCookieService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
+
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.LatinExtendedA }));
             
             services.AddRazorPages();

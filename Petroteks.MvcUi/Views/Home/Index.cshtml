@@ -61,32 +61,36 @@
                                 </div>
                             </a>
                         }
-                        foreach (var item in Model.Products)
+                        if (Model.Products!=null)
                         {
+                            foreach (var item in Model.Products)
+                            {
 
-                            <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(item.SupTitle) , id=item.id})">
-                                <div class="carda">
+                                <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(item.SupTitle) , id=item.id})">
+                                    <div class="carda">
 
-                                    <div class="card_image">
-                                        @if (item.PhotoPath == null)
-                                        {
-                                            <img src="~/images/Lifta.jpg" />
-                                        }
-                                        else
-                                        {
-                                            <img src="../ProductImages/@item.PhotoPath" />
-                                        }
+                                        <div class="card_image">
+                                            @if (item.PhotoPath == null)
+                                            {
+                                                <img src="~/images/Lifta.jpg" />
+                                            }
+                                            else
+                                            {
+                                                <img src="../ProductImages/@item.PhotoPath" />
+                                            }
+
+                                        </div>
+                                        <div class="card_title title-white">
+                                            <p>@item.SupTitle</p>
+                                        </div>
 
                                     </div>
-                                    <div class="card_title title-white">
-                                        <p>@item.SupTitle</p>
-                                    </div>
-
-                                </div>
-                            </a>
+                                </a>
+                            }
                         }
+
                     }
-                </div> 
+                </div>
             </div>
 
         </div>

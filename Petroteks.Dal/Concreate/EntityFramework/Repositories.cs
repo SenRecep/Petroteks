@@ -14,4 +14,5 @@ namespace Petroteks.Dal.Concreate.EntityFramework
     public class EfEmailDal : EfEntityRepostoryBase<Email, PetroteksDbContext>, IEmailDal { }
     public class EfBlogDal : EfEntityRepostoryBase<Blog, PetroteksDbContext>, IBlogDal { }
     public class EfDynamicPageDal : EfEntityRepostoryBase<DynamicPage, PetroteksDbContext>, IDynamicPageDal { }
+    public class EfLanguageDal : EfEntityRepostoryBase<Language, PetroteksDbContext>, ILanguageDal { }
 }

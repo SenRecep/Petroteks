@@ -1,5 +1,6 @@
 ﻿using Petroteks.Core.Dal;
 using Petroteks.Core.Entities;
+using Petroteks.Entities.ComplexTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;

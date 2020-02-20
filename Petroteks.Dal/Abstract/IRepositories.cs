@@ -13,4 +13,5 @@ namespace Petroteks.Dal.Abstract
     public interface IEmailDal : IEntityRepostory<Email> { }
     public interface IBlogDal : IEntityRepostory<Blog> { }
     public interface IDynamicPageDal : IEntityRepostory<DynamicPage> { }
+    public interface ILanguageDal : IEntityRepostory<Language> { }
 }

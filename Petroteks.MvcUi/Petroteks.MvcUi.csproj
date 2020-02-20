@@ -9,6 +9,7 @@
     <Folder Include="Pages\" />
     <Folder Include="wwwroot\CategoryImages\" />
     <Folder Include="wwwroot\BlogImages\" />
+    <Folder Include="wwwroot\LanguageImages\" />
     <Folder Include="wwwroot\ProductImages\" />
     <Folder Include="wwwroot\UploadFiles\" />
   </ItemGroup>

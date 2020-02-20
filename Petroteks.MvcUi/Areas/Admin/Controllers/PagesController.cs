@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
 using Petroteks.Entities.Concreate;
+using Petroteks.MvcUi.Areas.Admin.Models;
 using Petroteks.MvcUi.Attributes;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
@@ -25,6 +26,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
         private readonly IBlogService blogService;
+        private readonly ILanguageService languageService;
         private readonly IHostingEnvironment hostingEnvironment;
         #endregion
         #region CTOR
@@ -37,9 +39,11 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             IHttpContextAccessor httpContextAccessor,
             ICategoryService categoryService,
             IBlogService blogService,
+            ILanguageService languageService,
             IHostingEnvironment hostingEnvironment,
+            ILanguageCookieService languageCookieService,
             IProductService productService)
-            : base(userSessionService, websiteService, httpContextAccessor)
+            : base(userSessionService, websiteService,languageService,languageCookieService, httpContextAccessor)
         {
             this.mainPageService = mainPageService;
             this.aboutUsObjectService = aboutUsObjectService;
@@ -47,6 +51,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             this.categoryService = categoryService;
             this.productService = productService;
             this.blogService = blogService;
+            this.languageService = languageService;
             this.hostingEnvironment = hostingEnvironment;
         }
 
@@ -571,5 +576,38 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         #endregion
 
+        #region Language
+        [AdminAuthorize]
+        [Route("Dil-Olustur")]
+        public IActionResult LanguageAdd()
+        {
+            return View(new LanguageViewModel());
+        }
+        [AdminAuthorize]
+        [HttpPost]
+        [Route("Dil-Olustur")]
+        public IActionResult LanguageAdd(LanguageViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var findedLanguage = languageService.Get(x=>x.IsActive==true && x.KeyCode.Equals(model.KeyCode));
+                if (true)
+                {
+                    string uniqueFileName = null;
+                    if (model.IconCode != null)
+                    {
+                        string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "LanguageImages");
+                        string Extension = Path.GetExtension(model.IconCode.FileName);
+                        uniqueFileName = model.KeyCode + Extension;
+                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                        model.IconCode.CopyTo(new FileStream(filePath, FileMode.Create));
+                    }
+                }
+            }
+            
+            return View(model);
+        }
+        #endregion
     }
 }

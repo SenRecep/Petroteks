@@ -43,7 +43,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             IHostingEnvironment hostingEnvironment,
             ILanguageCookieService languageCookieService,
             IProductService productService)
-            : base(userSessionService, websiteService,languageService,languageCookieService, httpContextAccessor)
+            : base(userSessionService, websiteService, languageService, languageCookieService, httpContextAccessor)
         {
             this.mainPageService = mainPageService;
             this.aboutUsObjectService = aboutUsObjectService;
@@ -323,7 +323,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
 
-      
+
         [AdminAuthorize]
         [HttpGet]
         [Route("Urun-Silme-{id:int}")]
@@ -591,21 +591,35 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                var findedLanguage = languageService.Get(x=>x.IsActive==true && x.KeyCode.Equals(model.KeyCode));
-                if (true)
+                Language language = languageService.Get(x => x.IsActive == true && x.KeyCode.Equals(model.KeyCode) && x.WebSiteid == ThisWebsite.id);
+                if (language == null)
                 {
+                    bool langdef = languageService.Get(x => x.IsActive == true  && x.WebSiteid == ThisWebsite.id && x.Default == true) == null ? true : false;
                     string uniqueFileName = null;
                     if (model.IconCode != null)
                     {
                         string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "LanguageImages");
                         string Extension = Path.GetExtension(model.IconCode.FileName);
-                        uniqueFileName = model.KeyCode + Extension;
+                        uniqueFileName = $"{model.KeyCode}_{model.Name}{Extension}";
+                        uniqueFileName = Bll.Helpers.FriendlyUrlHelper.CleanFileName(uniqueFileName);
                         string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                        model.IconCode.CopyTo(new FileStream(filePath, FileMode.Create));
+                        if (!System.IO.File.Exists(filePath))
+                            model.IconCode.CopyTo(new FileStream(filePath, FileMode.Create));
                     }
+                    language = new Language()
+                    {
+                        Name = model.Name,
+                        KeyCode = model.KeyCode,
+                        IconCode = uniqueFileName,
+                        Default = langdef,
+                        CreateUserid = LoginUser.id,
+                        WebSite=ThisWebsite
+                    };
+                    languageService.Add(language);
+                    languageService.Save();
                 }
             }
-            
+
             return View(model);
         }
         #endregion

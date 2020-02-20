@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Petroteks.Bll.Helpers
@@ -56,6 +57,9 @@ namespace Petroteks.Bll.Helpers
                 return "";
             }
         }
-      
+        public static string CleanFileName(string fileName)
+        {
+            return Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
+        }
     }
 }

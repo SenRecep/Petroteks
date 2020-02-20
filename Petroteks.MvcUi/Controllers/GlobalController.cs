@@ -66,7 +66,7 @@ namespace Petroteks.MvcUi.Controllers
                         KeyCode = "tr-TR",
                         Name = "Türkçe",
                         WebSite = ThisWebsite,
-                        IconCode="tr.png"
+                        IconCode= "tr-TR_Türkçe.png"
                     };
                     languageService.Add(dbcurrentLanguage);
                     languageService.Save();

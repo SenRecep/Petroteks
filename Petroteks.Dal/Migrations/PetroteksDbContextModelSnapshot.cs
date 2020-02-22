@@ -111,6 +111,9 @@ namespace Petroteks.Dal.Migrations
                     b.Property<string>("PhotoPath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -159,6 +162,9 @@ namespace Petroteks.Dal.Migrations
 
                     b.Property<string>("PhotoPath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -467,6 +473,9 @@ namespace Petroteks.Dal.Migrations
 
                     b.Property<string>("PhotoPath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
 
                     b.Property<string>("SubTitle")
                         .HasColumnType("nvarchar(max)");

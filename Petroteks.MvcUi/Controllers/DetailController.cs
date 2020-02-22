@@ -26,13 +26,13 @@ namespace Petroteks.MvcUi.Controllers
         {
             int pagesize = 10;
             var Category = categoryService.Get(x => x.id == category && x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.IsActive == true);
-            var subCategories = categoryService.GetMany(x => x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.Parentid == Category.id && x.IsActive == true);
+            var subCategories = categoryService.GetMany(x => x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.Parentid == Category.id && x.IsActive == true).OrderByDescending(x=>x.Priority).ToList();
             var products = productService.GetMany(x => x.Categoryid == Category.id && x.IsActive == true);
             return View(new ProductListViewModel()
             {
-                Products = products.Skip((page - 1) * pagesize).Take(pagesize).ToList(),
+                Products = products.Skip((page - 1) * pagesize).Take(pagesize).OrderByDescending(x => x.Priority).ToList(),
                 PageCount = (int)Math.Ceiling(products.Count / (double)pagesize),
-                PageSize = pagesize,
+                PageSize = pagesize, 
                 CurrentCategory = Category,
                 CurrentPage = page,
                 SubCategories = subCategories

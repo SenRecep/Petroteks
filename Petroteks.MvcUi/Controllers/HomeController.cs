@@ -42,7 +42,7 @@ namespace Petroteks.MvcUi.Controllers
             IDynamicPageService dynamicPageService,
             ILanguageCookieService languageCookieService,
             IProductService productService) :
-            base(websiteService,languageService,languageCookieService, httpContextAccessor)
+            base(websiteService, languageService, languageCookieService, httpContextAccessor)
         {
             this.aboutUsObjectService = aboutUsObjectService;
             this.mainPageService = mainPageService;
@@ -60,12 +60,12 @@ namespace Petroteks.MvcUi.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            ICollection<Category> category = categoryService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true && x.Parentid == 0 && x.Name != "ROOT").OrderByDescending(x => x.CreateDate).ToList();
+            ICollection<Category> category = categoryService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true && x.Parentid == 0 && x.Name != "ROOT").OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
             Category ROOTCategory = categoryService.Get(x => x.IsActive == true && x.Name == "ROOT" && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             ICollection<Product> products = null;
             if (ROOTCategory != null)
-                products = productService.GetMany(x => x.IsActive == true && x.Categoryid == ROOTCategory.id);
-            ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).Take(3).ToList();
+                products = productService.GetMany(x => x.IsActive == true && x.Categoryid == ROOTCategory.id).OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
+            //ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).OrderByDescending(x=>x.Priority).Take(3).ToList();
             MainPage mainPage;
             mainPage = mainPageService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             if (mainPage == null)
@@ -74,7 +74,7 @@ namespace Petroteks.MvcUi.Controllers
             return View(new MainPageViewModel()
             {
                 MainPage = mainPage,
-                Blogs = blogs,
+                //Blogs = blogs,
                 Categories = category,
                 Products = products
             });
@@ -88,7 +88,7 @@ namespace Petroteks.MvcUi.Controllers
         [Route("Bloglar")]
         public IActionResult PetroBlog()
         {
-            ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).ToList();
+            ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x=>x.Priority).OrderByDescending(x => x.CreateDate).ToList();
             return View(blogs);
         }
         [Route("Blog-Detay-{id:int}")]

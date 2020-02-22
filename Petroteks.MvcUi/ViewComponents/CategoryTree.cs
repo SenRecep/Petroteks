@@ -23,11 +23,11 @@ namespace Petroteks.MvcUi.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(Website website)
         {
             ICollection<Category> categories = categoryService.GetMany(category => category.WebSiteid == website.id && category.IsActive == true);
-            ICollection<Product> products = Products(categories).ToList();
+            ICollection<Product> products = Products(categories).OrderByDescending(x=>x.Priority).ToList();
             return View(new CategoryListViewModel(categoryService, productService)
             {
-                MainCategories = categories.Where(x => x.Parentid == 0).ToList(),
-                AllSubCategory = categories.Where(x => x.Parentid != 0).ToList(),
+                MainCategories = categories.Where(x => x.Parentid == 0).OrderByDescending(x => x.Priority).ToList(),
+                AllSubCategory = categories.Where(x => x.Parentid != 0).OrderByDescending(x => x.Priority).ToList(),
                 AllProduct = products
             });
 

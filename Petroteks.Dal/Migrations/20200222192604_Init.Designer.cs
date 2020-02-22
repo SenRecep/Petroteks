@@ -10,8 +10,8 @@ using Petroteks.Dal.Concreate.EntityFramework.Contexts;
 namespace Petroteks.Dal.Migrations
 {
     [DbContext(typeof(PetroteksDbContext))]
-    [Migration("20200219153307_LangDef")]
-    partial class LangDef
+    [Migration("20200222192604_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -113,6 +113,9 @@ namespace Petroteks.Dal.Migrations
                     b.Property<string>("PhotoPath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -161,6 +164,9 @@ namespace Petroteks.Dal.Migrations
 
                     b.Property<string>("PhotoPath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -469,6 +475,9 @@ namespace Petroteks.Dal.Migrations
 
                     b.Property<string>("PhotoPath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
 
                     b.Property<string>("SubTitle")
                         .HasColumnType("nvarchar(max)");

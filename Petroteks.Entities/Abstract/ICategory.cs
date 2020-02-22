@@ -9,5 +9,6 @@ namespace Petroteks.Entities.Abstract
         int Parentid { get; set; }
         string Name { get; set; }
         string PhotoPath { get; set; }
+        int Priority { get; set; }
     }
 }

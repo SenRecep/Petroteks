@@ -25,6 +25,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
     {
         private readonly IUserService _userService;
         private readonly IUserSessionService _userSessionService;
+        private readonly ILanguageService languageService;
+        private readonly ILanguageCookieService languageCookieService;
         private readonly IEmailService emailService;
         private EmailSender emailSender;
         public HomeController(
@@ -39,6 +41,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         {
             this._userService = userService;
             this._userSessionService = userSessionService;
+            this.languageService = languageService;
+            this.languageCookieService = languageCookieService;
             this.emailService = emailService;
         }
         [Route("Admin-Panel")]
@@ -175,7 +179,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         public IActionResult Bilgilendirme()
         {
             emailSender = new EmailSender(emailService);
-            ICollection<Email> emails = emailSender.LoadWebsiteEmails(ThisWebsite.id);
+            ICollection<Email> emails = emailSender.LoadWebsiteEmails(Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id);
             MailViewModel model = new MailViewModel()
             {
                 Emails = emails,
@@ -206,7 +210,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return View(new MailViewModel()
             {
-                Emails = emailSender.LoadWebsiteEmails(ThisWebsite.id)
+                Emails = emailSender.LoadWebsiteEmails(Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id)
             });
         }
 
@@ -262,7 +266,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             try
             {
                 emailSender = new EmailSender(emailService);
-                if (emailSender.EmailAdd(ThisWebsite, mail, category) == true)
+                if (emailSender.EmailAdd(Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite, mail, category) == true)
                 {
                     return Json("Islem Basari ile tamamlandi");
                 }
@@ -298,6 +302,19 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return Json(true);
         }
 
-     
+        [Route("Admin/Language-Change/language-{KeyCode}")]
+        public IActionResult ChangeCulture(string KeyCode)
+        {
+            if (!string.IsNullOrWhiteSpace(KeyCode))
+            {
+                Language language = languageService.Get(x => x.KeyCode.Equals(KeyCode) && x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true);
+                if (language != null)
+                {
+                    LanguageContext.CurrentLanguage = language;
+                    languageCookieService.Set("CurrentLanguage", language, 60 * 24 * 7);
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

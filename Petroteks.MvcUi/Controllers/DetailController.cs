@@ -25,8 +25,8 @@ namespace Petroteks.MvcUi.Controllers
         public IActionResult CategoryDetail(int page = 1, int category = 0)
         {
             int pagesize = 10;
-            var Category = categoryService.Get(x => x.id == category && x.WebSite == ThisWebsite && x.IsActive == true);
-            var subCategories = categoryService.GetMany(x => x.WebSite == ThisWebsite && x.Parentid == Category.id && x.IsActive == true);
+            var Category = categoryService.Get(x => x.id == category && x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.IsActive == true);
+            var subCategories = categoryService.GetMany(x => x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.Parentid == Category.id && x.IsActive == true);
             var products = productService.GetMany(x => x.Categoryid == Category.id && x.IsActive == true);
             return View(new ProductListViewModel()
             {

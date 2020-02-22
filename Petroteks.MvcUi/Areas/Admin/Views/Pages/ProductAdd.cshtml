@@ -3,7 +3,7 @@
     var photoPath = $"~/ProductImages/{Model.PhotoPath}";
 }
 
-@await Component.InvokeAsync("CategoryTree", new { website = (Website)ViewBag.ThisWebsite })
+@await Component.InvokeAsync("CategoryTree", new { website = CurrentWebsite })
 
 
     <form enctype="multipart/form-data" method="post">

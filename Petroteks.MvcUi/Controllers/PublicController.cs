@@ -15,11 +15,11 @@ namespace Petroteks.MvcUi.Controllers
         public PublicController(IWebsiteService websiteService,ILanguageService languageService, ILanguageCookieService languageCookieService, IHttpContextAccessor httpContextAccessor) : base(websiteService, languageService,languageCookieService,httpContextAccessor)
         {
         }
-        public override void OnActionExecuted(ActionExecutedContext context)
-        {
-            ViewBag.ThisWebsite = ThisWebsite;
-            base.OnActionExecuted(context);
-        }
+        //public override void OnActionExecuted(ActionExecutedContext context)
+        //{
+        //    ViewBag.CurrentWebsite = Bll.Helpers.WebsiteContext.CurrentWebsite;
+        //    base.OnActionExecuted(context);
+        //}
 
     }
 }

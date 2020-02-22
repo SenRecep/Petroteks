@@ -6,12 +6,13 @@ using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Services;
 using System.Globalization;
 using System.Threading;
+using System.Linq;
+using Petroteks.MvcUi.Attributes;
 
 namespace Petroteks.MvcUi.Controllers
 {
     public class GlobalController : Controller
     {
-        public Website ThisWebsite { get; set; }
         private readonly IWebsiteService websiteService;
         private readonly ILanguageService languageService;
         private readonly ILanguageCookieService languageCookieService;
@@ -24,13 +25,13 @@ namespace Petroteks.MvcUi.Controllers
             this.languageCookieService = languageCookieService;
             this.httpContextAccessor = httpContextAccessor;
 
-            if (ThisWebsite == null)
+            if (WebsiteContext.CurrentWebsite == null)
             {
                 string url = $"{httpContextAccessor.HttpContext.Request.Scheme}://{httpContextAccessor.HttpContext.Request.Host}";
                 string siteName = httpContextAccessor.HttpContext.Request.Host.Value.Replace("www.", "", System.StringComparison.InvariantCultureIgnoreCase);
                 Website website = websiteService.findByUrl(siteName);
                 if (website != null)
-                    ThisWebsite = website;
+                    WebsiteContext.CurrentWebsite = website;
                 else
                 {
                     Website wb = new Website()
@@ -40,24 +41,22 @@ namespace Petroteks.MvcUi.Controllers
                     };
                     websiteService.Add(wb);
                     websiteService.Save();
-                    ThisWebsite = wb;
+                    WebsiteContext.CurrentWebsite = wb;
                 }
                 LoadLanguage();
             }
-
         }
         public void LoadLanguage()
         {
 
             Language currentLanguage = languageCookieService.Get("CurrentLanguage");
-
+            LanguageContext.WebsiteLanguages = languageService.GetMany(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             if (currentLanguage == null)
             {
                 var culture = CultureInfo.CurrentCulture;
-
-                Language dbcurrentLanguage = languageService.Get(x => x.IsActive == true && x.WebSiteid == ThisWebsite.id && x.KeyCode.Equals(culture.Name));
+                Language dbcurrentLanguage = LanguageContext.WebsiteLanguages.FirstOrDefault(x => x.KeyCode.Equals(culture.Name));
                 if (dbcurrentLanguage == null)
-                    dbcurrentLanguage = languageService.Get(x => x.IsActive == true && x.WebSiteid == ThisWebsite.id && x.Default == true);
+                    dbcurrentLanguage = LanguageContext.WebsiteLanguages.FirstOrDefault(x => x.Default == true);
                 if (dbcurrentLanguage == null)
                 {
                     dbcurrentLanguage = new Language()
@@ -65,8 +64,8 @@ namespace Petroteks.MvcUi.Controllers
                         Default = true,
                         KeyCode = "tr-TR",
                         Name = "Türkçe",
-                        WebSite = ThisWebsite,
-                        IconCode= "tr-TR_Türkçe.png"
+                        WebSite = WebsiteContext.CurrentWebsite,
+                        IconCode = "tr-TR_Türkçe.png"
                     };
                     languageService.Add(dbcurrentLanguage);
                     languageService.Save();

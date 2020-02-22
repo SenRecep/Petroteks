@@ -114,21 +114,18 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i data-feather="globe" class="svg-icon"></i>
+                                Diller
                             </a>
+
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Petroteks.com</a>
-                                <a class="dropdown-item" href="#">websitesi.com</a>
+                                @foreach (var item in LanguageContext.WebsiteLanguages)
+                                {
+                                    <a class="dropdown-item" id="@item.KeyCode" title="@item.KeyCode" href="@Url.Action("ChangeCulture","Home",new { area="Admin", KeyCode=item.KeyCode})">
+                                        <img src="~/LanguageImages/@item.IconCode" asp-append-version="true" alt="@item.Name"> @item.Name
+                                    </a>
+                                }
                             </div>
-                        </li>
-                        <li class="nav-item d-none d-md-block">
-                            <a class="nav-link" href="javascript:void(0)">
-                                <div class="customize-input">
-                                    <select id="selectlang" class="custom-select form-control bg-white custom-radius custom-shadow border-0">
-                                        <option selected value="tr_TR">TR</option>
-                                        <option value="en_GB">EN</option>
-                                    </select>
-                                </div>
-                            </a>
+
                         </li>
                     </ul>
                     <!-- ============================================================== -->
@@ -431,7 +428,7 @@
 
     </script>
 
-    
+
 
     @RenderSection("Scripts", required: false)
 

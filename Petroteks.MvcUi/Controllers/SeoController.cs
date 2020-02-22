@@ -71,7 +71,7 @@ namespace Petroteks.MvcUi.Controllers
 
             try
             {
-                Categories = categoryService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true);
+                Categories = categoryService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true);
 
                 foreach (Category item in Categories)
                 {
@@ -103,7 +103,7 @@ namespace Petroteks.MvcUi.Controllers
 
             try
             {
-                ICollection<DynamicPage> dynamicPages = dynamicPageService.GetMany(x => x.WebSiteid == ThisWebsite.id && x.IsActive == true);
+                ICollection<DynamicPage> dynamicPages = dynamicPageService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true);
 
                 foreach (var item in dynamicPages)
                 {

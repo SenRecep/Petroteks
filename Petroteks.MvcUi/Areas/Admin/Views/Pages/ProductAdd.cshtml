@@ -3,7 +3,7 @@
     var photoPath = $"~/ProductImages/{Model.PhotoPath}";
 }
 
-@await Component.InvokeAsync("CategoryTree", new { website = (Website)ViewBag.ThisWebsite })
+@await Component.InvokeAsync("CategoryTree", new { website = CurrentWebsite })
 
 
     <form enctype="multipart/form-data" method="post">
@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </div>
+
 
 
 
@@ -94,6 +95,18 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Blog Önceliği</h4>
+                <div class="form-group">
+                    <input type="number" class="form-control" asp-for="Priority" aria-describedby="Priority" placeholder="Öncelik">
+                </div>
+            </div>
+        </div>
+
+        
 
 
 

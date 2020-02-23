@@ -20,6 +20,8 @@ namespace Petroteks.Entities.Concreate
         public string MetaTags { get; set; }
         public string Title { get; set; }
 
+        public int Priority { get; set; }
+
         public int? Languageid { get; set; }
         public virtual  Language Language { get; set; }
     }

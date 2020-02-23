@@ -88,14 +88,14 @@
                     <li class="drop-down">
                         <a href="">ÜRÜNLERİMİZ</a>
                         <ul>
-                            @await Component.InvokeAsync("CategoryList", new { website = (Website)ViewBag.ThisWebsite })
+                            @await Component.InvokeAsync("CategoryList", new { website = CurrentWebsite })
                         </ul>
                     </li>
 
                     @*<li class="drop-down">
                             <a href="" title="Sayfalar">SAYFALAR</a>
                             <ul>
-                                @await Component.InvokeAsync("PagesList", new { website = (Website)ViewBag.ThisWebsite })
+                                @await Component.InvokeAsync("PagesList", new { website = CurrentWebsite })
                             </ul>
                         </li>*@
 
@@ -107,11 +107,16 @@
 
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact" title="İLETİŞİM">İLETİŞİM</a></li>
                     <li class="drop-down">
-
-
+                        <a href="">Diller</a>
                         <ul>
-                            <li><a id="tr-TR" title="tr" data-code="tr_TR" onclick="selectlang(this.getAttribute('data-code'));"><img src="~/images/tr.png" alt="bayrak">TR</a></li>
-                            <li><a id="en-GB" title="en"><img src="~/images/en.png" alt="bayrak">ENG</a></li>
+                            @foreach (var item in LanguageContext.WebsiteLanguages)
+                            {
+                                <li>
+                                    <a id="@item.KeyCode" title="@item.KeyCode" href="@Url.Action("ChangeCulture","Home",new { KeyCode=item.KeyCode})">
+                                        <img src="~/LanguageImages/@item.IconCode" asp-append-version="true" alt="@item.Name"> @item.Name
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </li>
                 </ul>
@@ -304,18 +309,6 @@
                 height: 550, // default - height : 400
             });
         });
-        function selectlang(code) {
-             var code = code;
-            $.ajax({
-                type: 'GET',
-                url: '/Global/ChangeCulture',
-                data: { lang: JSON.stringify(code) },
-                success: function (e) {
-
-                }
-
-            });
-        }
     </script>
 
 

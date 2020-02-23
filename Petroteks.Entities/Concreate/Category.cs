@@ -11,5 +11,6 @@ namespace Petroteks.Entities.Concreate
         public int Parentid { get; set; }
         public string Name { get; set; }
         public string PhotoPath { get; set; }
+        public int Priority { get; set; }
     }
 }

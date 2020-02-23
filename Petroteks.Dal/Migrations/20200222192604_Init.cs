@@ -89,7 +89,8 @@ namespace Petroteks.Dal.Migrations
                     WebSiteid = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     KeyCode = table.Column<string>(nullable: true),
-                    IconCode = table.Column<string>(nullable: true)
+                    IconCode = table.Column<string>(nullable: true),
+                    Default = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -158,7 +159,8 @@ namespace Petroteks.Dal.Migrations
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     PhotoPath = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Priority = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -192,7 +194,8 @@ namespace Petroteks.Dal.Migrations
                     Languageid = table.Column<int>(nullable: true),
                     Parentid = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    PhotoPath = table.Column<string>(nullable: true)
+                    PhotoPath = table.Column<string>(nullable: true),
+                    Priority = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -344,6 +347,7 @@ namespace Petroteks.Dal.Migrations
                     Description = table.Column<string>(nullable: true),
                     MetaTags = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
+                    Priority = table.Column<int>(nullable: false),
                     Languageid = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

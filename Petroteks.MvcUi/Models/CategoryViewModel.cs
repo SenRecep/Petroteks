@@ -13,5 +13,6 @@ namespace Petroteks.MvcUi.Models
         public string Name { get; set; }
         public IFormFile Image { get; set; }
         public string ImagePath { get; set; }
+        public int Priority { get; set; }
     }
 }

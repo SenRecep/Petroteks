@@ -18,6 +18,7 @@ namespace Petroteks.MvcUi.Models
         public string Description { get; set; }
         public string MetaTags { get; set; } 
         public bool IsActive { get; set; }
+        public int Priority { get; set; }
     }
 
 }

@@ -40,7 +40,7 @@ namespace Petroteks.MvcUi.Controllers
             Response.Clear();
             Response.ContentType = "text/xml";
             XmlTextWriter xtr = new XmlTextWriter(Response.Body, Encoding.UTF8);
-            xtr.WriteStartDocument();
+            xtr.WriteStartDocument();   
             xtr.WriteStartElement("urlset");
             xtr.WriteAttributeString("xmlns", "http://www.sitemap.org/schemas/sitemap/0.9");
             xtr.WriteAttributeString("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");

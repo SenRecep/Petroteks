@@ -393,6 +393,8 @@
             "hideMethod": "fadeOut"
         }
 
+        CKEDITOR.plugins.addExternal('SelectTemplate', 'Admin/dist/js/', 'plugin.js');
+        CKEDITOR.plugins.addExternal('SaveTemplate', 'Admin/dist/js/', 'plugin.js');
         const config = {
             filebrowserImageBrowseUrl: "/ImageBrowser",
             filebrowserImageWindowWidth: 750,
@@ -400,9 +402,13 @@
             filebrowserBrowseUrl: "/LinkBrowser",
             filebrowserWindowWidth: 350,
             filebrowserWindowHeight: 500,
+            entities_latin : false, 
+            extraPlugins: 'font',
             allowedContent: 'ul li i(ion-android-checkmark-circle)'
         };
+        // '/NewLayout/css/materialize.min.css'
 
+        config.contentsCss = ['/NewLayout/css/style.css',];
         config.allowedContent = true;
         config.extraAllowedContent = 'i(*)';
         config.removeFormatAttributes = '';
@@ -415,6 +421,7 @@
         if (editor3 != null) CKEDITOR.replace(editor3, config);
         if (editor4 != null) CKEDITOR.replace(editor4, config);
         CKEDITOR.dtd.$removeEmpty.i = 0;
+
 
         $('selectlang').on('change', function () {
             var id = $(this).val();
@@ -431,7 +438,7 @@
 
     </script>
 
-    
+
 
     @RenderSection("Scripts", required: false)
 

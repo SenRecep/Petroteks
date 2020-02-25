@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Petroteks.Dal.Concreate.EntityFramework.Contexts;
 
 namespace Petroteks.Dal.Migrations
 {
     [DbContext(typeof(PetroteksDbContext))]
-    partial class PetroteksDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200225210133_StaticContents")]
+    partial class StaticContents
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

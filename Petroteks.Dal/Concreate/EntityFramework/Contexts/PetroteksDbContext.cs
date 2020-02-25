@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
 
 namespace Petroteks.Dal.Concreate.EntityFramework.Contexts
@@ -16,13 +17,14 @@ namespace Petroteks.Dal.Concreate.EntityFramework.Contexts
         public DbSet<AboutUsObject> AboutUsObjects { get; set; }
         public DbSet<PrivacyPolicyObject> PrivacyPolicyObjects { get; set; }
         public DbSet<MainPage> MainPages { get; set; }
-
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Email> Emails { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<DynamicPage> DynamicPages { get; set; }
         public DbSet<Language> Languages { get; set; }
-
+        public DbSet<UI_Navbar> UI_Navbars { get; set; }
+        public DbSet<UI_Contact> UI_Contacts { get; set; }
+        public DbSet<UI_Footer> UI_Footers { get; set; }
     }
 }

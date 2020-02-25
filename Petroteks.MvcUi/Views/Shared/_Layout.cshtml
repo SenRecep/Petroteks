@@ -93,41 +93,7 @@
 
             <nav class="main-nav float-right d-none d-lg-block">
                 <ul>
-                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">ANASAYFA</a></li>
-                    <li class="drop-down">
-                        <a href="">ÜRÜNLERİMİZ</a>
-                        <ul>
-                            @await Component.InvokeAsync("CategoryList", new { website = CurrentWebsite })
-                        </ul>
-                    </li>
-
-                    @*<li class="drop-down">
-                            <a href="" title="Sayfalar">SAYFALAR</a>
-                            <ul>
-                                @await Component.InvokeAsync("PagesList", new { website = CurrentWebsite })
-                            </ul>
-                        </li>*@
-
-
-                    <li><a asp-area="" asp-controller="Home" asp-action="AboutUs" title="HAKKIMIZDA">HAKKIMIZDA</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="PetroBlog" title="PETROBLOG">PETROBLOG</a></li>
-
-
-
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact" title="İLETİŞİM">İLETİŞİM</a></li>
-                    <li class="drop-down">
-                        <a href="">Diller</a>
-                        <ul>
-                            @foreach (var item in LanguageContext.WebsiteLanguages)
-                            {
-                                <li>
-                                    <a id="@item.KeyCode" title="@item.KeyCode" href="@Url.Action("ChangeCulture","Home",new { KeyCode=item.KeyCode})">
-                                        <img src="~/LanguageImages/@item.IconCode" asp-append-version="true" alt="@item.Name"> @item.Name
-                                    </a>
-                                </li>
-                            }
-                        </ul>
-                    </li>
+                    @await Component.InvokeAsync("Navbar")
                 </ul>
             </nav>
 
@@ -145,84 +111,85 @@
     <!--==========================
       Footer
     ============================-->
-    <footer id="footer" class="section-bg">
-        <div class="footer-top">
-            <div class="container">
+<footer id="footer" class="section-bg">
+    @await Component.InvokeAsync("Footer")
+    @*<div class="footer-top">
+        <div class="container">
 
-                <div class="row">
+            <div class="row">
 
-                    <div class="col-lg-4">
+                <div class="col-lg-4">
 
-                        <div class="row">
+                    <div class="row">
 
-                            <div class="col-sm-6">
-                                <div class="footer-links">
-                                    <h4>SİTE HARİTASI</h4>
-                                    <ul>
+                        <div class="col-sm-6">
+                            <div class="footer-links">
+                                <h4>SİTE HARİTASI</h4>
+                                <ul>
 
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Index" title="ANASAYFA">ANASAYFA</a></li>
-                                        <li><a asp-area="" asp-controller="Home" asp-action="AboutUs" title="HAKKIMIZDA">HAKKIMIZDA</a></li>
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Index" title="ÜRÜNLER">ÜRÜNLER</a></li>
-                                        <li><a asp-area="" asp-controller="Home" asp-action="PrivacyPolicy" title="GİZLİLİK POLİTİKASI">GİZLİLİK POLİTİKASI</a></li>
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Contact" title="iletisim">İLETİŞİM</a></li>
-                                    </ul>
-                                </div>
+                                    <li><a href="/" title="ANASAYFA">ANASAYFA</a></li>
+                                    <li><a href="/Hakimizda" title="HAKKIMIZDA">HAKKIMIZDA</a></li>
+                                    <li><a href="/" title="ÜRÜNLER">ÜRÜNLER</a></li>
+                                    <li><a href="/Gizlilik-Politikasi" title="GİZLİLİK POLİTİKASI">GİZLİLİK POLİTİKASI</a></li>
+                                    <li><a href="/Iletisim" title="iletisim">İLETİŞİM</a></li>
+                                </ul>
                             </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-4">
-
-                        <div class="footer-links">
-                            <h4>ANKARA MERKEZ DEPO :</h4>
-                            <p>
-                                İvedik OSB 2268 Cadde No:9
-                                Yenimahalle / ANKARA <br>
-                                <strong>Cep:</strong> +90 542 678 09 59<br>
-                                <strong>Telefon:</strong> +90 312 426 23 23<br>
-                                <strong>Fax:</strong> +90 312 426 23 50<br>
-                                <strong>Email:</strong> info@petroteks.com<br>
-                            </p>
-
-                        </div>
-
-
-                    </div>
-
-                    <div class="col-lg-4">
-
-                        <div class="footer-links">
-                            <h4>TOKAT FABRİKA :</h4>
-                            <p>
-                                Amasya – Erzincan Yolu Boğazbaşı Mahallesi
-                                Bozkır Mevkii  No:177/1-1<br>
-                                <strong>Niksar / TOKAT</strong>
-                            </p>
-                        </div>
-
-                        <div class="social-links">
-                            <a href="https://twitter.com/Petroteks" class="twitter" title="twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="https://www.facebook.com/petroteksdrilling" class="facebook" title="facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="https://www.instagram.com/petroteks_sondaj_kimyasallari/" class="instagram" title="instagram"><i class="fa fa-instagram"></i></a>
-                            <a href="https://tr.linkedin.com/company/petroteks-kimya-dan-ltd-ti" class="linkedin" title="instagram"><i class="fa fa-linkedin"></i></a>
                         </div>
 
                     </div>
 
                 </div>
 
+                <div class="col-lg-4">
+
+                    <div class="footer-links">
+                        <h4>ANKARA MERKEZ DEPO :</h4>
+                        <p>
+                            İvedik OSB 2268 Cadde No:9
+                            Yenimahalle / ANKARA <br>
+                            <strong>Cep:</strong> +90 542 678 09 59<br>
+                            <strong>Telefon:</strong> +90 312 426 23 23<br>
+                            <strong>Fax:</strong> +90 312 426 23 50<br>
+                            <strong>Email:</strong> info@petroteks.com<br>
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="footer-links">
+                        <h4>TOKAT FABRİKA :</h4>
+                        <p>
+                            Amasya – Erzincan Yolu Boğazbaşı Mahallesi
+                            Bozkır Mevkii  No:177/1-1<br>
+                            <strong>Niksar / TOKAT</strong>
+                        </p>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://twitter.com/Petroteks" class="twitter" title="twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/petroteksdrilling" class="facebook" title="facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/petroteks_sondaj_kimyasallari/" class="instagram" title="instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="https://tr.linkedin.com/company/petroteks-kimya-dan-ltd-ti" class="linkedin" title="instagram"><i class="fa fa-linkedin"></i></a>
+                    </div>
+
+                </div>
+
             </div>
+
+        </div>
+    </div>*@
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>Petroteks</strong>. All Rights Reserved
         </div>
 
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong>Petroteks</strong>. All Rights Reserved
-            </div>
-
-        </div>
-    </footer><!-- #footer -->
+    </div>
+</footer><!-- #footer -->
 
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Helpers;
+using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Areas.Admin.Models;
 using Petroteks.MvcUi.Attributes;
@@ -27,11 +28,15 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
         private readonly IBlogService blogService;
+        private readonly IUI_NavbarService uI_NavbarService;
+        private readonly IUI_FooterService uI_FooterService;
+        private readonly IUI_ContactService uI_ContactService;
         private readonly ILanguageService languageService;
         private readonly IHostingEnvironment hostingEnvironment;
         #endregion
         #region CTOR
-        public PagesController(IUserService userService,
+        public PagesController(
+            IUserService userService,
             IUserSessionService userSessionService,
             IMainPageService mainPageService,
             IAboutUsObjectService aboutUsObjectService,
@@ -41,8 +46,13 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             ICategoryService categoryService,
             IBlogService blogService,
             ILanguageService languageService,
+            IUI_NavbarService uI_NavbarService,
+            IUI_FooterService uI_FooterService,
+            IUI_ContactService uI_ContactService,
             IHostingEnvironment hostingEnvironment,
+           
             ILanguageCookieService languageCookieService,
+           
             IProductService productService)
             : base(userSessionService, websiteService, languageService, languageCookieService, httpContextAccessor)
         {
@@ -52,6 +62,9 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             this.categoryService = categoryService;
             this.productService = productService;
             this.blogService = blogService;
+            this.uI_NavbarService = uI_NavbarService;
+            this.uI_FooterService = uI_FooterService;
+            this.uI_ContactService = uI_ContactService;
             this.languageService = languageService;
             this.hostingEnvironment = hostingEnvironment;
         }
@@ -614,7 +627,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                Language language = languageService.Get(x => x.IsActive == true && x.KeyCode.Equals(model.KeyCode) && x.WebSiteid == Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id);
+                Language language = languageService.Get(x => x.IsActive == true && x.Name.Equals(model.Name) && x.WebSiteid == Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id);
                 if (language == null)
                 {
                     bool langdef = languageService.Get(x => x.IsActive == true && x.WebSiteid == Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.Default == true) == null ? true : false;
@@ -654,38 +667,115 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult NavbarHeaderAdd()
         {
-            return View();
+            
+            UI_Navbar navbar;
+            navbar = uI_NavbarService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            if (navbar == null)
+                navbar = new UI_Navbar();
+            return View(navbar);
         }
         [AdminAuthorize]
         [HttpPost]
-        public IActionResult NavbarHeaderAdd(string model)
+        public IActionResult NavbarHeaderAdd(UI_Navbar model)
         {
-            return View();
+
+            UI_Navbar navbar;
+            navbar = uI_NavbarService.Get(x => x.WebSiteid == Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id);
+            if (navbar == null)
+            {
+                navbar = model;
+                navbar.CreateUserid = LoginUser.id;
+                navbar.WebSite = Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite;
+                navbar.Language = LanguageContext.CurrentLanguage;
+                uI_NavbarService.Add(navbar);
+            }
+            else
+            {
+                navbar.Home = model.Home;
+                navbar.Products = model.Products;
+                navbar.AboutUs = model.AboutUs;
+                navbar.PetroBlog = model.PetroBlog;
+                navbar.Contact = model.Contact; 
+                navbar.UpdateUserid = LoginUser.id;
+                navbar.UpdateDate = DateTime.UtcNow;
+                navbar.Language = LanguageContext.CurrentLanguage;
+                uI_NavbarService.Update(navbar);
+            }
+            uI_NavbarService.Save();
+            return View(navbar);
         }
 
         [AdminAuthorize]
         [HttpGet]
         public IActionResult FooterAdd()
         {
-            return View();
+            UI_Footer footer;
+            footer =uI_FooterService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            if (footer == null)
+                footer = new UI_Footer();
+            return View(footer); 
         }
         [AdminAuthorize]
         [HttpPost]
-        public IActionResult FooterAdd(string model)
+        public IActionResult FooterAdd(UI_Footer model)
         {
-            return View();
+            UI_Footer footer;
+            footer = uI_FooterService.Get(x => x.WebSiteid == Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id);
+            if (footer == null)
+            {
+                footer = model;
+                footer.CreateUserid = LoginUser.id;
+                footer.WebSite = Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite;
+                footer.Language = LanguageContext.CurrentLanguage;
+                uI_FooterService.Add(footer);
+            }
+            else
+            {
+                footer.Content = model.Content;
+
+                footer.UpdateUserid = LoginUser.id;
+                footer.UpdateDate = DateTime.UtcNow;
+                footer.Language = LanguageContext.CurrentLanguage;
+                uI_FooterService.Update(footer);
+            }
+            uI_FooterService.Save();
+            return View(footer); 
         }
         [AdminAuthorize]
         [HttpGet]
         public IActionResult ContactAdd()
         {
-            return View();
+            UI_Contact contact;
+            contact = uI_ContactService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            if (contact == null)
+                contact = new UI_Contact();
+            return View(contact);
         }
         [AdminAuthorize]
         [HttpPost]
-        public IActionResult ContactAdd(string model)
+        public IActionResult ContactAdd(UI_Contact model)
         {
-            return View();
+            UI_Contact contact;
+            contact = uI_ContactService.Get(x => x.WebSiteid == Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id);
+            if (contact == null)
+            {
+                contact = model;
+                contact.CreateUserid = LoginUser.id;
+                contact.WebSite = Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite;
+                contact.Language = LanguageContext.CurrentLanguage;
+                uI_ContactService.Add(contact);
+            }
+            else
+            {
+                contact.Content = model.Content;
+
+                contact.UpdateUserid = LoginUser.id;
+                contact.UpdateDate = DateTime.UtcNow;
+                contact.Language = LanguageContext.CurrentLanguage;
+                uI_ContactService.Update(contact);
+            }
+            uI_ContactService.Save();
+            return View(contact);
         }
         #endregion
     }

@@ -18,12 +18,9 @@
         </li>*@
 
 
-    <li><a asp-area="" asp-controller="Home" asp-action="AboutUs" title="HAKKIMIZDA">@Model.AboutUs</a></li>
-    <li><a asp-area="" asp-controller="Home" asp-action="PetroBlog" title="PETROBLOG">@Model.PetroBlog</a></li>
-
-
-
-    <li><a asp-area="" asp-controller="Home" asp-action="Contact" title="İLETİŞİM">@Model.Contact</a></li>
+    <li><a asp-area="" asp-controller="Home" asp-action="AboutUs" title="@Model.AboutUs">@Model.AboutUs</a></li>
+    <li><a asp-area="" asp-controller="Home" asp-action="PetroBlog" title="@Model.PetroBlog">@Model.PetroBlog</a></li>  
+    <li><a asp-area="" asp-controller="Home" asp-action="Contact" title="@Model.Contact">@Model.Contact</a></li>
     <li class="drop-down">
         <a href="">@Model.Languages</a>
         <ul>

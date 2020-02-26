@@ -222,6 +222,29 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                aria-expanded="false">
+                                <i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Layout Düzeni </span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="NavbarHeaderAdd" class="sidebar-link">
+                                        <span class="hide-menu">
+                                          Nav Bar Menü
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="FooterAdd" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            Footer 
+                                        </span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                               aria-expanded="false">
                                 <i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Sabit Sayfalar </span>
                             </a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
@@ -236,6 +259,13 @@
                                     <a asp-area="Admin" asp-controller="Pages" asp-action="HakkimizdaEdit" class="sidebar-link">
                                         <span class="hide-menu">
                                             Hakkımızda
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="ContactAdd" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            İletişim
                                         </span>
                                     </a>
                                 </li>

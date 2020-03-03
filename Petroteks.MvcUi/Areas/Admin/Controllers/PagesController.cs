@@ -698,7 +698,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 navbar.Contact = model.Contact; 
                 navbar.UpdateUserid = LoginUser.id;
                 navbar.UpdateDate = DateTime.UtcNow;
-                navbar.Language = LanguageContext.CurrentLanguage;
+                navbar.Language = model.Language;
                 uI_NavbarService.Update(navbar);
             }
             uI_NavbarService.Save();

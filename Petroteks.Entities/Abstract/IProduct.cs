@@ -18,7 +18,5 @@ namespace Petroteks.Entities.Abstract
         string MetaTags { get; set; }
         string Title { get; set; }
 
-        int Priority { get; set; }
-
     }
 }

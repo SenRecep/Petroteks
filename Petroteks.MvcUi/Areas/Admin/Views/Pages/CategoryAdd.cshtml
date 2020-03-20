@@ -1,11 +1,11 @@
 ﻿@model CategoryViewModel
-@await Component.InvokeAsync("CategoryTree", new { website = CurrentWebsite })
+@await Component.InvokeAsync("CategoryTree", new { website = (Website)ViewBag.ThisWebsite })
 @{
     var photoPath = $"~/CategoryImages/{Model.ImagePath}";
 }
 
 <form enctype="multipart/form-data" method="post" class="mt-2">
-    <input type="hidden" asp-for="id" />
+    <input type="hidden" asp-for="id"  />
     @if (!string.IsNullOrWhiteSpace(Model.ImagePath))
     {
         <div class="row">
@@ -22,35 +22,20 @@
 
     }
 
-
-
-<div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Kategori Önceliği</h4>
-                <div class="form-group">
-                    <input type="number" class="form-control" asp-for="Priority" aria-describedby="Priority" placeholder="Öncelik">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Kategori İD</h4>
-                <h6 class="card-subtitle">Kategori ağacında numarayı burada giriniz.</h6>
-
-                <div class="form-group">
-                    <input type="number" asp-for="ParentId" class="form-control">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
     <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Kategori İD</h4>
+                    <h6 class="card-subtitle">Kategori ağacında numarayı burada giriniz.</h6>
+
+                    <div class="form-group">
+                        <input type="number" asp-for="ParentId" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Kategori İsmi</h4>
@@ -62,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Resim Yükle</h4>

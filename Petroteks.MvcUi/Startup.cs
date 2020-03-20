@@ -60,23 +60,9 @@ namespace Petroteks.MvcUi
             services.AddScoped<IDynamicPageService, DynamicPageManager>();
             services.AddScoped<IDynamicPageDal, EfDynamicPageDal>();
 
-            services.AddScoped<ILanguageService, LanguageManager>();
-            services.AddScoped<ILanguageDal, EfLanguageDal>();
-
-            services.AddScoped<IUI_NavbarService, UI_NavbarManager>();
-            services.AddScoped<IUI_NavbarDal, EfUI_NavbarDal>();
-
-            services.AddScoped<IUI_ContactService, UI_ContactManager>();
-            services.AddScoped<IUI_ContactDal, EfUI_ContactDal>();
-
-            services.AddScoped<IUI_FooterService, UI_FooterManager>();
-            services.AddScoped<IUI_FooterDal, EfUI_FooterDal>();
-
             services.AddSingleton<IUserSessionService, UserSessionService>();
             services.AddSingleton<IUserCookieService, UserCookieService>();
-            services.AddSingleton<ILanguageCookieService, LanguageCookieService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
-
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.LatinExtendedA }));
             
             services.AddRazorPages();
@@ -87,12 +73,6 @@ namespace Petroteks.MvcUi
 
             services.AddSession();
             services.AddDistributedMemoryCache();
-
-            services.Configure<IISServerOptions>(options =>
-            {
-                options.AllowSynchronousIO = true;
-            });
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -29,16 +29,7 @@
                         <input type="text" class="form-control" asp-for="Keywords" aria-describedby="MetaKeyword" placeholder="MetaKeyword">
                         <small id="name" class="form-text text-muted">Anahtar Kelimeleri lütfen virgül ile ayırın.</small>
                     </div>
-                    <h4 class="card-title">Sayfa Meta Başlığı</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" asp-for="Title" aria-describedby="Title" placeholder="Sayfa Meta Başlığı">
-                    </div>
-                    <h4 class="card-title">Sayfa Meta Başlığı</h4>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="3" asp-for="MetaTags" placeholder="Meta İnputları">
-                            
-                        </textarea>
-                    </div>
+
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <div class="custom-control custom-checkbox">
@@ -49,14 +40,14 @@
                     </div>
                     <h4 class="card-title">Sayfa Başlığı</h4>
                     <div class="form-group">
-                        <input type="text" class="form-control" asp-for="Name" aria-describedby="Name" placeholder="Başlık">
+                        <input type="text" class="form-control" asp-for="Title" aria-describedby="MetaTitle" placeholder="MetaTitle">
+                        <small id="name" class="form-text text-muted">Anahtar Kelimeleri lütfen virgül ile ayırın.</small>
                     </div>
-
-                    <h4 class="card-title">Blog Önceliği</h4>
                     <div class="form-group">
-                        <input type="number" class="form-control" asp-for="Priority" aria-describedby="Priority" placeholder="Öncelik">
+                        <textarea class="form-control" rows="3" asp-for="MetaTags" placeholder="Meta İnputları">
+                            
+                        </textarea>
                     </div>
-
                     <h4 class="card-title">Üst Kısım Editör</h4>
                     <div class="form-group">
                         <textarea id="editor1" name="Content">

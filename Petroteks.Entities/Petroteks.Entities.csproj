@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ComplexTypes\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Petroteks.Core\Petroteks.Core.csproj" />
   </ItemGroup>
 

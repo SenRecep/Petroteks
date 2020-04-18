@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Text.Unicode;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,6 +9,8 @@ using Petroteks.Bll.Concreate;
 using Petroteks.Dal.Abstract;
 using Petroteks.Dal.Concreate.EntityFramework;
 using Petroteks.MvcUi.Services;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace Petroteks.MvcUi
 {
@@ -30,8 +25,8 @@ namespace Petroteks.MvcUi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IUserService,UserManager>();
-            services.AddScoped<IUserDal,EfUserDal>();
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IUserDal, EfUserDal>();
 
             services.AddScoped<IWebsiteService, WebsiteManager>();
             services.AddScoped<IWebsiteDal, EfWebsiteDal>();
@@ -75,15 +70,15 @@ namespace Petroteks.MvcUi
             services.AddSingleton<IUserSessionService, UserSessionService>();
             services.AddSingleton<IUserCookieService, UserCookieService>();
             services.AddSingleton<ILanguageCookieService, LanguageCookieService>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.LatinExtendedA }));
-            
+
             services.AddRazorPages();
-            var mvcBuilder = services.AddControllersWithViews();
-            #if DEBUG
-              mvcBuilder.AddRazorRuntimeCompilation();
-            #endif
+            IMvcBuilder mvcBuilder = services.AddControllersWithViews();
+#if DEBUG
+            mvcBuilder.AddRazorRuntimeCompilation();
+#endif
 
             services.AddSession();
             services.AddDistributedMemoryCache();
@@ -116,7 +111,7 @@ namespace Petroteks.MvcUi
             app.UseAuthorization();
 
             app.UseSession();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

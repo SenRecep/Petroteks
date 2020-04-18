@@ -659,9 +659,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return View(model);
         }
         #endregion
-
-
-
         #region StaticPages 
         [AdminAuthorize]
         [HttpGet]

@@ -29,7 +29,8 @@ namespace Petroteks.MvcUi.Controllers
             {
                 string url = $"{httpContextAccessor.HttpContext.Request.Scheme}://{httpContextAccessor.HttpContext.Request.Host}";
                 string siteName = httpContextAccessor.HttpContext.Request.Host.Value.Replace("www.", "", System.StringComparison.InvariantCultureIgnoreCase);
-                Website website = websiteService.findByUrl(siteName);
+                WebsiteContext.Websites = websiteService.GetMany(x=>x.IsActive==true);
+                Website website = WebsiteContext.Websites.FirstOrDefault(x=>x.Name.Equals(siteName,System.StringComparison.InvariantCultureIgnoreCase));
                 if (website != null)
                     WebsiteContext.CurrentWebsite = website;
                 else
@@ -42,6 +43,7 @@ namespace Petroteks.MvcUi.Controllers
                     websiteService.Add(wb);
                     websiteService.Save();
                     WebsiteContext.CurrentWebsite = wb;
+                    WebsiteContext.Websites = websiteService.GetMany(x => x.IsActive == true);
                 }
                 LoadLanguage();
             }

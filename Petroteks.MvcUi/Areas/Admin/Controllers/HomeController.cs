@@ -329,7 +329,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 if (website != null)
                 {
                     WebsiteContext.CurrentWebsite = website;
-                    LoadLanguage();
+                    LoadLanguage(true);
                 }
             }
             return RedirectToAction("Index", "Home");

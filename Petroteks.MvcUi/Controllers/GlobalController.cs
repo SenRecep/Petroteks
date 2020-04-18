@@ -29,8 +29,8 @@ namespace Petroteks.MvcUi.Controllers
             {
                 string url = $"{httpContextAccessor.HttpContext.Request.Scheme}://{httpContextAccessor.HttpContext.Request.Host}";
                 string siteName = httpContextAccessor.HttpContext.Request.Host.Value.Replace("www.", "", System.StringComparison.InvariantCultureIgnoreCase);
-                WebsiteContext.Websites = websiteService.GetMany(x=>x.IsActive==true);
-                Website website = WebsiteContext.Websites.FirstOrDefault(x=>x.Name.Equals(siteName,System.StringComparison.InvariantCultureIgnoreCase));
+                WebsiteContext.Websites = websiteService.GetMany(x => x.IsActive == true);
+                Website website = WebsiteContext.Websites.FirstOrDefault(x => x.Name.Equals(siteName, System.StringComparison.InvariantCultureIgnoreCase));
                 if (website != null)
                     WebsiteContext.CurrentWebsite = website;
                 else
@@ -48,10 +48,12 @@ namespace Petroteks.MvcUi.Controllers
                 LoadLanguage();
             }
         }
-        public void LoadLanguage()
+        public void LoadLanguage(bool decision=false)
         {
 
             Language currentLanguage = languageCookieService.Get("CurrentLanguage");
+            if (decision)
+                currentLanguage = null;
             LanguageContext.WebsiteLanguages = languageService.GetMany(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             if (currentLanguage == null)
             {

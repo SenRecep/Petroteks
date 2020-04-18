@@ -45,6 +45,11 @@ namespace Petroteks.MvcUi.Controllers
                     WebsiteContext.CurrentWebsite = wb;
                     WebsiteContext.Websites = websiteService.GetMany(x => x.IsActive == true);
                 }
+                if (!WebsiteContext.CurrentWebsite.Name.Contains("localhost"))
+                {
+                    var localhost = WebsiteContext.Websites.FirstOrDefault(w=>w.Name.Contains("localhost"));
+                    WebsiteContext.Websites.Remove(localhost);
+                }
                 LoadLanguage();
             }
         }

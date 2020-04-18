@@ -24,5 +24,7 @@ namespace Petroteks.MvcUi.Models
         public string Title { get; set; }
 
         public bool IsActive { get; set; }
+
+        public int Priority { get; set; }
     }
 }

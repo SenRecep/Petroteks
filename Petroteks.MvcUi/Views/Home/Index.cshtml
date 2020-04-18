@@ -5,12 +5,31 @@
     ViewData["MetaTags"] = Model.MainPage.MetaTags;
     ViewData["Keywords"] = Model.MainPage.Keywords;
 }
+<style>
+    @@media screen and (max-width: 1900px), (min-width: 900px) {
+        .caption {
+            transform: translateX(0px) translateY(-70px) !important;
+        }
+    }
 
+    .color-nav-blue {
+        color: #413e66;
+        font-weight: 600;
+    }
+
+    .color-blue {
+        color: #413e66;
+    }
+
+    .img-calign {
+        background-size: 100% auto !important;
+        background-repeat: no-repeat !important;
+    }
+</style>
+<!--==========================
+  Header Section
+ ============================-->
 @Html.Raw(Model.MainPage.Slider)
-
-
-
-<!-- #intro -->
 
 <main id="main">
 
@@ -18,21 +37,20 @@
       About Us Section
     ============================-->
     @Html.Raw(Model.MainPage.TopContent)
-    <!-- #about -->
-    <!--==========================
-      Services Section
-    ============================-->
 
 
-    <section id="team" class="section-bg">
-        <div class="container">
-            <div class="section-header">
-                <h3>Ürünlerimiz</h3>
 
-            </div>
 
-            <div class="row">
-                <div class="cards-list">
+
+    @*<section id="team" class="section-bg">
+            <div class="container">
+                <div class="section-header">
+                    <h3>Ürünlerimiz</h3>
+
+                </div>
+
+                <div class="row">
+
 
 
 
@@ -41,78 +59,55 @@
                         {
 
                             <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(item.Name) , page=1 , category=item.id})">
-                                <div class="carda">
+                                <figure class="snip1401">
+                                    @if (item.PhotoPath == null)
+                                    {
+                                        <img src="~/images/Lifta.jpg" style="width:450px!important;height:250px!important;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="../CategoryImages/@item.PhotoPath" style="width:450px!important;height:250px!important;" />
+                                    }
+                                    <figcaption>
+                                        <h3>@item.Name</h3>
 
-                                    <div class="card_image">
-                                        @if (item.PhotoPath == null)
-                                        {
-                                            <img src="~/images/Lifta.jpg" />
-                                        }
-                                        else
-                                        {
-                                            <img src="../CategoryImages/@item.PhotoPath" />
-                                        }
+                                    </figcaption><i class="ion-ios-pricetags-outline"></i>
 
-                                    </div>
-                                    <div class="card_title title-white">
-                                        <p>@item.Name</p>
-                                    </div>
-
-                                </div>
+                                </figure>
                             </a>
                         }
                         foreach (var item in Model.Products)
                         {
 
                             <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(item.SupTitle) , id=item.id})">
-                                <div class="carda">
+                                <figure class="snip1401">
+                                    @if (item.PhotoPath == null)
+                                    {
+                                        <img src="~/images/Lifta.jpg" style="width:450px!important;height:250px!important;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="../ProductImages/@item.PhotoPath" style="width:450px!important;height:250px!important;" />
+                                    }
+                                    <figcaption>
+                                        <h3>@item.SupTitle</h3>
 
-                                    <div class="card_image">
-                                        @if (item.PhotoPath == null)
-                                        {
-                                            <img src="~/images/Lifta.jpg" />
-                                        }
-                                        else
-                                        {
-                                            <img src="../ProductImages/@item.PhotoPath" />
-                                        }
+                                    </figcaption><i class="ion-ios-pricetags-outline"></i>
 
-                                    </div>
-                                    <div class="card_title title-white">
-                                        <p>@item.SupTitle</p>
-                                    </div>
+                                </figure>
 
-                                </div>
                             </a>
                         }
                     }
-                </div> 
-            </div>
-
-        </div>
-    </section>
-    <section id="call-to-action" class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9 text-center text-lg-left">
-                    <h3 class="cta-title">Sizi Haberdar Edelim</h3>
-                    <p class="cta-text"> Bildirim için mail adresinizi buraya bırakarak bizden haberdar olabilirsiniz veya iletişime geçebilirsiniz.</p>
-                    <div class="input-group mb-3 col-md-7">
-                        <input type="email" id="email" class="form-control" placeholder="Mail">
-                        <div class="input-group-append">
-                            <span class="input-group-text btn-outline-light" id="spanc" onclick="BilgilendirmeMail()" id="basic-addon2">Abone Ol</span>
-                        </div>
-                    </div>
-
 
                 </div>
-                <div class="col-lg-3 cta-btn-container text-center">
-                    <a class="cta-btn align-middle" href="../Home/Iletisim">İLETİŞİME GEÇ</a>
-                </div>
-            </div>
 
-        </div>
-    </section>
+            </div>
+        </section>*@
+
+
+
+
 </main>
 
 @Html.Raw(Model.MainPage.BottomContent)

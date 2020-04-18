@@ -1,0 +1,37 @@
+﻿@model UI_Navbar
+
+@if (Model != null)
+{
+    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">@Model.Home</a></li>
+    <li class="drop-down">
+        <a href="">@Model.Products</a>
+        <ul>
+            @await Component.InvokeAsync("CategoryList", new { website = WebsiteContext.CurrentWebsite })
+        </ul>
+    </li>
+
+    @*<li class="drop-down">
+        <a href="" title="Sayfalar">@Model.Pages</a>
+            <ul>
+                @await Component.InvokeAsync("PagesList", new { website = WebsiteContext.CurrentWebsite })
+            </ul>
+        </li>*@
+
+
+    <li><a asp-area="" asp-controller="Home" asp-action="AboutUs" title="@Model.AboutUs">@Model.AboutUs</a></li>
+    <li><a asp-area="" asp-controller="Home" asp-action="PetroBlog" title="@Model.PetroBlog">@Model.PetroBlog</a></li>  
+    <li><a asp-area="" asp-controller="Home" asp-action="Contact" title="@Model.Contact">@Model.Contact</a></li>
+    <li class="drop-down">
+        <a href=""><img src="~/LanguageImages/@CurrentLanguage.IconCode" alt="@CurrentLanguage.KeyCode" />@CurrentLanguage.Name</a>
+        <ul>
+            @foreach (var item in LanguageContext.WebsiteLanguages)
+            {
+                <li>
+                    <a id="@item.KeyCode" title="@item.KeyCode" href="@Url.Action("ChangeCulture","Home",new { KeyCode=item.KeyCode})">
+                        <img src="~/LanguageImages/@item.IconCode" asp-append-version="true" alt="@item.Name"> @item.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    </li>
+}

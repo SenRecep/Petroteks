@@ -1,157 +1,65 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Petroteks.Bll.Helpers
 {
     public static class FriendlyUrlHelper
     {
-        public static string GetFriendlyTitle(string title, bool remapToAscii = false, int maxlength = 80)
+        public static string GetFriendlyTitle(string incomingText)
         {
-            if (title == null)
+            if (incomingText != null)
             {
-                return string.Empty;
-            }
-
-            int length = title.Length;
-            bool prevdash = false;
-            StringBuilder stringBuilder = new StringBuilder(length);
-            char c;
-
-            for (int i = 0; i < length; ++i)
-            {
-                c = title[i];
-                if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9'))
-                {
-                    stringBuilder.Append(c);
-                    prevdash = false;
-                }
-                else if (c >= 'A' && c <= 'Z')
-                {
-                    // tricky way to convert to lower-case
-                    stringBuilder.Append((char)(c | 32));
-                    prevdash = false;
-                }
-                else if ((c == ' ') || (c == ',') || (c == '.') || (c == '/') ||
-                  (c == '\\') || (c == '-') || (c == '_') || (c == '='))
-                {
-                    if (!prevdash && (stringBuilder.Length > 0))
-                    {
-                        stringBuilder.Append('-');
-                        prevdash = true;
-                    }
-                }
-                else if (c >= 128)
-                {
-                    int previousLength = stringBuilder.Length;
-
-                    if (remapToAscii)
-                    {
-                        stringBuilder.Append(RemapInternationalCharToAscii(c));
-                    }
-                    else
-                    {
-                        stringBuilder.Append(c);
-                    }
-
-                    if (previousLength != stringBuilder.Length)
-                    {
-                        prevdash = false;
-                    }
-                }
-
-                if (i == maxlength)
-                {
-                    break;
-                }
-            }
-
-            if (prevdash)
-            {
-                return stringBuilder.ToString().Substring(0, stringBuilder.Length - 1);
+                incomingText = incomingText.Replace("ş", "s");
+                incomingText = incomingText.Replace("Ş", "s");
+                incomingText = incomingText.Replace("İ", "i");
+                incomingText = incomingText.Replace("I", "i");
+                incomingText = incomingText.Replace("ı", "i");
+                incomingText = incomingText.Replace("ö", "o");
+                incomingText = incomingText.Replace("Ö", "o");
+                incomingText = incomingText.Replace("ü", "u");
+                incomingText = incomingText.Replace("Ü", "u");
+                incomingText = incomingText.Replace("Ç", "c");
+                incomingText = incomingText.Replace("ç", "c");
+                incomingText = incomingText.Replace("ğ", "g");
+                incomingText = incomingText.Replace("Ğ", "g");
+                incomingText = incomingText.Replace(" ", "-");
+                incomingText = incomingText.Replace("---", "-");
+                incomingText = incomingText.Replace("?", "");
+                incomingText = incomingText.Replace("/", "");
+                incomingText = incomingText.Replace(".", "");
+                incomingText = incomingText.Replace("'", "");
+                incomingText = incomingText.Replace("#", "");
+                incomingText = incomingText.Replace("%", "");
+                incomingText = incomingText.Replace("&", "");
+                incomingText = incomingText.Replace("*", "");
+                incomingText = incomingText.Replace("!", "");
+                incomingText = incomingText.Replace("@", "");
+                incomingText = incomingText.Replace("+", "");
+                incomingText = incomingText.ToLower();
+                incomingText = incomingText.Trim();
+                // tüm harfleri küçült
+                string encodedUrl = (incomingText ?? "").ToLower();
+                // & ile " " yer değiştirme
+                encodedUrl = Regex.Replace(encodedUrl, @"\&+", "and");
+                // " " karakterlerini silme
+                encodedUrl = encodedUrl.Replace("'", "");
+                // geçersiz karakterleri sil
+                encodedUrl = Regex.Replace(encodedUrl, @"[^a-z0-9]", "-");
+                // tekrar edenleri sil
+                encodedUrl = Regex.Replace(encodedUrl, @"-+", "-");
+                // karakterlerin arasına tire koy
+                encodedUrl = encodedUrl.Trim('-');
+                return encodedUrl;
             }
             else
             {
-                return stringBuilder.ToString();
+                return "";
             }
         }
-        private static string RemapInternationalCharToAscii(char character)
+        public static string CleanFileName(string fileName)
         {
-            string s = character.ToString().ToLowerInvariant();
-            if ("àåáâäãåąā".Contains(s))
-            {
-                return "a";
-            }
-            else if ("èéêëę".Contains(s))
-            {
-                return "e";
-            }
-            else if ("ìíîïı".Contains(s))
-            {
-                return "i";
-            }
-            else if ("òóôõöøő".Contains(s))
-            {
-                return "o";
-            }
-            else if ("ùúûüŭů".Contains(s))
-            {
-                return "u";
-            }
-            else if ("çćčĉ".Contains(s))
-            {
-                return "c";
-            }
-            else if ("żźž".Contains(s))
-            {
-                return "z";
-            }
-            else if ("śşšŝ".Contains(s))
-            {
-                return "s";
-            }
-            else if ("ñń".Contains(s))
-            {
-                return "n";
-            }
-            else if ("ýÿ".Contains(s))
-            {
-                return "y";
-            }
-            else if ("ğĝ".Contains(s))
-            {
-                return "g";
-            }
-            else if (character == 'ř')
-            {
-                return "r";
-            }
-            else if (character == 'ł')
-            {
-                return "l";
-            }
-            else if ("đð".Contains(s))
-            {
-                return "d";
-            }
-            else if (character == 'ß')
-            {
-                return "ss";
-            }
-            else if (character == 'Þ')
-            {
-                return "th";
-            }
-            else if (character == 'ĥ')
-            {
-                return "h";
-            }
-            else if (character == 'ĵ')
-            {
-                return "j";
-            }
-            else
-            {
-                return string.Empty;
-            }
+            return Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
         }
     }
 }

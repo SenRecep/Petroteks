@@ -9,6 +9,7 @@
     <Folder Include="Pages\" />
     <Folder Include="wwwroot\CategoryImages\" />
     <Folder Include="wwwroot\BlogImages\" />
+    <Folder Include="wwwroot\LanguageImages\" />
     <Folder Include="wwwroot\ProductImages\" />
     <Folder Include="wwwroot\UploadFiles\" />
   </ItemGroup>
@@ -33,5 +34,8 @@
     <ProjectReference Include="..\Petroteks.Core\Petroteks.Core.csproj" />
     <ProjectReference Include="..\Petroteks.Entities\Petroteks.Entities.csproj" />
   </ItemGroup>
+
+
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4admin_4assets_4libs_4bootstrap_4dist_4css_4bootstrap-grid_1css_1map__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

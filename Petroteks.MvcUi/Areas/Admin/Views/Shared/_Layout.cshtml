@@ -114,21 +114,18 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i data-feather="globe" class="svg-icon"></i>
+                                Diller
                             </a>
+
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Petroteks.com</a>
-                                <a class="dropdown-item" href="#">websitesi.com</a>
+                                @foreach (var item in LanguageContext.WebsiteLanguages)
+                                {
+                                    <a class="dropdown-item" id="@item.KeyCode" title="@item.KeyCode" href="@Url.Action("ChangeCulture","Home",new { area="Admin", KeyCode=item.KeyCode})">
+                                        <img src="~/LanguageImages/@item.IconCode" asp-append-version="true" alt="@item.Name"> @item.Name
+                                    </a>
+                                }
                             </div>
-                        </li>
-                        <li class="nav-item d-none d-md-block">
-                            <a class="nav-link" href="javascript:void(0)">
-                                <div class="customize-input">
-                                    <select class="custom-select form-control bg-white custom-radius custom-shadow border-0">
-                                        <option selected>TR</option>
-                                        <option value="1">EN</option>
-                                    </select>
-                                </div>
-                            </a>
+
                         </li>
                     </ul>
                     <!-- ============================================================== -->
@@ -225,6 +222,29 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                aria-expanded="false">
+                                <i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Layout Düzeni </span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="NavbarHeaderAdd" class="sidebar-link">
+                                        <span class="hide-menu">
+                                          Nav Bar Menü
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="FooterAdd" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            Footer 
+                                        </span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                               aria-expanded="false">
                                 <i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Sabit Sayfalar </span>
                             </a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
@@ -239,6 +259,13 @@
                                     <a asp-area="Admin" asp-controller="Pages" asp-action="HakkimizdaEdit" class="sidebar-link">
                                         <span class="hide-menu">
                                             Hakkımızda
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="ContactAdd" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            İletişim
                                         </span>
                                     </a>
                                 </li>
@@ -283,6 +310,13 @@
                                     <a asp-area="Admin" asp-controller="Pages" asp-action="BlogList" class="sidebar-link">
                                         <span class="hide-menu">
                                             Blog Yönetimi
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a asp-area="Admin" asp-controller="Pages" asp-action="LanguageAdd" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            Dil Yönetimi
                                         </span>
                                     </a>
                                 </li>
@@ -364,7 +398,7 @@
     <!--Custom JavaScript -->
     <script src="~/Admin/dist/js/custom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
 
     <script>
 
@@ -386,6 +420,8 @@
             "hideMethod": "fadeOut"
         }
 
+        CKEDITOR.plugins.addExternal('SelectTemplate', 'Admin/dist/js/', 'plugin.js');
+        CKEDITOR.plugins.addExternal('SaveTemplate', 'Admin/dist/js/', 'plugin.js');
         const config = {
             filebrowserImageBrowseUrl: "/ImageBrowser",
             filebrowserImageWindowWidth: 750,
@@ -393,9 +429,13 @@
             filebrowserBrowseUrl: "/LinkBrowser",
             filebrowserWindowWidth: 350,
             filebrowserWindowHeight: 500,
-            allowedContent: 'ul li i(ion-android-checkmark-circle)'  
+            entities_latin : false, 
+            extraPlugins: 'font',
+            allowedContent: 'ul li i(ion-android-checkmark-circle)'
         };
+        // '/NewLayout/css/materialize.min.css'
 
+        config.contentsCss = ['/NewLayout/css/style.css',];
         config.allowedContent = true;
         config.extraAllowedContent = 'i(*)';
         config.removeFormatAttributes = '';
@@ -407,7 +447,22 @@
         if (editor2 != null) CKEDITOR.replace(editor2, config);
         if (editor3 != null) CKEDITOR.replace(editor3, config);
         if (editor4 != null) CKEDITOR.replace(editor4, config);
-         CKEDITOR.dtd.$removeEmpty.i = 0;
+        CKEDITOR.dtd.$removeEmpty.i = 0;
+
+
+        $('selectlang').on('change', function () {
+            var id = $(this).val();
+            $.ajax({
+                type: 'GET',
+                url: '/Language/ChangeCulture',
+                data: { lang: JSON.stringify(id) },
+                success: function (e) {
+
+                }
+
+            });
+        });
+
     </script>
 
 

@@ -1,0 +1,51 @@
+﻿@model UI_Navbar
+@{
+    ViewData["Title"] = "Navbar  Düzenleme";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                @using (Html.BeginForm())
+                {
+                    <h4 class="card-title">ANA SAYFA İSMİ </h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="Home" aria-describedby="Ana Sayfa Başlık Çeviri" placeholder="Ana Sayfa Başlık Çeviri">
+                        <small id="" class="form-text text-muted">Lütfen girmek istediğiniz sayfa başlığını belirtilen dilde giriniz.</small>
+                    </div>
+                    <h4 class="card-title"> ÜRÜNLER SAYFA İSMİ </h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="Products" aria-describedby="Ürünler Başlık Çeviri" placeholder="Ürünler Başlık Çeviri">
+                        <small id="" class="form-text text-muted">Lütfen girmek istediğiniz sayfa başlığını belirtilen dilde giriniz.</small>
+                    </div>
+                    <h4 class="card-title"> HAKKIMIZDA SAYFA İSMİ </h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="AboutUs" aria-describedby="Hakkımızda Başlık Çeviri" placeholder="Hakkımızda Başlık Çeviri">
+                        <small id="" class="form-text text-muted">Lütfen girmek istediğiniz sayfa başlığını belirtilen dilde giriniz.</small>
+                    </div>
+                    <h4 class="card-title"> BLOG SAYFA İSMİ </h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="PetroBlog" aria-describedby="PetroBlog Başlık Çeviri" placeholder="PetroBlog Başlık Çeviri">
+                        <small id="" class="form-text text-muted">Lütfen girmek istediğiniz sayfa başlığını belirtilen dilde giriniz.</small>
+                    </div>
+                    <h4 class="card-title"> İLETİŞİM SAYFA İSMİ </h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="Contact" aria-describedby="İletişim Başlık Çeviri" placeholder="İletişim Başlık Çeviri">
+                        <small id="" class="form-text text-muted">Lütfen girmek istediğiniz sayfa başlığını belirtilen dilde giriniz.</small>
+                    </div>
+                    <h4 class="card-title"> DİLLER SAYFA İSMİ </h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control" asp-for="Languages" aria-describedby="Diller Başlık Çeviri" placeholder="Diller Başlık Çeviri">
+                        <small id="" class="form-text text-muted">Lütfen girmek istediğiniz sayfa başlığını belirtilen dilde giriniz.</small>
+                    </div>
+                    <br />
+                    <center><input type="submit" class="btn btn-success" value="Kaydet" /></center>
+
+                } 
+
+            </div>
+        </div>
+    </div>
+</div>

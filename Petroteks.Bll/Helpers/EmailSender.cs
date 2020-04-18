@@ -94,6 +94,7 @@ namespace Petroteks.Bll.Helpers
             email.To.Add(EmailString);
             email.Subject = Subject;
             email.Body = Body;
+            email.IsBodyHtml= true;
             foreach (var file in files)
                 if (file != null)
                     email.Attachments.Add(file);

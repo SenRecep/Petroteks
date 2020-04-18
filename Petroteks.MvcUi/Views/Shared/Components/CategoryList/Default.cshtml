@@ -9,7 +9,7 @@
             if (localcategories.Count > 0)
             {
                 <li class="drop-down">
-                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})">@subCategory.Name</a>
+                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})" title="@subCategory.Name">@subCategory.Name</a>
                     <ul>
                         @LoadSubMenu(subCategory, localcategories)
                         @if (products.Count > 0)
@@ -22,7 +22,7 @@
             else if (products.Count > 0)
             {
                 <li class="drop-down">
-                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})">@subCategory.Name</a>
+                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})" title="@subCategory.Name">@subCategory.Name</a>
                     <ul>
                         @LoadProduct(category, products)
                     </ul>
@@ -31,7 +31,7 @@
             else
             {
                 <li>
-                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})">@subCategory.Name</a>
+                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})" title="@subCategory.Name">@subCategory.Name</a>
                 </li>
             }
 
@@ -44,7 +44,7 @@
         foreach (Product product in products)
         {
             <li>
-                <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(product.SupTitle) , id=product.id})">@product.SupTitle</a>
+                <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(product.SupTitle) , id=product.id})" title="@product.SupTitle">@product.SupTitle</a>
             </li>
         }
         return null;
@@ -67,7 +67,7 @@
             if (categories.Count > 0)
             {
                 <li class="drop-down">
-                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})">@MainCategory.Name</a>
+                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})"title="@MainCategory.Name">@MainCategory.Name</a>
                     <ul>
                         @LoadSubMenu(MainCategory, categories)
                         @if (products.Count > 0)
@@ -80,7 +80,7 @@
             else if (products.Count > 0)
             {
                 <li class="drop-down">
-                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})">@MainCategory.Name</a>
+                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})"title="@MainCategory.Name">@MainCategory.Name</a>
                     <ul>
                         @LoadProduct(MainCategory, products)
                     </ul>
@@ -89,7 +89,7 @@
             else
             {
                 <li>
-                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})">@MainCategory.Name</a>
+                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})"title="@MainCategory.Name">@MainCategory.Name</a>
                 </li>
             }
 

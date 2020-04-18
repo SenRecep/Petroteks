@@ -226,7 +226,7 @@ namespace Petroteks.Pages
             using (var job = new FluentBuildJob())
             {
                 var res = await job.Decode(imageData).ConstrainWithin(desiredWidth, desiredHeight)
-                    .EncodeToBytes(new LibJpegTurboEncoder()).FinishAsync();
+                    .EncodeToBytes(new LibPngEncoder()).FinishAsync();
                 var bytes = res.First.TryGetBytes();
                 return bytes.HasValue ? bytes.Value.Array : new byte[] {};
             }
@@ -238,7 +238,7 @@ namespace Petroteks.Pages
             {
                 var imageData = System.IO.File.ReadAllBytes(filename);
                 var res = await job.Decode(imageData)
-                    .EncodeToBytes(new LibJpegTurboEncoder()).FinishAsync();
+                    .EncodeToBytes(new LibPngEncoder()).FinishAsync();
                 return (res.First.Width, res.First.Height);
             }
         }

@@ -25,6 +25,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
     {
         private readonly IUserService _userService;
         private readonly IUserSessionService _userSessionService;
+        private readonly IWebsiteService websiteService;
         private readonly ILanguageService languageService;
         private readonly ILanguageCookieService languageCookieService;
         private readonly IEmailService emailService;
@@ -37,10 +38,11 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             IHttpContextAccessor httpContextAccessor,
             ILanguageCookieService languageCookieService,
             IEmailService emailService) :
-            base(userSessionService, websiteService,languageService,languageCookieService, httpContextAccessor)
+            base(userSessionService, websiteService, languageService, languageCookieService, httpContextAccessor)
         {
             this._userService = userService;
             this._userSessionService = userSessionService;
+            this.websiteService = websiteService;
             this.languageService = languageService;
             this.languageCookieService = languageCookieService;
             this.emailService = emailService;
@@ -312,6 +314,22 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 {
                     LanguageContext.CurrentLanguage = language;
                     languageCookieService.Set("CurrentLanguage", language, 60 * 24 * 7);
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [Route("Admin/Website-Change/Website-{Name}")]
+        public IActionResult ChangeWebsite(string Name)
+        {
+            if (!string.IsNullOrWhiteSpace(Name))
+            {
+                Website website = websiteService.findByUrl(Name);
+                if (website != null)
+                {
+                    WebsiteContext.CurrentWebsite = website;
+                    LoadLanguage(true);
                 }
             }
             return RedirectToAction("Index", "Home");

@@ -127,6 +127,24 @@
                             </div>
 
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i data-feather="globe" class="svg-icon"></i>
+                                @WebsiteContext.CurrentWebsite.Name
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @foreach (var item in WebsiteContext.Websites)
+                                {
+                                    <a class="dropdown-item" id="@item.Name" title="@item.Name" href="@Url.Action("ChangeWebsite","Home",new { area="Admin", Name=item.Name})">
+                                        @item.Name
+                                    </a>
+                                }
+                            </div>
+
+                        </li>
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->

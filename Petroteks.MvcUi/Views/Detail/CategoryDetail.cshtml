@@ -20,12 +20,10 @@
 
 <section id="team" class="section-bg">
     <div class="container">
-        <div class="row">
-
-
+        <div class="row"> 
             @foreach (var item in Model.SubCategories)
             {
-                <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(item.Name) , page=1 , category=item.id})">
+                <a class="col-lg-4 col-md-6 col-sm-6 col-xs-12"href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(item.Name) , page=1 , category=item.id})">
                     <figure class="snip1401">
                         @if (item.PhotoPath == null)
                         {

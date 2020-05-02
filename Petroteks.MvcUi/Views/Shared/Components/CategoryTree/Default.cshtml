@@ -6,20 +6,35 @@
 
     .CategoryTreeView {
         margin: 0;
-        padding: 0;
+        padding: 1em;
+        border-radius: 24px;
+        margin-bottom: 2.2em;
+        width: fit-content;
+        background: linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#5f76e8);
+        color: white;
+        box-shadow: 0 3px 9px 0 rgba(80, 127, 177, 0.62);
+        -webkit-box-shadow: 0 3px 9px 0 rgba(80, 127, 177, 0.62);
+        -moz-box-shadow: 0 3px 9px 0 rgba(80, 127, 177, 0.62);
     }
-
+    .CategoryTreeView a{
+        color:white;
+    }
     .caret {
         cursor: pointer;
         -webkit-user-select: none; /* Safari 3.1+ */
         -moz-user-select: none; /* Firefox 2+ */
         -ms-user-select: none; /* IE 10+ */
         user-select: none;
+       
     }
 
         .caret::before {
-            content: "\25B6";
-            color: black;
+            content: "\f35a";
+            font-family: "Font Awesome 5 Free";
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            color: white;
             display: inline-block;
             margin-right: 6px;
         }

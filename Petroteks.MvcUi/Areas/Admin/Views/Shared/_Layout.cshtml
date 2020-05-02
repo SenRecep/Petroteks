@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="~/Admin/dist/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -113,8 +114,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i data-feather="globe" class="svg-icon"></i>
-                                Diller
+                                <i class="fas fa-language svg-icon"></i>
+
+                                Dil:@LanguageContext.CurrentLanguage.Name<i data-feather="chevron-down" class="svg-icon"></i>
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -133,6 +135,7 @@
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i data-feather="globe" class="svg-icon"></i>
                                 @WebsiteContext.CurrentWebsite.Name
+                                <i data-feather="chevron-down" class="svg-icon"></i>
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -234,30 +237,35 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link sidebar-link" asp-area="Admin" asp-controller="Home" asp-action="Bilgilendirme" aria-expanded="false">
-                                <i data-feather="mail" class="feather-icon"></i><span class="hide-menu">Bilgilendirme</span>
+                                <i data-feather="mail" class="feather-icon"></i><span class="hide-menu">Mail Bilgilendirme</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link sidebar-link" asp-area="Admin" asp-controller="Home" asp-action="Duyuru" aria-expanded="false">
+                                <i data-feather="volume" class="feather-icon"></i><span class="hide-menu">Pop-Up Duyuru</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                aria-expanded="false">
-                                <i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Layout Düzeni </span>
+                                <i data-feather="layers" class="feather-icon"></i><span class="hide-menu">Layout Düzeni </span>
                             </a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
                                 <li class="sidebar-item">
                                     <a asp-area="Admin" asp-controller="Pages" asp-action="NavbarHeaderAdd" class="sidebar-link">
                                         <span class="hide-menu">
-                                          Nav Bar Menü
+                                            Nav Bar Menü
                                         </span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a asp-area="Admin" asp-controller="Pages" asp-action="FooterAdd" class="sidebar-link">
                                         <span class="hide-menu">
-                                            Footer 
+                                            Footer
                                         </span>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                         <li class="sidebar-item">
@@ -377,7 +385,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center text-muted">
-                <a asp-area="" asp-controller="Home" asp-action="Index">Petroteks</a>.
+                <a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-eye"></i> Petrotekste Gör</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -447,7 +455,7 @@
             filebrowserBrowseUrl: "/LinkBrowser",
             filebrowserWindowWidth: 350,
             filebrowserWindowHeight: 500,
-            entities_latin : false, 
+            entities_latin: false,
             extraPlugins: 'font',
             allowedContent: 'ul li i(ion-android-checkmark-circle)'
         };
@@ -479,10 +487,9 @@
                 }
 
             });
-        });
-
+        }); 
     </script>
-
+    
 
 
     @RenderSection("Scripts", required: false)

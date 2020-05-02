@@ -174,7 +174,12 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return RedirectToAction("Login", "Home", new { area = "Admin" });
         }
 
-
+        [AdminAuthorize]
+        [Route("Duyuru")]
+        public IActionResult Duyuru()
+        { 
+            return View();
+        }
 
         [AdminAuthorize]
         [Route("Bilgilendirme")]

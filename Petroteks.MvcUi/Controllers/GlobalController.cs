@@ -47,24 +47,26 @@ namespace Petroteks.MvcUi.Controllers
                 }
                 if (!WebsiteContext.CurrentWebsite.Name.Contains("localhost"))
                 {
-                    var localhost = WebsiteContext.Websites.FirstOrDefault(w=>w.Name.Contains("localhost"));
+                    var localhost = WebsiteContext.Websites.FirstOrDefault(w => w.Name.Contains("localhost"));
                     WebsiteContext.Websites.Remove(localhost);
                 }
                 LoadLanguage();
             }
         }
-        public void LoadLanguage(bool decision=false)
+        public void LoadLanguage(bool decision = false, int? id = null)
         {
+            LanguageContext.WebsiteLanguages = languageService.GetMany(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             Language currentLanguage = languageCookieService.Get("CurrentLanguage");
             if (decision)
                 currentLanguage = null;
-            LanguageContext.WebsiteLanguages = languageService.GetMany(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            if (decision && id != null)
+            {
+                currentLanguage = LanguageContext.WebsiteLanguages.FirstOrDefault(x => x.id == id);
+                languageCookieService.Set("CurrentLanguage", currentLanguage, 60 * 24 * 7);
+            }
             if (currentLanguage == null)
             {
-                var culture = CultureInfo.CurrentCulture;
-                Language dbcurrentLanguage = LanguageContext.WebsiteLanguages.FirstOrDefault(x => x.KeyCode.Equals(culture.Name));
-                if (dbcurrentLanguage == null)
-                    dbcurrentLanguage = LanguageContext.WebsiteLanguages.FirstOrDefault(x => x.Default == true);
+                Language dbcurrentLanguage = LanguageContext.WebsiteLanguages.FirstOrDefault(x => x.Default == true);
                 if (dbcurrentLanguage == null)
                 {
                     dbcurrentLanguage = new Language()

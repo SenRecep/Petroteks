@@ -16,6 +16,12 @@ namespace Petroteks.Bll.Concreate
             filter = LanguageControl(filter);
             return base.Get(filter, navigations);
         }
+
+        public Product GetAllLanguageProduct(Expression<Func<Product, bool>> filter, params string[] navigations)
+        {
+            return base.Get(filter, navigations);
+        }
+
         public override ICollection<Product> GetMany(Expression<Func<Product, bool>> filter = null, params string[] navigations)
         {
             filter = LanguageControl(filter);

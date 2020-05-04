@@ -108,11 +108,11 @@
 </head>
 <body itemscope="" itemtype="https://schema.org/WebPage">
 
-    
+    @await Component.InvokeAsync("Notice")
 
- 
 
- 
+
+
 
     <header id="header">
 
@@ -322,14 +322,14 @@
         document.addEventListener('DOMContentLoaded', function () {
             var Modalelem = document.querySelector('#modal1');
             var deneme2 = $("#contentify").html();
-            if (deneme2.trim().length>0) {
+            if (deneme2.trim().length > 0) {
                 var instance = M.Modal.init(Modalelem);
                 instance.open();
                 $("#contentify div.slider").css('cssText', 'height: 100% !important;margin-top:0!important;');
                 var parent = $("#contentify div.slider");
                 parent.find('ul.slides').css('cssText', 'height: 100% !important;');
-                 
-            } 
+
+            }
         });
     </script>
 

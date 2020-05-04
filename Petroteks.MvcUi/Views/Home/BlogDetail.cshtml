@@ -2,8 +2,8 @@
 @{
     ViewData["Title"] = Model.Title;
     ViewData["Description"] = Model.Description;
-    ViewData["MetaTags"] =$"<meta name='twitter:image:src' content='{WebsiteContext.CurrentWebsite.BaseUrl}"+Model.PhotoPath+"'><meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='http://www.petroteks.com/Home/BlogDetay?id="+Model.id+"'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='"+Model.Title+"'> <meta property='og:type' content='website'> <meta property='og:description' content='"+Model.Description+"'> <meta property='og:image' content='http://petroteks.com/BlogImages"+Model.PhotoPath+"'> <meta property='og:url' content='http://www.petroteks.com/Home/BlogDetay?id="+Model.id+"'/> <meta property='og:title' content='"+Model.Title+"' />";
-    ViewData["Keywords"] = Model.Keywords; 
+    ViewData["MetaTags"] = $"<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='{WebsiteContext.CurrentWebsite.Name}/Blog-Detay-" + Model.id +"'/><meta name='twitter:creator' content='@Petroteks'/> <meta property='og:title' content='" + Model.Name + "'> <meta property='og:type' content='website'> <meta property='og:description' content='" + Model.Name + " ürünleri ve özellikleri'> <meta property='og:image' content='" + @WebsiteContext.CurrentWebsite.Name + "/BlogImages/" + Model.PhotoPath + $"'> <meta property='og:url' content='{WebsiteContext.CurrentWebsite.Name}/Blog-Detay-" + Model.id + "'/> <meta property='og:title' content='" + Model.Name + "' />";
+    ViewData["Keywords"] = Model.Keywords;
 }
 @Html.Raw(Model.Content)
 

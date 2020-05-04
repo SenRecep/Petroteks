@@ -43,8 +43,8 @@ namespace Petroteks.MvcUi.Controllers
         [HttpGet]
         public IActionResult ProductDetail(int id)
         {
-            Product product = productService.Get(x => x.id == id && x.IsActive == true);
-            if (product.Languageid != LanguageContext.CurrentLanguage.id)
+            Product product = productService.GetAllLanguageProduct(x => x.id == id && x.IsActive == true);
+            if (product?.Languageid != LanguageContext.CurrentLanguage.id)
                 LoadLanguage(true, product.Languageid);
             return View(product);
         }

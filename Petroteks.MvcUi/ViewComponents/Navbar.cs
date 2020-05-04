@@ -17,6 +17,7 @@ namespace Petroteks.MvcUi.ViewComponents
         {
             this.uI_NavbarService = uI_NavbarService;
         }
+
         public async Task<IViewComponentResult> InvokeAsync()
         {
             UI_Navbar uI_Navbar = uI_NavbarService.Get(x=>x.IsActive==true && x.WebSiteid==WebsiteContext.CurrentWebsite.id);

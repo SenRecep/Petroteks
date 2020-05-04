@@ -10,56 +10,46 @@ namespace Petroteks.Bll.Helpers
         {
             if (incomingText != null)
             {
-                incomingText = incomingText.Replace("ş", "s");
-                incomingText = incomingText.Replace("Ş", "s");
-                incomingText = incomingText.Replace("İ", "i");
-                incomingText = incomingText.Replace("I", "i");
-                incomingText = incomingText.Replace("ı", "i");
-                incomingText = incomingText.Replace("ö", "o");
-                incomingText = incomingText.Replace("Ö", "o");
-                incomingText = incomingText.Replace("ü", "u");
-                incomingText = incomingText.Replace("Ü", "u");
-                incomingText = incomingText.Replace("Ç", "c");
-                incomingText = incomingText.Replace("ç", "c");
-                incomingText = incomingText.Replace("ğ", "g");
-                incomingText = incomingText.Replace("Ğ", "g");
-                incomingText = incomingText.Replace(" ", "-");
-                incomingText = incomingText.Replace("---", "-");
-                incomingText = incomingText.Replace("?", "");
-                incomingText = incomingText.Replace("/", "");
-                incomingText = incomingText.Replace(".", "");
-                incomingText = incomingText.Replace("'", "");
-                incomingText = incomingText.Replace("#", "");
-                incomingText = incomingText.Replace("%", "");
-                incomingText = incomingText.Replace("&", "");
-                incomingText = incomingText.Replace("*", "");
-                incomingText = incomingText.Replace("!", "");
-                incomingText = incomingText.Replace("@", "");
-                incomingText = incomingText.Replace("+", "");
-                incomingText = incomingText.ToLower();
-                incomingText = incomingText.Trim();
-                // tüm harfleri küçült
+                _ = incomingText.Replace("ş", "s");
+                _ = incomingText.Replace("Ş", "s");
+                _ = incomingText.Replace("İ", "i");
+                _ = incomingText.Replace("I", "i");
+                _ = incomingText.Replace("ı", "i");
+                _ = incomingText.Replace("ö", "o");
+                _ = incomingText.Replace("Ö", "o");
+                _ = incomingText.Replace("ü", "u");
+                _ = incomingText.Replace("Ü", "u");
+                _ = incomingText.Replace("Ç", "c");
+                _ = incomingText.Replace("ç", "c");
+                _ = incomingText.Replace("ğ", "g");
+                _ = incomingText.Replace("Ğ", "g");
+                _ = incomingText.Replace(" ", "-");
+                _ = incomingText.Replace("---", "-");
+                _ = incomingText.Replace("?", "");
+                _ = incomingText.Replace("/", "");
+                _ = incomingText.Replace(".", "");
+                _ = incomingText.Replace("'", "");
+                _ = incomingText.Replace("#", "");
+                _ = incomingText.Replace("%", "");
+                _ = incomingText.Replace("&", "");
+                _ = incomingText.Replace("*", "");
+                _ = incomingText.Replace("!", "");
+                _ = incomingText.Replace("@", "");
+                _ = incomingText.Replace("+", "");
+                _ = incomingText.ToLower();
+                _ = incomingText.Trim();
                 string encodedUrl = (incomingText ?? "").ToLower();
-                // & ile " " yer değiştirme
                 encodedUrl = Regex.Replace(encodedUrl, @"\&+", "and");
-                // " " karakterlerini silme
                 encodedUrl = encodedUrl.Replace("'", "");
-                // geçersiz karakterleri sil
                 encodedUrl = Regex.Replace(encodedUrl, @"[^a-z0-9]", "-");
-                // tekrar edenleri sil
                 encodedUrl = Regex.Replace(encodedUrl, @"-+", "-");
-                // karakterlerin arasına tire koy
                 encodedUrl = encodedUrl.Trim('-');
                 return encodedUrl;
             }
             else
-            {
                 return "";
-            }
         }
-        public static string CleanFileName(string fileName)
-        {
-            return Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
-        }
+        public static string CleanFileName(string fileName) =>
+             Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
     }
 }

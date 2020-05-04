@@ -2,6 +2,7 @@
 using Petroteks.Bll.Abstract;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Models;
+using Petroteks.MvcUi.Models.MI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Petroteks.MvcUi.ViewComponents
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
 
-        public CategoryList(ICategoryService categoryService,IProductService productService)
+        public CategoryList(ICategoryService categoryService, IProductService productService)
         {
             this.categoryService = categoryService;
             this.productService = productService;
@@ -23,29 +24,24 @@ namespace Petroteks.MvcUi.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(Website website)
         {
-            ICollection<Category> categories = categoryService.GetMany(category => category.WebSiteid == website.id && category.IsActive == true).OrderByDescending(x=>x.Priority).ToList();
-            ICollection<Product> products = Products(categories).OrderByDescending(x=>x.Priority).ToList();
+            ICollection<MI_Category> categories = categoryService
+                .GetMany(category => category.WebSiteid == website.id && category.IsActive == true)
+                .OrderByDescending(x => x.Priority)
+                .Select(x=>new MI_Category(x))
+                .ToList();
+
+            ICollection<MI_Product> products = productService
+                .GetMany(x => x.IsActive == true)
+                .Select(x => new MI_Product(x))
+                .OrderByDescending(x => x.Priority)
+                .ToList();
+
             return View(new CategoryListViewModel(categoryService, productService)
             {
                 MainCategories = categories.Where(x => x.Parentid == 0).ToList(),
                 AllSubCategory = categories.Where(x => x.Parentid != 0).ToList(),
                 AllProduct = products
             });
-
         }
-
-        public IEnumerable<Product> Products(ICollection<Category> categories)
-        {
-            var products = productService.GetMany(x => x.IsActive == true);
-            foreach (Product item in products)
-            {
-                Category category = categories.Where(x => x.id == item.Categoryid).FirstOrDefault();
-                if (category != null && item.IsActive == true)
-                    yield return item;
-            }
-        }
-
     }
-
-    
 }

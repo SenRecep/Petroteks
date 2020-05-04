@@ -62,17 +62,17 @@
 
 
 
-    object LoadSubMenu(Category category, ICollection<Category> categories)
+    object LoadSubMenu(MI_Category MI_Category, ICollection<MI_Category> categories)
     {
-        foreach (Category subCategory in categories)
+        foreach (MI_Category subCategory in categories)
         {
-            ICollection<Category> localcategories = Model.GetCategoryies(subCategory.id);
-            ICollection<Product> products = Model.AllProduct.Where(x => x.Categoryid == subCategory.id).ToList();
+            ICollection<MI_Category> localcategories = Model.GetCategoryies(subCategory.id);
+            ICollection<MI_Product> products = Model.AllProduct.Where(x => x.Categoryid == subCategory.id).ToList();
             if (localcategories.Count > 0)
             {
                 <li>
                     <span class="caret">
-                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})">@Model.NameId(subCategory)</a>
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , MI_Category=subCategory.id})">@Model.NameId(subCategory)</a>
                         @CategoryControl(subCategory.id)
                     </span>
                     <ul class="nested">
@@ -88,18 +88,18 @@
             {
                 <li>
                     <span class="caret">
-                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})">@Model.NameId(subCategory)</a>
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , MI_Category=subCategory.id})">@Model.NameId(subCategory)</a>
                         @CategoryControl(subCategory.id)
                     </span>
                     <ul class="nested">
-                        @LoadProduct(category, products)
+                        @LoadProduct(MI_Category, products)
                     </ul>
                 </li>
             }
             else
             {
                 <li>
-                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , category=subCategory.id})">@Model.NameId(subCategory)</a>
+                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , MI_Category=subCategory.id})">@Model.NameId(subCategory)</a>
                     @CategoryControl(subCategory.id)
                 </li>
             }
@@ -110,11 +110,11 @@
 
 
 
-    object LoadProduct(Category category, ICollection<Product> localProducts)
+    object LoadProduct(MI_Category MI_Category, ICollection<MI_Product> localProducts)
     {
-        @foreach (Product product in localProducts)
+        @foreach (MI_Product MI_Product in localProducts)
         {
-            <div id="product-modal-@product.id" class="modal fade" tabindex="-1" role="dialog"
+            <div id="MI_Product-modal-@MI_Product.id" class="modal fade" tabindex="-1" role="dialog"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -126,18 +126,18 @@
                             </div>
 
                             <div class="form-group text-center">
-                                <a class="btn btn-rounded btn-danger" href="@Url.Action("ProductDelete","Pages",new { area="Admin" ,id=product.id })">Sil</a>
+                                <a class="btn btn-rounded btn-danger" href="@Url.Action("ProductDelete","Pages",new { area="Admin" ,id=MI_Product.id })">Sil</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <li>
-                <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(product.SupTitle) , id=product.id})">@product.SupTitle</a>
+                <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(MI_Product.SupTitle) , id=MI_Product.id})">@MI_Product.SupTitle</a>
                 [
-                <button type="button" data-toggle="modal" data-target="#product-modal-@product.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
+                <button type="button" data-toggle="modal" data-target="#MI_Product-modal-@MI_Product.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
                 |
-                <a href="@Url.Action("ProductEditMode","Pages",new { area="Admin" ,id=product.id })" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+                <a href="@Url.Action("ProductEditMode","Pages",new { area="Admin" ,id=MI_Product.id })" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
                 ]
             </li>
         }
@@ -145,9 +145,9 @@
         return null;
     }
 
-    object CategoryControl(int category)
+    object CategoryControl(int MI_Category)
     {
-        <div id="category-modal-@category" class="modal fade" tabindex="-1" role="dialog"
+        <div id="MI_Category-modal-@MI_Category" class="modal fade" tabindex="-1" role="dialog"
              aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -159,7 +159,7 @@
                         </div>
 
                         <div class="form-group text-center">
-                            <a class="btn btn-rounded btn-danger" href="@Url.Action("CategoryDelete","Pages",new { area="Admin" ,id=category })">Sil</a>
+                            <a class="btn btn-rounded btn-danger" href="@Url.Action("CategoryDelete","Pages",new { area="Admin" ,id=MI_Category })">Sil</a>
                         </div>
                     </div>
                 </div>
@@ -167,9 +167,9 @@
         </div>
 
         @:[
-        <button type="button" data-toggle="modal" data-target="#category-modal-@category" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
+        <button type="button" data-toggle="modal" data-target="#MI_Category-modal-@MI_Category" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
         @:|
-        <a href="@Url.Action("CategoryEditMode","Pages",new { area="Admin" ,id=category })" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
+        <a href="@Url.Action("CategoryEditMode","Pages",new { area="Admin" ,id=MI_Category })" class="btn btn-success btn-rounded"><i class="fas fa-edit"></i> </a>
         @:]
         return null;
     }
@@ -185,9 +185,9 @@
 
 
     <ul class="CategoryTreeView">
-        @foreach (Category MainCategory in Model.MainCategories)
+        @foreach (MI_Category MainCategory in Model.MainCategories)
         {
-            ICollection<Product> products = Model.AllProduct.Where(x => x.Categoryid == MainCategory.id).ToList();
+            ICollection<MI_Product> products = Model.AllProduct.Where(x => x.Categoryid == MainCategory.id).ToList();
 
             if (MainCategory.Name == "ROOT")
             {
@@ -195,12 +195,12 @@
             }
             else
             {
-                ICollection<Category> categories = Model.GetCategoryies(MainCategory.id);
+                ICollection<MI_Category> categories = Model.GetCategoryies(MainCategory.id);
                 if (categories.Count > 0)
                 {
                     <li>
                         <span class="caret">
-                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , MI_Category=MainCategory.id})">@Model.NameId(MainCategory)</a>
 
                             @CategoryControl(MainCategory.id)
 
@@ -219,7 +219,7 @@
                 {
                     <li>
                         <span class="caret">
-                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , MI_Category=MainCategory.id})">@Model.NameId(MainCategory)</a>
 
                             @CategoryControl(MainCategory.id)
 
@@ -232,7 +232,7 @@
                 else
                 {
                     <li>
-                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , MI_Category=MainCategory.id})">@Model.NameId(MainCategory)</a>
 
                         @CategoryControl(MainCategory.id)
 

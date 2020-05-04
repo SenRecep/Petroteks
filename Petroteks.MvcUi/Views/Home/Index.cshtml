@@ -33,124 +33,21 @@
 
 
 
-
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content" id="contentify" style="padding:0!important">
+        @Html.Raw(Model.MainPage.Slider)
+    </div>
+    <a href="#!" style="position: fixed; top: 10px; color: #5d5d5d; font-size: 1.5em; z-index: 1000; right: 10px;" class="modal-close"><i class="fa fa-close"></i></a>
+</div>
 
 <main id="main">
-
-    <!--==========================
-      About Us Section
-    ============================-->
     @Html.Raw(Model.MainPage.TopContent)
-
-
-
-
-
-    @*<section id="team" class="section-bg">
-            <div class="container">
-                <div class="section-header">
-                    <h3>Ürünlerimiz</h3>
-
-                </div>
-
-                <div class="row">
-
-
-
-
-                    @{
-                        foreach (var item in Model.Categories)
-                        {
-
-                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(item.Name) , page=1 , category=item.id})">
-                                <figure class="snip1401">
-                                    @if (item.PhotoPath == null)
-                                    {
-                                        <img src="~/images/Lifta.jpg" style="width:450px!important;height:250px!important;" />
-                                    }
-                                    else
-                                    {
-                                        <img src="../CategoryImages/@item.PhotoPath" style="width:450px!important;height:250px!important;" />
-                                    }
-                                    <figcaption>
-                                        <h3>@item.Name</h3>
-
-                                    </figcaption><i class="ion-ios-pricetags-outline"></i>
-
-                                </figure>
-                            </a>
-                        }
-                        foreach (var item in Model.Products)
-                        {
-
-                            <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(item.SupTitle) , id=item.id})">
-                                <figure class="snip1401">
-                                    @if (item.PhotoPath == null)
-                                    {
-                                        <img src="~/images/Lifta.jpg" style="width:450px!important;height:250px!important;" />
-                                    }
-                                    else
-                                    {
-                                        <img src="../ProductImages/@item.PhotoPath" style="width:450px!important;height:250px!important;" />
-                                    }
-                                    <figcaption>
-                                        <h3>@item.SupTitle</h3>
-
-                                    </figcaption><i class="ion-ios-pricetags-outline"></i>
-
-                                </figure>
-
-                            </a>
-                        }
-                    }
-
-                </div>
-
-            </div>
-        </section>*@
-
-
-
-
 </main>
 
 @Html.Raw(Model.MainPage.BottomContent)
 
-
-
-@*<section id="services" class="section-bg">
-        <div class="container">
-
-            <header class="section-header">
-                <h3>PETROBLOG</h3>
-                <p>Sondaj ile ilgili gelişmeleri ve yenilikleri Petroblog'da bulabilirsiniz.</p>
-            </header>
-
-            <div class="row">
-
-
-                @foreach (Blog item in Model.Blogs)
-                {
-
-                    <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
-                        <div class="box">
-                            <div class="icon"> <img src="~/BlogImages/@item.PhotoPath" class="img-fluid align-unset" /></div>
-                            <h4 class="title"><a href="">@item.Title</a></h4>
-
-                            <p class="description">@item.Description</p>
-                            <a class="button pulse text-white" href="#">Detay</a>
-                        </div>
-                    </div>
-                }
-
-            </div>
-
-        </div>
-    </section>*@
-
-
 @section Scripts{
-
     <script>
 
         function BilgilendirmeMail() {
@@ -173,12 +70,6 @@
             else {
                 toastr.error('Lütfen e-mail adresini doğru giriniz');
             }
-
-
-
-
         }
     </script>
-
-
 }

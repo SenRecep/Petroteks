@@ -55,7 +55,6 @@ namespace Petroteks.MvcUi.Controllers
         }
         public void LoadLanguage(bool decision=false)
         {
-
             Language currentLanguage = languageCookieService.Get("CurrentLanguage");
             if (decision)
                 currentLanguage = null;

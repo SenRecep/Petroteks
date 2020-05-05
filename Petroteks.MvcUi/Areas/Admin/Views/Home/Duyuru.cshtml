@@ -1,4 +1,4 @@
-﻿
+﻿@model NoticeViewModel
 @{
     ViewData["Title"] = "PopUp Duyuru";
 }
@@ -7,24 +7,22 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-
                 @using (Html.BeginForm())
                 {
                     <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck2" checked="">
-                            <label class="custom-control-label" for="customCheck2">Duyuru Açık Kalsın</label>
-                        </div>
+                        <input type="datetime-local" asp-for="StartDate" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <input type="datetime-local" asp-for="EndDate" class="form-control" >
                     </div>
                     <h4 class="card-title">Duyuru Editörü</h4>
                     <div class="form-group">
                         <textarea id="editor1" name="Content">
-                           
+                           @Html.Raw(Model.Content)
                         </textarea>
                     </div>
                     <br />
                     <center><input type="submit" class="btn btn-success" value="Kaydet" /></center>
-
                 }
             </div>
         </div>

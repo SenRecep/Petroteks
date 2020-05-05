@@ -26,4 +26,5 @@ namespace Petroteks.Bll.Abstract
     public interface IUI_NavbarService : IEntityRepostory<UI_Navbar> { }
     public interface IUI_ContactService : IEntityRepostory<UI_Contact> { }
     public interface IUI_FooterService : IEntityRepostory<UI_Footer> { }
+    public interface IUI_NoticeService : IEntityRepostory<UI_Notice> { }
 }

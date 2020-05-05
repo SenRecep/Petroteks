@@ -4,22 +4,26 @@
 }
 <div class="row">
     <div class="col-12">
-        <div class="card" style=""> 
+        <div class="card" style="">
             <div class="card-body">
                 <h4 class="card-title">Mevcut Sitedeki Dil Listesi</h4>
                 <div class="col-md-6">
                     <ul class="list-group">
                         @foreach (var item in LanguageContext.WebsiteLanguages)
                         {
-                            <li class="list-group-item"><span>@item.Name</span><span><img style="padding-left:1em" src="~/LanguageImages/@item.IconCode"/></span></li>
+                            <li class="list-group-item">
+                                <span>@item.Name</span>
+                                <span class="pl-1"><img  src="~/LanguageImages/@item.IconCode" /></span>
+                                <span class="pl-1">@item.KeyCode</span>
+                            </li>
                         }
                     </ul>
                 </div>
 
             </div>
-         
+
         </div>
-      
+
         <div class="card">
             <div class="card-body">
 

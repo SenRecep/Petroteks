@@ -19,4 +19,5 @@ namespace Petroteks.Dal.Concreate.EntityFramework
     public class EfUI_NavbarDal : EfEntityRepostoryBase<UI_Navbar, PetroteksDbContext>, IUI_NavbarDal { }
     public class EfUI_ContactDal : EfEntityRepostoryBase<UI_Contact, PetroteksDbContext>, IUI_ContactDal { }
     public class EfUI_FooterDal : EfEntityRepostoryBase<UI_Footer, PetroteksDbContext>, IUI_FooterDal { }
+    public class EfUI_NoticeDal : EfEntityRepostoryBase<UI_Notice, PetroteksDbContext>, IUI_NoticeDal { }
 }

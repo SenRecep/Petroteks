@@ -26,5 +26,6 @@ namespace Petroteks.Dal.Concreate.EntityFramework.Contexts
         public DbSet<UI_Navbar> UI_Navbars { get; set; }
         public DbSet<UI_Contact> UI_Contacts { get; set; }
         public DbSet<UI_Footer> UI_Footers { get; set; }
+        public DbSet<UI_Notice> UI_Notices { get; set; }
     }
 }

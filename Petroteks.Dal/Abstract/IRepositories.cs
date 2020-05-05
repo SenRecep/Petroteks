@@ -18,5 +18,6 @@ namespace Petroteks.Dal.Abstract
     public interface IUI_NavbarDal : IEntityRepostory<UI_Navbar> { }
     public interface IUI_ContactDal : IEntityRepostory<UI_Contact> { }
     public interface IUI_FooterDal : IEntityRepostory<UI_Footer> { }
+    public interface IUI_NoticeDal : IEntityRepostory<UI_Notice> { }
 
 }

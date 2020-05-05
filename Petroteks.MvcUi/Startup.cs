@@ -67,6 +67,9 @@ namespace Petroteks.MvcUi
             services.AddScoped<IUI_FooterService, UI_FooterManager>();
             services.AddScoped<IUI_FooterDal, EfUI_FooterDal>();
 
+            services.AddScoped<IUI_NoticeService, UI_NoticeManager>();
+            services.AddScoped<IUI_NoticeDal, EfUI_NoticeDal>();
+
             services.AddSingleton<IUserSessionService, UserSessionService>();
             services.AddSingleton<IUserCookieService, UserCookieService>();
             services.AddSingleton<ILanguageCookieService, LanguageCookieService>();

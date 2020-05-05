@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Helpers;
+using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Areas.Admin.Data;
 using Petroteks.MvcUi.Areas.Admin.Models;
@@ -29,6 +31,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         private readonly ILanguageService languageService;
         private readonly ILanguageCookieService languageCookieService;
         private readonly IEmailService emailService;
+        private readonly IUI_NoticeService uI_NoticeService;
         private EmailSender emailSender;
         public HomeController(
             IUserService userService,
@@ -37,7 +40,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             ILanguageService languageService,
             IHttpContextAccessor httpContextAccessor,
             ILanguageCookieService languageCookieService,
-            IEmailService emailService) :
+            IEmailService emailService,
+            IUI_NoticeService uI_NoticeService) :
             base(userSessionService, websiteService, languageService, languageCookieService, httpContextAccessor)
         {
             this._userService = userService;
@@ -46,6 +50,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             this.languageService = languageService;
             this.languageCookieService = languageCookieService;
             this.emailService = emailService;
+            this.uI_NoticeService = uI_NoticeService;
         }
         [Route("Admin-Panel")]
         [AdminAuthorize]
@@ -177,9 +182,51 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [AdminAuthorize]
         [Route("Duyuru")]
         public IActionResult Duyuru()
-        { 
-            return View();
+        {
+            return View(new NoticeViewModel());
         }
+        [HttpPost]
+        [AdminAuthorize]
+        [Route("Duyuru")]
+        public IActionResult Duyuru(NoticeViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool error = false;
+                StringBuilder ErrorMassage = new StringBuilder();
+                if (model.StartDate > model.EndDate)
+                {
+                    ErrorMassage.AppendLine("Baslangic tarihiniz bitis tarihinden sonra olamaz.");
+                    error = true;
+                }
+                if (string.IsNullOrWhiteSpace(model.Content))
+                {
+                    ErrorMassage.AppendLine("Duyuru icerigi bos olamaz");
+                    error = true;
+                }
+                if (!error)
+                {
+                    UI_Notice uI_Notice = new UI_Notice()
+                    {
+                        Content = model.Content,
+                        StartDate = model.StartDate,
+                        EndDate = model.EndDate,
+                        WebSite = WebsiteContext.CurrentWebsite,
+                        Language = LanguageContext.CurrentLanguage,
+                        CreateUserid=LoginUser.id
+                    };
+                    uI_NoticeService.Add(uI_Notice);
+                    uI_NoticeService.Save();
+                }
+                else
+                {
+                    ViewBag.CreateError = ErrorMassage.ToString();
+                    return View(model);
+                }
+            }
+            return View(new NoticeViewModel());
+        }
+
 
         [AdminAuthorize]
         [Route("Bilgilendirme")]

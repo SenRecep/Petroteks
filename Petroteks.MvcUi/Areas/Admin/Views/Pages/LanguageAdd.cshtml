@@ -4,12 +4,28 @@
 }
 <div class="row">
     <div class="col-12">
+        <div class="card" style=""> 
+            <div class="card-body">
+                <h4 class="card-title">Mevcut Sitedeki Dil Listesi</h4>
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        @foreach (var item in LanguageContext.WebsiteLanguages)
+                        {
+                            <li class="list-group-item"><span>@item.Name</span><span><img style="padding-left:1em" src="~/LanguageImages/@item.IconCode"/></span></li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+         
+        </div>
+      
         <div class="card">
             <div class="card-body">
 
                 @using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-               
+
                     <h4 class="card-title">Dili temsil eden bayrak fotoğrafı</h4>
                     <div class="form-group">
                         <div class="input-group mb-3">

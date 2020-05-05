@@ -13,6 +13,7 @@ using System.Text;
 using Petroteks.MvcUi.Areas.Admin.Models;
 using System.Linq.Expressions;
 using Petroteks.MvcUi.Services;
+using System.Diagnostics;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -133,7 +134,6 @@ namespace Petroteks.MvcUi.Controllers
         [HttpPost]
         public JsonResult Contact(Iletisim model)
         {
-
             if (ModelState.IsValid)
             {
                 var body = new StringBuilder();
@@ -180,6 +180,5 @@ namespace Petroteks.MvcUi.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-
     }
 }

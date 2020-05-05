@@ -92,16 +92,18 @@ namespace Petroteks.MvcUi
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Error/Error");
+                app.UseExceptionHandler("/Error/500");
                 app.UseHsts();
             }
+
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();

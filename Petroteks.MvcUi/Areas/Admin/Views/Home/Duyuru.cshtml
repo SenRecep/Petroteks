@@ -9,11 +9,13 @@
             <div class="card-body">
                 @using (Html.BeginForm())
                 {
+                    <h4 class="card-title">Başlangıç Tarihi</h4>
                     <div class="form-group">
-                        <input type="datetime-local" asp-for="StartDate" class="form-control" >
+                        <input type="datetime-local" asp-for="StartDate" class="form-control">
                     </div>
+                    <h4 class="card-title">Bitiş Tarihi</h4>
                     <div class="form-group">
-                        <input type="datetime-local" asp-for="EndDate" class="form-control" >
+                        <input type="datetime-local" asp-for="EndDate" class="form-control">
                     </div>
                     <h4 class="card-title">Duyuru Editörü</h4>
                     <div class="form-group">

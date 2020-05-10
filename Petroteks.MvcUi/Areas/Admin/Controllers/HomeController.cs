@@ -19,6 +19,7 @@ using Petroteks.MvcUi.Attributes;
 using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
+using Petroteks.MvcUi.ViewComponents;
 
 namespace Petroteks.MvcUi.Areas.Admin.Controllers
 {
@@ -178,12 +179,31 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return RedirectToAction("Login", "Home", new { area = "Admin" });
         }
-
+        [AdminAuthorize]
+        [Route("DuyuruList")]
+        public IActionResult DuyuruList()
+        {
+            var data = uI_NoticeService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).ToList();
+            return View(data); 
+        }
         [AdminAuthorize]
         [Route("Duyuru")]
         public IActionResult Duyuru()
         {
             return View(new NoticeViewModel());
+        }
+        [AdminAuthorize]
+        [Route("Duyuru-Silme-{id:int}")]
+        public JsonResult DuyuruSilme(int id)
+        {
+            UI_Notice Notice = uI_NoticeService.Get(x => x.id == id);
+            if (Notice != null)
+            {
+                Notice.IsActive = false;
+                uI_NoticeService.Save();
+                return Json("Başarılı");
+            }
+            return Json("Basarisiz");
         }
         [HttpPost]
         [AdminAuthorize]

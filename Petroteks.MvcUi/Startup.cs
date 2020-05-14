@@ -16,6 +16,7 @@ namespace Petroteks.MvcUi
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -77,6 +78,20 @@ namespace Petroteks.MvcUi
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.LatinExtendedA }));
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder
+                                      .WithOrigins("https://www.petroteks.com")
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod();
+                                  });
+            });
+
+
+
             services.AddRazorPages();
             IMvcBuilder mvcBuilder = services.AddControllersWithViews();
 #if DEBUG
@@ -113,12 +128,18 @@ namespace Petroteks.MvcUi
 
             app.UseRouting();
 
+            app.UseCors();
+
             app.UseAuthorization();
 
             app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapControllers()
+                     .RequireCors(MyAllowSpecificOrigins);
+
                 endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "areas",

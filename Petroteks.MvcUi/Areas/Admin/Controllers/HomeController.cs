@@ -268,6 +268,15 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             });
         }
 
+
+        [HttpGet]
+        [AdminAuthorize]
+        [Route("SitelerinDurumlari")]
+        public IActionResult WebsitesStatus()
+        {
+            return View();
+        }
+
         [AdminAuthorize]
         public JsonResult SelectAuth(int id, int role)
         {

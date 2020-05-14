@@ -180,25 +180,12 @@
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <a class="dropdown-item" href="javascript:void(0)">
+                                @*<a class="dropdown-item" href="javascript:void(0)">
                                     <i data-feather="user"
                                        class="svg-icon mr-2 ml-1"></i>
                                     Profilim
-                                </a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i data-feather="credit-card"
-                                       class="svg-icon mr-2 ml-1"></i>
-                                    Ana
-                                </a>
-
-
-
-
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i data-feather="credit-card"
-                                       class="svg-icon mr-2 ml-1"></i>
-                                    Tüm Yayınlarım
-                                </a>
+                                </a>*@
+                                
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)">
@@ -243,6 +230,11 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link sidebar-link" asp-area="Admin" asp-controller="Home" asp-action="Duyuru" aria-expanded="false">
                                 <i data-feather="volume" class="feather-icon"></i><span class="hide-menu">Pop-Up Duyuru</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link sidebar-link" asp-area="Admin" asp-controller="Home" asp-action="WebsitesStatus" aria-expanded="false">
+                                <i data-feather="power" class="feather-icon"></i><span class="hide-menu">Sitelerin Durumu</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -403,7 +395,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
 
-
+    <script src="~/js/site.js"></script>
     <script src="~/Admin/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>

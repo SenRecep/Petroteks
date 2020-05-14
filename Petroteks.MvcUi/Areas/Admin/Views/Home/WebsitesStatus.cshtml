@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "WebsitesStatus";
+}
+<div class="row">
+    <table class="table table-hover  table-dark  table-bordered no-wrap text-center">
+        <thead>
+            <tr>
+                <th>URL</th>
+                <th>Tepki Süresi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Websites)
+            {
+                <tr>
+                    <td>@item.BaseUrl</td>
+                    <td id="ws-@item.id">Kapalı</td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>URL</th>
+                <th>Tepki Süresi</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+@section Scripts{
+
+    <script>
+        let websites = toJS(@Html.ToJson(Websites)).map(x => {
+            return {
+                id: x.id,
+                url: x.baseUrl
+            }
+        });
+        console.log(websites);
+
+        function ping(url,urlId) {
+
+            var started = new Date().getTime();
+
+            var http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.onreadystatechange = function () {
+                if (http.readyState == 4) {
+                    var ended = new Date().getTime();
+                    var milliseconds = ended - started;
+                    console.log(`${url} ${milliseconds}`);
+                    $(`#ws-${urlId}`).text(`${milliseconds}`);
+                }
+            };
+
+            try {
+                http.send(null);
+            } catch (exception) {
+            }
+
+        }
+
+        function StatusCheck() {
+            $.each(websites, function (key, value) {
+                ping(value.url, value.id);
+            });
+        }
+        StatusCheck();
+        setInterval(StatusCheck, 5000);
+    </script>
+
+}

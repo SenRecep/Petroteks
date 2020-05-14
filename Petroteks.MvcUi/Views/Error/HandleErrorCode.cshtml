@@ -1,10 +1,22 @@
 ﻿
 @{
     ViewData["Title"] = "HandleErrorCode";
+    Layout = "~/Views/Shared/ErrorLayout";
 }
 
-<h1>HandleErrorCode</h1>
 
-<h1>@ViewBag.StatusCode</h1>
-<h1>@ViewBag.ErrorMessage</h1>
-<h1>@ViewBag.RouteOfException</h1>
+
+    <section id="not-found">
+        <div id="title">Bir Saniye!</div>
+        <div class="circles">
+            <p>
+                @ViewBag.StatusCode<br>
+                <small>@ViewBag.ErrorMessage, @ViewBag.RouteOfException</small>
+            </p>
+            <span class="circle big"></span>
+            <span class="circle med"></span>
+            <span class="circle small"></span>
+        </div>
+    </section>
+
+ 

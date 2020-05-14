@@ -1,8 +1,21 @@
 ﻿
 @{
     ViewData["Title"] = "Error500";
+    Layout = "~/Views/Shared/ErrorLayout.cshtml";
 }
 
-<h1>Error500</h1>
-<h1>@ViewBag.ErrorMessage</h1>
-<h1>@ViewBag.RouteOfException</h1>
+
+
+<section id="not-found">
+    <div id="title">Bir Saniye!</div>
+    <div class="circles">
+        <p>
+            500<br>
+               <small>@ViewBag.ErrorMessage, @ViewBag.RouteOfException</small>
+        </p>
+        <span class="circle big"></span>
+        <span class="circle med"></span>
+        <span class="circle small"></span>
+    </div>
+</section>
+ 

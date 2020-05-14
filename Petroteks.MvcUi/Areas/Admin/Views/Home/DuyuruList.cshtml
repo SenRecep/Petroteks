@@ -1,0 +1,90 @@
+﻿@model List<UI_Notice>
+@{
+    ViewData["Title"] = "DuyuruList";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-body">
+        <a class="btn waves-effect waves-light btn-success btn-rounded" href="@Url.Action("Duyuru","Home",new { area="Admin"})"> <i class="fas fa-plus"></i> Yeni Ekle</a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th> Başlangıç Tarihi</th>
+                    <th> Bitiş Tarihi</th>
+                    <th> İçerik</th>
+                    <th> Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @item.StartDate
+                    </td>
+                    <td>
+                        @item.EndDate
+                    </td>
+                    <td>
+                        @if (item.Content.Length < 100)
+                        {
+                            @item.Content
+                        }
+                        else
+                        {
+                          @item.Content.Substring(0, 100) 
+                        }
+
+
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-rounded" onclick="DuyuruSilme(@item.id);"><i class="fas fa-trash"></i> </button>
+                    </td>
+                </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script>
+        function DuyuruSilme(id) {
+            var dialog2 = $.confirm({
+                title: "Dikkat!", icon: 'fa fa-trash', theme: 'modern', type: 'orange', content: "silmek üzeresiniz!", buttons: {
+                    VAZGEÇ: function () {
+                        dialog.close();
+                    },
+                    SİL: function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "/Duyuru-Silme-" + id,
+                            success: function (response) {
+                                toastr.success(response)
+                                location.reload();
+                                dialog.close();
+
+                            },
+                            failure: function (response) {
+                                toastr.error(response)
+                            },
+                            error: function (response) {
+                                toastr.error(response)
+                            }
+                        });
+                    }
+                }
+            });
+
+
+        }
+
+    </script>
+}

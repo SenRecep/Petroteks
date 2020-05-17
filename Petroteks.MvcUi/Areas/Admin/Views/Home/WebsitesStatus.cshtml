@@ -37,6 +37,7 @@
                 url: x.baseUrl
             }
         });
+
         console.log(websites);
 
         function ping(url,urlId) {
@@ -53,6 +54,8 @@
                     $(`#ws-${urlId}`).text(`${milliseconds}`);
                 }
             };
+
+            
 
             try {
                 http.send(null);

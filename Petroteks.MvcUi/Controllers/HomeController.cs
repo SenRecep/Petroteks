@@ -86,7 +86,7 @@ namespace Petroteks.MvcUi.Controllers
             DynamicPage dynamicPage = dynamicPageService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true && x.id == id);
             return View(dynamicPage);
         }
-        [Route("Bloglar")]
+        [Route("Bloglar.html")]
         public IActionResult PetroBlog()
         {
             ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x=>x.Priority).OrderByDescending(x => x.CreateDate).ToList();

@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = Model.CurrentCategory.Name;
     ViewData["Description"] = Model.CurrentCategory.Name + " ürünleri ve özellikleri | Petroteks ";
-    ViewData["MetaTags"] = $"<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='{WebsiteContext.CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-"+Model.CurrentPage+"-"+ Model.CurrentCategory.id + "'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='" + Model.CurrentCategory.Name + "'> <meta property='og:type' content='website'> <meta property='og:description' content='" + Model.CurrentCategory.Name + " ürünleri ve özellikleri'> <meta property='og:image' content='"+@WebsiteContext.CurrentWebsite.Name+ "/CategoryImages/"+Model.CurrentCategory.PhotoPath+ "'> <meta property='og:url' content='{WebsiteContext.CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentPage + "-" + Model.CurrentCategory.id + "'/> <meta property='og:title' content='" + Model.CurrentCategory.Name + "' />";
+    ViewData["MetaTags"] = $"<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='{WebsiteContext.CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentPage + "-" + Model.CurrentCategory.id + "'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='" + Model.CurrentCategory.Name + "'> <meta property='og:type' content='website'> <meta property='og:description' content='" + Model.CurrentCategory.Name + " ürünleri ve özellikleri'> <meta property='og:image' content='" + @WebsiteContext.CurrentWebsite.Name + "/CategoryImages/" + Model.CurrentCategory.PhotoPath + "'> <meta property='og:url' content='{WebsiteContext.CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentPage + "-" + Model.CurrentCategory.id + "'/> <meta property='og:title' content='" + Model.CurrentCategory.Name + "' />";
     ViewData["Keywords"] = "Sondaj kategorileri, Sondaj ürünleri," + Model.CurrentCategory.Name;
 }
 <section class="clearfix" id="intro2">
@@ -20,10 +20,10 @@
 
 <section id="team" class="section-bg">
     <div class="container">
-        <div class="row"> 
+        <div class="row">
             @foreach (var item in Model.SubCategories)
             {
-                <a class="col-lg-4 col-md-6 col-sm-6 col-xs-12"href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(item.Name) , page=1 , category=item.id})">
+                <a class="col-lg-4 col-md-6 col-sm-6 col-xs-12" href="@Url.Action(ActionsModel.CategoryDetail,ControllersModel.Detail, new { categoryName=GetFriendlyTitle(item.Name) , page=1 , category=item.id})">
                     <figure class="snip1401">
                         @if (item.PhotoPath == null)
                         {
@@ -40,12 +40,12 @@
 
                     </figure>
                 </a>
-                
+
             }
 
             @foreach (var item in Model.Products)
             {
-                <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(item.SupTitle) , id=item.id})">
+                <a href="@Url.Action(ActionsModel.ProductDetail,ControllersModel.Detail,new { produtname=GetFriendlyTitle(item.SupTitle) , id=item.id})">
                     <figure class="snip1401">
                         @if (item.PhotoPath == null)
                         {
@@ -68,7 +68,7 @@
 
 
         </div>
-    
+
 
     </div>
 </section>

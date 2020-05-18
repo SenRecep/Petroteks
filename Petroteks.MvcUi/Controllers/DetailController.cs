@@ -45,9 +45,23 @@ namespace Petroteks.MvcUi.Controllers
         public IActionResult ProductDetail(int id)
         {
             Product product = productService.GetAllLanguageProduct(x => x.id == id && x.IsActive == true);
-            if (product?.Languageid != LanguageContext.CurrentLanguage.id)
-                LoadLanguage(true, product.Languageid);
-            return View(product);
+            if (product != null)
+            {
+                Category category = categoryService.Get(x => x.IsActive && x.WebSite == WebsiteContext.CurrentWebsite && x.id == product.Categoryid);
+                if (category != null)
+                {
+                    if (product?.Languageid != LanguageContext.CurrentLanguage.id)
+                        LoadLanguage(true, product.Languageid);
+                    return View(product);
+                }
+            }
+            return RedirectToAction("ProductNotFound");
+        }
+        [Route("Urun-Bulunamadi")]
+        [HttpGet]
+        public IActionResult ProductNotFound()
+        {
+            return View();
         }
     }
 }

@@ -371,7 +371,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             right.UpdateUserid = left.UpdateUserid;
             productService.Update(left);
             productService.Update(right);
-            languageService.Save();
+            productService.Save();
         }
 
         [AdminAuthorize]

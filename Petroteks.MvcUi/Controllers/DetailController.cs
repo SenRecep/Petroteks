@@ -20,8 +20,9 @@ namespace Petroteks.MvcUi.Controllers
         {
             this.productService = productService;
             this.categoryService = categoryService;
-        }
 
+
+        }
         [Route("Kategori-Detay/{categoryName}-{page:int}-{category:int}")]
         public IActionResult CategoryDetail(int page = 1, int category = 0)
         {
@@ -50,3 +51,5 @@ namespace Petroteks.MvcUi.Controllers
         }
     }
 }
+
+

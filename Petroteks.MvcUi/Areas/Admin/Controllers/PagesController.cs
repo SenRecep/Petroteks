@@ -50,9 +50,9 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             IUI_FooterService uI_FooterService,
             IUI_ContactService uI_ContactService,
             IHostingEnvironment hostingEnvironment,
-           
+
             ILanguageCookieService languageCookieService,
-           
+
             IProductService productService)
             : base(userSessionService, websiteService, languageService, languageCookieService, httpContextAccessor)
         {
@@ -351,8 +351,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         void ProductDataTransfer(int leftId, int rightId)
         {
-            Product left = productService.Get(x=>x.id==leftId);
-            Product right = productService.Get(x=>x.id==rightId);
+            Product left = productService.Get(x => x.id == leftId);
+            Product right = productService.Get(x => x.id == rightId);
             right.Categoryid = left.Categoryid;
             right.Content = left.Content;
             right.CreateDate = left.CreateDate;
@@ -369,6 +369,9 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             right.Title = left.Title;
             right.UpdateDate = left.UpdateDate;
             right.UpdateUserid = left.UpdateUserid;
+            productService.Update(left);
+            productService.Update(right);
+            languageService.Save();
         }
 
         [AdminAuthorize]
@@ -686,7 +689,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult NavbarHeaderAdd()
         {
-            
+
             UI_Navbar navbar;
             navbar = uI_NavbarService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             if (navbar == null)
@@ -714,7 +717,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 navbar.Products = model.Products;
                 navbar.AboutUs = model.AboutUs;
                 navbar.PetroBlog = model.PetroBlog;
-                navbar.Contact = model.Contact; 
+                navbar.Contact = model.Contact;
                 navbar.UpdateUserid = LoginUser.id;
                 navbar.UpdateDate = DateTime.UtcNow;
                 navbar.Language = LanguageContext.CurrentLanguage;
@@ -730,10 +733,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         public IActionResult FooterAdd()
         {
             UI_Footer footer;
-            footer =uI_FooterService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            footer = uI_FooterService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             if (footer == null)
                 footer = new UI_Footer();
-            return View(footer); 
+            return View(footer);
         }
         [AdminAuthorize]
         [HttpPost]
@@ -759,7 +762,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 uI_FooterService.Update(footer);
             }
             uI_FooterService.Save();
-            return View(footer); 
+            return View(footer);
         }
         [AdminAuthorize]
         [HttpGet]

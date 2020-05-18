@@ -349,6 +349,28 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         }
 
 
+        void ProductDataTransfer(int leftId, int rightId)
+        {
+            Product left = productService.Get(x=>x.id==leftId);
+            Product right = productService.Get(x=>x.id==rightId);
+            right.Categoryid = left.Categoryid;
+            right.Content = left.Content;
+            right.CreateDate = left.CreateDate;
+            right.CreateUserid = left.CreateUserid;
+            right.Description = left.Description;
+            right.IsActive = left.IsActive;
+            right.Keywords = left.Keywords;
+            right.Languageid = left.Languageid;
+            right.MetaTags = left.MetaTags;
+            right.PhotoPath = left.PhotoPath;
+            right.Priority = left.Priority;
+            right.SubTitle = left.SubTitle;
+            right.SupTitle = left.SupTitle;
+            right.Title = left.Title;
+            right.UpdateDate = left.UpdateDate;
+            right.UpdateUserid = left.UpdateUserid;
+        }
+
         [AdminAuthorize]
         [HttpGet]
         [Route("Urun-Silme-{id:int}")]

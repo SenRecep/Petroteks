@@ -297,6 +297,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return View();
         }
 
+
         [AdminAuthorize]
         public JsonResult SelectAuth(int id, int role)
         {

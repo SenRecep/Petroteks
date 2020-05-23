@@ -347,16 +347,33 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             }
             return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
-
-
-        void ProductDataTransfer(int leftId, int rightId)
+        [AdminAuthorize] 
+        public IActionResult ProductDataTransferPage()
+        { 
+            return View();
+        }
+        [AdminAuthorize] 
+        public JsonResult ProductDataTransferAjax(int leftId, int rightId)
         {
-            Product left = productService.Get(x => x.id == leftId);
-            Product right = productService.Get(x => x.id == rightId);
-            typeof(Product).GetProperties().Where(x => x.Name != "id").ToList().ForEach(item => item.SetValue(right, item.GetValue(left)));
-            productService.Update(left);
-            productService.Update(right);
-            productService.Save();
+            if (leftId != null && rightId != null)
+            {
+                ProductDataTransfer(leftId, rightId);
+                return Json("Başarılı");
+            }
+            return Json("Basarisiz");
+        }
+
+        public void ProductDataTransfer(int leftId, int rightId)
+        {
+            Product left = productService.GetAllLanguageProduct(x => x.id == leftId);
+            Product right = productService.GetAllLanguageProduct(x => x.id == rightId);
+            if (left != null && right != null)
+            {
+                typeof(Product).GetProperties().Where(x => x.Name != "id").ToList().ForEach(item => item.SetValue(right, item.GetValue(left)));
+                productService.Update(right);
+                productService.Save();
+            }
+
         }
 
         [AdminAuthorize]

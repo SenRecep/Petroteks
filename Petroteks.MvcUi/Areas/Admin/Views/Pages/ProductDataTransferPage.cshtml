@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "ProductDataTransferPage";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="row m-2">
+    @await Component.InvokeAsync("CategoryTreeId", new { website = CurrentWebsite })
+
+
+</div>
+<div class="row m-2">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Left ID</h4>
+                <h6 class="card-subtitle">Ürün kopyalamak istediğiniz kimlik numarasını giriniz</h6>
+
+                <div class="form-group">
+                    <input type="number" id="leftid" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Right ID</h4>
+                <h6 class="card-subtitle">Kopyalanan kimlik numarasını istediğiniz id numarasını giriniz</h6>
+
+                <div class="form-group">
+                    <input type="number" id="rightid" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<center><button class="btn btn-success" onclick="SaveID();">Kaydet</button></center>
+@section Scripts{
+
+    <script>
+        function SaveID() {
+            var leftid = $("#leftid").val();
+            var rightid = $("#rightid").val();
+            $.ajax({
+                type: "GET",
+                url: "/Admin/Pages/ProductDataTransferAjax?leftid=" + leftid + "&rightid=" + rightid,
+                success: function (response) {
+                    toastr.success(response)
+                    dialog.close();
+
+                },
+                failure: function (response) {
+                    toastr.error(response)
+                },
+                error: function (response) {
+                    toastr.error(response)
+                }
+            });
+        }
+
+    </script>
+}

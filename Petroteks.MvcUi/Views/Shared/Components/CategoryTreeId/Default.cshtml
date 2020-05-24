@@ -1,0 +1,258 @@
+﻿
+<style>
+    .nested, .CategoryTreeView {
+        list-style-type: none !important;
+    }
+
+    .CategoryTreeView {
+        margin: 0;
+        padding: 1em;
+        border-radius: 24px;
+        margin-bottom: 2.2em;
+        width: fit-content;
+        background: linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#5f76e8);
+        color: white;
+        box-shadow: 0 3px 9px 0 rgba(80, 127, 177, 0.62);
+        -webkit-box-shadow: 0 3px 9px 0 rgba(80, 127, 177, 0.62);
+        -moz-box-shadow: 0 3px 9px 0 rgba(80, 127, 177, 0.62);
+    }
+    .CategoryTreeView a{
+        color:white;
+    }
+    .caret {
+        cursor: pointer;
+        -webkit-user-select: none; /* Safari 3.1+ */
+        -moz-user-select: none; /* Firefox 2+ */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none;
+       
+    }
+
+        .caret::before {
+            content: "\f35a";
+            font-family: "Font Awesome 5 Free";
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            color: white;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+    .caret-down::before {
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); /* Safari */
+        transform: rotate(90deg);
+    }
+
+    .nested {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+</style>
+
+@model CategoryListViewModel
+
+
+
+@{
+
+
+
+    object LoadSubMenu(MI_Category MI_Category, ICollection<MI_Category> categories)
+    {
+        foreach (MI_Category subCategory in categories)
+        {
+            ICollection<MI_Category> localcategories = Model.GetCategoryies(subCategory.id);
+            ICollection<MI_Product> products = Model.AllProduct.Where(x => x.Categoryid == subCategory.id).ToList();
+            if (localcategories.Count > 0)
+            {
+                <li>
+                    <span class="caret">
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , MI_Category=subCategory.id})">@Model.NameId(subCategory)</a>
+                        @CategoryControl(subCategory.id)
+                    </span>
+                    <ul class="nested">
+                        @LoadSubMenu(subCategory, localcategories)
+                        @if (products.Count > 0)
+                        {
+                            @LoadProduct(subCategory, products)
+                        }
+                    </ul>
+                </li>
+            }
+            else if (products.Count > 0)
+            {
+                <li>
+                    <span class="caret">
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , MI_Category=subCategory.id})">@Model.NameId(subCategory)</a>
+                        @CategoryControl(subCategory.id)
+                    </span>
+                    <ul class="nested">
+                        @LoadProduct(MI_Category, products)
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , MI_Category=subCategory.id})">@Model.NameId(subCategory)</a>
+                    @CategoryControl(subCategory.id)
+                </li>
+            }
+
+        }
+        return null;
+    }
+
+
+
+    object LoadProduct(MI_Category MI_Category, ICollection<MI_Product> localProducts)
+    {
+        @foreach (MI_Product MI_Product in localProducts)
+        {
+            <div id="MI_Product-modal-@MI_Product.id" class="modal fade" tabindex="-1" role="dialog"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="text-center mt-2 mb-4">
+                            </div>
+                            <div class="form-group">
+                                <h5>Silmek istediğinizden emin misiniz?</h5>
+                            </div>
+
+                            <div class="form-group text-center">
+                                <a class="btn btn-rounded btn-danger" href="@Url.Action("ProductDelete","Pages",new { area="Admin" ,id=MI_Product.id })">Sil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <li>
+                <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(MI_Product.SupTitle) , id=MI_Product.id})">[@MI_Product.id] @MI_Product.SupTitle</a>
+                
+            </li>
+        }
+
+        return null;
+    }
+
+    object CategoryControl(int MI_Category)
+    {
+        <div id="MI_Category-modal-@MI_Category" class="modal fade" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center mt-2 mb-4">
+                        </div>
+                        <div class="form-group">
+                            <h5>Silmek istediğinizden emin misiniz?</h5>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <a class="btn btn-rounded btn-danger" href="@Url.Action("CategoryDelete","Pages",new { area="Admin" ,id=MI_Category })">Sil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        return null;
+    }
+
+
+
+}
+
+
+
+
+@{
+
+
+    <ul class="CategoryTreeView">
+        @foreach (MI_Category MainCategory in Model.MainCategories)
+        {
+            ICollection<MI_Product> products = Model.AllProduct.Where(x => x.Categoryid == MainCategory.id).ToList();
+
+            if (MainCategory.Name == "ROOT")
+            {
+                @LoadProduct(MainCategory, products)
+            }
+            else
+            {
+                ICollection<MI_Category> categories = Model.GetCategoryies(MainCategory.id);
+                if (categories.Count > 0)
+                {
+                    <li>
+                        <span class="caret">
+                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , MI_Category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+
+                            @CategoryControl(MainCategory.id)
+
+                        </span>
+                        <ul class="nested">
+                            @LoadSubMenu(MainCategory, categories)
+                            @if (products.Count > 0)
+                            {
+                                @LoadProduct(MainCategory, products)
+                            }
+                        </ul>
+
+                    </li>
+                }
+                else if (products.Count > 0)
+                {
+                    <li>
+                        <span class="caret">
+                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , MI_Category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+
+                            @CategoryControl(MainCategory.id)
+
+                        </span>
+                        <ul class="nested">
+                            @LoadProduct(MainCategory, products)
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , MI_Category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+
+                        @CategoryControl(MainCategory.id)
+
+                    </li>
+                }
+
+            }
+
+        }
+    </ul>
+
+}
+
+
+
+
+
+<script>
+
+    var toggler = document.getElementsByClassName("caret");
+    var i;
+
+    for (i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", function () {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+        });
+    }
+
+</script>
+
+

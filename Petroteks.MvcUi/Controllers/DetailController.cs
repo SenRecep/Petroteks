@@ -59,7 +59,7 @@ namespace Petroteks.MvcUi.Controllers
             }
             return RedirectToAction("ProductNotFound");
         }
-        [Route("Urun-Bulunamadi")]
+        [Route("404-Product-Not-Found.html")]
         [HttpGet]
         public IActionResult ProductNotFound()
         {

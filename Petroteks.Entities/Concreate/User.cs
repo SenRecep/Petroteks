@@ -1,10 +1,9 @@
 ﻿using Petroteks.Core.Entities;
 using Petroteks.Entities.Abstract;
-using System.ComponentModel.DataAnnotations;
 
 namespace Petroteks.Entities.Concreate
 {
-   public class User :EntityBase, IUser
+    public class User : EntityBase, IUser
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Petroteks.Bll.Helpers
+﻿namespace Petroteks.Bll.Helpers
 {
     public enum PasswordStrength
     {

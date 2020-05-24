@@ -1,8 +1,5 @@
 ﻿using Petroteks.Core.Entities;
 using Petroteks.Entities.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Petroteks.Entities.Concreate
 {
@@ -23,6 +20,6 @@ namespace Petroteks.Entities.Concreate
         public int Priority { get; set; }
 
         public int? Languageid { get; set; }
-        public virtual  Language Language { get; set; }
+        public virtual Language Language { get; set; }
     }
 }

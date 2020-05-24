@@ -1,5 +1,4 @@
 ﻿using Petroteks.Bll.Abstract;
-using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Models.MI;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +32,10 @@ namespace Petroteks.MvcUi.Models
 
         public ICollection<MenuItem> GetItems(int categoryId)
         {
-            var menuItems = new List<MenuItem>();
+            List<MenuItem> menuItems = new List<MenuItem>();
             menuItems.AddRange(GetCategoryies(categoryId));
             menuItems.AddRange(GetProducts(categoryId));
-            menuItems = menuItems.OrderByDescending(x=>x.Priority).ToList();
+            menuItems = menuItems.OrderByDescending(x => x.Priority).ToList();
             return menuItems;
         }
 

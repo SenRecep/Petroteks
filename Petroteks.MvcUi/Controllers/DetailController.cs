@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Helpers;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -27,9 +26,9 @@ namespace Petroteks.MvcUi.Controllers
         public IActionResult CategoryDetail(int page = 1, int category = 0)
         {
             int pagesize = 10;
-            var Category = categoryService.Get(x => x.id == category && x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.IsActive == true);
-            var subCategories = categoryService.GetMany(x => x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.Parentid == Category.id && x.IsActive == true).OrderByDescending(x => x.Priority).ToList();
-            var products = productService.GetMany(x => x.Categoryid == Category.id && x.IsActive == true);
+            Category Category = categoryService.Get(x => x.id == category && x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.IsActive == true);
+            List<Category> subCategories = categoryService.GetMany(x => x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.Parentid == Category.id && x.IsActive == true).OrderByDescending(x => x.Priority).ToList();
+            ICollection<Product> products = productService.GetMany(x => x.Categoryid == Category.id && x.IsActive == true);
             return View(new ProductListViewModel()
             {
                 Products = products.Skip((page - 1) * pagesize).Take(pagesize).OrderByDescending(x => x.Priority).ToList(),
@@ -51,7 +50,10 @@ namespace Petroteks.MvcUi.Controllers
                 if (category != null)
                 {
                     if (product?.Languageid != LanguageContext.CurrentLanguage.id)
+                    {
                         LoadLanguage(true, product.Languageid);
+                    }
+
                     return View(product);
                 }
             }

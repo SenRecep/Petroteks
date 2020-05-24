@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
-using Petroteks.MvcUi.Services;
-using System;
-using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.Entities.Concreate;
+using Petroteks.MvcUi.ExtensionMethods;
+using System;
 
 namespace Petroteks.MvcUi.Attributes
 {
@@ -16,10 +15,14 @@ namespace Petroteks.MvcUi.Attributes
             if (loginUser != null)
             {
                 if (loginUser.Role == 2)
+                {
                     filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { area = "Admin", controller = "Home", action = "Login" }));
+                }
             }
             else
+            {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { area = "Admin", controller = "Home", action = "Login" }));
+            }
         }
     }
 }

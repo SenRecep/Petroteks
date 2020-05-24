@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Petroteks.Core.Dal;
 using Petroteks.Core.Entities;
-using Petroteks.Entities.ComplexTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace Petroteks.Dal.Concreate.EntityFramework
 {
@@ -15,8 +13,8 @@ namespace Petroteks.Dal.Concreate.EntityFramework
           where TContext : DbContext, new()
     {
         private DbContext dbContext = null;
-        private DbSet<TEntity> table = null;
-        private object LockObj=new object();
+        private readonly DbSet<TEntity> table = null;
+        private readonly object LockObj = new object();
 
         public EfEntityRepostoryBase()
         {
@@ -26,14 +24,14 @@ namespace Petroteks.Dal.Concreate.EntityFramework
 
         public virtual void Add(TEntity entity)
         {
-            var _entity = dbContext.Entry<TEntity>(entity);
+            Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<TEntity> _entity = dbContext.Entry<TEntity>(entity);
             _entity.State = EntityState.Added;
         }
 
         public virtual void Delete(TEntity entity)
         {
             entity.IsActive = false;
-            var _entity = dbContext.Entry<TEntity>(entity);
+            Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<TEntity> _entity = dbContext.Entry<TEntity>(entity);
             _entity.State = EntityState.Modified;
         }
 
@@ -41,12 +39,14 @@ namespace Petroteks.Dal.Concreate.EntityFramework
         {
             IQueryable<TEntity> entities = table.Where(filter);
             foreach (TEntity entity in entities)
+            {
                 Delete(entity);
+            }
         }
 
         public virtual TEntity Get(Expression<Func<TEntity, bool>> filter, params string[] navigations)
         {
-            var set = table.AsQueryable();
+            IQueryable<TEntity> set = table.AsQueryable();
             navigations.ToList().ForEach(item =>
             {
                 set.Include(item);
@@ -56,7 +56,7 @@ namespace Petroteks.Dal.Concreate.EntityFramework
 
         public virtual ICollection<TEntity> GetAll(params string[] navigations)
         {
-            var set = table.AsQueryable();
+            IQueryable<TEntity> set = table.AsQueryable();
             navigations.ToList().ForEach(item =>
             {
                 set.Include(item);
@@ -66,7 +66,7 @@ namespace Petroteks.Dal.Concreate.EntityFramework
 
         public virtual ICollection<TEntity> GetMany(Expression<Func<TEntity, bool>> filter = null, params string[] navigations)
         {
-            var set = table.AsQueryable();
+            IQueryable<TEntity> set = table.AsQueryable();
             navigations.ToList().ForEach(item =>
             {
                 set.Include(item);
@@ -86,7 +86,7 @@ namespace Petroteks.Dal.Concreate.EntityFramework
 
         public virtual void Update(TEntity entity)
         {
-            var _entity = dbContext.Entry<TEntity>(entity);
+            Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<TEntity> _entity = dbContext.Entry<TEntity>(entity);
             _entity.State = EntityState.Modified;
         }
 
@@ -97,8 +97,12 @@ namespace Petroteks.Dal.Concreate.EntityFramework
         public virtual void Build()
         {
             lock (LockObj)
+            {
                 if (dbContext == null || !(dbContext is TContext))
+                {
                     dbContext = new TContext();
+                }
+            }
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Html;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -10,7 +8,7 @@ namespace Petroteks.MvcUi.TagHelpers
 {
     public static class HtmlTagHelpers
     {
-        
+
         public static IHtmlContent ToJson(this IHtmlHelper helper, object obj)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings

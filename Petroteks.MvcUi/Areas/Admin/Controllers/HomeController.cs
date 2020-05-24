@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -16,10 +9,14 @@ using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Areas.Admin.Data;
 using Petroteks.MvcUi.Areas.Admin.Models;
 using Petroteks.MvcUi.Attributes;
-using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
-using Petroteks.MvcUi.ViewComponents;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.Mail;
+using System.Text;
 
 namespace Petroteks.MvcUi.Areas.Admin.Controllers
 {
@@ -45,8 +42,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             IUI_NoticeService uI_NoticeService) :
             base(userSessionService, websiteService, languageService, languageCookieService, httpContextAccessor)
         {
-            this._userService = userService;
-            this._userSessionService = userSessionService;
+            _userService = userService;
+            _userSessionService = userSessionService;
             this.websiteService = websiteService;
             this.languageService = languageService;
             this.languageCookieService = languageCookieService;
@@ -183,8 +180,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [Route("DuyuruList")]
         public IActionResult DuyuruList()
         {
-            var data = uI_NoticeService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).ToList();
-            return View(data); 
+            List<UI_Notice> data = uI_NoticeService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).ToList();
+            return View(data);
         }
         [AdminAuthorize]
         [Route("Duyuru")]
@@ -233,7 +230,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                         EndDate = model.EndDate,
                         WebSite = WebsiteContext.CurrentWebsite,
                         Language = LanguageContext.CurrentLanguage,
-                        CreateUserid=LoginUser.id
+                        CreateUserid = LoginUser.id
                     };
                     uI_NoticeService.Add(uI_Notice);
                     uI_NoticeService.Save();
@@ -268,7 +265,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         public IActionResult Bilgilendirme(MailViewModel model)
         {
             if (emailSender == null)
+            {
                 emailSender = new EmailSender(emailService);
+            }
+
             emailSender.Body = model.Body;
             emailSender.Subject = model.Subject;
             Attachment file = null;
@@ -382,7 +382,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         {
             DataTransferPoint.SelectedEmails = new List<Email>();
             if (!string.IsNullOrWhiteSpace(json))
+            {
                 DataTransferPoint.SelectedEmails = JsonConvert.DeserializeObject<ICollection<Email>>(json);
+            }
+
             return Json(true);
         }
 

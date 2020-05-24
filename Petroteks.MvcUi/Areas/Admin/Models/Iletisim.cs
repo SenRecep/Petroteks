@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Petroteks.MvcUi.Areas.Admin.Models
+﻿namespace Petroteks.MvcUi.Areas.Admin.Models
 {
     public class Iletisim
     {

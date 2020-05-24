@@ -44,9 +44,11 @@
             {
                 MD5CryptoServiceProvider password = new MD5CryptoServiceProvider();
                 byte[] passwordByte = password.ComputeHash(Encoding.UTF8.GetBytes(incomestring));
-                var sb = new StringBuilder();
+                StringBuilder sb = new StringBuilder();
                 foreach (byte b in passwordByte)
+                {
                     sb.Append(b.ToString("x2").ToLower());
+                }
 
                 return sb.ToString();
             }
@@ -66,12 +68,14 @@
             {
 
                 SHA1CryptoServiceProvider sifre = new SHA1CryptoServiceProvider();
-                 byte[] sifrebytes = sifre.ComputeHash(Encoding.UTF8.GetBytes(incomestring));
-                 var sb = new StringBuilder();
-                 foreach (byte b in sifrebytes)
-                     sb.Append(b.ToString("x2").ToLower());
+                byte[] sifrebytes = sifre.ComputeHash(Encoding.UTF8.GetBytes(incomestring));
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in sifrebytes)
+                {
+                    sb.Append(b.ToString("x2").ToLower());
+                }
 
-                 return sb.ToString();
+                return sb.ToString();
             }
         }
         /// <summary>

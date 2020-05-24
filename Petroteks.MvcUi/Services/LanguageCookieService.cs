@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.Entities.Concreate;
+using Petroteks.MvcUi.ExtensionMethods;
+using System.Collections.Generic;
 
 namespace Petroteks.MvcUi.Services
 {
@@ -11,7 +11,7 @@ namespace Petroteks.MvcUi.Services
 
         public LanguageCookieService(IHttpContextAccessor httpContextAccessor)
         {
-            this._httpContextAccessor = httpContextAccessor;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public Language Get(string key)

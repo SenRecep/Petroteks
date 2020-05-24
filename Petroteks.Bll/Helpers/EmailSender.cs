@@ -1,11 +1,10 @@
-﻿using Petroteks.Entities.Concreate;
-using System.Linq;
+﻿using Petroteks.Bll.Abstract;
+using Petroteks.Entities.Concreate;
+using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
-using System;
-using Petroteks.Bll.Abstract;
-using System.Net;
 
 namespace Petroteks.Bll.Helpers
 {
@@ -35,12 +34,20 @@ namespace Petroteks.Bll.Helpers
             {
                 bool Status = RegexUtilities.IsValidEmail(email);
                 if (Status == false)
+                {
                     stringBuilder.Append($"{email},");
+                }
             }
             if (stringBuilder.ToString().EndsWith(","))
+            {
                 stringBuilder = stringBuilder.Remove(stringBuilder.Length - 1, 1);
+            }
+
             if (!string.IsNullOrWhiteSpace(stringBuilder.ToString()))
+            {
                 stringBuilder.AppendLine("Email adresleri hatalı.");
+            }
+
             return stringBuilder.ToString();
         }
 
@@ -61,43 +68,63 @@ namespace Petroteks.Bll.Helpers
                     status = false;
                     throw;
                 }
-                
+
             }
             return status;
         }
 
-        public ICollection<Email> LoadWebsiteEmails(int WebsiteId) => emailService.GetMany(x => x.WebSiteid == WebsiteId && x.IsActive == true);
+        public ICollection<Email> LoadWebsiteEmails(int WebsiteId)
+        {
+            return emailService.GetMany(x => x.WebSiteid == WebsiteId && x.IsActive == true);
+        }
 
         private string EmailsToString(ICollection<Email> emails)
         {
             StringBuilder stringBuilder = new StringBuilder();
             foreach (Email email in emails)
+            {
                 stringBuilder.Append($"{email.EmailAddress}, ");
+            }
+
             if (stringBuilder.ToString().EndsWith(", "))
+            {
                 stringBuilder = stringBuilder.Remove(stringBuilder.Length - 2, 2);
+            }
+
             return stringBuilder.ToString();
         }
 
         public bool Send(ICollection<Email> emails, params Attachment[] files)
         {
             if (emails.Count == 0)
+            {
                 return false;
+            }
 
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = Host;
-            smtp.Port = Port;
-            smtp.EnableSsl = EnableSsl;
-            smtp.Credentials = new NetworkCredential(CredentialEmailAdress, CredentialEmailAdressPassword);
-            MailMessage email = new MailMessage();
-            email.From = new MailAddress(CredentialEmailAdress, CredentialDisplay);
+            SmtpClient smtp = new SmtpClient
+            {
+                Host = Host,
+                Port = Port,
+                EnableSsl = EnableSsl,
+                Credentials = new NetworkCredential(CredentialEmailAdress, CredentialEmailAdressPassword)
+            };
+            MailMessage email = new MailMessage
+            {
+                From = new MailAddress(CredentialEmailAdress, CredentialDisplay)
+            };
             string EmailString = EmailsToString(emails);
             email.To.Add(EmailString);
             email.Subject = Subject;
             email.Body = Body;
-            email.IsBodyHtml= true;
-            foreach (var file in files)
+            email.IsBodyHtml = true;
+            foreach (Attachment file in files)
+            {
                 if (file != null)
+                {
                     email.Attachments.Add(file);
+                }
+            }
+
             try
             {
                 smtp.Send(email);

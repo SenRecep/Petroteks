@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.Entities.Concreate;
+using Petroteks.MvcUi.ExtensionMethods;
 
 namespace Petroteks.MvcUi.Services
 {

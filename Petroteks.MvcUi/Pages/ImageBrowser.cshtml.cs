@@ -1,16 +1,15 @@
 using Imageflow.Fluent;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.FileProviders;
 using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Petroteks.Pages
 {
@@ -23,8 +22,8 @@ namespace Petroteks.Pages
         }
 
         //properties
-        private IConfiguration _config;
-        private IWebHostEnvironment _env;
+        private readonly IConfiguration _config;
+        private readonly IWebHostEnvironment _env;
 
         [BindProperty]
         public string ResizeMessage { get; set; }
@@ -94,15 +93,19 @@ namespace Petroteks.Pages
                     .Select(d => new SelectListItem { Text = d, Value = d })
             );
 
-        public IEnumerable<SelectListItem> ImageList {
+        public IEnumerable<SelectListItem> ImageList
+        {
             get
             {
-                var files = Directory.GetFiles(FileImageFolder, "*" + SearchTerms?.Replace(" ", "*") + "*")
+                IEnumerable<SelectListItem> files = Directory.GetFiles(FileImageFolder, "*" + SearchTerms?.Replace(" ", "*") + "*")
                     .Where(i => IsImage(i))
                     .Select(i => Path.GetFileName(i))
                     .Select(i => new SelectListItem { Text = i, Value = i });
                 if (ImageListValue == "" && files.Any())
+                {
                     ImageListValue = files.First().Text;
+                }
+
                 return files;
             }
         }
@@ -140,7 +143,7 @@ namespace Petroteks.Pages
             }
 
             ImageUrl = ImageFolderRoot + (string.IsNullOrEmpty(ImageFolder) ? "" : ImageFolder + "/") + ImageListValue + "?" + new Random().Next(1000);
-            var img = await GetImageSize(FileImageFolder + ImageListValue);
+            (int Width, int Height) img = await GetImageSize(FileImageFolder + ImageListValue);
             ResizeWidth = img.Width.ToString();
             ResizeHeight = img.Height.ToString();
             ImageAspectRatio = "" + img.Width / (float)img.Height;
@@ -179,7 +182,7 @@ namespace Petroteks.Pages
             if (IsImage(UploadedImageFile.FileName))
             {
                 string filename = UniqueFilename(UploadedImageFile.FileName);
-                var stream = new MemoryStream();
+                MemoryStream stream = new MemoryStream();
                 UploadedImageFile.CopyTo(stream);
                 byte[] image = await ResizeImageBytes(stream.ToArray(), 1024, 1024); //make 1024x1024 the largest image size
                 System.IO.File.WriteAllBytes(FileImageFolder + filename, image);
@@ -223,21 +226,21 @@ namespace Petroteks.Pages
 
         protected async Task<byte[]> ResizeImageBytes(byte[] imageData, uint? desiredWidth, uint? desiredHeight)
         {
-            using (var job = new FluentBuildJob())
+            using (FluentBuildJob job = new FluentBuildJob())
             {
-                var res = await job.Decode(imageData).ConstrainWithin(desiredWidth, desiredHeight)
+                BuildJobResult res = await job.Decode(imageData).ConstrainWithin(desiredWidth, desiredHeight)
                     .EncodeToBytes(new LibPngEncoder()).FinishAsync();
-                var bytes = res.First.TryGetBytes();
-                return bytes.HasValue ? bytes.Value.Array : new byte[] {};
+                ArraySegment<byte>? bytes = res.First.TryGetBytes();
+                return bytes.HasValue ? bytes.Value.Array : new byte[] { };
             }
         }
 
         protected async Task<(int Width, int Height)> GetImageSize(string filename)
         {
-            using (var job = new FluentBuildJob())
+            using (FluentBuildJob job = new FluentBuildJob())
             {
-                var imageData = System.IO.File.ReadAllBytes(filename);
-                var res = await job.Decode(imageData)
+                byte[] imageData = System.IO.File.ReadAllBytes(filename);
+                BuildJobResult res = await job.Decode(imageData)
                     .EncodeToBytes(new LibPngEncoder()).FinishAsync();
                 return (res.First.Width, res.First.Height);
             }

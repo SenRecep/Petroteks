@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
@@ -14,7 +9,10 @@ using Petroteks.MvcUi.Areas.Admin.Models;
 using Petroteks.MvcUi.Attributes;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
-using Petroteks.MvcUi.ViewComponents;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Petroteks.MvcUi.Areas.Admin.Controllers
 {
@@ -78,7 +76,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             MainPage mainPage;
             mainPage = mainPageService.Get(x => x.WebSiteid == Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id);
             if (mainPage == null)
+            {
                 mainPage = new MainPage();
+            }
+
             return View(mainPage);
         }
 
@@ -124,7 +125,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             AboutUsObject aboutus;
             aboutus = aboutUsObjectService.Get(x => x.WebSiteid == Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id);
             if (aboutus == null)
+            {
                 aboutus = new AboutUsObject();
+            }
+
             return View(aboutus);
         }
 
@@ -167,7 +171,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             PrivacyPolicyObject privacyPage;
             privacyPage = privacyPolicyObjectService.Get(x => x.WebSiteid == Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id);
             if (privacyPage == null)
+            {
                 privacyPage = new PrivacyPolicyObject();
+            }
+
             return View(privacyPage);
         }
 
@@ -287,6 +294,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
             Product product = productService.Get(x => x.id == id);
             if (product != null)
+            {
                 return View("ProductAdd", new ProductViewModel()
                 {
                     Categoryid = product.Categoryid,
@@ -301,6 +309,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     PhotoPath = product.PhotoPath,
                     Priority = product.Priority
                 });
+            }
+
             return View("ProductAdd", new CategoryViewModel());
 
         }
@@ -337,9 +347,15 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedProduct.Language = LanguageContext.CurrentLanguage;
                     findedProduct.Priority = model.Priority;
                     if (category != null)
+                    {
                         findedProduct.Categoryid = category.id;
+                    }
+
                     if (!string.IsNullOrWhiteSpace(uniqueFileName))
+                    {
                         findedProduct.PhotoPath = uniqueFileName;
+                    }
+
                     productService.Update(findedProduct);
                     productService.Save();
                 }
@@ -348,11 +364,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
 
-
-        void ProductDataTransfer(int leftId, int rightId)
+        private void ProductDataTransfer(int leftId, int rightId)
         {
-            Product left = productService.Get(x => x.id == leftId);
-            Product right = productService.Get(x => x.id == rightId);
+            Product left = productService.GetAllLanguageProduct(x => x.id == leftId);
+            Product right = productService.GetAllLanguageProduct(x => x.id == rightId);
             typeof(Product).GetProperties().Where(x => x.Name != "id").ToList().ForEach(item => item.SetValue(right, item.GetValue(left)));
             productService.Update(left);
             productService.Update(right);
@@ -367,7 +382,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             Product product = productService.Get(x => x.id == id);
             Category category = null;
             if (product != null)
+            {
                 category = categoryService.Get(x => x.id == product.Categoryid && x.WebSiteid == Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id);
+            }
+
             if (category != null && product != null)
             {
                 productService.Delete(product);
@@ -427,7 +445,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedBlog.Language = LanguageContext.CurrentLanguage;
                     findedBlog.Priority = blog.Priority;
                     if (!string.IsNullOrWhiteSpace(blog.PhotoPath))
+                    {
                         findedBlog.PhotoPath = blog.PhotoPath;
+                    }
+
                     blogService.Update(findedBlog);
                 }
                 else
@@ -442,7 +463,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [Route("Blog-Duzenleme-{id:int}")]
         public IActionResult BlogEdit(int id)
         {
-            var findedBlog = blogService.Get(m => m.id == id);
+            Blog findedBlog = blogService.Get(m => m.id == id);
             if (findedBlog != null)
             {
                 return View(findedBlog);
@@ -473,7 +494,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var findedBlog = blogService.Get(m => m.id == id);
+                Blog findedBlog = blogService.Get(m => m.id == id);
 
                 if (findedBlog != null)
                 {
@@ -516,7 +537,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [Route("Admin-Panel/Bloglar")]
         public IActionResult BlogList()
         {
-            var data = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.Priority).ToList();
+            List<Blog> data = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.Priority).ToList();
             return View(data);
         }
 
@@ -538,7 +559,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
             Category category = categoryService.Get(x => x.id == id && x.WebSiteid == Petroteks.Bll.Helpers.WebsiteContext.CurrentWebsite.id);
             if (category != null)
+            {
                 return View("CategoryAdd", new CategoryViewModel() { ParentId = category.Parentid, Name = category.Name, ImagePath = category.PhotoPath });
+            }
+
             return View("CategoryAdd", new CategoryViewModel());
 
         }
@@ -566,7 +590,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedCategory.UpdateUserid = LoginUser.id;
                     findedCategory.Priority = model.Priority;
                     if (!string.IsNullOrWhiteSpace(uniqueFileName))
+                    {
                         findedCategory.PhotoPath = uniqueFileName;
+                    }
+
                     findedCategory.Language = LanguageContext.CurrentLanguage;
                     categoryService.Update(findedCategory);
                     categoryService.Save();
@@ -650,7 +677,9 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                         uniqueFileName = Bll.Helpers.FriendlyUrlHelper.CleanFileName(uniqueFileName);
                         string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                         if (!System.IO.File.Exists(filePath))
+                        {
                             model.IconCode.CopyTo(new FileStream(filePath, FileMode.Create));
+                        }
                     }
                     language = new Language()
                     {
@@ -678,7 +707,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             UI_Navbar navbar;
             navbar = uI_NavbarService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             if (navbar == null)
+            {
                 navbar = new UI_Navbar();
+            }
+
             return View(navbar);
         }
         [AdminAuthorize]
@@ -720,7 +752,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             UI_Footer footer;
             footer = uI_FooterService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             if (footer == null)
+            {
                 footer = new UI_Footer();
+            }
+
             return View(footer);
         }
         [AdminAuthorize]
@@ -756,7 +791,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             UI_Contact contact;
             contact = uI_ContactService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             if (contact == null)
+            {
                 contact = new UI_Contact();
+            }
+
             return View(contact);
         }
         [AdminAuthorize]

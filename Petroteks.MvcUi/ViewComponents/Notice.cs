@@ -4,8 +4,6 @@ using Petroteks.Bll.Helpers;
 using Petroteks.Entities.ComplexTypes;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Petroteks.MvcUi.ViewComponents
@@ -20,10 +18,15 @@ namespace Petroteks.MvcUi.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var notices = new List<UI_Notice>();
-            foreach (var x in uI_NoticeService.GetMany(x => x.IsActive && x.WebSite == WebsiteContext.CurrentWebsite ))
+            List<UI_Notice> notices = new List<UI_Notice>();
+            foreach (UI_Notice x in uI_NoticeService.GetMany(x => x.IsActive && x.WebSite == WebsiteContext.CurrentWebsite))
+            {
                 if (x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now)
+                {
                     notices.Add(x);
+                }
+            }
+
             return View(notices);
         }
     }

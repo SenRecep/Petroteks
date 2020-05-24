@@ -2,7 +2,7 @@
 {
     public interface IWebsite
     {
-         string BaseUrl { get; set; }
-         string Name { get; set; }
+        string BaseUrl { get; set; }
+        string Name { get; set; }
     }
 }

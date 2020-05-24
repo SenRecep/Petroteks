@@ -2,19 +2,19 @@
 using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Petroteks.Bll.Abstract
 {
     public interface IUserService : IEntityRepostory<User> { }
-    public interface IWebsiteService : IEntityRepostory<Website> {
+    public interface IWebsiteService : IEntityRepostory<Website>
+    {
         public Website findByUrl(string url);
     }
     public interface IAboutUsObjectService : IEntityRepostory<AboutUsObject> { }
     public interface IPrivacyPolicyObjectService : IEntityRepostory<PrivacyPolicyObject> { }
     public interface ICategoryService : IEntityRepostory<Category> { }
-    public interface IProductService : IEntityRepostory<Product> 
+    public interface IProductService : IEntityRepostory<Product>
     {
         public Product GetAllLanguageProduct(Expression<Func<Product, bool>> filter, params string[] navigations);
     }

@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.FileProviders;
 using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Petroteks.Pages
 {
@@ -22,8 +21,8 @@ namespace Petroteks.Pages
         }
 
         //properties
-        private IConfiguration _config;
-        private IWebHostEnvironment _env;
+        private readonly IConfiguration _config;
+        private readonly IWebHostEnvironment _env;
 
         [BindProperty]
         public string ResizeMessage { get; set; }
@@ -93,15 +92,19 @@ namespace Petroteks.Pages
                     .Select(d => new SelectListItem { Text = d, Value = d })
             );
 
-        public IEnumerable<SelectListItem> FileList {
+        public IEnumerable<SelectListItem> FileList
+        {
             get
             {
-                var files = Directory.GetFiles(FilePathFolder, "*" + SearchTerms?.Replace(" ", "*") + "*")
+                IEnumerable<SelectListItem> files = Directory.GetFiles(FilePathFolder, "*" + SearchTerms?.Replace(" ", "*") + "*")
                     .Where(i => IsFile(i))
                     .Select(i => Path.GetFileName(i))
                     .Select(i => new SelectListItem { Text = i, Value = i });
                 if (FileListValue == "" && files.Any())
+                {
                     FileListValue = files.First().Text;
+                }
+
                 return files;
             }
         }
@@ -162,7 +165,7 @@ namespace Petroteks.Pages
             if (IsFile(UploadedFile.FileName))
             {
                 string filename = UniqueFilename(UploadedFile.FileName);
-                var stream = new MemoryStream();
+                MemoryStream stream = new MemoryStream();
                 UploadedFile.CopyTo(stream);
                 System.IO.File.WriteAllBytes(FilePathFolder + filename, stream.ToArray());
 

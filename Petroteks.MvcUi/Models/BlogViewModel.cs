@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Petroteks.MvcUi.Models
 {
@@ -16,7 +12,7 @@ namespace Petroteks.MvcUi.Models
         public IFormFile PhotoPath { get; set; }
         public string Keywords { get; set; }
         public string Description { get; set; }
-        public string MetaTags { get; set; } 
+        public string MetaTags { get; set; }
         public bool IsActive { get; set; }
         public int Priority { get; set; }
     }
@@ -24,4 +20,3 @@ namespace Petroteks.MvcUi.Models
 }
 
 
- 

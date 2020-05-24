@@ -3,7 +3,6 @@ using Petroteks.Bll.Abstract;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Models.MI;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,7 +26,7 @@ namespace Petroteks.MvcUi.ViewComponents
             ICollection<MI_Category> categories = categoryService
                 .GetMany(category => category.WebSiteid == website.id && category.IsActive == true)
                 .OrderByDescending(x => x.Priority)
-                .Select(x=>new MI_Category(x))
+                .Select(x => new MI_Category(x))
                 .ToList();
 
             ICollection<MI_Product> products = productService

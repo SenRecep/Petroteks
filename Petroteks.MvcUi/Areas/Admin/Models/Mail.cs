@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
-using System.Threading.Tasks;
 
 namespace Petroteks.MvcUi.Areas.Admin.Models
 {
@@ -11,10 +7,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Models
     {
         public static void SendMail(string body)
         {
-            var fromAddress = new MailAddress("petroteksiletisim@gmail.com", "PETROTEKS İLETİŞİM BİLDİRİMİ");
-            var toAddress = new MailAddress("petroteksiletisim@gmail.com");
+            MailAddress fromAddress = new MailAddress("petroteksiletisim@gmail.com", "PETROTEKS İLETİŞİM BİLDİRİMİ");
+            MailAddress toAddress = new MailAddress("petroteksiletisim@gmail.com");
             const string subject = "PETROTEKS İletişim Bildirimi";
-            using (var smtp = new SmtpClient
+            using (SmtpClient smtp = new SmtpClient
             {
                 Host = "smtp.gmail.com",
                 Port = 587,
@@ -25,7 +21,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Models
                 //trololol kısmı e-posta adresinin şifresi
             })
             {
-                using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body })
+                using (MailMessage message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body })
                 {
                     smtp.Send(message);
                 }

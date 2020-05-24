@@ -47,9 +47,13 @@ namespace Petroteks.Bll.Helpers
                 return encodedUrl;
             }
             else
+            {
                 return "";
+            }
         }
-        public static string CleanFileName(string fileName) =>
-             Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
+        public static string CleanFileName(string fileName)
+        {
+            return Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
+        }
     }
 }

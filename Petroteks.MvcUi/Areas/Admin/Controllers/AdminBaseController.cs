@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Petroteks.Bll.Abstract;
 using Petroteks.Entities.Concreate;
@@ -12,8 +11,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
     {
         private readonly IUserSessionService userSessionService;
 
-        public AdminBaseController(IUserSessionService userSessionService, IWebsiteService websiteService, ILanguageService languageService, ILanguageCookieService languageCookieService, IHttpContextAccessor httpContextAccessor) 
-            : base(websiteService,languageService,languageCookieService, httpContextAccessor)
+        public AdminBaseController(IUserSessionService userSessionService, IWebsiteService websiteService, ILanguageService languageService, ILanguageCookieService languageCookieService, IHttpContextAccessor httpContextAccessor)
+            : base(websiteService, languageService, languageCookieService, httpContextAccessor)
         {
             this.userSessionService = userSessionService;
         }

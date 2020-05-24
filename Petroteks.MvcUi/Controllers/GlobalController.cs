@@ -4,10 +4,7 @@ using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Helpers;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Services;
-using System.Globalization;
-using System.Threading;
 using System.Linq;
-using Petroteks.MvcUi.Attributes;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -32,7 +29,9 @@ namespace Petroteks.MvcUi.Controllers
                 WebsiteContext.Websites = websiteService.GetMany(x => x.IsActive == true);
                 Website website = WebsiteContext.Websites.FirstOrDefault(x => x.Name.Equals(siteName, System.StringComparison.InvariantCultureIgnoreCase));
                 if (website != null)
+                {
                     WebsiteContext.CurrentWebsite = website;
+                }
                 else
                 {
                     Website wb = new Website()
@@ -47,7 +46,7 @@ namespace Petroteks.MvcUi.Controllers
                 }
                 if (!WebsiteContext.CurrentWebsite.Name.Contains("localhost"))
                 {
-                    var localhost = WebsiteContext.Websites.FirstOrDefault(w => w.Name.Contains("localhost"));
+                    Website localhost = WebsiteContext.Websites.FirstOrDefault(w => w.Name.Contains("localhost"));
                     WebsiteContext.Websites.Remove(localhost);
                 }
                 LoadLanguage();
@@ -58,7 +57,10 @@ namespace Petroteks.MvcUi.Controllers
             LanguageContext.WebsiteLanguages = languageService.GetMany(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             Language currentLanguage = languageCookieService.Get("CurrentLanguage");
             if (decision)
+            {
                 currentLanguage = null;
+            }
+
             if (decision && id != null)
             {
                 currentLanguage = LanguageContext.WebsiteLanguages.FirstOrDefault(x => x.id == id);

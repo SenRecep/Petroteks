@@ -9,7 +9,9 @@ namespace Petroteks.Bll.Helpers
         public static bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
+            {
                 return false;
+            }
 
             try
             {
@@ -21,19 +23,19 @@ namespace Petroteks.Bll.Helpers
                 string DomainMapper(Match match)
                 {
                     // Use IdnMapping class to convert Unicode domain names.
-                    var idn = new IdnMapping();
+                    IdnMapping idn = new IdnMapping();
 
                     // Pull out and process domain name (throws ArgumentException on invalid)
-                    var domainName = idn.GetAscii(match.Groups[2].Value);
+                    string domainName = idn.GetAscii(match.Groups[2].Value);
 
                     return match.Groups[1].Value + domainName;
                 }
             }
-            catch (RegexMatchTimeoutException e)
+            catch (RegexMatchTimeoutException)
             {
                 return false;
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 return false;
             }

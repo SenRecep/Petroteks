@@ -1,8 +1,5 @@
 ﻿using Petroteks.Entities.Abstract;
 using Petroteks.Entities.ComplexTypes;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Petroteks.Entities.Concreate
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +10,7 @@ namespace Petroteks.MvcUi.Controllers
         [Route("Error/500")]
         public IActionResult Error500()
         {
-            var exceptionFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            IExceptionHandlerPathFeature exceptionFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
 
             if (exceptionFeature != null)
             {
@@ -27,7 +23,7 @@ namespace Petroteks.MvcUi.Controllers
         [Route("Error/{statusCode}")]
         public IActionResult HandleErrorCode(int statusCode)
         {
-            var statusCodeData = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
+            IStatusCodeReExecuteFeature statusCodeData = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
             switch (statusCode)
             {
                 case 404:

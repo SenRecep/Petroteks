@@ -1,14 +1,13 @@
-﻿using System.Text;
-using System.Xml;
-using System.Linq;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
 using Petroteks.Entities.Concreate;
-using static Petroteks.Bll.Helpers.FriendlyUrlHelper;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Petroteks.MvcUi.Services;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Xml;
+using static Petroteks.Bll.Helpers.FriendlyUrlHelper;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -25,7 +24,7 @@ namespace Petroteks.MvcUi.Controllers
             ILanguageService languageService,
             IDynamicPageService dynamicPageService,
             IHttpContextAccessor httpContextAccessor)
-            : base(websiteService,languageService,languageCookieService, httpContextAccessor)
+            : base(websiteService, languageService, languageCookieService, httpContextAccessor)
         {
             this.categoryService = categoryService;
             this.productService = productService;
@@ -36,11 +35,11 @@ namespace Petroteks.MvcUi.Controllers
         [Route("sitemap.xml")]
         public IActionResult SitemapXml()
         {
-            var siteUrl = $"{Request.Scheme}://{Request.Host}";
+            string siteUrl = $"{Request.Scheme}://{Request.Host}";
             Response.Clear();
             Response.ContentType = "text/xml";
             XmlTextWriter xtr = new XmlTextWriter(Response.Body, Encoding.UTF8);
-            xtr.WriteStartDocument();   
+            xtr.WriteStartDocument();
             xtr.WriteStartElement("urlset");
             xtr.WriteAttributeString("xmlns", "http://www.sitemap.org/schemas/sitemap/0.9");
             xtr.WriteAttributeString("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
@@ -105,7 +104,7 @@ namespace Petroteks.MvcUi.Controllers
             {
                 ICollection<DynamicPage> dynamicPages = dynamicPageService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true);
 
-                foreach (var item in dynamicPages)
+                foreach (DynamicPage item in dynamicPages)
                 {
                     xtr.WriteStartElement("url");
                     xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("DynamicPageView", "Home", new { pageName = GetFriendlyTitle(item.Name), id = item.id })}");

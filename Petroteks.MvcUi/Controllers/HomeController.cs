@@ -1,19 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
-using Petroteks.Bll.Concreate;
 using Petroteks.Bll.Helpers;
-using Petroteks.Core.Dal;
 using Petroteks.Entities.Concreate;
-using Petroteks.MvcUi.Models;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
 using Petroteks.MvcUi.Areas.Admin.Models;
-using System.Linq.Expressions;
+using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -65,12 +60,16 @@ namespace Petroteks.MvcUi.Controllers
             Category ROOTCategory = categoryService.Get(x => x.IsActive == true && x.Name == "ROOT" && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             ICollection<Product> products = null;
             if (ROOTCategory != null)
+            {
                 products = productService.GetMany(x => x.IsActive == true && x.Categoryid == ROOTCategory.id).OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
+            }
             //ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).OrderByDescending(x=>x.Priority).Take(3).ToList();
             MainPage mainPage;
             mainPage = mainPageService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             if (mainPage == null)
+            {
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
+            }
 
             return View(new MainPageViewModel()
             {
@@ -89,13 +88,13 @@ namespace Petroteks.MvcUi.Controllers
         [Route("Bloglar.html")]
         public IActionResult PetroBlog()
         {
-            ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x=>x.Priority).OrderByDescending(x => x.CreateDate).ToList();
+            ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.Priority).OrderByDescending(x => x.CreateDate).ToList();
             return View(blogs);
         }
         [Route("Blog-Detay-{id:int}")]
         public IActionResult BlogDetail(int id)
         {
-            var findedBlog = blogService.Get(m => m.id == id);
+            Blog findedBlog = blogService.Get(m => m.id == id);
             if (findedBlog != null)
             {
                 return View(findedBlog);
@@ -111,7 +110,9 @@ namespace Petroteks.MvcUi.Controllers
             AboutUsObject hakkimizda;
             hakkimizda = aboutUsObjectService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             if (hakkimizda == null)
+            {
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
+            }
 
             return View(hakkimizda);
         }
@@ -126,7 +127,9 @@ namespace Petroteks.MvcUi.Controllers
             PrivacyPolicyObject gizlilikpolitikasi;
             gizlilikpolitikasi = privacyPolicyObjectService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             if (gizlilikpolitikasi == null)
+            {
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
+            }
 
             return View(gizlilikpolitikasi);
         }
@@ -136,7 +139,7 @@ namespace Petroteks.MvcUi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var body = new StringBuilder();
+                StringBuilder body = new StringBuilder();
                 body.AppendLine("İsim:" + model.İsim);
                 body.AppendLine("Konu:" + model.Konu);
                 body.AppendLine("Mesaj:" + model.Mesaj);

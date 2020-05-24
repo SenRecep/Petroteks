@@ -92,7 +92,7 @@ namespace Petroteks.MvcUi.Controllers
             return View(blogs);
         }
         [Route("Blog-Detay/{id:int}/{title}")]
-        public IActionResult BlogDetail(string title,int id)
+        public IActionResult BlogDetail(string title, int id)
         {
             Blog findedBlog = blogService.Get(m => m.id == id);
             if (findedBlog != null)

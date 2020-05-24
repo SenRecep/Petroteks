@@ -5,7 +5,6 @@ using Petroteks.Bll.Helpers;
 using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Services;
-using Petroteks.MvcUi.ViewComponents;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,7 +58,7 @@ namespace Petroteks.MvcUi.Controllers
             xtr.WriteAttributeString("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
             xtr.WriteAttributeString("xsi:schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd");
 
-            var siteUrl = WebsiteContext.CurrentWebsite.BaseUrl.Replace("www.", "", System.StringComparison.CurrentCultureIgnoreCase);
+            string siteUrl = WebsiteContext.CurrentWebsite.BaseUrl.Replace("www.", "", System.StringComparison.CurrentCultureIgnoreCase);
 
             MainPage mainPage = mainPageService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive);
             if (mainPage != null)
@@ -102,7 +101,7 @@ namespace Petroteks.MvcUi.Controllers
                 xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("SondajKopugu", "Home")}");
                 xtr.WriteEndElement();
             }
-           
+
 
             ICollection<Category> Categories = new List<Category>();
 

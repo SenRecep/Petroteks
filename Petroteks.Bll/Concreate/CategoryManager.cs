@@ -20,7 +20,7 @@ namespace Petroteks.Bll.Concreate
 
         public Category GetAllLanguageCategory(Expression<Func<Category, bool>> filter, params string[] navigations)
         {
-            return base.Get(filter,navigations);
+            return base.Get(filter, navigations);
         }
 
         public override ICollection<Category> GetMany(Expression<Func<Category, bool>> filter = null, params string[] navigations)

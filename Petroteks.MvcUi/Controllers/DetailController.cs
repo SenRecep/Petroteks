@@ -22,7 +22,7 @@ namespace Petroteks.MvcUi.Controllers
 
 
         }
-        [Route("Kategori-Detay/{categoryName}-{page:int}-{category:int}")] 
+        [Route("Kategori-Detay/{categoryName}-{page:int}-{category:int}")]
         public IActionResult CategoryDetail(int page = 1, int category = 0)
         {
             int pagesize = 10;

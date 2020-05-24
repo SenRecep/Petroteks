@@ -91,8 +91,8 @@ namespace Petroteks.MvcUi.Controllers
             ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.Priority).OrderByDescending(x => x.CreateDate).ToList();
             return View(blogs);
         }
-        [Route("Blog-Detay-{id:int}")]
-        public IActionResult BlogDetail(int id)
+        [Route("Blog-Detay/{id:int}/{title}")]
+        public IActionResult BlogDetail(string title,int id)
         {
             Blog findedBlog = blogService.Get(m => m.id == id);
             if (findedBlog != null)
@@ -103,6 +103,11 @@ namespace Petroteks.MvcUi.Controllers
             {
                 return View();
             }
+        }
+        [Route("sondaj-kopugu-nedir.html")]
+        public IActionResult SondajKopugu()
+        {
+            return View();
         }
         [Route("Hakimizda")]
         public IActionResult AboutUs()

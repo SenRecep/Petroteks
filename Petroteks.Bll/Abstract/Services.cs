@@ -13,7 +13,10 @@ namespace Petroteks.Bll.Abstract
     }
     public interface IAboutUsObjectService : IEntityRepostory<AboutUsObject> { }
     public interface IPrivacyPolicyObjectService : IEntityRepostory<PrivacyPolicyObject> { }
-    public interface ICategoryService : IEntityRepostory<Category> { }
+    public interface ICategoryService : IEntityRepostory<Category>
+    {
+        public Category GetAllLanguageCategory(Expression<Func<Category, bool>> filter, params string[] navigations);
+    }
     public interface IProductService : IEntityRepostory<Product>
     {
         public Product GetAllLanguageProduct(Expression<Func<Product, bool>> filter, params string[] navigations);

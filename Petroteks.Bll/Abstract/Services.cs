@@ -23,7 +23,10 @@ namespace Petroteks.Bll.Abstract
     }
     public interface IMainPageService : IEntityRepostory<MainPage> { }
     public interface IEmailService : IEntityRepostory<Email> { }
-    public interface IBlogService : IEntityRepostory<Blog> { }
+    public interface IBlogService : IEntityRepostory<Blog>
+    {
+        public Blog GetAllLanguageBlog(Expression<Func<Blog, bool>> filter, params string[] navigations);
+    }
     public interface IDynamicPageService : IEntityRepostory<DynamicPage> { }
     public interface ILanguageService : IEntityRepostory<Language> { }
     public interface IUI_NavbarService : IEntityRepostory<UI_Navbar> { }

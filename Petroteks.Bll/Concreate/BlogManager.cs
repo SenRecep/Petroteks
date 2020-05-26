@@ -17,6 +17,12 @@ namespace Petroteks.Bll.Concreate
             filter = LanguageControl(filter);
             return base.Get(filter, navigations);
         }
+
+        public Blog GetAllLanguageBlog(Expression<Func<Blog, bool>> filter, params string[] navigations)
+        {
+            return base.Get(filter,navigations);
+        }
+
         public override ICollection<Blog> GetMany(Expression<Func<Blog, bool>> filter = null, params string[] navigations)
         {
             filter = LanguageControl(filter);

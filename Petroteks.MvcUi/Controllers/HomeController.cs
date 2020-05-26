@@ -94,15 +94,25 @@ namespace Petroteks.MvcUi.Controllers
         [Route("Blog-Detay/{id:int}/{title}")]
         public IActionResult BlogDetail(string title, int id)
         {
-            Blog findedBlog = blogService.Get(m => m.id == id);
+
+            Blog findedBlog = blogService.GetAllLanguageBlog(x => x.id == id && x.IsActive == true);
             if (findedBlog != null)
             {
+
+                if (findedBlog?.Languageid != LanguageContext.CurrentLanguage.id)
+                {
+                    LoadLanguage(true, findedBlog.Languageid);
+                }
+
                 return View(findedBlog);
             }
-            else
-            {
-                return View();
-            }
+            return RedirectToAction("BlogNotFound");
+        }
+        [Route("404-Blog-Not-Found.html")]
+        [HttpGet]
+        public IActionResult BlogNotFound()
+        {
+            return View();
         }
         [Route("sondaj-kopugu-nedir.html")]
         public IActionResult SondajKopugu()

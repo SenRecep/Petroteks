@@ -6,6 +6,7 @@ using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Services;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -65,7 +66,7 @@ namespace Petroteks.MvcUi.Controllers
             {
                 xtr.WriteStartElement("url");
                 xtr.WriteElementString("loc", $"{siteUrl}");
-                xtr.WriteElementString("lastmod", (mainPage.UpdateDate ?? mainPage.CreateDate).ToString());
+                xtr.WriteElementString("lastmod", $"{(mainPage.UpdateDate ?? mainPage.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                 xtr.WriteEndElement();
             }
 
@@ -75,7 +76,7 @@ namespace Petroteks.MvcUi.Controllers
             {
                 xtr.WriteStartElement("url");
                 xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("AboutUs", "Home")}");
-                xtr.WriteElementString("lastmod", (mainPage.UpdateDate ?? mainPage.CreateDate).ToString());
+                xtr.WriteElementString("lastmod", $"{(aboutUs.UpdateDate ?? aboutUs.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                 xtr.WriteEndElement();
             }
 
@@ -87,7 +88,7 @@ namespace Petroteks.MvcUi.Controllers
             {
                 xtr.WriteStartElement("url");
                 xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("Contact", "Home")}");
-                xtr.WriteElementString("lastmod", (contact.UpdateDate ?? contact.CreateDate).ToString());
+                xtr.WriteElementString("lastmod", $"{(contact.UpdateDate ?? contact.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                 xtr.WriteEndElement();
             }
 
@@ -113,7 +114,7 @@ namespace Petroteks.MvcUi.Controllers
                 {
                     xtr.WriteStartElement("url");
                     xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("CategoryDetail", "Detail", new { categoryName = GetFriendlyTitle(item.Name), page = 1, category = item.id })}");
-                    xtr.WriteElementString("lastmod", (item.UpdateDate ?? item.CreateDate).ToString());
+                    xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                     xtr.WriteEndElement();
                 }
             }
@@ -133,7 +134,7 @@ namespace Petroteks.MvcUi.Controllers
                 {
                     xtr.WriteStartElement("url");
                     xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("ProductDetail", "Detail", new { produtname = GetFriendlyTitle(item.ProductName), id = item.id })}");
-                    xtr.WriteElementString("lastmod", (item.UpdateDate ?? item.CreateDate).ToString());
+                    xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                     xtr.WriteEndElement();
                 }
             }
@@ -147,7 +148,7 @@ namespace Petroteks.MvcUi.Controllers
                 {
                     xtr.WriteStartElement("url");
                     xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("DynamicPageView", "Home", new { pageName = GetFriendlyTitle(item.Name), id = item.id })}");
-                    xtr.WriteElementString("lastmod", (item.UpdateDate ?? item.CreateDate).ToString());
+                    xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                     xtr.WriteEndElement();
                 }
             }
@@ -162,7 +163,7 @@ namespace Petroteks.MvcUi.Controllers
                 {
                     xtr.WriteStartElement("url");
                     xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("BlogDetail", "Home", new { title = GetFriendlyTitle(item.Title), id = item.id })}");
-                    xtr.WriteElementString("lastmod", (item.UpdateDate ?? item.CreateDate).ToString());
+                    xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                     xtr.WriteEndElement();
                 }
             }

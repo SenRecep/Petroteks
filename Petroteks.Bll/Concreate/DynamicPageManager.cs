@@ -12,15 +12,16 @@ namespace Petroteks.Bll.Concreate
         public DynamicPageManager(IDynamicPageDal repostory) : base(repostory)
         {
         }
-        public override DynamicPage Get(Expression<Func<DynamicPage, bool>> filter, params string[] navigations)
+
+        public override DynamicPage Get(Expression<Func<DynamicPage, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.Get(filter, navigations);
+            filter = LanguageControl(filter, LangId);
+            return base.Get(filter, LangId, navigations);
         }
-        public override ICollection<DynamicPage> GetMany(Expression<Func<DynamicPage, bool>> filter = null, params string[] navigations)
+        public override ICollection<DynamicPage> GetMany(Expression<Func<DynamicPage, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.GetMany(filter, navigations);
+            filter = LanguageControl(filter, LangId);
+            return base.GetMany(filter, LangId, navigations);
         }
     }
 }

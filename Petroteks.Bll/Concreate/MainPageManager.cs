@@ -12,16 +12,20 @@ namespace Petroteks.Bll.Concreate
         public MainPageManager(IMainPageDal repostory) : base(repostory)
         {
         }
-        public override MainPage Get(Expression<Func<MainPage, bool>> filter, params string[] navigations)
+
+
+        public override MainPage Get(Expression<Func<MainPage, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.Get(filter, navigations);
+            filter = LanguageControl(filter, LangId);
+            return base.Get(filter, LangId, navigations);
         }
-        public override ICollection<MainPage> GetMany(Expression<Func<MainPage, bool>> filter = null, params string[] navigations)
+        public override ICollection<MainPage> GetMany(Expression<Func<MainPage, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.GetMany(filter, navigations);
+            filter = LanguageControl(filter, LangId);
+            return base.GetMany(filter, LangId, navigations);
         }
+
+       
     }
 }
 

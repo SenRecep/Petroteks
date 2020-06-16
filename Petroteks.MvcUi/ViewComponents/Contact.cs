@@ -16,7 +16,7 @@ namespace Petroteks.MvcUi.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            UI_Contact uI_Contact = uI_ContactService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            UI_Contact uI_Contact = uI_ContactService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id, CurrentLanguage.id);
             return View(uI_Contact);
         }
     }

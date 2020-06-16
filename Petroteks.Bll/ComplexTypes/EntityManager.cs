@@ -1,4 +1,5 @@
-﻿using Petroteks.Core.Dal;
+﻿using Petroteks.Bll.Abstract;
+using Petroteks.Core.Dal;
 using Petroteks.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace Petroteks.Bll.Concreate
 {
-    public class EntityManager<T> : IEntityRepostory<T> where T : EntityBase, new()
+    public class EntityManager<T> : LanguageEntityManager<T>, IEntityRepostory<T> where T : EntityBase, new()
     {
         public IEntityRepostory<T> _repostory;
         public EntityManager(IEntityRepostory<T> repostory)
@@ -66,6 +67,21 @@ namespace Petroteks.Bll.Concreate
         public void Build()
         {
             _repostory.Build();
+        }
+
+        public virtual T Get(Expression<Func<T, bool>> filter, int LangId, params string[] navigations)
+        {
+            return _repostory.Get(filter, navigations);
+        }
+
+        public virtual ICollection<T> GetAll(int LangId, params string[] navigations)
+        {
+            return _repostory.GetAll( navigations);
+        }
+
+        public virtual ICollection<T> GetMany(Expression<Func<T, bool>> filter, int LangId, params string[] navigations)
+        {
+            return _repostory.GetMany(filter, navigations);
         }
     }
 }

@@ -52,10 +52,14 @@ namespace Petroteks.MvcUi.Controllers
                 LoadLanguage();
             }
         }
+
+        public Language CurrentLanguage => languageCookieService.Get("CurrentLanguage");
+        public int CurrentLanguageId => CurrentLanguage.id;
+
         public void LoadLanguage(bool decision = false, int? id = null)
         {
             LanguageContext.WebsiteLanguages = languageService.GetMany(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
-            Language currentLanguage = languageCookieService.Get("CurrentLanguage");
+            Language currentLanguage = CurrentLanguage;
             if (decision)
             {
                 currentLanguage = null;
@@ -82,12 +86,7 @@ namespace Petroteks.MvcUi.Controllers
                     languageService.Add(dbcurrentLanguage);
                     languageService.Save();
                 }
-                LanguageContext.CurrentLanguage = dbcurrentLanguage;
                 languageCookieService.Set("CurrentLanguage", dbcurrentLanguage, 60 * 24 * 7);
-            }
-            else
-            {
-                LanguageContext.CurrentLanguage = currentLanguage;
             }
         }
     }

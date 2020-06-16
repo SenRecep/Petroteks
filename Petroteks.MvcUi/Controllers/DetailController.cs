@@ -26,9 +26,9 @@ namespace Petroteks.MvcUi.Controllers
         public IActionResult CategoryDetail(int page = 1, int category = 0)
         {
             int pagesize = 10;
-            Category Category = categoryService.Get(x => x.id == category && x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.IsActive == true);
-            List<Category> subCategories = categoryService.GetMany(x => x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.Parentid == Category.id && x.IsActive == true).OrderByDescending(x => x.Priority).ToList();
-            ICollection<Product> products = productService.GetMany(x => x.Categoryid == Category.id && x.IsActive == true);
+            Category Category = categoryService.Get(x => x.id == category && x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.IsActive == true, CurrentLanguage.id);
+            List<Category> subCategories = categoryService.GetMany(x => x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.Parentid == Category.id && x.IsActive == true, CurrentLanguage.id).OrderByDescending(x => x.Priority).ToList();
+            ICollection<Product> products = productService.GetMany(x => x.Categoryid == Category.id && x.IsActive == true, CurrentLanguage.id);
             return View(new ProductListViewModel()
             {
                 Products = products.Skip((page - 1) * pagesize).Take(pagesize).OrderByDescending(x => x.Priority).ToList(),
@@ -49,7 +49,7 @@ namespace Petroteks.MvcUi.Controllers
                 Category category = categoryService.GetAllLanguageCategory(x => x.IsActive && x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.id == product.Categoryid);
                 if (category != null)
                 {
-                    if (product?.Languageid != LanguageContext.CurrentLanguage.id)
+                    if (product?.Languageid != CurrentLanguage.id)
                     {
                         LoadLanguage(true, product.Languageid);
                     }

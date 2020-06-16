@@ -13,15 +13,16 @@ namespace Petroteks.Bll.Concreate
         public UI_NavbarManager(IUI_NavbarDal repostory) : base(repostory)
         {
         }
-        public override UI_Navbar Get(Expression<Func<UI_Navbar, bool>> filter, params string[] navigations)
+        public override UI_Navbar Get(Expression<Func<UI_Navbar, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.Get(filter, navigations);
+            filter = LanguageControl(filter, LangId);
+            return base.Get(filter, LangId, navigations);
         }
-        public override ICollection<UI_Navbar> GetMany(Expression<Func<UI_Navbar, bool>> filter = null, params string[] navigations)
+        public override ICollection<UI_Navbar> GetMany(Expression<Func<UI_Navbar, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.GetMany(filter, navigations);
+            filter = LanguageControl(filter, LangId);
+            return base.GetMany(filter, LangId, navigations);
         }
+        
     }
 }

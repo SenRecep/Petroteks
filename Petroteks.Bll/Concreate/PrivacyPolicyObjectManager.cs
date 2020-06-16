@@ -12,15 +12,15 @@ namespace Petroteks.Bll.Concreate
         public PrivacyPolicyObjectManager(IPrivacyPolicyObjectDal repostory) : base(repostory)
         {
         }
-        public override PrivacyPolicyObject Get(Expression<Func<PrivacyPolicyObject, bool>> filter, params string[] navigations)
+        public override PrivacyPolicyObject Get(Expression<Func<PrivacyPolicyObject, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.Get(filter, navigations);
+            filter = LanguageControl(filter, LangId);
+            return base.Get(filter, LangId, navigations);
         }
-        public override ICollection<PrivacyPolicyObject> GetMany(Expression<Func<PrivacyPolicyObject, bool>> filter = null, params string[] navigations)
+        public override ICollection<PrivacyPolicyObject> GetMany(Expression<Func<PrivacyPolicyObject, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.GetMany(filter, navigations);
+            filter = LanguageControl(filter, LangId);
+            return base.GetMany(filter, LangId, navigations);
         }
     }
 }

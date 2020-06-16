@@ -23,13 +23,13 @@ namespace Petroteks.MvcUi.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(Website website)
         {
             ICollection<MI_Category> categories = categoryService
-                           .GetMany(category => category.WebSiteid == website.id && category.IsActive == true)
+                           .GetMany(category => category.WebSiteid == website.id && category.IsActive == true, CurrentLanguage.id)
                            .Select(x => new MI_Category(x))
                            .OrderByDescending(x => x.Priority)
                            .ToList();
 
             ICollection<MI_Product> products = productService
-                .GetMany(x => x.IsActive == true)
+                .GetMany(x => x.IsActive == true, CurrentLanguage.id)
                 .Select(x => new MI_Product(x))
                 .OrderByDescending(x => x.Priority)
                 .ToList();

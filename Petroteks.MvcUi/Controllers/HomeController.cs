@@ -56,7 +56,8 @@ namespace Petroteks.MvcUi.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            ICollection<Category> category = categoryService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true && x.Parentid == 0 && x.Name != "ROOT").OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
+
+            ICollection<Category> category = categoryService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true && x.Parentid == 0 && x.Name != "ROOT",CurrentLanguage.id).OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
             Category ROOTCategory = categoryService.Get(x => x.IsActive == true && x.Name == "ROOT" && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
             ICollection<Product> products = null;
             if (ROOTCategory != null)
@@ -82,13 +83,14 @@ namespace Petroteks.MvcUi.Controllers
         [Route("Sayfalar/{pageName}-{id:int}")]
         public IActionResult DynamicPageView(int id)
         {
-            DynamicPage dynamicPage = dynamicPageService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true && x.id == id);
+            DynamicPage dynamicPage = dynamicPageService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true && x.id == id, CurrentLanguage.id);
             return View(dynamicPage);
         }
         [Route("Bloglar.html")]
         public IActionResult PetroBlog()
         {
-            ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.Priority).OrderByDescending(x => x.CreateDate).ToList();
+            var lang = CurrentLanguage.id;
+            ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id).OrderByDescending(x => x.Priority).OrderByDescending(x => x.CreateDate).ToList();
             return View(blogs);
         }
         [Route("Blog-Detay/{id:int}/{title}")]
@@ -99,7 +101,7 @@ namespace Petroteks.MvcUi.Controllers
             if (findedBlog != null)
             {
 
-                if (findedBlog?.Languageid != LanguageContext.CurrentLanguage.id)
+                if (findedBlog?.Languageid != CurrentLanguage.id)
                 {
                     LoadLanguage(true, findedBlog.Languageid);
                 }
@@ -123,7 +125,7 @@ namespace Petroteks.MvcUi.Controllers
         public IActionResult AboutUs()
         {
             AboutUsObject hakkimizda;
-            hakkimizda = aboutUsObjectService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            hakkimizda = aboutUsObjectService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id,CurrentLanguage.id);
             if (hakkimizda == null)
             {
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
@@ -192,7 +194,7 @@ namespace Petroteks.MvcUi.Controllers
                 Language language = languageService.Get(x => x.KeyCode.Equals(KeyCode) && x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true);
                 if (language != null)
                 {
-                    LanguageContext.CurrentLanguage = language;
+                    CurrentLanguage = language;//???
                     languageCookieService.Set("CurrentLanguage", language, 60 * 24 * 7);
                 }
             }

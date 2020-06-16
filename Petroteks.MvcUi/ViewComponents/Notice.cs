@@ -19,7 +19,7 @@ namespace Petroteks.MvcUi.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             List<UI_Notice> notices = new List<UI_Notice>();
-            foreach (UI_Notice x in uI_NoticeService.GetMany(x => x.IsActive && x.WebSite == WebsiteContext.CurrentWebsite))
+            foreach (UI_Notice x in uI_NoticeService.GetMany(x => x.IsActive && x.WebSite == WebsiteContext.CurrentWebsite, CurrentLanguage.id))
             {
                 if (x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now)
                 {

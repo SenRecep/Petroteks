@@ -16,7 +16,7 @@ namespace Petroteks.MvcUi.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            UI_Footer uI_Footer = uI_FooterService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            UI_Footer uI_Footer = uI_FooterService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id, CurrentLanguage.id);
             return View(uI_Footer);
         }
     }

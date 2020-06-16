@@ -11,9 +11,15 @@ namespace Petroteks.MvcUi.Controllers
         }
         //public override void OnActionExecuted(ActionExecutedContext context)
         //{
-        //    ViewBag.CurrentWebsite = Bll.Helpers.WebsiteContext.CurrentWebsite;
+        //    var assemblies = new List<Assembly>();
+        //    AppDomain.CurrentDomain.GetAssemblies().ToList().ForEach(a =>
+        //    {
+        //        if (a.FullName.Contains("Petroteks"))
+        //            assemblies.Add(a);
+        //    });
+        //    var types = new List<Type>();
+        //    assemblies.ForEach(x => types.AddRange(x.GetTypes()));
         //    base.OnActionExecuted(context);
         //}
-
     }
 }

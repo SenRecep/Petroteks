@@ -180,7 +180,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [Route("DuyuruList")]
         public IActionResult DuyuruList()
         {
-            List<UI_Notice> data = uI_NoticeService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).ToList();
+            List<UI_Notice> data = uI_NoticeService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id).ToList();
             return View(data);
         }
         [AdminAuthorize]
@@ -193,7 +193,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [Route("Duyuru-Silme-{id:int}")]
         public JsonResult DuyuruSilme(int id)
         {
-            UI_Notice Notice = uI_NoticeService.Get(x => x.id == id);
+            UI_Notice Notice = uI_NoticeService.Get(x => x.id == id, CurrentLanguage.id);
             if (Notice != null)
             {
                 Notice.IsActive = false;
@@ -229,7 +229,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                         StartDate = model.StartDate,
                         EndDate = model.EndDate,
                         WebSite = WebsiteContext.CurrentWebsite,
-                        Language = LanguageContext.CurrentLanguage,
+                        Language = CurrentLanguage,
                         CreateUserid = LoginUser.id
                     };
                     uI_NoticeService.Add(uI_Notice);
@@ -397,7 +397,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 Language language = languageService.Get(x => x.KeyCode.Equals(KeyCode) && x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true);
                 if (language != null)
                 {
-                    LanguageContext.CurrentLanguage = language;
+                    CurrentLanguage = language;//????
                     languageCookieService.Set("CurrentLanguage", language, 60 * 24 * 7);
                 }
             }

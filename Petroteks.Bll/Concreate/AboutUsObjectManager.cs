@@ -12,15 +12,15 @@ namespace Petroteks.Bll.Concreate
         public AboutUsObjectManager(IAboutUsObjectDal repostory) : base(repostory)
         {
         }
-        public override AboutUsObject Get(Expression<Func<AboutUsObject, bool>> filter, params string[] navigations)
+        public override AboutUsObject Get(Expression<Func<AboutUsObject, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.Get(filter, navigations);
+            filter = LanguageControl(filter,LangId);
+            return base.Get(filter, LangId, navigations);
         }
-        public override ICollection<AboutUsObject> GetMany(Expression<Func<AboutUsObject, bool>> filter = null, params string[] navigations)
+        public override ICollection<AboutUsObject> GetMany(Expression<Func<AboutUsObject, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.GetMany(filter, navigations);
+            filter = LanguageControl(filter, LangId);
+            return base.GetMany(filter, LangId, navigations);
         }
     }
 }

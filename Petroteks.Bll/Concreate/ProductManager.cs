@@ -11,27 +11,28 @@ namespace Petroteks.Bll.Concreate
     public class ProductManager : EntityManager<Product>, IProductService
     {
         public ProductManager(IProductDal repostory) : base(repostory) { }
-        public override Product Get(Expression<Func<Product, bool>> filter, params string[] navigations)
-        {
-            filter = LanguageControl(filter);
-            return base.Get(filter, navigations);
-        }
-
+    
         public Product GetAllLanguageProduct(Expression<Func<Product, bool>> filter, params string[] navigations)
         {
             return base.Get(filter, navigations);
         }
 
-        public override ICollection<Product> GetMany(Expression<Func<Product, bool>> filter = null, params string[] navigations)
+        public override Product Get(Expression<Func<Product, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.GetMany(filter, navigations);
+            filter = LanguageControl(filter, LangId);
+            return base.Get(filter, LangId, navigations);
         }
-        private Expression<Func<Product, bool>> LanguageControl(Expression<Func<Product, bool>> filter = null)
+        public override ICollection<Product> GetMany(Expression<Func<Product, bool>> filter, int LangId, params string[] navigations)
         {
-            if (LanguageContext.CurrentLanguage != null && filter != null)
+            filter = LanguageControl(filter, LangId);
+            return base.GetMany(filter, LangId, navigations);
+        }
+
+        private Expression<Func<Product, bool>> LanguageControl(Expression<Func<Product, bool>> filter,int LangId)
+        {
+            if (filter != null)
             {
-                Expression<Func<Product, bool>> LangEx = x => x.Languageid == LanguageContext.CurrentLanguage.id;
+                Expression<Func<Product, bool>> LangEx = x => x.Languageid == LangId;
                 return filter.And(LangEx);
             }
             return filter;

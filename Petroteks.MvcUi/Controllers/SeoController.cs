@@ -6,6 +6,7 @@ using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Services;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -60,34 +61,34 @@ namespace Petroteks.MvcUi.Controllers
 
             string siteUrl = WebsiteContext.CurrentWebsite.BaseUrl.Replace("www.", "", System.StringComparison.CurrentCultureIgnoreCase);
 
-            MainPage mainPage = mainPageService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive);
+            MainPage mainPage = mainPageService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive, CurrentLanguage.id);
             if (mainPage != null)
             {
                 xtr.WriteStartElement("url");
                 xtr.WriteElementString("loc", $"{siteUrl}");
-                xtr.WriteElementString("lastmod", (mainPage.UpdateDate ?? mainPage.CreateDate).ToString());
+                xtr.WriteElementString("lastmod", $"{(mainPage.UpdateDate ?? mainPage.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                 xtr.WriteEndElement();
             }
 
 
-            AboutUsObject aboutUs = aboutUsObjectService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive);
-            if (mainPage != null)
+            AboutUsObject aboutUs = aboutUsObjectService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive, CurrentLanguage.id);
+            if (aboutUs != null)
             {
                 xtr.WriteStartElement("url");
                 xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("AboutUs", "Home")}");
-                xtr.WriteElementString("lastmod", (mainPage.UpdateDate ?? mainPage.CreateDate).ToString());
+                xtr.WriteElementString("lastmod", $"{(aboutUs.UpdateDate ?? aboutUs.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                 xtr.WriteEndElement();
             }
 
             //xtr.WriteStartElement("url");
             //xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("PrivacyPolicy", "Home")}");
             //xtr.WriteEndElement();
-            UI_Contact contact = uI_ContactService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive);
+            UI_Contact contact = uI_ContactService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive, CurrentLanguage.id);
             if (contact != null)
             {
                 xtr.WriteStartElement("url");
                 xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("Contact", "Home")}");
-                xtr.WriteElementString("lastmod", (contact.UpdateDate ?? contact.CreateDate).ToString());
+                xtr.WriteElementString("lastmod", $"{(contact.UpdateDate ?? contact.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                 xtr.WriteEndElement();
             }
 
@@ -107,13 +108,13 @@ namespace Petroteks.MvcUi.Controllers
 
             try
             {
-                Categories = categoryService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true);
+                Categories = categoryService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id);
 
                 foreach (Category item in Categories)
                 {
                     xtr.WriteStartElement("url");
                     xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("CategoryDetail", "Detail", new { categoryName = GetFriendlyTitle(item.Name), page = 1, category = item.id })}");
-                    xtr.WriteElementString("lastmod", (item.UpdateDate ?? item.CreateDate).ToString());
+                    xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                     xtr.WriteEndElement();
                 }
             }
@@ -133,7 +134,7 @@ namespace Petroteks.MvcUi.Controllers
                 {
                     xtr.WriteStartElement("url");
                     xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("ProductDetail", "Detail", new { produtname = GetFriendlyTitle(item.ProductName), id = item.id })}");
-                    xtr.WriteElementString("lastmod", (item.UpdateDate ?? item.CreateDate).ToString());
+                    xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                     xtr.WriteEndElement();
                 }
             }
@@ -141,13 +142,13 @@ namespace Petroteks.MvcUi.Controllers
 
             try
             {
-                ICollection<DynamicPage> dynamicPages = dynamicPageService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true);
+                ICollection<DynamicPage> dynamicPages = dynamicPageService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id);
 
                 foreach (DynamicPage item in dynamicPages)
                 {
                     xtr.WriteStartElement("url");
                     xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("DynamicPageView", "Home", new { pageName = GetFriendlyTitle(item.Name), id = item.id })}");
-                    xtr.WriteElementString("lastmod", (item.UpdateDate ?? item.CreateDate).ToString());
+                    xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                     xtr.WriteEndElement();
                 }
             }
@@ -156,13 +157,13 @@ namespace Petroteks.MvcUi.Controllers
 
             try
             {
-                ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true);
+                ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id);
 
                 foreach (Blog item in blogs)
                 {
                     xtr.WriteStartElement("url");
                     xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("BlogDetail", "Home", new { title = GetFriendlyTitle(item.Title), id = item.id })}");
-                    xtr.WriteElementString("lastmod", (item.UpdateDate ?? item.CreateDate).ToString());
+                    xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                     xtr.WriteEndElement();
                 }
             }

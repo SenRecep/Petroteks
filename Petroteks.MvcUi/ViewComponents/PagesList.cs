@@ -15,7 +15,7 @@ namespace Petroteks.MvcUi.ViewComponents
         }
         public IViewComponentResult Invoke(Website website)
         {
-            ICollection<DynamicPage> dynamicPages = dynamicPageService.GetMany(x => x.WebSiteid == website.id && x.IsActive == true);
+            ICollection<DynamicPage> dynamicPages = dynamicPageService.GetMany(x => x.WebSiteid == website.id && x.IsActive == true, CurrentLanguage.id);
 
             return View(dynamicPages);
         }

@@ -12,21 +12,21 @@ namespace Petroteks.Bll.Concreate
         public CategoryManager(ICategoryDal repostory) : base(repostory)
         {
         }
-        public override Category Get(Expression<Func<Category, bool>> filter, params string[] navigations)
-        {
-            filter = LanguageControl(filter);
-            return base.Get(filter, navigations);
-        }
-
+     
         public Category GetAllLanguageCategory(Expression<Func<Category, bool>> filter, params string[] navigations)
         {
             return base.Get(filter, navigations);
         }
 
-        public override ICollection<Category> GetMany(Expression<Func<Category, bool>> filter = null, params string[] navigations)
+        public override Category Get(Expression<Func<Category, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter);
-            return base.GetMany(filter, navigations);
+            filter = LanguageControl(filter, LangId);
+            return base.Get(filter, LangId, navigations);
+        }
+        public override ICollection<Category> GetMany(Expression<Func<Category, bool>> filter, int LangId, params string[] navigations)
+        {
+            filter = LanguageControl(filter, LangId);
+            return base.GetMany(filter, LangId, navigations);
         }
     }
 }

@@ -1,23 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
-using Petroteks.Bll.Helpers;
 using Petroteks.Entities.ComplexTypes;
-using System.Threading.Tasks;
+using Petroteks.MvcUi.ExtensionMethods;
+using System;
 
 namespace Petroteks.MvcUi.ViewComponents
 {
-    public class Navbar : ViewComponent
+    public class Navbar : LanguageVC
     {
         private readonly IUI_NavbarService uI_NavbarService;
 
-        public Navbar(IUI_NavbarService uI_NavbarService)
+        public Navbar(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.uI_NavbarService = uI_NavbarService;
+            uI_NavbarService = serviceProvider.GetService<IUI_NavbarService>();
         }
-
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
-            UI_Navbar uI_Navbar = uI_NavbarService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id, CurrentLanguage.id);
+            UI_Navbar uI_Navbar = uI_NavbarService.Get(x => x.IsActive == true && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             return View(uI_Navbar);
         }
     }

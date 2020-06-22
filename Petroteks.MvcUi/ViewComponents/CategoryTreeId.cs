@@ -1,29 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
-using Petroteks.Entities.Concreate;
+using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Models.MI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Petroteks.MvcUi.ViewComponents
 {
-    public class CategoryTreeId : ViewComponent
+    public class CategoryTreeId : LanguageVC
     {
         private readonly ICategoryService categoryService;
         private readonly IProductService productService;
 
-        public CategoryTreeId(ICategoryService categoryService, IProductService productService)
+
+        public CategoryTreeId(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.categoryService = categoryService;
-            this.productService = productService;
+            categoryService = serviceProvider.GetService<ICategoryService>();
+            productService = serviceProvider.GetService<IProductService>();
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(Website website)
+        public IViewComponentResult Invoke()
         {
             ICollection<MI_Category> categories = categoryService
-                           .GetMany(category => category.WebSiteid == website.id && category.IsActive == true, CurrentLanguage.id)
+                           .GetMany(category => category.WebSiteid == CurrentWebsite.id && category.IsActive == true, CurrentLanguage.id)
                            .Select(x => new MI_Category(x))
                            .OrderByDescending(x => x.Priority)
                            .ToList();

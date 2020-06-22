@@ -1,22 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
-using Petroteks.Bll.Helpers;
 using Petroteks.Entities.ComplexTypes;
-using System.Threading.Tasks;
+using Petroteks.MvcUi.ExtensionMethods;
+using System;
 
 namespace Petroteks.MvcUi.ViewComponents
 {
-    public class Contact : ViewComponent
+    public class Contact : LanguageVC
     {
         private readonly IUI_ContactService uI_ContactService;
-
-        public Contact(IUI_ContactService uI_ContactService)
+        public Contact(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.uI_ContactService = uI_ContactService;
+            uI_ContactService = serviceProvider.GetService<IUI_ContactService>();
         }
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
-            UI_Contact uI_Contact = uI_ContactService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id, CurrentLanguage.id);
+            UI_Contact uI_Contact = uI_ContactService.Get(x => x.IsActive == true && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             return View(uI_Contact);
         }
     }

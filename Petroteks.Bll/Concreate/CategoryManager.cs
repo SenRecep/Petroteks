@@ -12,7 +12,7 @@ namespace Petroteks.Bll.Concreate
         public CategoryManager(ICategoryDal repostory) : base(repostory)
         {
         }
-     
+
         public Category GetAllLanguageCategory(Expression<Func<Category, bool>> filter, params string[] navigations)
         {
             return base.Get(filter, navigations);

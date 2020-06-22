@@ -1,18 +1,19 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Helpers;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Areas.Admin.Models;
+using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Petroteks.MvcUi.Controllers
 {
-    public class HomeController : PublicController
+    public class HomeController : GlobalController
     {
         private readonly IMainPageService mainPageService;
         private readonly IAboutUsObjectService aboutUsObjectService;
@@ -25,48 +26,33 @@ namespace Petroteks.MvcUi.Controllers
         private readonly IProductService productService;
         private readonly IEmailService emailService;
 
-        public HomeController(
-            IAboutUsObjectService aboutUsObjectService,
-            IMainPageService mainPageService,
-            IEmailService emailService,
-            ICategoryService categoryService,
-            IPrivacyPolicyObjectService privacyPolicyObjectService,
-            IWebsiteService websiteService,
-            IHttpContextAccessor httpContextAccessor,
-            IBlogService blogService,
-            ILanguageService languageService,
-            IDynamicPageService dynamicPageService,
-            ILanguageCookieService languageCookieService,
-            IProductService productService) :
-            base(websiteService, languageService, languageCookieService, httpContextAccessor)
+        public HomeController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.aboutUsObjectService = aboutUsObjectService;
-            this.mainPageService = mainPageService;
-            this.privacyPolicyObjectService = privacyPolicyObjectService;
-            this.blogService = blogService;
-            this.languageService = languageService;
-            this.dynamicPageService = dynamicPageService;
-            this.languageCookieService = languageCookieService;
-            this.productService = productService;
-            this.emailService = emailService;
-            this.categoryService = categoryService;
+            aboutUsObjectService = serviceProvider.GetService<IAboutUsObjectService>();
+            privacyPolicyObjectService = serviceProvider.GetService<IPrivacyPolicyObjectService>();
+            blogService = serviceProvider.GetService<IBlogService>();
+            languageService = serviceProvider.GetService<ILanguageService>();
+            categoryService = serviceProvider.GetService<ICategoryService>();
+            dynamicPageService = serviceProvider.GetService<IDynamicPageService>();
+            languageCookieService = serviceProvider.GetService<ILanguageCookieService>();
+            productService = serviceProvider.GetService<IProductService>();
+            emailService = serviceProvider.GetService<IEmailService>();
+            mainPageService = serviceProvider.GetService<IMainPageService>();
         }
-
 
         [Route("")]
         public IActionResult Index()
         {
-
-            ICollection<Category> category = categoryService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true && x.Parentid == 0 && x.Name != "ROOT",CurrentLanguage.id).OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
-            Category ROOTCategory = categoryService.Get(x => x.IsActive == true && x.Name == "ROOT" && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            ICollection<Category> category = categoryService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true && x.Parentid == 0 && x.Name != "ROOT", CurrentLanguage.id).OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
+            Category ROOTCategory = categoryService.Get(x => x.IsActive == true && x.Name == "ROOT" && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             ICollection<Product> products = null;
             if (ROOTCategory != null)
             {
-                products = productService.GetMany(x => x.IsActive == true && x.Categoryid == ROOTCategory.id).OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
+                products = productService.GetMany(x => x.IsActive == true && x.Categoryid == ROOTCategory.id, CurrentLanguage.id).OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
             }
-            //ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).OrderByDescending(x=>x.Priority).Take(3).ToList();
+            //ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).OrderByDescending(x=>x.Priority).Take(3).ToList();
             MainPage mainPage;
-            mainPage = mainPageService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            mainPage = mainPageService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             if (mainPage == null)
             {
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
@@ -83,14 +69,14 @@ namespace Petroteks.MvcUi.Controllers
         [Route("Sayfalar/{pageName}-{id:int}")]
         public IActionResult DynamicPageView(int id)
         {
-            DynamicPage dynamicPage = dynamicPageService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true && x.id == id, CurrentLanguage.id);
+            DynamicPage dynamicPage = dynamicPageService.Get(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true && x.id == id, CurrentLanguage.id);
             return View(dynamicPage);
         }
         [Route("Bloglar.html")]
         public IActionResult PetroBlog()
         {
-            var lang = CurrentLanguage.id;
-            ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id).OrderByDescending(x => x.Priority).OrderByDescending(x => x.CreateDate).ToList();
+            int lang = CurrentLanguage.id;
+            ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id).OrderByDescending(x => x.Priority).OrderByDescending(x => x.CreateDate).ToList();
             return View(blogs);
         }
         [Route("Blog-Detay/{id:int}/{title}")]
@@ -125,7 +111,7 @@ namespace Petroteks.MvcUi.Controllers
         public IActionResult AboutUs()
         {
             AboutUsObject hakkimizda;
-            hakkimizda = aboutUsObjectService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id,CurrentLanguage.id);
+            hakkimizda = aboutUsObjectService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             if (hakkimizda == null)
             {
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
@@ -142,7 +128,7 @@ namespace Petroteks.MvcUi.Controllers
         public IActionResult PrivacyPolicy()
         {
             PrivacyPolicyObject gizlilikpolitikasi;
-            gizlilikpolitikasi = privacyPolicyObjectService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            gizlilikpolitikasi = privacyPolicyObjectService.Get(x => x.WebSiteid == CurrentWebsite.id);
             if (gizlilikpolitikasi == null)
             {
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
@@ -170,13 +156,13 @@ namespace Petroteks.MvcUi.Controllers
         public JsonResult BilgilendirmeMail(string email)
         {
             Email Email;
-            Email = emailService.Get(x => x.EmailAddress.Equals(email) && x.WebSiteid == WebsiteContext.CurrentWebsite.id);
+            Email = emailService.Get(x => x.EmailAddress.Equals(email) && x.WebSiteid == CurrentWebsite.id);
             if (Email == null)
             {
                 bool IsValid = RegexUtilities.IsValidEmail(email);
                 if (IsValid)
                 {
-                    emailService.Add(new Email() { EmailAddress = email, WebSite = WebsiteContext.CurrentWebsite });
+                    emailService.Add(new Email() { EmailAddress = email, WebSite = CurrentWebsite });
                     emailService.Save();
                     return Json("Başarılı bi şekilde abone oldunuz.");
                 }
@@ -191,11 +177,10 @@ namespace Petroteks.MvcUi.Controllers
         {
             if (!string.IsNullOrWhiteSpace(KeyCode))
             {
-                Language language = languageService.Get(x => x.KeyCode.Equals(KeyCode) && x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive == true);
+                Language language = languageService.Get(x => x.KeyCode.Equals(KeyCode) && x.WebSiteid == CurrentWebsite.id && x.IsActive == true);
                 if (language != null)
                 {
-                    CurrentLanguage = language;//???
-                    languageCookieService.Set("CurrentLanguage", language, 60 * 24 * 7);
+                    SetLanguage(language);
                 }
             }
             return RedirectToAction("Index", "Home");

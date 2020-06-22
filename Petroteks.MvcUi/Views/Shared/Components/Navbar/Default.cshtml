@@ -1,4 +1,9 @@
 ﻿@model UI_Navbar
+@inject Petroteks.MvcUi.Services.ILanguageCookieService languageCookieService
+
+@{
+    Language CurrentLanguage = languageCookieService.Get("CurrentLanguage");
+}
 
 @if (Model != null)
 {
@@ -6,20 +11,20 @@
     <li class="drop-down">
         <a href="">@Model.Products</a>
         <ul>
-            @await Component.InvokeAsync("CategoryList", new { website = WebsiteContext.CurrentWebsite })
+            @await Component.InvokeAsync("CategoryList")
         </ul>
     </li>
 
     @*<li class="drop-down">
         <a href="" title="Sayfalar">@Model.Pages</a>
             <ul>
-                @await Component.InvokeAsync("PagesList", new { website = WebsiteContext.CurrentWebsite })
+                @await Component.InvokeAsync("PagesList")
             </ul>
         </li>*@
 
 
     <li><a asp-area="" asp-controller="Home" asp-action="AboutUs" title="@Model.AboutUs">@Model.AboutUs</a></li>
-    <li><a asp-area="" asp-controller="Home" asp-action="PetroBlog" title="@Model.PetroBlog">@Model.PetroBlog</a></li>  
+    <li><a asp-area="" asp-controller="Home" asp-action="PetroBlog" title="@Model.PetroBlog">@Model.PetroBlog</a></li>
     <li><a asp-area="" asp-controller="Home" asp-action="Contact" title="@Model.Contact">@Model.Contact</a></li>
     <li class="drop-down">
         <a href=""><img src="~/LanguageImages/@CurrentLanguage.IconCode" alt="@CurrentLanguage.KeyCode" />@CurrentLanguage.Name</a>

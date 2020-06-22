@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Petroteks.Dal.Abstract;
+﻿using Petroteks.Dal.Abstract;
 using Petroteks.Dal.Concreate.EntityFramework.Contexts;
 using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;

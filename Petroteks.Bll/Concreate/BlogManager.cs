@@ -25,9 +25,9 @@ namespace Petroteks.Bll.Concreate
 
         public Blog GetAllLanguageBlog(Expression<Func<Blog, bool>> filter, params string[] navigations)
         {
-            return base.Get(filter,navigations);
+            return base.Get(filter, navigations);
         }
-       
+
     }
 }
 

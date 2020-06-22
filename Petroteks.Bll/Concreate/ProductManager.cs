@@ -11,7 +11,7 @@ namespace Petroteks.Bll.Concreate
     public class ProductManager : EntityManager<Product>, IProductService
     {
         public ProductManager(IProductDal repostory) : base(repostory) { }
-    
+
         public Product GetAllLanguageProduct(Expression<Func<Product, bool>> filter, params string[] navigations)
         {
             return base.Get(filter, navigations);
@@ -28,7 +28,7 @@ namespace Petroteks.Bll.Concreate
             return base.GetMany(filter, LangId, navigations);
         }
 
-        private Expression<Func<Product, bool>> LanguageControl(Expression<Func<Product, bool>> filter,int LangId)
+        private Expression<Func<Product, bool>> LanguageControl(Expression<Func<Product, bool>> filter, int LangId)
         {
             if (filter != null)
             {

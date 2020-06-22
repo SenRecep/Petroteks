@@ -23,6 +23,6 @@ namespace Petroteks.Bll.Concreate
             filter = LanguageControl(filter, LangId);
             return base.GetMany(filter, LangId, navigations);
         }
-        
+
     }
 }

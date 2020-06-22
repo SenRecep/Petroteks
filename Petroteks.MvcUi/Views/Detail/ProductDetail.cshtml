@@ -1,8 +1,13 @@
 ﻿@model Product
+
+@inject IWebsiteCookieService websiteCookieService
+@{
+    Website CurrentWebsite = websiteCookieService.Get("CurrentWebsite");
+}
 @{
     ViewData["Title"] = Model.Title;
     ViewData["Description"] = Model.Description;
-    ViewData["MetaTags"] = $"<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='{WebsiteContext.CurrentWebsite.Name}/Urun-Detay/" + Model.SupTitle.Replace(" ", "-") + "-" + Model.id + "'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='" + Model.SupTitle + "'> <meta property='og:type' content='website'> <meta property='og:description' content='" + Model.Description + " ürünleri ve özellikleri'> <meta property='og:image' content='" + @WebsiteContext.CurrentWebsite.Name + "/ProductImages/" + Model.PhotoPath + $"'> <meta property='og:url' content='{WebsiteContext.CurrentWebsite.Name}/" + Model.SupTitle.Replace(" ", "-") + "-" + Model.id + "'/> <meta property='og:title' content='" + Model.SupTitle + "' />";
+    ViewData["MetaTags"] = $"<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='{CurrentWebsite.Name}/Urun-Detay/" + Model.SupTitle.Replace(" ", "-") + "-" + Model.id + "'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='" + Model.SupTitle + "'> <meta property='og:type' content='website'> <meta property='og:description' content='" + Model.Description + " ürünleri ve özellikleri'> <meta property='og:image' content='" + @CurrentWebsite.Name + "/ProductImages/" + Model.PhotoPath + $"'> <meta property='og:url' content='{CurrentWebsite.Name}/" + Model.SupTitle.Replace(" ", "-") + "-" + Model.id + "'/> <meta property='og:title' content='" + Model.SupTitle + "' />";
     ViewData["Keywords"] = Model.Keywords;
 
 

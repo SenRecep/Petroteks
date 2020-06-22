@@ -14,7 +14,7 @@ namespace Petroteks.Bll.Concreate
         }
         public override AboutUsObject Get(Expression<Func<AboutUsObject, bool>> filter, int LangId, params string[] navigations)
         {
-            filter = LanguageControl(filter,LangId);
+            filter = LanguageControl(filter, LangId);
             return base.Get(filter, LangId, navigations);
         }
         public override ICollection<AboutUsObject> GetMany(Expression<Func<AboutUsObject, bool>> filter, int LangId, params string[] navigations)

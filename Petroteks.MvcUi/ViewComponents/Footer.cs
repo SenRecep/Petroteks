@@ -1,22 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
-using Petroteks.Bll.Helpers;
 using Petroteks.Entities.ComplexTypes;
-using System.Threading.Tasks;
+using Petroteks.MvcUi.ExtensionMethods;
+using System;
 
 namespace Petroteks.MvcUi.ViewComponents
 {
-    public class Footer : ViewComponent
+    public class Footer : LanguageVC
     {
         private readonly IUI_FooterService uI_FooterService;
 
-        public Footer(IUI_FooterService uI_FooterService)
+        public Footer(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.uI_FooterService = uI_FooterService;
+            uI_FooterService = serviceProvider.GetService<IUI_FooterService>();
         }
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
-            UI_Footer uI_Footer = uI_FooterService.Get(x => x.IsActive == true && x.WebSiteid == WebsiteContext.CurrentWebsite.id, CurrentLanguage.id);
+            UI_Footer uI_Footer = uI_FooterService.Get(x => x.IsActive == true && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             return View(uI_Footer);
         }
     }

@@ -1,5 +1,5 @@
 ﻿@model CategoryViewModel
-@await Component.InvokeAsync("CategoryTree", new { website = CurrentWebsite })
+@await Component.InvokeAsync("CategoryTree")
 @{
     var photoPath = $"~/CategoryImages/{Model.ImagePath}";
 }

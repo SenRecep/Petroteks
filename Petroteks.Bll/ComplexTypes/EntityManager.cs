@@ -76,7 +76,7 @@ namespace Petroteks.Bll.Concreate
 
         public virtual ICollection<T> GetAll(int LangId, params string[] navigations)
         {
-            return _repostory.GetAll( navigations);
+            return _repostory.GetAll(navigations);
         }
 
         public virtual ICollection<T> GetMany(Expression<Func<T, bool>> filter, int LangId, params string[] navigations)

@@ -1,8 +1,13 @@
 ﻿@model ProductListViewModel
+
+@inject IWebsiteCookieService websiteCookieService
+@{
+    Website CurrentWebsite = websiteCookieService.Get("CurrentWebsite");
+}
 @{
     ViewData["Title"] = Model.CurrentCategory.Name;
     ViewData["Description"] = Model.CurrentCategory.Name + " ürünleri ve özellikleri | Petroteks ";
-    ViewData["MetaTags"] = $"<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='{WebsiteContext.CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentPage + "-" + Model.CurrentCategory.id + "'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='" + Model.CurrentCategory.Name + "'> <meta property='og:type' content='website'> <meta property='og:description' content='" + Model.CurrentCategory.Name + " ürünleri ve özellikleri'> <meta property='og:image' content='" + @WebsiteContext.CurrentWebsite.Name + "/CategoryImages/" + Model.CurrentCategory.PhotoPath + "'> <meta property='og:url' content='{WebsiteContext.CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentPage + "-" + Model.CurrentCategory.id + "'/> <meta property='og:title' content='" + Model.CurrentCategory.Name + "' />";
+    ViewData["MetaTags"] = $"<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='{CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentPage + "-" + Model.CurrentCategory.id + "'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='" + Model.CurrentCategory.Name + "'> <meta property='og:type' content='website'> <meta property='og:description' content='" + Model.CurrentCategory.Name + " ürünleri ve özellikleri'> <meta property='og:image' content='" + @CurrentWebsite.Name + "/CategoryImages/" + Model.CurrentCategory.PhotoPath + "'> <meta property='og:url' content='{CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentPage + "-" + Model.CurrentCategory.id + "'/> <meta property='og:title' content='" + Model.CurrentCategory.Name + "' />";
     ViewData["Keywords"] = "Sondaj kategorileri, Sondaj ürünleri," + Model.CurrentCategory.Name;
 }
 <section class="clearfix" id="intro2">

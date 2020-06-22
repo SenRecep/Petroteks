@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Petroteks.Bll.Abstract;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.Controllers;
+using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Services;
+using System;
 
 namespace Petroteks.MvcUi.Areas.Admin.Controllers
 {
@@ -11,23 +11,15 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
     {
         private readonly IUserSessionService userSessionService;
 
-        public AdminBaseController(IUserSessionService userSessionService, IWebsiteService websiteService, ILanguageService languageService, ILanguageCookieService languageCookieService, IHttpContextAccessor httpContextAccessor)
-            : base(websiteService, languageService, languageCookieService, httpContextAccessor)
+        public AdminBaseController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.userSessionService = userSessionService;
+            userSessionService = serviceProvider.GetService<IUserSessionService>();
         }
-        public User LoginUser
+        public User LoginUser => userSessionService.Get("LoginAdmin");
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            get
-            {
-                ViewBag.LoginUser = userSessionService.Get("LoginAdmin");
-                return userSessionService.Get("LoginAdmin");
-            }
-        }
-        public override void OnActionExecuted(ActionExecutedContext context)
-        {
-            ViewBag.LoginUser = userSessionService.Get("LoginAdmin");
-            base.OnActionExecuted(context);
+            ViewBag.LoginUser = LoginUser;
+            base.OnActionExecuting(context);
         }
     }
 }

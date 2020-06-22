@@ -25,7 +25,7 @@ namespace Petroteks.Bll.Concreate
             return base.GetMany(filter, LangId, navigations);
         }
 
-       
+
     }
 }
 

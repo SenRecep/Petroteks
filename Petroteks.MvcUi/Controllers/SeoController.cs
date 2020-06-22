@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
-using Petroteks.Bll.Helpers;
 using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
-using Petroteks.MvcUi.Services;
+using Petroteks.MvcUi.ExtensionMethods;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -24,26 +23,16 @@ namespace Petroteks.MvcUi.Controllers
         private readonly IUI_ContactService uI_ContactService;
         private readonly IBlogService blogService;
 
-        public SeoController(ICategoryService categoryService,
-            IWebsiteService websiteService,
-            IProductService productService,
-            ILanguageCookieService languageCookieService,
-            ILanguageService languageService,
-            IDynamicPageService dynamicPageService,
-            IMainPageService mainPageService,
-            IAboutUsObjectService aboutUsObjectService,
-            IUI_ContactService uI_ContactService,
-            IHttpContextAccessor httpContextAccessor,
-            IBlogService blogService)
-            : base(websiteService, languageService, languageCookieService, httpContextAccessor)
+
+        public SeoController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.categoryService = categoryService;
-            this.productService = productService;
-            this.dynamicPageService = dynamicPageService;
-            this.mainPageService = mainPageService;
-            this.aboutUsObjectService = aboutUsObjectService;
-            this.uI_ContactService = uI_ContactService;
-            this.blogService = blogService;
+            categoryService = serviceProvider.GetService<ICategoryService>();
+            productService = serviceProvider.GetService<IProductService>();
+            dynamicPageService = serviceProvider.GetService<IDynamicPageService>();
+            mainPageService = serviceProvider.GetService<IMainPageService>();
+            aboutUsObjectService = serviceProvider.GetService<IAboutUsObjectService>();
+            uI_ContactService = serviceProvider.GetService<IUI_ContactService>();
+            blogService = serviceProvider.GetService<IBlogService>();
         }
 
 
@@ -59,9 +48,9 @@ namespace Petroteks.MvcUi.Controllers
             xtr.WriteAttributeString("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
             xtr.WriteAttributeString("xsi:schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd");
 
-            string siteUrl = WebsiteContext.CurrentWebsite.BaseUrl.Replace("www.", "", System.StringComparison.CurrentCultureIgnoreCase);
+            string siteUrl = CurrentWebsite.BaseUrl.Replace("www.", "", System.StringComparison.CurrentCultureIgnoreCase);
 
-            MainPage mainPage = mainPageService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive, CurrentLanguage.id);
+            MainPage mainPage = mainPageService.Get(x => x.WebSiteid == CurrentWebsite.id && x.IsActive, CurrentLanguage.id);
             if (mainPage != null)
             {
                 xtr.WriteStartElement("url");
@@ -71,7 +60,7 @@ namespace Petroteks.MvcUi.Controllers
             }
 
 
-            AboutUsObject aboutUs = aboutUsObjectService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive, CurrentLanguage.id);
+            AboutUsObject aboutUs = aboutUsObjectService.Get(x => x.WebSiteid == CurrentWebsite.id && x.IsActive, CurrentLanguage.id);
             if (aboutUs != null)
             {
                 xtr.WriteStartElement("url");
@@ -83,7 +72,7 @@ namespace Petroteks.MvcUi.Controllers
             //xtr.WriteStartElement("url");
             //xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("PrivacyPolicy", "Home")}");
             //xtr.WriteEndElement();
-            UI_Contact contact = uI_ContactService.Get(x => x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.IsActive, CurrentLanguage.id);
+            UI_Contact contact = uI_ContactService.Get(x => x.WebSiteid == CurrentWebsite.id && x.IsActive, CurrentLanguage.id);
             if (contact != null)
             {
                 xtr.WriteStartElement("url");
@@ -108,7 +97,7 @@ namespace Petroteks.MvcUi.Controllers
 
             try
             {
-                Categories = categoryService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id);
+                Categories = categoryService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id);
 
                 foreach (Category item in Categories)
                 {
@@ -142,7 +131,7 @@ namespace Petroteks.MvcUi.Controllers
 
             try
             {
-                ICollection<DynamicPage> dynamicPages = dynamicPageService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id);
+                ICollection<DynamicPage> dynamicPages = dynamicPageService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id);
 
                 foreach (DynamicPage item in dynamicPages)
                 {
@@ -157,7 +146,7 @@ namespace Petroteks.MvcUi.Controllers
 
             try
             {
-                ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == Bll.Helpers.WebsiteContext.CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id);
+                ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id);
 
                 foreach (Blog item in blogs)
                 {

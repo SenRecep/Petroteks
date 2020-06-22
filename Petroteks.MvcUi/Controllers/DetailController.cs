@@ -1,33 +1,29 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
-using Petroteks.Bll.Helpers;
 using Petroteks.Entities.Concreate;
-using Petroteks.MvcUi.Services;
+using Petroteks.MvcUi.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 namespace Petroteks.MvcUi.Controllers
 {
-    public class DetailController : PublicController
+    public class DetailController : GlobalController
     {
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
 
-        public DetailController(IProductService productService, ILanguageService languageService, ICategoryService categoryService, IWebsiteService websiteService, ILanguageCookieService languageCookieService, IHttpContextAccessor httpContextAccessor) : base(websiteService, languageService, languageCookieService, httpContextAccessor)
+        public DetailController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.productService = productService;
-            this.categoryService = categoryService;
-
-
+            productService = serviceProvider.GetService<IProductService>();
+            categoryService = serviceProvider.GetService<ICategoryService>();
         }
+
         [Route("Kategori-Detay/{categoryName}-{page:int}-{category:int}")]
         public IActionResult CategoryDetail(int page = 1, int category = 0)
         {
             int pagesize = 10;
-            Category Category = categoryService.Get(x => x.id == category && x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.IsActive == true, CurrentLanguage.id);
-            List<Category> subCategories = categoryService.GetMany(x => x.WebSite == Bll.Helpers.WebsiteContext.CurrentWebsite && x.Parentid == Category.id && x.IsActive == true, CurrentLanguage.id).OrderByDescending(x => x.Priority).ToList();
+            Category Category = categoryService.Get(x => x.id == category && x.WebSite == CurrentWebsite && x.IsActive == true, CurrentLanguage.id);
+            List<Category> subCategories = categoryService.GetMany(x => x.WebSite == CurrentWebsite && x.Parentid == Category.id && x.IsActive == true, CurrentLanguage.id).OrderByDescending(x => x.Priority).ToList();
             ICollection<Product> products = productService.GetMany(x => x.Categoryid == Category.id && x.IsActive == true, CurrentLanguage.id);
             return View(new ProductListViewModel()
             {
@@ -46,7 +42,7 @@ namespace Petroteks.MvcUi.Controllers
             Product product = productService.GetAllLanguageProduct(x => x.id == id && x.IsActive == true);
             if (product != null)
             {
-                Category category = categoryService.GetAllLanguageCategory(x => x.IsActive && x.WebSiteid == WebsiteContext.CurrentWebsite.id && x.id == product.Categoryid);
+                Category category = categoryService.GetAllLanguageCategory(x => x.IsActive && x.WebSiteid == CurrentWebsite.id && x.id == product.Categoryid);
                 if (category != null)
                 {
                     if (product?.Languageid != CurrentLanguage.id)

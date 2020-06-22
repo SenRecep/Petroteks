@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,7 @@ using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Concreate;
 using Petroteks.Dal.Abstract;
 using Petroteks.Dal.Concreate.EntityFramework;
+using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
@@ -72,9 +74,16 @@ namespace Petroteks.MvcUi
             services.AddScoped<IUI_NoticeDal, EfUI_NoticeDal>();
 
             services.AddSingleton<IUserSessionService, UserSessionService>();
+
+
             services.AddSingleton<IUserCookieService, UserCookieService>();
             services.AddSingleton<ILanguageCookieService, LanguageCookieService>();
+            services.AddSingleton<IWebsiteCookieService, WebsiteCookieService>();
+
+            services.AddSingleton<ISavedWebsiteFactory, SavedWebsiteFactory>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.LatinExtendedA }));
 
@@ -90,16 +99,28 @@ namespace Petroteks.MvcUi
                                   });
             });
 
+            services.AddSession();
+            services.AddMemoryCache();
+            services.AddDistributedMemoryCache();
+
+            //services.Configure<CookieTempDataProviderOptions>(options => {
+            //    options.Cookie.IsEssential = true;
+            //});
+
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
 
 
             services.AddRazorPages();
             IMvcBuilder mvcBuilder = services.AddControllersWithViews();
+            //mvcBuilder.AddApplicationPart(Assembly.GetExecutingAssembly());
 #if DEBUG
             mvcBuilder.AddRazorRuntimeCompilation();
 #endif
 
-            services.AddSession();
-            services.AddDistributedMemoryCache();
 
             services.Configure<IISServerOptions>(options =>
             {
@@ -127,6 +148,8 @@ namespace Petroteks.MvcUi
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCookiePolicy();
 
             app.UseCors();
 

@@ -107,10 +107,7 @@ namespace Petroteks.MvcUi.Controllers
         {
             if (LanguageContext.WebsiteLanguages == null || decision)
             {
-                if (LanguageContext.WebsiteLanguages == null)
-                {
-                    LanguageContext.WebsiteLanguages = languageService.GetMany(x => x.IsActive == true && x.WebSiteid == _tempWebsite.id);
-                }
+                LanguageContext.WebsiteLanguages = languageService.GetMany(x => x.IsActive == true && x.WebSiteid == _tempWebsite.id);
 
                 Language currentLanguage = CurrentLanguage;
                 if (decision)

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +10,7 @@ using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Concreate;
 using Petroteks.Dal.Abstract;
 using Petroteks.Dal.Concreate.EntityFramework;
+using Petroteks.Dal.Concreate.EntityFramework.Contexts;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
 using System.Text.Encodings.Web;
@@ -84,6 +86,10 @@ namespace Petroteks.MvcUi
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
+            //services.AddDbContext<PetroteksDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("SomeePetroteksDbConnectionString")));
 
             services.AddSingleton(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.LatinExtendedA }));
 

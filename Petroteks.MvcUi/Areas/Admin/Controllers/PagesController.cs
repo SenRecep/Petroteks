@@ -225,7 +225,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
                 }
                 Category category;
-                category = categoryService.Get(x => x.id == model.Categoryid);
+                category = categoryService.Get(x => x.id == model.Categoryid, CurrentLanguage.id);
                 if (category == null && model.Categoryid == 0)
                 {
                     Category rootCategory = categoryService.Get(x => x.Name == "ROOT" && x.WebSite.id == CurrentWebsite.id, CurrentLanguage.id);
@@ -301,7 +301,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             {
                 Product findedProduct = null;
                 Category category = categoryService.Get(x => x.id == model.Categoryid && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
-                findedProduct = productService.Get(x => x.id == model.id);
+                findedProduct = productService.Get(x => x.id == model.id, CurrentLanguage.id);
                 string uniqueFileName = null;
                 if (model.Image != null)
                 {

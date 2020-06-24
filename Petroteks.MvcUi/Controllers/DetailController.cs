@@ -21,19 +21,28 @@ namespace Petroteks.MvcUi.Controllers
         [Route("Kategori-Detay/{categoryName}-{page:int}-{category:int}")]
         public IActionResult CategoryDetail(int page = 1, int category = 0)
         {
-            int pagesize = 10;
-            Category Category = categoryService.Get(x => x.id == category && x.WebSite == CurrentWebsite && x.IsActive == true, CurrentLanguage.id);
-            List<Category> subCategories = categoryService.GetMany(x => x.WebSite == CurrentWebsite && x.Parentid == Category.id && x.IsActive == true, CurrentLanguage.id).OrderByDescending(x => x.Priority).ToList();
-            ICollection<Product> products = productService.GetMany(x => x.Categoryid == Category.id && x.IsActive == true, CurrentLanguage.id);
-            return View(new ProductListViewModel()
+            Category Category = categoryService.GetAllLanguageCategory(x => x.id == category && x.WebSite == CurrentWebsite && x.IsActive == true);
+            if (Category != null)
             {
-                Products = products.Skip((page - 1) * pagesize).Take(pagesize).OrderByDescending(x => x.Priority).ToList(),
-                PageCount = (int)Math.Ceiling(products.Count / (double)pagesize),
-                PageSize = pagesize,
-                CurrentCategory = Category,
-                CurrentPage = page,
-                SubCategories = subCategories
-            });
+                int pagesize = 10;
+                List<Category> subCategories = categoryService.GetMany(x => x.WebSite == CurrentWebsite && x.Parentid == Category.id && x.IsActive == true, Category.Languageid.Value).OrderByDescending(x => x.Priority).ToList();
+                ICollection<Product> products = productService.GetMany(x => x.Categoryid == Category.id && x.IsActive == true, Category.Languageid.Value);
+                if (Category.Languageid!=CurrentLanguage.id)
+                    LoadLanguage(true,Category.Languageid);
+                return View(new ProductListViewModel()
+                {
+                    Products = products.Skip((page - 1) * pagesize).Take(pagesize).OrderByDescending(x => x.Priority).ToList(),
+                    PageCount = (int)Math.Ceiling(products.Count / (double)pagesize),
+                    PageSize = pagesize,
+                    CurrentCategory = Category,
+                    CurrentPage = page,
+                    SubCategories = subCategories
+                });
+            }
+            else
+            {
+                return RedirectToAction("CategoryNotFound");
+            }
         }
         [Route("Urun-Detay/{produtname}-{id:int}")]
         [HttpGet]
@@ -58,6 +67,12 @@ namespace Petroteks.MvcUi.Controllers
         [Route("404-Product-Not-Found.html")]
         [HttpGet]
         public IActionResult ProductNotFound()
+        {
+            return View();
+        }
+        [Route("404-Category-Not-Found.html")]
+        [HttpGet]
+        public IActionResult CategoryNotFound()
         {
             return View();
         }

@@ -41,7 +41,7 @@ namespace Petroteks.MvcUi.Controllers
 
         public void SetLanguage(Language language)
         {
-            languageCookieService.Set("CurrentLanguage", language, 60 * 24 * 7);
+            languageCookieService.Set("CurrentLanguage", language, int.MaxValue);
         }
 
         public int CurrentLanguageId => CurrentLanguage.id;
@@ -107,6 +107,9 @@ namespace Petroteks.MvcUi.Controllers
         {
             if (LanguageContext.WebsiteLanguages == null || decision)
             {
+                if (_tempWebsite == null)
+                    if (CurrentWebsite != null)
+                        _tempWebsite = CurrentWebsite;
                 LanguageContext.WebsiteLanguages = languageService.GetMany(x => x.IsActive == true && x.WebSiteid == _tempWebsite.id);
 
                 Language currentLanguage = CurrentLanguage;

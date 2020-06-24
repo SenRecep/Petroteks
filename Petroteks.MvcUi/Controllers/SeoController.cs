@@ -72,6 +72,7 @@ namespace Petroteks.MvcUi.Controllers
             //xtr.WriteStartElement("url");
             //xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("PrivacyPolicy", "Home")}");
             //xtr.WriteEndElement();
+
             UI_Contact contact = uI_ContactService.Get(x => x.WebSiteid == CurrentWebsite.id && x.IsActive, CurrentLanguage.id);
             if (contact != null)
             {

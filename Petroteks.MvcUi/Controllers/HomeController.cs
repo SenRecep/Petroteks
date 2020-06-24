@@ -43,6 +43,12 @@ namespace Petroteks.MvcUi.Controllers
         [Route("")]
         public IActionResult Index()
         {
+            MainPage mainPage;
+            mainPage = mainPageService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
+            if (mainPage == null)
+            {
+                return PreparingPage("Anasayfa Hazirlaniyor");
+            }
             ICollection<Category> category = categoryService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true && x.Parentid == 0 && x.Name != "ROOT", CurrentLanguage.id).OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
             Category ROOTCategory = categoryService.Get(x => x.IsActive == true && x.Name == "ROOT" && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             ICollection<Product> products = null;
@@ -51,13 +57,6 @@ namespace Petroteks.MvcUi.Controllers
                 products = productService.GetMany(x => x.IsActive == true && x.Categoryid == ROOTCategory.id, CurrentLanguage.id).OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
             }
             //ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).OrderByDescending(x=>x.Priority).Take(3).ToList();
-            MainPage mainPage;
-            mainPage = mainPageService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
-            if (mainPage == null)
-            {
-                return RedirectToAction("Index", "Home", new { area = "Admin" });
-            }
-
             return View(new MainPageViewModel()
             {
                 MainPage = mainPage,

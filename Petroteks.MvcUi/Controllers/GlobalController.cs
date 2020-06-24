@@ -148,6 +148,9 @@ namespace Petroteks.MvcUi.Controllers
             LoadLanguage(true);
         }
 
+
+        public RedirectToActionResult PreparingPage(string massage)=> RedirectToAction("PreparingPage", "Error",new { Massage=massage});
+
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (CurrentLanguage == null || CurrentWebsite == null)

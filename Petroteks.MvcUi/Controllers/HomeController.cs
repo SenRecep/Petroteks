@@ -75,7 +75,6 @@ namespace Petroteks.MvcUi.Controllers
         [Route("Bloglar.html")]
         public IActionResult PetroBlog()
         {
-            int lang = CurrentLanguage.id;
             ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id).OrderByDescending(x => x.Priority).OrderByDescending(x => x.CreateDate).ToList();
             return View(blogs);
         }
@@ -128,7 +127,7 @@ namespace Petroteks.MvcUi.Controllers
         public IActionResult PrivacyPolicy()
         {
             PrivacyPolicyObject gizlilikpolitikasi;
-            gizlilikpolitikasi = privacyPolicyObjectService.Get(x => x.WebSiteid == CurrentWebsite.id);
+            gizlilikpolitikasi = privacyPolicyObjectService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             if (gizlilikpolitikasi == null)
             {
                 return RedirectToAction("Index", "Home", new { area = "Admin" });

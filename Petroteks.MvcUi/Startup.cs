@@ -13,6 +13,7 @@ using Petroteks.Dal.Concreate.EntityFramework;
 using Petroteks.Dal.Concreate.EntityFramework.Contexts;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
+using System;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 
@@ -150,6 +151,31 @@ namespace Petroteks.MvcUi
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse =
+                  r =>
+                  {
+                      string path = r.File.PhysicalPath;
+                      if (
+                      path.EndsWith(".gif") || path.EndsWith(".jpg") ||
+                      path.EndsWith(".png") || path.EndsWith(".svg") ||
+                      path.EndsWith(".webp") || path.EndsWith(".woff2"))
+                      {
+                          TimeSpan maxAge = new TimeSpan(365, 0, 0, 0);
+                          r.Context.Response.Headers.Append("Cache-Control", "max-age=" + maxAge.TotalSeconds.ToString("0"));
+                      }
+
+                      if (path.EndsWith(".css") || path.EndsWith(".js"))
+                      {
+                          TimeSpan maxAge = new TimeSpan(365, 0, 0, 0);
+                          r.Context.Response.Headers.Append("Cache-Control", "max-age=" + maxAge.TotalSeconds.ToString("0"));
+                      }
+
+                  }
+            });
+
 
             app.UseStaticFiles();
 

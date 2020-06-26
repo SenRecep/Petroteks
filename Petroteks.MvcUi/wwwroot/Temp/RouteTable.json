@@ -1,0 +1,38 @@
+[
+  {
+    "EntityName": 4,
+    "LanguageKeyCode": "tr-TR",
+    "PageType": 1,
+    "Content": "Urun-Detay"
+  },
+  {
+    "EntityName": 4,
+    "LanguageKeyCode": "en-US",
+    "PageType": 1,
+    "Content": "Product-Detail"
+  },
+  {
+    "EntityName": 3,
+    "LanguageKeyCode": "tr-TR",
+    "PageType": 1,
+    "Content": "Kategori-Detay"
+  },
+  {
+    "EntityName": 3,
+    "LanguageKeyCode": "en-US",
+    "PageType": 1,
+    "Content": "Category-Detail"
+  },
+  {
+    "EntityName": 5,
+    "LanguageKeyCode": "tr-TR",
+    "PageType": 0,
+    "Content": "Bloglar"
+  },
+  {
+    "EntityName": 5,
+    "LanguageKeyCode": "en-US",
+    "PageType": 0,
+    "Content": "Blogs"
+  }
+]

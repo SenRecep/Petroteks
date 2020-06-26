@@ -1,42 +1,17 @@
-﻿
+﻿@model UI_Contact
+
 @{
     ViewData["Title"] = "iletişim | Petroteks";
     ViewData["Description"] = "Petroteks iletişim sayfası";
     ViewData["MetaTags"] = "";
     ViewData["Keywords"] = "Petroteks, Petroteks İletişim, Petroteks telefon";
 }
-@await Component.InvokeAsync("Contact")
-@*<section id="features" style="margin-top:2em;">
-        <div class="container">
 
-            <div class="row feature-item">
-                <div class="col-lg-6 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                    <img src="~/images/contact-image.svg"  class="img-fluid" alt="iletisim" />
-                </div>
-                <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0" style="visibility: visible; animation-name: fadeInUp;">
-                        <h4>İletişim</h4>
-                            <div class="form-group">
-                                <input type="text" name="İsim" id="İsim" class="form-control"  required  placeholder="İsim" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group">
-                                <input type="Email" class="form-control" name="Email"  required  id="Email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email">
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="Konu"   required id="Konu" placeholder="Konu" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" name="Mesaj" id="Mesaj"  required rows="5"   placeholder="Mesaj"></textarea>
-                                <div class="validation"></div>
-                            </div>
+@if (Model != null)
+{
+    @Html.Raw(Model.Content)
+}
 
-                            <div class="text-center"><button id="gonder"  class="btn btn-info" title="Send Message">Gönder</button></div>
-                </div>
-            </div>
-        </div>
-    </section>*@
 
 @section Scripts{
     <script>

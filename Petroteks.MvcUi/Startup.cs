@@ -76,17 +76,21 @@ namespace Petroteks.MvcUi
             services.AddScoped<IUI_NoticeService, UI_NoticeManager>();
             services.AddScoped<IUI_NoticeDal, EfUI_NoticeDal>();
 
-            services.AddSingleton<IUserSessionService, UserSessionService>();
+            services.AddSingleton<UrlControlHelper>();
 
+            services.AddSingleton<IUserSessionService, UserSessionService>();
 
             services.AddSingleton<IUserCookieService, UserCookieService>();
             services.AddSingleton<ILanguageCookieService, LanguageCookieService>();
             services.AddSingleton<IWebsiteCookieService, WebsiteCookieService>();
 
-            services.AddSingleton<ISavedWebsiteFactory, SavedWebsiteFactory>();
+            // services.AddSingleton<ISavedWebsiteFactory, SavedWebsiteFactory>();
+            services.AddSingleton<IRouteTable, RouteTable>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
+
 
             //services.AddDbContext<PetroteksDbContext>(options =>
             //    options.UseSqlServer(

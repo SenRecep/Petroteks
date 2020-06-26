@@ -21,7 +21,8 @@ namespace Petroteks.MvcUi.Controllers
         private readonly IWebsiteCookieService websiteCookieService;
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IActionContextAccessor actionContextAccessor;
-        //private readonly ISavedWebsiteFactory savedWebsiteFactory;
+        private readonly UrlControlHelper urlControlHelper;
+
 
         public GlobalController(IServiceProvider serviceProvider)
         {
@@ -31,7 +32,7 @@ namespace Petroteks.MvcUi.Controllers
             httpContextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
             websiteCookieService = serviceProvider.GetService<IWebsiteCookieService>();
             actionContextAccessor = serviceProvider.GetService<IActionContextAccessor>();
-            // this.savedWebsiteFactory = serviceProvider.GetService<ISavedWebsiteFactory>();
+            urlControlHelper = serviceProvider.GetService<UrlControlHelper>();
             LoadWebsite();
         }
 
@@ -152,19 +153,19 @@ namespace Petroteks.MvcUi.Controllers
         }
 
 
-        public RedirectToActionResult PreparingPage(string massage)=> RedirectToAction("PreparingPage", "Error",new { Massage=massage});
+        public RedirectToActionResult PreparingPage() => RedirectToAction("PreparingPage", "Error");
+        public RedirectToActionResult NotFoundPage() => RedirectToAction("404", "Error");
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (CurrentLanguage == null || CurrentWebsite == null)
             {
-                RouteData rd = actionContextAccessor.ActionContext.RouteData;
-                string controller = rd.Values["controller"].ToString();
-                string action = rd.Values["action"].ToString();
-                string area = rd.Values["area"]?.ToString();
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { area = $"{area}", controller = $"{controller}", action = $"{action}" }));
+                var currentPage = urlControlHelper.getCurrnetPage();
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { area = $"{currentPage.area}", controller = $"{currentPage.controller}", action = $"{currentPage.action}" }));
             }
             base.OnActionExecuting(context);
         }
+
+       
     }
 }

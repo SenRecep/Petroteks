@@ -1,4 +1,5 @@
-﻿@model CategoryListViewModel
+﻿@inject IRouteTable routeTable
+@model CategoryListViewModel
 @{
     object LoadSubMenu(ICollection<MenuItem> menuItems)
     {
@@ -14,7 +15,7 @@
                 else
                 {
                     <li class="drop-down">
-                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(category.Name) , page=1 , category=category.id})" title="@category.Name">@category.Name</a>
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(category.Name) , id=category.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})" title="@category.Name">@category.Name</a>
                         <ul>
                             @LoadSubMenu(items)
                         </ul>
@@ -32,7 +33,7 @@
     object PrintProduct(MI_Product product)
     {
         <li>
-            <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(product.SupTitle) , id=product.id})" title="@product.SupTitle">@product.SupTitle</a>
+            <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(product.SupTitle) , id=product.id ,pageTag=routeTable.Get(EntityName.Product,PageType.Detail)})" title="@product.SupTitle">@product.SupTitle</a>
         </li>
         return null;
     }
@@ -40,7 +41,7 @@
     object PrintCategory(MI_Category mI_Category)
     {
         <li>
-            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(mI_Category.Name) , page=1 , category=mI_Category.id})" title="@mI_Category.Name">@mI_Category.Name</a>
+            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(mI_Category.Name) ,  id=mI_Category.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})" title="@mI_Category.Name">@mI_Category.Name</a>
         </li>
         return null;
     }
@@ -49,7 +50,7 @@
 @{
 
     MI_Category ROOT = Model.MainCategories.FirstOrDefault(x => x.Name.Equals("ROOT"));
-    if (ROOT!=null)
+    if (ROOT != null)
     {
         var FirstList = new List<MenuItem>();
         FirstList.AddRange(Model.MainCategories.Where(x => x.id != ROOT.id).ToList());
@@ -68,7 +69,7 @@
                 else
                 {
                     <li class="drop-down">
-                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(category.Name) , page=1 , category=category.id})" title="@category.Name">@category.Name</a>
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(category.Name) , id=category.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})" title="@category.Name">@category.Name</a>
                         <ul>
                             @LoadSubMenu(items)
                         </ul>

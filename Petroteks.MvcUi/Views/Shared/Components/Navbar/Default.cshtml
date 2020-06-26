@@ -1,8 +1,11 @@
 ﻿@model UI_Navbar
 @inject Petroteks.MvcUi.Services.ILanguageCookieService languageCookieService
-
+@inject UrlControlHelper urlControlHepler
+@inject IRouteTable routeTable
 @{
     Language CurrentLanguage = languageCookieService.Get("CurrentLanguage");
+    var currentPage = urlControlHepler.getCurrnetPage();
+    var url = Url.Action($"{currentPage.action}", $"{currentPage.controller}", new { area = $"{currentPage.area}" });
 }
 
 @if (Model != null)
@@ -24,7 +27,8 @@
 
 
     <li><a asp-area="" asp-controller="Home" asp-action="AboutUs" title="@Model.AboutUs">@Model.AboutUs</a></li>
-    <li><a asp-area="" asp-controller="Home" asp-action="PetroBlog" title="@Model.PetroBlog">@Model.PetroBlog</a></li>
+
+    <li><a asp-area="" asp-controller="Home" asp-action="PetroBlog" asp-route-blogPageName="@routeTable.Get(EntityName.Blog,PageType.List)" title="@Model.PetroBlog">@Model.PetroBlog</a></li>
     <li><a asp-area="" asp-controller="Home" asp-action="Contact" title="@Model.Contact">@Model.Contact</a></li>
     <li class="drop-down">
         <a href=""><img src="~/LanguageImages/@CurrentLanguage.IconCode" alt="@CurrentLanguage.KeyCode" />@CurrentLanguage.Name</a>
@@ -32,7 +36,7 @@
             @foreach (var item in LanguageContext.WebsiteLanguages)
             {
                 <li>
-                    <a id="@item.KeyCode" title="@item.KeyCode" href="@Url.Action("ChangeCulture","Home",new { KeyCode=item.KeyCode})">
+                    <a id="@item.KeyCode" title="@item.KeyCode" href="@Url.Action("ChangeCulture","Home",new { KeyCode=item.KeyCode,returnUrl=$"{url}"})">
                         <img src="~/LanguageImages/@item.IconCode" asp-append-version="true" alt="@item.Name"> @item.Name
                     </a>
                 </li>

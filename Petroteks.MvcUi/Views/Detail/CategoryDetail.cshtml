@@ -1,5 +1,5 @@
 ﻿@model ProductListViewModel
-
+@inject IRouteTable routeTable
 @inject IWebsiteCookieService websiteCookieService
 @{
     Website CurrentWebsite = websiteCookieService.Get("CurrentWebsite");
@@ -7,7 +7,8 @@
 @{
     ViewData["Title"] = Model.CurrentCategory.Name;
     ViewData["Description"] = Model.CurrentCategory.Name + " ürünleri ve özellikleri | Petroteks ";
-    ViewData["MetaTags"] = $"<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='{CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentPage + "-" + Model.CurrentCategory.id + "'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='" + Model.CurrentCategory.Name + "'> <meta property='og:type' content='website'> <meta property='og:description' content='" + Model.CurrentCategory.Name + " ürünleri ve özellikleri'> <meta property='og:image' content='" + @CurrentWebsite.Name + "/CategoryImages/" + Model.CurrentCategory.PhotoPath + "'> <meta property='og:url' content='{CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentPage + "-" + Model.CurrentCategory.id + "'/> <meta property='og:title' content='" + Model.CurrentCategory.Name + "' />";
+    //"-" + Model.CurrentPage +
+    ViewData["MetaTags"] = $"<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='{CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentCategory.id + "'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='" + Model.CurrentCategory.Name + "'> <meta property='og:type' content='website'> <meta property='og:description' content='" + Model.CurrentCategory.Name + " ürünleri ve özellikleri'> <meta property='og:image' content='" + @CurrentWebsite.Name + "/CategoryImages/" + Model.CurrentCategory.PhotoPath + "'> <meta property='og:url' content='{CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentCategory.id + "'/> <meta property='og:title' content='" + Model.CurrentCategory.Name + "' />";
     ViewData["Keywords"] = "Sondaj kategorileri, Sondaj ürünleri," + Model.CurrentCategory.Name;
 }
 <section class="clearfix" id="intro2">
@@ -28,7 +29,7 @@
         <div class="row">
             @foreach (var item in Model.SubCategories)
             {
-                <a class="col-lg-4 col-md-6 col-sm-6 col-xs-12" href="@Url.Action(ActionsModel.CategoryDetail,ControllersModel.Detail, new { categoryName=GetFriendlyTitle(item.Name) , page=1 , category=item.id})">
+                <a class="col-lg-4 col-md-6 col-sm-6 col-xs-12" href="@Url.Action(ActionsModel.CategoryDetail,ControllersModel.Detail, new { categoryName=GetFriendlyTitle(item.Name) ,  id=item.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})">
                     <figure class="snip1401">
                         @if (item.PhotoPath == null)
                         {
@@ -50,7 +51,7 @@
 
             @foreach (var item in Model.Products)
             {
-                <a href="@Url.Action(ActionsModel.ProductDetail,ControllersModel.Detail,new { produtname=GetFriendlyTitle(item.SupTitle) , id=item.id})">
+                <a href="@Url.Action(ActionsModel.ProductDetail,ControllersModel.Detail,new { produtname=GetFriendlyTitle(item.SupTitle) , id=item.id,pageTag=routeTable.Get(EntityName.Product,PageType.Detail)})">
                     <figure class="snip1401">
                         @if (item.PhotoPath == null)
                         {

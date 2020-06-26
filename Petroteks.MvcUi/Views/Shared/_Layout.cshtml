@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -116,14 +117,14 @@
 </head>
 <body itemscope="" itemtype="https://schema.org/WebPage">
 
-   
+
 
     <header id="header">
 
         <div class="container">
             <div class="logo float-left">
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <h1 class="text-light"><a asp-area="" asp-controller="Home" asp-action="Index"  title="logo" class="scrollto"><img src="~/images/logopetroteks.png" alt="logo" /></a></h1>
+                <h1 class="text-light"><a asp-area="" asp-controller="Home" asp-action="Index" title="logo" class="scrollto"><img src="~/images/logopetroteks.png" alt="logo" /></a></h1>
                 <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
             </div>
 
@@ -174,7 +175,7 @@
     <script src="~/NewLayout/lib/wow/wow.min.js"></script>
     <script src="~/NewLayout/lib/waypoints/waypoints.min.js"></script>
     <script src="~/NewLayout/lib/counterup/counterup.min.js"></script>
-    <script src="~/NewLayout/lib/owlcarousel/owl.carousel.min.js"></script> 
+    <script src="~/NewLayout/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="~/NewLayout/lib/isotope/isotope.pkgd.min.js"></script>
     <script src="~/NewLayout/lib/lightbox/js/lightbox.min.js"></script>
     <!-- Contact Form JavaScript File -->
@@ -224,7 +225,7 @@
             var deneme2 = $("#contentify").html();
             if (deneme2.trim().length > 0) {
                 var instance = M.Modal.init(Modalelem);
-                instance.open(); 
+                instance.open();
             }
         });
         $(document).ready(function () {
@@ -255,7 +256,7 @@
                         items: 1,
                     }
 
-                } 
+                }
             });
             setTimeout(function () { $('.owl-carousel').trigger('refresh.owl.carousel'); }, 150);
         })
@@ -269,3 +270,5 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+

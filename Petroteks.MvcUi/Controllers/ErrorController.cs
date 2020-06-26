@@ -45,10 +45,9 @@ namespace Petroteks.MvcUi.Controllers
             return View();
         }
 
-        [Route("PreparingPage/{Massage}")]
-        public IActionResult PreparingPage(string Massage)
+        [Route("PreparingPage")]
+        public IActionResult PreparingPage()
         {
-            ViewBag.Massage = Massage;
             return View();
         }
     }

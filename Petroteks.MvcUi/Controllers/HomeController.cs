@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
-using Petroteks.Bll.Concreate;
 using Petroteks.Bll.Helpers;
 using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
@@ -8,11 +11,6 @@ using Petroteks.MvcUi.Areas.Admin.Models;
 using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -56,21 +54,13 @@ namespace Petroteks.MvcUi.Controllers
             MainPage mainPage;
             mainPage = mainPageService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             if (mainPage == null)
+            {
                 return PreparingPage();
-            //ICollection<Category> category = categoryService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true && x.Parentid == 0 && x.Name != "ROOT", CurrentLanguage.id).OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
-            //Category ROOTCategory = categoryService.Get(x => x.IsActive == true && x.Name == "ROOT" && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
-            //ICollection<Product> products = null;
-            //if (ROOTCategory != null)
-            //{
-            //    products = productService.GetMany(x => x.IsActive == true && x.Categoryid == ROOTCategory.id, CurrentLanguage.id).OrderByDescending(X => X.Priority).OrderByDescending(x => x.CreateDate).ToList();
-            //}
-            //ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true).OrderByDescending(x => x.CreateDate).OrderByDescending(x=>x.Priority).Take(3).ToList();
+            }
+
             return View(new MainPageViewModel()
             {
                 MainPage = mainPage,
-                //Blogs = blogs,
-                //Categories = category,
-                //Products = products
             });
         }
         [Route("Sayfalar/{pageName}-{id:int}")]
@@ -78,38 +68,27 @@ namespace Petroteks.MvcUi.Controllers
         {
             DynamicPage dynamicPage = dynamicPageService.Get(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true && x.id == id, CurrentLanguage.id);
             if (dynamicPage == null)
+            {
                 return PreparingPage();
+            }
+
             return View(dynamicPage);
         }
         [Route("{blogPageName}.html")]
-        public IActionResult PetroBlog()
+        public IActionResult PetroBlog(string blogPageName)
         {
-            ICollection<Blog> blogs = blogService.GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id).OrderByDescending(x => x.Priority).OrderByDescending(x => x.CreateDate).ToList();
-            return View(blogs);
-        }
-        [Route("Blog-Detay/{id:int}/{title}")]
-        public IActionResult BlogDetail(string title, int id)
-        {
-
-            Blog findedBlog = blogService.GetAllLanguageBlog(x => x.id == id && x.IsActive == true);
-            if (findedBlog != null)
+            if (routeTable.Exists(blogPageName, Bll.Concreate.EntityName.Blog, Bll.Concreate.PageType.List))
             {
-
-                if (findedBlog?.Languageid != CurrentLanguage.id)
-                {
-                    LoadLanguage(true, findedBlog.Languageid);
-                }
-
-                return View(findedBlog);
+                ICollection<Blog> blogs = blogService
+               .GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id)
+               .OrderByDescending(x => x.Priority)
+               .ThenBy(x => x.CreateDate).ToList();
+                return View(blogs);
             }
-            return RedirectToAction("BlogNotFound");
+            return NotFoundPage();
         }
-        [Route("404-Blog-Not-Found.html")]
-        [HttpGet]
-        public IActionResult BlogNotFound()
-        {
-            return View();
-        }
+
+
         [Route("sondaj-kopugu-nedir.html")]
         public IActionResult SondajKopugu()
         {
@@ -121,7 +100,10 @@ namespace Petroteks.MvcUi.Controllers
             AboutUsObject aboutUsObject;
             aboutUsObject = aboutUsObjectService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             if (aboutUsObject == null)
+            {
                 return PreparingPage();
+            }
+
             return View(aboutUsObject);
         }
         [Route("Iletisim")]
@@ -129,7 +111,10 @@ namespace Petroteks.MvcUi.Controllers
         {
             UI_Contact uI_Contact = uI_ContactService.Get(x => x.IsActive == true && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             if (uI_Contact == null)
+            {
                 return PreparingPage();
+            }
+
             return View(uI_Contact);
         }
         [Route("Gizlilik-Politikasi")]
@@ -138,7 +123,9 @@ namespace Petroteks.MvcUi.Controllers
             PrivacyPolicyObject gizlilikpolitikasi;
             gizlilikpolitikasi = privacyPolicyObjectService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             if (gizlilikpolitikasi == null)
+            {
                 return PreparingPage();
+            }
 
             return View(gizlilikpolitikasi);
         }
@@ -179,7 +166,7 @@ namespace Petroteks.MvcUi.Controllers
 
 
         [Route("Language-Change/language-{KeyCode}")]
-        public IActionResult ChangeCulture(string KeyCode, string returnUrl)
+        public IActionResult ChangeCulture(string KeyCode)
         {
             if (!string.IsNullOrWhiteSpace(KeyCode))
             {
@@ -189,9 +176,9 @@ namespace Petroteks.MvcUi.Controllers
                     SetLanguage(language);
                 }
             }
-                
-            
-            return Redirect(returnUrl);
+
+
+            return RedirectToAction("Index", "Home");
         }
 
 

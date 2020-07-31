@@ -37,5 +37,10 @@ namespace Petroteks.Bll.Concreate
             }
             return filter;
         }
+
+        public ICollection<Product> LanguageAndWebsiteFilteredData(int websiteId, int languageId)
+        {
+            return base.GetMany(x => x.IsActive && x.Languageid == languageId);
+        }
     }
 }

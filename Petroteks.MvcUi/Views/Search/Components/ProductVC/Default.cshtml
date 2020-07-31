@@ -1,0 +1,15 @@
+﻿@model (Product Ins, string Value, int Power)
+@inject IRouteTable routeTable
+<div class="card text-center">
+    <div class="card-header">
+        URUN
+    </div>
+    <div class="card-body py-3">
+        <h5 class="card-title">@Model.Ins.Title</h5>
+        <p class="card-text">@Model.Value</p>
+        <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(Model.Ins.SupTitle) , id=Model.Ins.id ,pageTag=routeTable.Get(EntityName.Product,PageType.Detail)})" class="btn btn-primary">Sayfaya Git</a>
+    </div>
+    <div class="card-footer text-muted">
+        @Model.Power Eşleşme
+    </div>
+</div>

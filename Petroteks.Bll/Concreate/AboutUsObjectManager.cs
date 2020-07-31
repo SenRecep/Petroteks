@@ -22,6 +22,11 @@ namespace Petroteks.Bll.Concreate
             filter = LanguageControl(filter, LangId);
             return base.GetMany(filter, LangId, navigations);
         }
+
+        public ICollection<AboutUsObject> LanguageAndWebsiteFilteredData(int websiteId, int languageId)
+        {
+            return base.GetMany(x=> x.IsActive && x.WebSiteid==websiteId && x.Languageid==languageId);
+        }
     }
 }
 

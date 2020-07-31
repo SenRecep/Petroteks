@@ -1,5 +1,5 @@
 ﻿@model List<Blog>
-
+@inject IRouteTable routeTable
 @inject IWebsiteCookieService websiteCookieService
 @{
     Website CurrentWebsite = websiteCookieService.Get("CurrentWebsite");
@@ -42,7 +42,7 @@
                         <div class="icon"> <img src="../BlogImages/@item.PhotoPath" class="img-fluid align-unset" /></div>
                         <h4 class="title"><a href="">@item.Name</a></h4>
                         <p class="description"> </p>
-                        <a class="button pulse text-white" asp-area="" asp-controller="Home" asp-action="BlogDetail" asp-route-title="@GetFriendlyTitle(item.Title)" asp-route-id="@item.id">Detay</a>
+                        <a class="button pulse text-white" asp-area="" asp-controller="Detail" asp-action="BlogDetail" asp-route-title="@GetFriendlyTitle(item.Title)" asp-route-id="@item.id" asp-route-blogPageName="@routeTable.Get(EntityName.Blog,PageType.Detail)">Detay</a>
                     </div>
                 </div>
             }

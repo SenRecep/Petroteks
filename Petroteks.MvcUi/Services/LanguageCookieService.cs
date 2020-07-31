@@ -16,18 +16,18 @@ namespace Petroteks.MvcUi.Services
 
         public Language Get(string key)
         {
-            return _httpContextAccessor.HttpContext.Request.Cookies.Get<Language>(key);
+            return _httpContextAccessor.HttpContext.Session.GetObj<Language>(key);
         }
 
 
         public void Set(string key, object value, int? expireTime)
         {
-            _httpContextAccessor.HttpContext.Response.Cookies.Set(key, value, expireTime);
+            _httpContextAccessor.HttpContext.Session.SetObj(key, value);
         }
 
         public void Remove(string key)
         {
-            _httpContextAccessor.HttpContext.Response.Cookies.Remove(key);
+            _httpContextAccessor.HttpContext.Session.Remove(key);
         }
     }
 }

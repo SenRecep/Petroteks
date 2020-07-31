@@ -1,8 +1,10 @@
+using System;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,12 +12,9 @@ using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Concreate;
 using Petroteks.Dal.Abstract;
 using Petroteks.Dal.Concreate.EntityFramework;
-using Petroteks.Dal.Concreate.EntityFramework.Contexts;
+using Petroteks.MvcUi.Constraints;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
-using System;
-using System.Text.Encodings.Web;
-using System.Text.Unicode;
 
 namespace Petroteks.MvcUi
 {
@@ -78,6 +77,10 @@ namespace Petroteks.MvcUi
 
             services.AddSingleton<UrlControlHelper>();
 
+            services.AddScoped<DbServiceProvider>();
+            services.AddScoped<SearchManager>();
+            services.AddScoped<SearchSystem>();
+
             services.AddSingleton<IUserSessionService, UserSessionService>();
 
             services.AddSingleton<IUserCookieService, UserCookieService>();
@@ -114,20 +117,8 @@ namespace Petroteks.MvcUi
             services.AddMemoryCache();
             services.AddDistributedMemoryCache();
 
-            //services.Configure<CookieTempDataProviderOptions>(options => {
-            //    options.Cookie.IsEssential = true;
-            //});
-
-            //services.Configure<CookiePolicyOptions>(options =>
-            //{
-            //    options.CheckConsentNeeded = context => true;
-            //    options.MinimumSameSitePolicy = SameSiteMode.None;
-            //});
-
-
             services.AddRazorPages();
             IMvcBuilder mvcBuilder = services.AddControllersWithViews();
-            //mvcBuilder.AddApplicationPart(Assembly.GetExecutingAssembly());
 #if DEBUG
             mvcBuilder.AddRazorRuntimeCompilation();
 #endif
@@ -137,10 +128,9 @@ namespace Petroteks.MvcUi
             {
                 options.AllowSynchronousIO = true;
             });
-
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -149,12 +139,10 @@ namespace Petroteks.MvcUi
             else
             {
                 app.UseExceptionHandler("/Error/500");
-                app.UseHsts();
             }
 
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
-            app.UseHttpsRedirection();
 
             app.UseStaticFiles(new StaticFileOptions()
             {
@@ -193,6 +181,8 @@ namespace Petroteks.MvcUi
 
             app.UseSession();
 
+            var routeTable = serviceProvider.GetService<IRouteTable>();
+
             app.UseEndpoints(endpoints =>
             {
 
@@ -200,12 +190,41 @@ namespace Petroteks.MvcUi
                      .RequireCors(MyAllowSpecificOrigins);
 
                 endpoints.MapRazorPages();
+
+                //endpoints.MapControllerRoute(
+                //   name: "bloglist",
+                //   pattern: "{blogPageName}.html",
+                //   defaults: new { area = "", controller = "Home", action = "PetroBlog" },
+                //   constraints: new { blogPageName = new BlogListConstraint(routeTable) }
+                //   );
+
+                //endpoints.MapControllerRoute(
+                //    name: "blogDetail",
+                //    pattern: "Blog/{blogPageName}/{id:int}/{title}",
+                //    defaults: new { area = "", controller = "Detail", action = "BlogDetail" },
+                //    constraints: new { blogPageName = new BlogDetailConstraint(routeTable) }
+                //    );
+
+                //endpoints.MapControllerRoute(
+                //   name: "categoryDetail",
+                //   pattern: "{pageTag}/{id:int}/{categoryName}",
+                //   defaults: new { area = "", controller = "Detail", action = "CategoryDetail" },
+                //   constraints: new { pageTag = new CategoryDetailConstraint(routeTable) }
+                //   );
+
+                //endpoints.MapControllerRoute(
+                //   name: "productDetail",
+                //   pattern: "{pageTag}/{produtname}/{id:int}",
+                //   defaults: new { area = "", controller = "Detail", action = "BlogDetail" },
+                //   constraints: new { pageTag = new ProductDetailConstraint(routeTable) }
+                //   );
+
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
-                    name: "default",
+                    name: "areas",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }

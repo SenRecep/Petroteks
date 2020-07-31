@@ -34,5 +34,17 @@
     "LanguageKeyCode": "en-US",
     "PageType": 0,
     "Content": "Blogs"
+  },
+  {
+    "EntityName": 5,
+    "LanguageKeyCode": "tr-TR",
+    "PageType": 1,
+    "Content": "Blog-Detay"
+  },
+  {
+    "EntityName": 5,
+    "LanguageKeyCode": "en-US",
+    "PageType": 1,
+    "Content": "Blog-Detail"
   }
 ]

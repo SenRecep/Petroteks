@@ -1,0 +1,15 @@
+﻿@model (DynamicPage Ins, string Value, int Power)
+
+<div class="card text-center">
+    <div class="card-header">
+        OZEL SAYFA
+    </div>
+    <div class="card-body py-3">
+        <h5 class="card-title">@Model.Ins.Title</h5>
+        <p class="card-text">@Model.Value</p>
+        <a asp-area="" asp-controller="Home" asp-action="DynamicPageView" asp-route-pageName="@Model.Ins.Name" asp-route-id="@Model.Ins.id" class="btn btn-primary">Sayfaya Git</a>
+    </div>
+    <div class="card-footer text-muted">
+        @Model.Power Eşleşme
+    </div>
+</div>

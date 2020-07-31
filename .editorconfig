@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0071WithoutSuggestion: Simplify interpolation
+dotnet_diagnostic.IDE0071WithoutSuggestion.severity = none

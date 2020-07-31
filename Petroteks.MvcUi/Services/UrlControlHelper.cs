@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Petroteks.MvcUi.ExtensionMethods;
 using Microsoft.AspNetCore.Routing;
-using System.Security.Policy;
+using Petroteks.MvcUi.ExtensionMethods;
+using System;
 
 namespace Petroteks.MvcUi.Services
 {

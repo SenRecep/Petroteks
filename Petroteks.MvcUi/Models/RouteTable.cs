@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Petroteks.Bll.Concreate;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Petroteks.MvcUi.ExtensionMethods;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
+using Petroteks.Bll.Concreate;
+using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Services;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Petroteks.MvcUi.Models
 {
@@ -45,7 +43,9 @@ namespace Petroteks.MvcUi.Models
             if (IsUnLoaded && !folderPathsIsUnLoaded)
             {
                 if (File.Exists(websiteTempFile))
+                {
                     RouteTableElements = JsonConvert.DeserializeObject<ICollection<RouteTableElement>>(File.ReadAllText(websiteTempFile));
+                }
                 else
                 {
                     RouteTableElements = new List<RouteTableElement>() {
@@ -55,6 +55,8 @@ namespace Petroteks.MvcUi.Models
                         new RouteTableElement(EntityName.Category,"en-US",PageType.Detail,"Category-Detail"),
                         new RouteTableElement(EntityName.Blog,"tr-TR",PageType.List,"Bloglar"),
                         new RouteTableElement(EntityName.Blog,"en-US",PageType.List,"Blogs"),
+                        new RouteTableElement(EntityName.Blog,"tr-TR",PageType.Detail,"Blog-Detay"),
+                        new RouteTableElement(EntityName.Blog,"en-US",PageType.Detail,"Blog-Detail"),
                     };
                     string json = JsonConvert.SerializeObject(RouteTableElements, Formatting.Indented);
                     File.WriteAllText(websiteTempFile, json);
@@ -69,23 +71,44 @@ namespace Petroteks.MvcUi.Models
                 return Get(entityName, pageType);
             }
             else
+            {
                 return RouteTableElements?.FirstOrDefault(x =>
                    x.EntityName == entityName &&
                    x.LanguageKeyCode == languageCookieService.Get("CurrentLanguage").KeyCode &&
                    x.PageType == pageType)?.Content;
-
+            }
         }
 
-        public bool Exists(string content, EntityName entityName, PageType pageType) =>
-            RouteTableElements.FirstOrDefault(x =>
-            x.Content.Equals(content) &&
-            x.EntityName.Equals(entityName)  &&
+        public string Get(EntityName entityName, PageType pageType,string langCode)
+        {
+            if (IsUnLoaded)
+            {
+                Load();
+                return Get(entityName, pageType, langCode);
+            }
+            else
+            {
+                return RouteTableElements?.FirstOrDefault(x =>
+                   x.EntityName == entityName &&
+                   x.LanguageKeyCode == langCode &&
+                   x.PageType == pageType)?.Content;
+            }
+        }
+
+        public bool Exists(string content, EntityName entityName, PageType pageType)
+        {
+            return RouteTableElements.FirstOrDefault(x =>
+            x.Content.Equals(content, StringComparison.CurrentCultureIgnoreCase) &&
+            x.EntityName.Equals(entityName) &&
             x.PageType.Equals(pageType)) != null;
+
+        }
     }
     public interface IRouteTable
     {
         void Load();
         string Get(EntityName entityName, PageType pageType);
+        string Get(EntityName entityName, PageType pageType, string langCode);
         bool Exists(string content, EntityName entityName, PageType pageType);
     }
 }

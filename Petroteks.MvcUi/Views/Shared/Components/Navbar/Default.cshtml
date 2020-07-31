@@ -5,7 +5,7 @@
 @{
     Language CurrentLanguage = languageCookieService.Get("CurrentLanguage");
     var currentPage = urlControlHepler.getCurrnetPage();
-    var url = Url.Action($"{currentPage.action}", $"{currentPage.controller}", new { area = $"{currentPage.area}" });
+    //var url = Url.Action($"{currentPage.action}", $"{currentPage.controller}", new { area = $"{currentPage.area}" });
 }
 
 @if (Model != null)
@@ -36,11 +36,19 @@
             @foreach (var item in LanguageContext.WebsiteLanguages)
             {
                 <li>
-                    <a id="@item.KeyCode" title="@item.KeyCode" href="@Url.Action("ChangeCulture","Home",new { KeyCode=item.KeyCode,returnUrl=$"{url}"})">
+                    <a id="@item.KeyCode" title="@item.KeyCode" href="@Url.Action("ChangeCulture","Home",new { KeyCode=item.KeyCode})">
                         <img src="~/LanguageImages/@item.IconCode" asp-append-version="true" alt="@item.Name"> @item.Name
                     </a>
                 </li>
             }
         </ul>
     </li>
+    <li>
+        <form class="form d-flex" asp-controller="Search" asp-action="Index" method="post">
+            <input class="form-control flex-grow-1" type="search" placeholder="Ara" name="s" id="s">
+            <input class="btn btn-success btn-sm  my-auto ml-2 px-4" type="submit" value="Ara" />
+
+        </form>
+    </li>
+
 }

@@ -16,16 +16,17 @@
         -webkit-box-shadow: 0 3px 9px 0 rgba(80, 127, 177, 0.62);
         -moz-box-shadow: 0 3px 9px 0 rgba(80, 127, 177, 0.62);
     }
-    .CategoryTreeView a{
-        color:white;
-    }
+
+        .CategoryTreeView a {
+            color: white;
+        }
+
     .caret {
         cursor: pointer;
         -webkit-user-select: none; /* Safari 3.1+ */
         -moz-user-select: none; /* Firefox 2+ */
         -ms-user-select: none; /* IE 10+ */
         user-select: none;
-       
     }
 
         .caret::before {
@@ -55,7 +56,7 @@
 </style>
 
 @model CategoryListViewModel
-
+@inject IRouteTable routeTable
 
 
 @{
@@ -72,7 +73,7 @@
             {
                 <li>
                     <span class="caret">
-                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , MI_Category=subCategory.id})">@Model.NameId(subCategory)</a>
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) ,  id=subCategory.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})">@Model.NameId(subCategory)</a>
                         @CategoryControl(subCategory.id)
                     </span>
                     <ul class="nested">
@@ -88,7 +89,7 @@
             {
                 <li>
                     <span class="caret">
-                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , MI_Category=subCategory.id})">@Model.NameId(subCategory)</a>
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) ,  id=subCategory.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})">@Model.NameId(subCategory)</a>
                         @CategoryControl(subCategory.id)
                     </span>
                     <ul class="nested">
@@ -99,7 +100,7 @@
             else
             {
                 <li>
-                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) , page=1 , MI_Category=subCategory.id})">@Model.NameId(subCategory)</a>
+                    <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(subCategory.Name) ,  id=subCategory.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})">@Model.NameId(subCategory)</a>
                     @CategoryControl(subCategory.id)
                 </li>
             }
@@ -133,7 +134,7 @@
                 </div>
             </div>
             <li>
-                <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(MI_Product.SupTitle) , id=MI_Product.id})">@MI_Product.SupTitle</a>
+                <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(MI_Product.SupTitle) , id=MI_Product.id ,pageTag=routeTable.Get(EntityName.Product,PageType.Detail)})">@MI_Product.SupTitle</a>
                 [
                 <button type="button" data-toggle="modal" data-target="#MI_Product-modal-@MI_Product.id" class="btn btn-danger btn-rounded"><i class="fas fa-trash"></i> </button>
                 |
@@ -200,7 +201,7 @@
                 {
                     <li>
                         <span class="caret">
-                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , MI_Category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) ,  id=MainCategory.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})">@Model.NameId(MainCategory)</a>
 
                             @CategoryControl(MainCategory.id)
 
@@ -219,7 +220,7 @@
                 {
                     <li>
                         <span class="caret">
-                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , MI_Category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+                            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) ,  id=MainCategory.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})">@Model.NameId(MainCategory)</a>
 
                             @CategoryControl(MainCategory.id)
 
@@ -232,7 +233,7 @@
                 else
                 {
                     <li>
-                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) , page=1 , MI_Category=MainCategory.id})">@Model.NameId(MainCategory)</a>
+                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(MainCategory.Name) ,  id=MainCategory.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})">@Model.NameId(MainCategory)</a>
 
                         @CategoryControl(MainCategory.id)
 

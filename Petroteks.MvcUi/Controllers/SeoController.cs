@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,7 @@ namespace Petroteks.MvcUi.Controllers
         private readonly IPrivacyPolicyObjectService privacyPolicyObjectService;
         private readonly IUI_ContactService uI_ContactService;
         private readonly IBlogService blogService;
+        private readonly IML_ProductService mL_ProductService;
         private readonly IWebHostEnvironment webHostEnvironment;
         private readonly IRouteTable routeTable;
 
@@ -43,6 +45,7 @@ namespace Petroteks.MvcUi.Controllers
             uI_ContactService = serviceProvider.GetService<IUI_ContactService>();
             blogService = serviceProvider.GetService<IBlogService>();
             privacyPolicyObjectService = serviceProvider.GetService<IPrivacyPolicyObjectService>();
+            mL_ProductService = serviceProvider.GetService<IML_ProductService>();
             webHostEnvironment = serviceProvider.GetService<IWebHostEnvironment>();
             routeTable = serviceProvider.GetService<IRouteTable>();
         }
@@ -295,7 +298,6 @@ namespace Petroteks.MvcUi.Controllers
                     xtr.WriteAttributeString("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
                     xtr.WriteAttributeString("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
                     xtr.WriteAttributeString("xmlns:xhtml", "http://www.w3.org/1999/xhtml");
-                    //xtr.WriteAttributeString("xsi:schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd");
                     xtr.WriteAttributeString("xsi:schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd");
 
                     string siteUrl = CurrentWebsite.BaseUrl.Replace("www.", "", System.StringComparison.CurrentCultureIgnoreCase);
@@ -352,6 +354,9 @@ namespace Petroteks.MvcUi.Controllers
                     xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("PetroBlog", "Home", new { blogPageName = routeTable.Get(EntityName.Blog, PageType.List) })}");
                     xtr.WriteEndElement();
 
+                    var mlProducts = mL_ProductService.GetAllActiveLoaded().Where(x => x.WebSiteid == CurrentWebsiteId);
+
+
                     foreach (Language lang in LanguageContext.WebsiteLanguages)
                     {
                         ICollection<Category> Categories = new List<Category>();
@@ -368,10 +373,20 @@ namespace Petroteks.MvcUi.Controllers
                                 {
                                     string link = Url.Action("CategoryDetail", "Detail", new { pageTag = pageTag, categoryName = GetFriendlyTitle(item.Name), id = item.id });
                                     xtr.WriteElementString("loc", $"{siteUrl}{link}");
+                                    xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
+                                }
+                                catch
+                                {
+                                }
+                                xtr.WriteEndElement();
 
-                                    //var alternateLink = Url.Action("CategoryDetailOld", "Detail", new { categoryName = GetFriendlyTitle(item.Name), page = 1, category = item.id });
-                                    //xtr.WriteRaw($"\n<xhtml:link rel=\"alternate\" hreflang=\"{lang.KeyCode}\"  href=\"{siteUrl}{alternateLink}\" />\n");
+                                xtr.WriteStartElement("url");
 
+                                xtr.WriteAttributeString("xmlns", "xhtml", null, "http://www.w3.org/1999/xhtml");
+                                try
+                                {
+                                    string link = Url.Action("CategoryDetailOld", "Detail", new { categoryName = GetFriendlyTitle(item.Name), page = 1, category = item.id });
+                                    xtr.WriteElementString("loc", $"{siteUrl}{link}");
                                     xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                                 }
                                 catch
@@ -402,12 +417,18 @@ namespace Petroteks.MvcUi.Controllers
 
                                 try
                                 {
+                                    var alternatives = mlProducts.Where(x => x.ProductId == item.id && x.ProductLanguageKeyCode == lang.KeyCode).ToList();
                                     string link = Url.Action("ProductDetail", "Detail", new { produtname = GetFriendlyTitle(item.ProductName), id = item.id, pageTag = pageTag });
                                     xtr.WriteElementString("loc", $"{siteUrl}{link}");
 
-                                    //var alternateLink = Url.Action("ProductDetailOld", "Detail", new { produtname = GetFriendlyTitle(item.ProductName), id = item.id });
-                                    //xtr.WriteRaw($"\n<xhtml:link rel=\"alternate\" hreflang=\"{lang.KeyCode}\"  href=\"{siteUrl}{alternateLink}\" />\n");
+                                    foreach (var alternate in alternatives)
+                                    {
+                                        string alternatepageTag = routeTable.Get(EntityName.Product, PageType.Detail, alternate.AlternateProductLanguageKeyCode);
 
+                                        var alternateLink = Url.Action("ProductDetail", "Detail", new { produtname = GetFriendlyTitle(alternate.AlternateProduct.SupTitle), id = alternate.AlternateProduct.id, pageTag = alternatepageTag });
+
+                                      xtr.WriteRaw($"<xhtml:link rel=\"alternate\" hreflang=\"{alternate.AlternateProductLanguageKeyCode}\"  href=\"{siteUrl}{alternateLink}\" />");
+                                    }
 
                                     xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                                 }
@@ -415,6 +436,21 @@ namespace Petroteks.MvcUi.Controllers
                                 {
                                 }
                                 xtr.WriteEndElement();
+
+                                xtr.WriteStartElement("url");
+                                 xtr.WriteAttributeString("xmlns", "xhtml", null, "http://www.w3.org/1999/xhtml");
+                                try
+                                {
+                                    string link = Url.Action("ProductDetailOld", "Detail", new { produtname = GetFriendlyTitle(item.ProductName), id = item.id });
+                                    xtr.WriteElementString("loc", $"{siteUrl}{link}");
+                                    xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
+                                }
+                                catch
+                                {
+                                }
+                                xtr.WriteEndElement();
+
+
                             }
                         }
                         catch { }
@@ -483,24 +519,17 @@ namespace Petroteks.MvcUi.Controllers
                 }
 
 
-                //string dir = Path.Combine(webHostEnvironment.WebRootPath, "Temp");
-                //Directory.CreateDirectory(dir);
-                //string sitemapfile = Path.Combine(dir, "sitemap.xml");
-                //try
-                //{
-                //    System.IO.File.WriteAllText(sitemapfile, XDocument.Parse(sw.ToString()).ToString(), Encoding.UTF8);
-                //}
-                //catch
-                //{
-                //    System.IO.File.WriteAllText(sitemapfile, sw.ToString(), Encoding.UTF8);
-                //}
+                string dir = Path.Combine(webHostEnvironment.WebRootPath, "Temp");
+                Directory.CreateDirectory(dir);
+                string sitemapfile = Path.Combine(dir, "sitemap.xml");
+                System.IO.File.WriteAllText(sitemapfile, XDocument.Parse(sw.ToString()).ToString(), Encoding.UTF8);
 
 
                 try
                 {
                     using (StreamWriter streamWriter = new StreamWriter(Response.Body))
                     {
-                        streamWriter.Write(sw.ToString());
+                        streamWriter.Write(XDocument.Parse(sw.ToString()).ToString());
                     }
                 }
                 catch

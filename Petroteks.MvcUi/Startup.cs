@@ -75,6 +75,9 @@ namespace Petroteks.MvcUi
             services.AddScoped<IUI_NoticeService, UI_NoticeManager>();
             services.AddScoped<IUI_NoticeDal, EfUI_NoticeDal>();
 
+            services.AddScoped<IML_ProductService, ML_ProductManager>();
+            services.AddScoped<IML_ProductDal, EfML_ProductDal>();
+
             services.AddSingleton<UrlControlHelper>();
 
             services.AddScoped<DbServiceProvider>();

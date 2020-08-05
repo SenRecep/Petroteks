@@ -19,6 +19,54 @@ namespace Petroteks.Dal.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Petroteks.Entities.ComplexTypes.ML_Product", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AlternateProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AlternateProductLanguageKeyCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreateUserid")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductLanguageKeyCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdateUserid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WebSiteid")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("AlternateProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("WebSiteid");
+
+                    b.ToTable("ML_Products");
+                });
+
             modelBuilder.Entity("Petroteks.Entities.ComplexTypes.UI_Contact", b =>
                 {
                     b.Property<int>("id")
@@ -761,6 +809,27 @@ namespace Petroteks.Dal.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Websites");
+                });
+
+            modelBuilder.Entity("Petroteks.Entities.ComplexTypes.ML_Product", b =>
+                {
+                    b.HasOne("Petroteks.Entities.Concreate.Product", "AlternateProduct")
+                        .WithMany()
+                        .HasForeignKey("AlternateProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Petroteks.Entities.Concreate.Product", "Product")
+                        .WithMany("ML_Products")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Petroteks.Entities.Concreate.Website", "WebSite")
+                        .WithMany()
+                        .HasForeignKey("WebSiteid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Petroteks.Entities.ComplexTypes.UI_Contact", b =>

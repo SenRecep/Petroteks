@@ -49,18 +49,22 @@ namespace Petroteks.MvcUi.Models
                 else
                 {
                     RouteTableElements = new List<RouteTableElement>() {
-                        new RouteTableElement(EntityName.Product,"tr-TR",PageType.Detail,"Urun-Detay"),
-                        new RouteTableElement(EntityName.Product,"en-US",PageType.Detail,"Product-Detail"),
-                        new RouteTableElement(EntityName.Product,"en-GB",PageType.Detail,"Product-Detail"),
-                        new RouteTableElement(EntityName.Category,"tr-TR",PageType.Detail,"Kategori-Detay"),
-                        new RouteTableElement(EntityName.Category,"en-US",PageType.Detail,"Category-Detail"),
-                        new RouteTableElement(EntityName.Category,"en-GB",PageType.Detail,"Category-Detail"),
+                        new RouteTableElement(EntityName.Product,"tr-TR",PageType.Detail,"Urun"),
+                        new RouteTableElement(EntityName.Product,"en-US",PageType.Detail,"Product"),
+                        new RouteTableElement(EntityName.Product,"en-GB",PageType.Detail,"Product"),
+                        new RouteTableElement(EntityName.Product,"fr-FR",PageType.Detail,"Produit"),
+                        new RouteTableElement(EntityName.Category,"tr-TR",PageType.Detail,"Kategori"),
+                        new RouteTableElement(EntityName.Category,"en-US",PageType.Detail,"Category"),
+                        new RouteTableElement(EntityName.Category,"en-GB",PageType.Detail,"Category"),
+                        new RouteTableElement(EntityName.Category,"fr-FR",PageType.Detail,"Categorie"),
                         new RouteTableElement(EntityName.Blog,"tr-TR",PageType.List,"Bloglar"),
                         new RouteTableElement(EntityName.Blog,"en-US",PageType.List,"Blogs"),
                         new RouteTableElement(EntityName.Blog,"en-GB",PageType.List,"Blogs"),
+                        new RouteTableElement(EntityName.Blog,"fr-FR",PageType.List,"Blogs"),
                         new RouteTableElement(EntityName.Blog,"tr-TR",PageType.Detail,"Blog-Detay"),
                         new RouteTableElement(EntityName.Blog,"en-US",PageType.Detail,"Blog-Detail"),
                         new RouteTableElement(EntityName.Blog,"en-GB",PageType.Detail,"Blog-Detail"),
+                        new RouteTableElement(EntityName.Blog,"fr-FR",PageType.Detail,"Blog-Detail"),
                     };
                     string json = JsonConvert.SerializeObject(RouteTableElements, Formatting.Indented);
                     File.WriteAllText(websiteTempFile, json);

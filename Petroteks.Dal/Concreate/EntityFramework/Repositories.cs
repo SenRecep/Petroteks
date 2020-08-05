@@ -1,4 +1,7 @@
-﻿using Petroteks.Dal.Abstract;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Petroteks.Dal.Abstract;
 using Petroteks.Dal.Concreate.EntityFramework.Contexts;
 using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
@@ -20,4 +23,11 @@ namespace Petroteks.Dal.Concreate.EntityFramework
     public class EfUI_ContactDal : EfEntityRepostoryBase<UI_Contact, PetroteksDbContext>, IUI_ContactDal { }
     public class EfUI_FooterDal : EfEntityRepostoryBase<UI_Footer, PetroteksDbContext>, IUI_FooterDal { }
     public class EfUI_NoticeDal : EfEntityRepostoryBase<UI_Notice, PetroteksDbContext>, IUI_NoticeDal { }
+    public class EfML_ProductDal : EfEntityRepostoryBase<ML_Product, PetroteksDbContext>, IML_ProductDal
+    {
+        public  List<ML_Product> GetAllActiveLoaded()
+        {
+            return dbContext.Set<ML_Product>().Include(x => x.Product).Include(x => x.AlternateProduct).Where(x=>x.IsActive).ToList();
+        }
+    }
 }

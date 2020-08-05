@@ -1,4 +1,5 @@
-﻿using Petroteks.Core.Dal;
+﻿using System.Collections.Generic;
+using Petroteks.Core.Dal;
 using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
 
@@ -19,5 +20,8 @@ namespace Petroteks.Dal.Abstract
     public interface IUI_ContactDal : IEntityRepostory<UI_Contact> { }
     public interface IUI_FooterDal : IEntityRepostory<UI_Footer> { }
     public interface IUI_NoticeDal : IEntityRepostory<UI_Notice> { }
+    public interface IML_ProductDal : IEntityRepostory<ML_Product> {
+        List<ML_Product> GetAllActiveLoaded();
+    }
 
 }

@@ -3,37 +3,49 @@
     "EntityName": 4,
     "LanguageKeyCode": "tr-TR",
     "PageType": 1,
-    "Content": "Urun-Detay"
+    "Content": "Urun"
   },
   {
     "EntityName": 4,
     "LanguageKeyCode": "en-US",
     "PageType": 1,
-    "Content": "Product-Detail"
+    "Content": "Product"
   },
   {
     "EntityName": 4,
     "LanguageKeyCode": "en-GB",
     "PageType": 1,
-    "Content": "Product-Detail"
+    "Content": "Product"
+  },
+  {
+    "EntityName": 4,
+    "LanguageKeyCode": "fr-FR",
+    "PageType": 1,
+    "Content": "Produit"
   },
   {
     "EntityName": 3,
     "LanguageKeyCode": "tr-TR",
     "PageType": 1,
-    "Content": "Kategori-Detay"
+    "Content": "Kategori"
   },
   {
     "EntityName": 3,
     "LanguageKeyCode": "en-US",
     "PageType": 1,
-    "Content": "Category-Detail"
+    "Content": "Category"
   },
   {
     "EntityName": 3,
     "LanguageKeyCode": "en-GB",
     "PageType": 1,
-    "Content": "Category-Detail"
+    "Content": "Category"
+  },
+  {
+    "EntityName": 3,
+    "LanguageKeyCode": "fr-FR",
+    "PageType": 1,
+    "Content": "Categorie"
   },
   {
     "EntityName": 5,
@@ -55,6 +67,12 @@
   },
   {
     "EntityName": 5,
+    "LanguageKeyCode": "fr-FR",
+    "PageType": 0,
+    "Content": "Blogs"
+  },
+  {
+    "EntityName": 5,
     "LanguageKeyCode": "tr-TR",
     "PageType": 1,
     "Content": "Blog-Detay"
@@ -68,6 +86,12 @@
   {
     "EntityName": 5,
     "LanguageKeyCode": "en-GB",
+    "PageType": 1,
+    "Content": "Blog-Detail"
+  },
+  {
+    "EntityName": 5,
+    "LanguageKeyCode": "fr-FR",
     "PageType": 1,
     "Content": "Blog-Detail"
   }

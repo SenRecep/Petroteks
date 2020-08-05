@@ -2,6 +2,7 @@
 using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Petroteks.Bll.Abstract
@@ -23,6 +24,9 @@ namespace Petroteks.Bll.Abstract
     }
     public interface IMainPageService : IEntityRepostory<MainPage>, LanguageEntityManager<MainPage>, LanguageAndWebsiteFilteredDataService<MainPage> { }
     public interface IEmailService : IEntityRepostory<Email> { }
+    public interface IML_ProductService : IEntityRepostory<ML_Product> {
+        List<ML_Product> GetAllActiveLoaded();
+    }
     public interface IBlogService : IEntityRepostory<Blog>, LanguageEntityManager<Blog>, LanguageAndWebsiteFilteredDataService<Blog>
     {
         public Blog GetAllLanguageBlog(Expression<Func<Blog, bool>> filter, params string[] navigations);

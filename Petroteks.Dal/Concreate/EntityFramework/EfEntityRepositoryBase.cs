@@ -12,7 +12,7 @@ namespace Petroteks.Dal.Concreate.EntityFramework
           where TEntity : EntityBase, new()
           where TContext : DbContext, new()
     {
-        private DbContext dbContext = null;
+        public DbContext dbContext = null;
         private readonly DbSet<TEntity> table = null;
         private readonly object LockObj = new object();
 

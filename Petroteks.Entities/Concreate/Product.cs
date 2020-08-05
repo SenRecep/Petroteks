@@ -1,5 +1,7 @@
-﻿using Petroteks.Core.Entities;
+﻿using System.Collections.Generic;
+using Petroteks.Core.Entities;
 using Petroteks.Entities.Abstract;
+using Petroteks.Entities.ComplexTypes;
 
 namespace Petroteks.Entities.Concreate
 {
@@ -21,5 +23,7 @@ namespace Petroteks.Entities.Concreate
 
         public int? Languageid { get; set; }
         public virtual Language Language { get; set; }
+
+        public List<ML_Product>  ML_Products{ get; set; }
     }
 }

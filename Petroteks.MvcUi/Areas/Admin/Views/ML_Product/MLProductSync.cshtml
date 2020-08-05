@@ -1,0 +1,235 @@
+﻿@model (List<ML_Product> ML_Products, List<WLCViewModel> All)
+@{
+    ViewData["Title"] = "MLProductSync";
+}
+
+<div class="row justify-content-center">
+    @foreach (var mL_Product in Model.ML_Products)
+    {
+        <div class="col-md-6 col-sm-12">
+            <div class="card">
+                <div class="card-header text-center">[@mL_Product.ProductLanguageKeyCode] -> [@mL_Product.AlternateProductLanguageKeyCode]</div>
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card ">
+                                <div class="card-header ">@mL_Product.Product.SupTitle </div>
+                                <div class="card-body ">
+                                    <img class="img-fluid" src="ProductImages/@mL_Product.Product.PhotoPath" asp-append-version="true" />
+                                </div>
+                                <div class="card-footer ">@mL_Product.Product.SupTitle</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card ">
+                                <div class="card-header ">@mL_Product.AlternateProduct.SupTitle </div>
+                                <div class="card-body ">
+                                    <img class="img-fluid" src="ProductImages/@mL_Product.AlternateProduct.PhotoPath" asp-append-version="true" />
+                                </div>
+                                <div class="card-footer ">@mL_Product.AlternateProduct.SupTitle</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+
+@foreach (var langModel in Model.All)
+{
+    <div class="card mb-3">
+        <div class="card-header ">@langModel.Language.Name [@langModel.Language.KeyCode] <input id="langdiv_@langModel.Language.id" type="checkbox" class="custom-checkbox ml-1" style="display:none"></div>
+        <div class="card-body languageDivBody" id="cardBody_@langModel.Language.id" data-keycode="@langModel.Language.KeyCode">
+            <div class="row">
+                @foreach (var categoryModel in langModel.Categories)
+                {
+                    <div class="col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="card-header ">@categoryModel.Category.Name</div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    @foreach (var product in categoryModel.Products)
+                                    {
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="card ">
+                                                <div class="card-header ">@product.SupTitle <input id="@(langModel.Language.id)_@(product.id)" type="checkbox" class="custom-checkbox ml-1"> </div>
+                                                <div class="card-body ">
+                                                    <img class="img-fluid" src="ProductImages/@product.PhotoPath" asp-append-version="true" />
+                                                </div>
+                                                <div class="card-footer ">@product.SubTitle</div>
+
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="card-footer ">@categoryModel.Products.Count Adet Urun</div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="card-footer ">@langModel.Categories.Count Adet Kategori</div>
+    </div>
+}
+
+
+
+<div class="card-deck" id="div_Result" style="display:none">
+
+    <div class="card" id="leftProductCard" style="flex:2">
+
+    </div>
+    <div class="card shadow-none bg-transparent" style="flex:1">
+        <div class="card-body d-flex flex-column justify-content-center">
+
+            <button id="btnExchange" class="btn btn-success mb-2"><i class="fas fa-exchange-alt"></i></button>
+            <button id="btnSave" class="btn btn-success mb-2">KAYDET</button>
+        </div>
+    </div>
+    <div class="card " id="rightProductCard" style="flex:2">
+
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script>
+
+        let baseProduct;
+        let alternateProduct;
+
+        let leftProduct;
+        let rightProduct;
+
+        class Product {
+            constructor(pId, keyCode, lId) {
+                this.productId = pId;
+                this.keyCode = keyCode;
+                this.languageId = lId;
+            }
+        }
+
+        $(document).ready(function () {
+
+            function printProduct(prd,prdtype,prdDiv) {
+                var html = `<div class="card-header ">${prd.SupTitle}</div><div class="card-body " style="display: flex;align-items: center;"> <img class="img-fluid" src="ProductImages/${prd.PhotoPath}" asp-append-version="true"/> </div><div class="card-footer text-center">${prdtype}</div>`;
+                $(prdDiv).html(html);
+            }
+
+            function printProducts() {
+                printProduct(leftProduct, 'Ana Ürün', '#leftProductCard');
+                printProduct(rightProduct, 'Alternatif Ürün', '#rightProductCard');
+            }
+
+            $('input[type="checkbox"]').click(function () {
+                var id = $(this).attr('id').split('_');
+                if (id[0] == "langdiv") {
+                    if ($(this).prop("checked") == true) {
+                        let langId = id[1];
+                        $(`#cardBody_${langId}`).css('pointer-events', 'auto');
+                        $(`#cardBody_${langId}`).css('opacity', '1');
+                        $(`#cardBody_${langId} input[type="checkbox"]`).prop("checked", false);
+                        $(`#langdiv_${langId}`).css('display', 'none');
+                        $(`#langdiv_${langId}`).prop("checked", false);
+
+                        if (baseProduct != undefined) {
+                            if (baseProduct.languageId == langId) {
+                                baseProduct = undefined;
+                            }
+                        }
+
+                        if (alternateProduct != undefined) {
+                            if (alternateProduct.languageId == langId) {
+                                alternateProduct = undefined;
+                            }
+                        }
+
+                        $(`#div_Result`).css('display', 'none');
+                        leftProduct = rightProduct= undefined;
+                    }
+                }
+                else {
+                    let langId = id[0];
+                    let productId = id[1];
+                    if ($(this).prop("checked") == true) {
+                        $(`#cardBody_${langId}`).css('pointer-events', 'none');
+                        $(`#cardBody_${langId}`).css('opacity', '0.3');
+                        $(`#langdiv_${langId}`).css('display', 'inline-block');
+
+                        var keycode = $(`#cardBody_${langId}`).attr('data-keycode');
+                        if (baseProduct === undefined) {
+                            baseProduct = new Product(productId, keycode, langId);
+                        }
+                        else if (alternateProduct === undefined) {
+                            alternateProduct = new Product(productId, keycode, langId);
+                        }
+
+                        if (alternateProduct != undefined && baseProduct != undefined) {
+
+                            $.ajax({
+                                type:'POST',
+                                url: `@Url.Action("GetProductsAjax", "ML_Product", new { area= "Admin"})`,
+                                data: { left: baseProduct, right: alternateProduct },
+                                success: function (response) {
+                                    var response = JSON.parse(response);
+                                    leftProduct = response.pLeft;
+                                    rightProduct = response.pRight;
+                                    printProducts();
+                                    $(`#div_Result`).css('display', 'flex');
+
+                                },
+                                error: function (xhr, ajaxOptions, thrownError) {
+                                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                                }
+
+                            });
+
+
+                            $("html, body").animate({ scrollTop: $(document).height() }, 700);
+                        }
+                    }
+                }
+
+
+            });
+
+
+            $("#btnExchange").click(function () {
+                var temp = leftProduct;
+                leftProduct = rightProduct;
+                rightProduct = temp;
+                printProducts();
+            });
+
+
+            $("#btnSave").click(function () {
+                baseProduct = new Product(leftProduct.id, leftProduct.KeyCode, leftProduct.LanguageId);
+                alternateProduct = new Product(rightProduct.id, rightProduct.KeyCode, rightProduct.LanguageId);
+                $.ajax({
+                    type:'POST',
+                    url: `@Url.Action("SaveProducts", "ML_Product", new { area= "Admin"})`,
+                    data: { left: baseProduct, right: alternateProduct },
+                    success: function (response) {
+                        $("html, body").animate({ scrollTop: 0 }, 700);
+                        alert(response);
+                        window.location.reload();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
+
+                });
+            });
+        });
+
+    </script>
+
+}

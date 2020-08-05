@@ -47,7 +47,6 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         [AdminAuthorize]
         public IActionResult Index()
         {
-            ViewBag.LoginUser = ViewBag.LoginUser;
             ICollection<User> allUsers = _userService.GetMany(x => x.IsActive == true);
             return View(allUsers);
         }

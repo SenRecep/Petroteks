@@ -53,14 +53,23 @@ namespace Petroteks.MvcUi.Models
                         new RouteTableElement(EntityName.Product,"en-US",PageType.Detail,"Product"),
                         new RouteTableElement(EntityName.Product,"en-GB",PageType.Detail,"Product"),
                         new RouteTableElement(EntityName.Product,"fr-FR",PageType.Detail,"Produit"),
-                        new RouteTableElement(EntityName.Category,"tr-TR",PageType.Detail,"Kategori"),
-                        new RouteTableElement(EntityName.Category,"en-US",PageType.Detail,"Category"),
-                        new RouteTableElement(EntityName.Category,"en-GB",PageType.Detail,"Category"),
-                        new RouteTableElement(EntityName.Category,"fr-FR",PageType.Detail,"Categorie"),
+
+                        new RouteTableElement(EntityName.Category,"tr-TR",PageType.Detail,"Kategori-Detay"),
+                        new RouteTableElement(EntityName.Category,"en-US",PageType.Detail,"Category-Detail"),
+                        new RouteTableElement(EntityName.Category,"en-GB",PageType.Detail,"Category-Detail"),
+                        new RouteTableElement(EntityName.Category,"fr-FR",PageType.Detail,"Categorie-Detai"),
+
+
+                        new RouteTableElement(EntityName.Category,"tr-TR",PageType.Normal,"Kategori"),
+                        new RouteTableElement(EntityName.Category,"en-US",PageType.Normal,"Category"),
+                        new RouteTableElement(EntityName.Category,"en-GB",PageType.Normal,"Category"),
+                        new RouteTableElement(EntityName.Category,"fr-FR",PageType.Normal,"Categorie"),
+
                         new RouteTableElement(EntityName.Blog,"tr-TR",PageType.List,"Bloglar"),
                         new RouteTableElement(EntityName.Blog,"en-US",PageType.List,"Blogs"),
                         new RouteTableElement(EntityName.Blog,"en-GB",PageType.List,"Blogs"),
                         new RouteTableElement(EntityName.Blog,"fr-FR",PageType.List,"Blogs"),
+
                         new RouteTableElement(EntityName.Blog,"tr-TR",PageType.Detail,"Blog-Detay"),
                         new RouteTableElement(EntityName.Blog,"en-US",PageType.Detail,"Blog-Detail"),
                         new RouteTableElement(EntityName.Blog,"en-GB",PageType.Detail,"Blog-Detail"),
@@ -87,7 +96,7 @@ namespace Petroteks.MvcUi.Models
             }
         }
 
-        public string Get(EntityName entityName, PageType pageType,string langCode)
+        public string Get(EntityName entityName, PageType pageType, string langCode)
         {
             if (IsUnLoaded)
             {

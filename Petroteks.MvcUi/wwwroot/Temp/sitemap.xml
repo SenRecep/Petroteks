@@ -1,9 +1,25 @@
 ﻿<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
   <url>
-    <loc>https://localhost:44316/Blogs.html</loc>
+    <loc>https://localhost:44316</loc>
+    <lastmod>2020-08-03T21:37:52+03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://localhost:44316/Hakimizda</loc>
+    <lastmod>2020-08-03T21:38:32+03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://localhost:44316/Gizlilik-Politikasi</loc>
+    <lastmod>2020-08-03T21:38:58+03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://localhost:44316/Iletisim</loc>
+    <lastmod>2020-08-03T21:38:44+03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://localhost:44316/Bloglar.html</loc>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Kategori/1/tr-kategori-1</loc>
+    <loc>https://localhost:44316/Kategori/Kategori-Detay/1/tr-kategori-1</loc>
     <lastmod>2020-08-04T18:38:59+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -11,7 +27,7 @@
     <lastmod>2020-08-04T18:38:59+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Kategori/2/tr-kategori-2</loc>
+    <loc>https://localhost:44316/Kategori/Kategori-Detay/2/tr-kategori-2</loc>
     <lastmod>2020-08-04T18:39:11+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -19,7 +35,7 @@
     <lastmod>2020-08-04T18:39:11+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Kategori/3/tr-kategori-3</loc>
+    <loc>https://localhost:44316/Kategori/Kategori-Detay/3/tr-kategori-3</loc>
     <lastmod>2020-08-04T18:39:20+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -27,7 +43,7 @@
     <lastmod>2020-08-04T18:39:20+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Kategori/4/tr-kategori-4</loc>
+    <loc>https://localhost:44316/Kategori/Kategori-Detay/4/tr-kategori-4</loc>
     <lastmod>2020-08-04T18:39:35+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -35,7 +51,7 @@
     <lastmod>2020-08-04T18:39:35+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Kategori/12/root</loc>
+    <loc>https://localhost:44316/Kategori/Kategori-Detay/12/root</loc>
     <lastmod>2020-08-04T19:07:58+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -43,8 +59,8 @@
     <lastmod>2020-08-04T19:07:58+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Urun/tr-urun-1/6</loc>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://localhost:44316/Product/en-urun-1/14" />
+    <loc>https://localhost:44316/Urun/6/tr-urun-1</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://localhost:44316/Product/14/en-urun-1" />
     <lastmod>2020-08-04T19:06:07+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -52,7 +68,7 @@
     <lastmod>2020-08-04T19:06:07+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Urun/tr-urun-2/7</loc>
+    <loc>https://localhost:44316/Urun/7/tr-urun-2</loc>
     <lastmod>2020-08-04T19:06:22+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -60,8 +76,8 @@
     <lastmod>2020-08-04T19:06:22+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Urun/tr-urun-3/8</loc>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://localhost:44316/Produit/fr-urun-2/2" />
+    <loc>https://localhost:44316/Urun/8/tr-urun-3</loc>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://localhost:44316/Produit/2/fr-urun-2" />
     <lastmod>2020-08-04T19:06:32+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -69,7 +85,7 @@
     <lastmod>2020-08-04T19:06:32+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Urun/tr-urun-4/9</loc>
+    <loc>https://localhost:44316/Urun/9/tr-urun-4</loc>
     <lastmod>2020-08-04T19:06:47+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -77,8 +93,8 @@
     <lastmod>2020-08-04T19:06:47+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Urun/tr-urun-5/10</loc>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://localhost:44316/Produit/fr-urun-4/4" />
+    <loc>https://localhost:44316/Urun/10/tr-urun-5</loc>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://localhost:44316/Produit/4/fr-urun-4" />
     <lastmod>2020-08-04T19:07:11+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -86,8 +102,8 @@
     <lastmod>2020-08-04T19:07:11+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Urun/tr-ru-1/11</loc>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://localhost:44316/Produit/fr-urun-2/2" />
+    <loc>https://localhost:44316/Urun/11/tr-ru-1</loc>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://localhost:44316/Produit/2/fr-urun-2" />
     <lastmod>2020-08-04T19:07:58+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -95,8 +111,8 @@
     <lastmod>2020-08-04T19:07:58+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Urun/tr-ru-2/12</loc>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://localhost:44316/Product/en-ur-2/18" />
+    <loc>https://localhost:44316/Urun/12/tr-ru-2</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://localhost:44316/Product/18/en-ur-2" />
     <lastmod>2020-08-04T19:08:06+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -104,7 +120,7 @@
     <lastmod>2020-08-04T19:08:06+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Category/5/en-kategori-1</loc>
+    <loc>https://localhost:44316/Category/Category-Detail/5/en-kategori-1</loc>
     <lastmod>2020-08-04T18:39:55+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -112,7 +128,7 @@
     <lastmod>2020-08-04T18:39:55+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Category/6/en-kategori-2</loc>
+    <loc>https://localhost:44316/Category/Category-Detail/6/en-kategori-2</loc>
     <lastmod>2020-08-04T18:40:13+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -120,7 +136,7 @@
     <lastmod>2020-08-04T18:40:13+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Category/7/en-kategori-3</loc>
+    <loc>https://localhost:44316/Category/Category-Detail/7/en-kategori-3</loc>
     <lastmod>2020-08-04T18:40:23+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -128,7 +144,7 @@
     <lastmod>2020-08-04T18:40:23+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Category/8/en-kategori-4</loc>
+    <loc>https://localhost:44316/Category/Category-Detail/8/en-kategori-4</loc>
     <lastmod>2020-08-04T18:40:33+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -136,7 +152,7 @@
     <lastmod>2020-08-04T18:40:33+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Category/13/root</loc>
+    <loc>https://localhost:44316/Category/Category-Detail/13/root</loc>
     <lastmod>2020-08-04T19:11:50+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -144,7 +160,7 @@
     <lastmod>2020-08-04T19:11:50+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Product/en-urun-1/14</loc>
+    <loc>https://localhost:44316/Product/14/en-urun-1</loc>
     <lastmod>2020-08-04T19:10:32+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -152,7 +168,7 @@
     <lastmod>2020-08-04T19:10:32+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Product/en-urun-2/16</loc>
+    <loc>https://localhost:44316/Product/16/en-urun-2</loc>
     <lastmod>2020-08-04T19:11:24+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -160,8 +176,8 @@
     <lastmod>2020-08-04T19:11:24+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Product/en-ur-1/17</loc>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://localhost:44316/Produit/fr-urun-3/3" />
+    <loc>https://localhost:44316/Product/17/en-ur-1</loc>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://localhost:44316/Produit/3/fr-urun-3" />
     <lastmod>2020-08-04T19:11:50+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -169,7 +185,7 @@
     <lastmod>2020-08-04T19:11:50+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Product/en-ur-2/18</loc>
+    <loc>https://localhost:44316/Product/18/en-ur-2</loc>
     <lastmod>2020-08-04T19:12:00+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -177,7 +193,7 @@
     <lastmod>2020-08-04T19:12:00+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Categorie/9/fr-kategori-1</loc>
+    <loc>https://localhost:44316/Categorie/Categorie-Detai/9/fr-kategori-1</loc>
     <lastmod>2020-08-04T18:42:08+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -185,7 +201,7 @@
     <lastmod>2020-08-04T18:42:08+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Categorie/10/fr-kategori-2</loc>
+    <loc>https://localhost:44316/Categorie/Categorie-Detai/10/fr-kategori-2</loc>
     <lastmod>2020-08-04T18:42:20+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -193,7 +209,7 @@
     <lastmod>2020-08-04T18:42:20+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Categorie/11/fr-kategori-3</loc>
+    <loc>https://localhost:44316/Categorie/Categorie-Detai/11/fr-kategori-3</loc>
     <lastmod>2020-08-04T18:50:50+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -201,9 +217,9 @@
     <lastmod>2020-08-04T18:50:50+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Produit/fr-urun-1/1</loc>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://localhost:44316/Product/en-ur-2/18" />
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://localhost:44316/Urun/tr-urun-3/8" />
+    <loc>https://localhost:44316/Produit/1/fr-urun-1</loc>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://localhost:44316/Product/18/en-ur-2" />
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://localhost:44316/Urun/8/tr-urun-3" />
     <lastmod>2020-08-04T18:43:19+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -211,7 +227,7 @@
     <lastmod>2020-08-04T18:43:19+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Produit/fr-urun-2/2</loc>
+    <loc>https://localhost:44316/Produit/2/fr-urun-2</loc>
     <lastmod>2020-08-04T18:43:36+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -219,7 +235,7 @@
     <lastmod>2020-08-04T18:43:36+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Produit/fr-urun-3/3</loc>
+    <loc>https://localhost:44316/Produit/3/fr-urun-3</loc>
     <lastmod>2020-08-04T18:45:01+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -227,7 +243,7 @@
     <lastmod>2020-08-04T18:45:01+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Produit/fr-urun-4/4</loc>
+    <loc>https://localhost:44316/Produit/4/fr-urun-4</loc>
     <lastmod>2020-08-04T18:45:16+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -235,7 +251,7 @@
     <lastmod>2020-08-04T18:45:16+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <loc>https://localhost:44316/Produit/fr-urun-5/5</loc>
+    <loc>https://localhost:44316/Produit/5/fr-urun-5</loc>
     <lastmod>2020-08-04T18:51:36+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">

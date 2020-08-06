@@ -291,6 +291,8 @@ namespace Petroteks.MvcUi.Controllers
             {
                 try
                 {
+                    
+
                     XmlTextWriter xtr = new XmlTextWriter(sw);
                     xtr.WriteStartDocument();
                     xtr.Formatting = Formatting.Indented;

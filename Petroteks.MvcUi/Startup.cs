@@ -156,18 +156,13 @@ namespace Petroteks.MvcUi
                       if (
                       path.EndsWith(".gif") || path.EndsWith(".jpg") ||
                       path.EndsWith(".png") || path.EndsWith(".svg") ||
-                      path.EndsWith(".webp") || path.EndsWith(".woff2"))
+                      path.EndsWith(".webp") || path.EndsWith(".woff2") ||
+                      path.EndsWith(".css") || path.EndsWith(".js") ||
+                      path.EndsWith(".xml"))
                       {
                           TimeSpan maxAge = new TimeSpan(365, 0, 0, 0);
                           r.Context.Response.Headers.Append("Cache-Control", "max-age=" + maxAge.TotalSeconds.ToString("0"));
                       }
-
-                      if (path.EndsWith(".css") || path.EndsWith(".js"))
-                      {
-                          TimeSpan maxAge = new TimeSpan(365, 0, 0, 0);
-                          r.Context.Response.Headers.Append("Cache-Control", "max-age=" + maxAge.TotalSeconds.ToString("0"));
-                      }
-
                   }
             });
 

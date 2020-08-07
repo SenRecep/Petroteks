@@ -9,9 +9,11 @@ namespace Petroteks.Dal.Concreate.EntityFramework.Contexts
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            
             //optionsBuilder.UseSqlServer(@"workstation id=Petroteks.mssql.somee.com;packet size=4096;user id=Petroteks_SQLLogin_1;pwd=bpg54w5vnk;data source=Petroteks.mssql.somee.com;persist security info=False;initial catalog=Petroteks");
             //optionsBuilder.UseSqlServer(@"Data Source=192.185.7.120;Initial Catalog=nserkang_PetroteksDb;User ID=nserkang_dbuser;Password=1Parola1");
-            optionsBuilder.UseSqlServer(@"Data Source=DANIGA-PC\SQLEXPRESS;Initial Catalog=Petroteks;Integrated Security=True");
+            //optionsBuilder.UseSqlServer(@"Data Source=DANIGA-PC\SQLEXPRESS;Initial Catalog=Petroteks;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-VAVH6SN\SQLEXPRESS;Initial Catalog=Petroteks;Integrated Security=True");
             base.OnConfiguring(optionsBuilder);
         }
 

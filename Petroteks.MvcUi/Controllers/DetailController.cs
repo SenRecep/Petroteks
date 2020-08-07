@@ -28,12 +28,18 @@ namespace Petroteks.MvcUi.Controllers
         [Route("Kategori-Detay/{categoryName}-{page:int}-{category:int}")]
         public IActionResult CategoryDetailOld(string categoryName,int page = 1, int category = 0)
         {
-            return RedirectToAction("CategoryDetail", "Detail",new { area="", pageTag=routeTable.Get(EntityName.Category,PageType.Detail),id=category, categoryName= categoryName });
+            return RedirectToAction("CategoryDetail", "Detail",
+                new { area="", 
+                    pageTag=routeTable.Get(EntityName.Category,PageType.Detail),
+                    pageType = routeTable.Get(EntityName.Category, PageType.Normal),
+                    id =category,
+                    categoryName= categoryName 
+                });
         }
-        [Route("{pageTag}/{id:int}/{categoryName}")]
-        public IActionResult CategoryDetail(string pageTag, int id)
+        [Route("{pageType}/{pageTag}/{id:int}/{categoryName}")]
+        public IActionResult CategoryDetail(string pageType, string pageTag, int id)
         {
-            if (routeTable.Exists(pageTag, EntityName.Category, PageType.Detail))
+            if (routeTable.Exists(pageTag, EntityName.Category, PageType.Detail) && routeTable.Exists(pageType, EntityName.Category, PageType.Normal))
             {
                 Category Category = categoryService.GetAllLanguageCategory(x => x.id == id && x.WebSiteid == CurrentWebsiteId && x.IsActive == true);
                 if (Category != null)
@@ -69,7 +75,7 @@ namespace Petroteks.MvcUi.Controllers
         {
             return RedirectToAction("ProductDetail", "Detail", new { area = "", pageTag = routeTable.Get(EntityName.Product, PageType.Detail), id = id, produtname = produtname });
         }
-        [Route("{pageTag}/{produtname}/{id:int}")]
+        [Route("{pageTag}/{id:int}/{produtname}")]
         [HttpGet]
         public IActionResult ProductDetail(string pageTag, int id)
         {

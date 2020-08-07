@@ -15,7 +15,14 @@
                 else
                 {
                     <li class="drop-down">
-                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(category.Name) , id=category.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})" title="@category.Name">@category.Name</a>
+                        <a href="@Url.Action("CategoryDetail","Detail", 
+                                new { 
+                                    categoryName=GetFriendlyTitle(category.Name) ,
+                                    id=category.id,
+                                    pageTag=routeTable.Get(EntityName.Category,PageType.Detail),
+                                    pageType=routeTable.Get(EntityName.Category,PageType.Normal)
+                                })"
+                           title="@category.Name">@category.Name</a>
                         <ul>
                             @LoadSubMenu(items)
                         </ul>
@@ -41,7 +48,12 @@
     object PrintCategory(MI_Category mI_Category)
     {
         <li>
-            <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(mI_Category.Name) ,  id=mI_Category.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})" title="@mI_Category.Name">@mI_Category.Name</a>
+            <a href="@Url.Action("CategoryDetail","Detail", 
+                    new { categoryName=GetFriendlyTitle(mI_Category.Name) ,
+                        id=mI_Category.id,
+                        pageTag=routeTable.Get(EntityName.Category,PageType.Detail),
+                        pageType=routeTable.Get(EntityName.Category,PageType.Normal)
+                    })" title="@mI_Category.Name">@mI_Category.Name</a>
         </li>
         return null;
     }
@@ -50,26 +62,37 @@
 @{
 
     MI_Category ROOT = Model.MainCategories.FirstOrDefault(x => x.Name.Equals("ROOT"));
+    var FirstList = new List<MenuItem>();
     if (ROOT != null)
     {
-        var FirstList = new List<MenuItem>();
         FirstList.AddRange(Model.MainCategories.Where(x => x.id != ROOT.id).ToList());
         FirstList.AddRange(Model.GetProducts(ROOT.id));
         FirstList = FirstList.OrderByDescending(x => x.Priority).ToList();
+    }
+    else
+    {
+        FirstList.AddRange(Model.MainCategories.ToList());
+        FirstList = FirstList.OrderByDescending(x => x.Priority).ToList();
+    }
 
-        foreach (var item in FirstList)
+    foreach (var item in FirstList)
+    {
+        if (item is MI_Category category)
         {
-            if (item is MI_Category category)
+            var items = Model.GetItems(category.id);
+            if (items.Count == 0)
             {
-                var items = Model.GetItems(category.id);
-                if (items.Count == 0)
-                {
-                    PrintCategory(category);
-                }
-                else
-                {
+                PrintCategory(category);
+            }
+            else
+            {
                     <li class="drop-down">
-                        <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(category.Name) , id=category.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})" title="@category.Name">@category.Name</a>
+                        <a href="@Url.Action("CategoryDetail","Detail", 
+                                new { categoryName=GetFriendlyTitle(category.Name) ,
+                                    id=category.id,
+                                    pageTag=routeTable.Get(EntityName.Category,PageType.Detail),
+                                    pageType=routeTable.Get(EntityName.Category,PageType.Normal)
+                                })" title="@category.Name">@category.Name</a>
                         <ul>
                             @LoadSubMenu(items)
                         </ul>
@@ -81,7 +104,6 @@
                 PrintProduct(product);
             }
         }
-    }
 
 }
 

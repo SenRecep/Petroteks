@@ -373,7 +373,12 @@ namespace Petroteks.MvcUi.Controllers
                                 xtr.WriteAttributeString("xmlns", "xhtml", null, "http://www.w3.org/1999/xhtml");
                                 try
                                 {
-                                    string link = Url.Action("CategoryDetail", "Detail", new { pageTag = pageTag, categoryName = GetFriendlyTitle(item.Name), id = item.id });
+                                    string link = Url.Action("CategoryDetail", "Detail", 
+                                        new { pageTag = pageTag,
+                                            categoryName = GetFriendlyTitle(item.Name),
+                                            pageType = routeTable.Get(EntityName.Category, PageType.Normal, lang.KeyCode),
+                                            id = item.id
+                                        });
                                     xtr.WriteElementString("loc", $"{siteUrl}{link}");
                                     xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
                                 }

@@ -27,24 +27,48 @@
     "EntityName": 3,
     "LanguageKeyCode": "tr-TR",
     "PageType": 1,
-    "Content": "Kategori"
+    "Content": "Kategori-Detay"
   },
   {
     "EntityName": 3,
     "LanguageKeyCode": "en-US",
     "PageType": 1,
-    "Content": "Category"
+    "Content": "Category-Detail"
   },
   {
     "EntityName": 3,
     "LanguageKeyCode": "en-GB",
     "PageType": 1,
-    "Content": "Category"
+    "Content": "Category-Detail"
   },
   {
     "EntityName": 3,
     "LanguageKeyCode": "fr-FR",
     "PageType": 1,
+    "Content": "Categorie-Detai"
+  },
+  {
+    "EntityName": 3,
+    "LanguageKeyCode": "tr-TR",
+    "PageType": 2,
+    "Content": "Kategori"
+  },
+  {
+    "EntityName": 3,
+    "LanguageKeyCode": "en-US",
+    "PageType": 2,
+    "Content": "Category"
+  },
+  {
+    "EntityName": 3,
+    "LanguageKeyCode": "en-GB",
+    "PageType": 2,
+    "Content": "Category"
+  },
+  {
+    "EntityName": 3,
+    "LanguageKeyCode": "fr-FR",
+    "PageType": 2,
     "Content": "Categorie"
   },
   {

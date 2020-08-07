@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Petroteks.Entities.Concreate;
+using Petroteks.MvcUi.ExtensionMethods;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Petroteks.Entities.Concreate;
-using Petroteks.MvcUi.ExtensionMethods;
 
 namespace Petroteks.MvcUi.Models
 {
@@ -27,6 +26,11 @@ namespace Petroteks.MvcUi.Models
                 }),
                 new SearchModel("AboutUsObject",new List<SearchModelProperty>(){
                     new SearchModelProperty("Content",true),
+                }),
+                 new SearchModel(nameof(MainPage),new List<SearchModelProperty>(){
+                    new SearchModelProperty(nameof(MainPage.TopContent),true),
+                     new SearchModelProperty(nameof(MainPage.BottomContent),true),
+                      new SearchModelProperty(nameof(MainPage.Slider),true),
                 }),
                 new SearchModel("Blog",new List<SearchModelProperty>(){
                  new SearchModelProperty("Name"),

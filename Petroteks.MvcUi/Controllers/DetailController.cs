@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Concreate;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -26,14 +26,16 @@ namespace Petroteks.MvcUi.Controllers
         }
 
         [Route("Kategori-Detay/{categoryName}-{page:int}-{category:int}")]
-        public IActionResult CategoryDetailOld(string categoryName,int page = 1, int category = 0)
+        public IActionResult CategoryDetailOld(string categoryName, int page = 1, int category = 0)
         {
             return RedirectToAction("CategoryDetail", "Detail",
-                new { area="", 
-                    pageTag=routeTable.Get(EntityName.Category,PageType.Detail),
+                new
+                {
+                    area = "",
+                    pageTag = routeTable.Get(EntityName.Category, PageType.Detail),
                     pageType = routeTable.Get(EntityName.Category, PageType.Normal),
-                    id =category,
-                    categoryName= categoryName 
+                    id = category,
+                    categoryName = categoryName
                 });
         }
         [Route("{pageType}/{pageTag}/{id:int}/{categoryName}")]
@@ -104,11 +106,11 @@ namespace Petroteks.MvcUi.Controllers
         }
 
         [Route("Blog/{blogPageName}/{id:int}/{title}")]
-        public IActionResult BlogDetail(string blogPageName,  int id)
+        public IActionResult BlogDetail(string blogPageName, int id)
         {
-            if (routeTable.Exists(blogPageName,EntityName.Blog,PageType.Detail))
+            if (routeTable.Exists(blogPageName, EntityName.Blog, PageType.Detail))
             {
-                Blog findedBlog = blogService.GetAllLanguageBlog(x => x.id == id && x.IsActive == true && x.WebSiteid==CurrentWebsiteId);
+                Blog findedBlog = blogService.GetAllLanguageBlog(x => x.id == id && x.IsActive == true && x.WebSiteid == CurrentWebsiteId);
                 if (findedBlog != null)
                 {
 

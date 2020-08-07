@@ -1,11 +1,11 @@
 ﻿<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
   <url>
     <loc>https://localhost:44316</loc>
-    <lastmod>2020-08-03T21:37:52+03:00</lastmod>
+    <lastmod>2020-08-06T14:16:31+03:00</lastmod>
   </url>
   <url>
     <loc>https://localhost:44316/Hakimizda</loc>
-    <lastmod>2020-08-03T21:38:32+03:00</lastmod>
+    <lastmod>2020-08-06T14:16:05+03:00</lastmod>
   </url>
   <url>
     <loc>https://localhost:44316/Gizlilik-Politikasi</loc>
@@ -191,6 +191,14 @@
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <loc>https://localhost:44316/Urun-Detay/en-ur-2-18</loc>
     <lastmod>2020-08-04T19:12:00+03:00</lastmod>
+  </url>
+  <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <loc>https://localhost:44316/Product/19/ana-menude-olucak-urun</loc>
+    <lastmod>2020-08-07T11:26:44+03:00</lastmod>
+  </url>
+  <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <loc>https://localhost:44316/Urun-Detay/ana-menude-olucak-urun-19</loc>
+    <lastmod>2020-08-07T11:26:44+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <loc>https://localhost:44316/Categorie/Categorie-Detai/9/fr-kategori-1</loc>

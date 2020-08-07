@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Xml;
-using System.Xml.Linq;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Petroteks.Bll.Abstract;
@@ -16,6 +8,13 @@ using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Xml;
+using System.Xml.Linq;
 using static Petroteks.Bll.Helpers.FriendlyUrlHelper;
 
 namespace Petroteks.MvcUi.Controllers
@@ -291,7 +290,7 @@ namespace Petroteks.MvcUi.Controllers
             {
                 try
                 {
-                    
+
 
                     XmlTextWriter xtr = new XmlTextWriter(sw);
                     xtr.WriteStartDocument();
@@ -373,8 +372,10 @@ namespace Petroteks.MvcUi.Controllers
                                 xtr.WriteAttributeString("xmlns", "xhtml", null, "http://www.w3.org/1999/xhtml");
                                 try
                                 {
-                                    string link = Url.Action("CategoryDetail", "Detail", 
-                                        new { pageTag = pageTag,
+                                    string link = Url.Action("CategoryDetail", "Detail",
+                                        new
+                                        {
+                                            pageTag = pageTag,
                                             categoryName = GetFriendlyTitle(item.Name),
                                             pageType = routeTable.Get(EntityName.Category, PageType.Normal, lang.KeyCode),
                                             id = item.id
@@ -434,7 +435,7 @@ namespace Petroteks.MvcUi.Controllers
 
                                         var alternateLink = Url.Action("ProductDetail", "Detail", new { produtname = GetFriendlyTitle(alternate.AlternateProduct.SupTitle), id = alternate.AlternateProduct.id, pageTag = alternatepageTag });
 
-                                      xtr.WriteRaw($"<xhtml:link rel=\"alternate\" hreflang=\"{alternate.AlternateProductLanguageKeyCode}\"  href=\"{siteUrl}{alternateLink}\" />");
+                                        xtr.WriteRaw($"<xhtml:link rel=\"alternate\" hreflang=\"{alternate.AlternateProductLanguageKeyCode}\"  href=\"{siteUrl}{alternateLink}\" />");
                                     }
 
                                     xtr.WriteElementString("lastmod", $"{(item.UpdateDate ?? item.CreateDate).ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss")}+03:00");
@@ -445,7 +446,7 @@ namespace Petroteks.MvcUi.Controllers
                                 xtr.WriteEndElement();
 
                                 xtr.WriteStartElement("url");
-                                 xtr.WriteAttributeString("xmlns", "xhtml", null, "http://www.w3.org/1999/xhtml");
+                                xtr.WriteAttributeString("xmlns", "xhtml", null, "http://www.w3.org/1999/xhtml");
                                 try
                                 {
                                     string link = Url.Action("ProductDetailOld", "Detail", new { produtname = GetFriendlyTitle(item.ProductName), id = item.id });

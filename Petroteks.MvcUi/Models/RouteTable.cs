@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using Petroteks.Bll.Concreate;
 using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Services;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Petroteks.MvcUi.Models
 {

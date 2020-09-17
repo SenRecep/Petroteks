@@ -1,0 +1,5 @@
+ <form class="form d-flex" asp-controller="Search" asp-action="Index" method="post">
+        <input class="form-control flex-grow-1" type="search" placeholder="Ara" name="s" id="s" value="@ViewBag.SearchKey">
+        <button  class="btn btn-success btn-sm my-auto ml-2" type="submit" name="searchType" value="@SearchTypeInfo.Classic"><i class="fas fa-search"></i></button>
+        <button  class="btn btn-success btn-sm my-auto ml-2" type="submit" name="searchType" value="@SearchTypeInfo.Google"><i class="fab fa-google"></i></button>
+</form>

@@ -1,0 +1,52 @@
+@model SearchViewModel
+@{
+    ViewData["Title"] = "Search Result";
+
+}
+
+<div class="container" style="margin-top:80px">
+    @await Component.InvokeAsync("SearchInputForm",new {s=Model.SearchKey})
+
+        @{
+            if (Model.Result != null){
+                foreach (var item in Model.Result)
+                {
+
+                    var objName = (string)item.Instance.GetType().Name;
+                    if (objName == nameof(EntityName.AboutUsObject))
+                    {
+                        @await Component.InvokeAsync("AboutUsObjectVC", new { obj = item });
+                    }
+                    else if (objName == nameof(EntityName.Blog))
+                    {
+                        @await Component.InvokeAsync("BlogVC", new { obj = item });
+                    }
+                    else if (objName == nameof(EntityName.Category))
+                    {
+                        @await Component.InvokeAsync("CategoryVC", new { obj = item });
+                    }
+                    else if (objName == nameof(EntityName.DynamicPage))
+                    {
+                        @await Component.InvokeAsync("DynamicPageVC", new { obj = item });
+                    }
+                    else if (objName == nameof(EntityName.MainPage))
+                    {
+                        @await Component.InvokeAsync("MainPageVC", new { obj = item });
+                    }
+                    else if (objName == nameof(EntityName.PrivacyPolicyObject))
+                    {
+                        @await Component.InvokeAsync("PrivacyPolicyObjectVC", new { obj = item });
+                    }
+                    else if (objName == nameof(EntityName.Product))
+                    {
+                        @await Component.InvokeAsync("ProductVC", new { obj = item });
+                    }
+                    else if (objName == nameof(EntityName.UI_Contact))
+                    {
+                        @await Component.InvokeAsync("UI_ContactVC", new { obj = item });
+                    }
+                }
+            }
+        }
+</div>
+

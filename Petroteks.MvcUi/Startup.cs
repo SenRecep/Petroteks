@@ -1,6 +1,7 @@
 using System;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using GCSAPI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,7 +21,7 @@ namespace Petroteks.MvcUi
 {
     public class Startup
     {
-        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        private readonly string MyAllowSpecificOrigins = "MyPolicy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -96,7 +97,7 @@ namespace Petroteks.MvcUi
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
-
+            services.AddHttpClient<CustomSearchApi>();
 
             //services.AddDbContext<PetroteksDbContext>(options =>
             //    options.UseSqlServer(
@@ -110,7 +111,7 @@ namespace Petroteks.MvcUi
                                   builder =>
                                   {
                                       builder
-                                      .WithOrigins("https://www.petroteks.com")
+                                      .AllowAnyOrigin()
                                       .AllowAnyHeader()
                                       .AllowAnyMethod();
                                   });
@@ -173,13 +174,13 @@ namespace Petroteks.MvcUi
 
             app.UseCookiePolicy();
 
-            app.UseCors();
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
             app.UseSession();
 
-            var routeTable = serviceProvider.GetService<IRouteTable>();
+            //var routeTable = serviceProvider.GetService<IRouteTable>();
 
             app.UseEndpoints(endpoints =>
             {

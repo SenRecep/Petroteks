@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Petroteks.Bll.Abstract;
@@ -21,6 +22,7 @@ using System.Text;
 namespace Petroteks.MvcUi.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [EnableCors("MyPolicy")]
     public class HomeController : AdminBaseController
     {
         private readonly IUserService _userService;
@@ -283,6 +285,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
         [HttpGet]
         [AdminAuthorize]
+        [EnableCors("MyPolicy")]
         [Route("SitelerinDurumlari")]
         public IActionResult WebsitesStatus()
         {

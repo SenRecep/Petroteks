@@ -1,19 +1,22 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Petroteks.MvcUi.Models;
 
 namespace GCSAPI
 {
+    public class CustomSearchSetting{
+        public string Cx { get; set; }
+        public string ApiKey { get; set; }
+        public string LinkBase { get; set; }
+    }
     public partial class CustomSearchApi
     {
         #region Fields
-        private const int pageCount = 10;
-        private string q = "sondaj";
-        private string cx = "a4850c38bbf9e8f24";
-        private string apiKey = "AIzaSyB0sT5UJ5fyTtEKrfYzQcisK_-TcvqmkO0";
-        private string linkBase = "https://www.googleapis.com/customsearch/v1?";
+        private CustomSearchSetting setting;
+        private string q = string.Empty;
         private string link = string.Empty;
         private int startIndex = 1;
         private List<GcsEntity> entities;
@@ -24,7 +27,7 @@ namespace GCSAPI
         #endregion
 
         #region Functions
-        private void linkInit() => link = $"{linkBase}key={apiKey}&cx={cx}&q={q}&start={startIndex}";
+        private void linkInit() => link = $"{setting.LinkBase}key={setting.ApiKey}&cx={setting.Cx}&q={q}&start={startIndex}";
 
         private async Task<dynamic> post()
         {
@@ -60,12 +63,16 @@ namespace GCSAPI
     public partial class CustomSearchApi
     {
         #region  Contractors
-        public CustomSearchApi(HttpClient _client)
+        public CustomSearchApi(HttpClient _client,IOptions<CustomSearchSetting> option)
         {
             client = _client;
+            this.Init(option.Value);
         }
         #endregion
 
+        public void Init(CustomSearchSetting setting){
+          this.setting=setting;
+        }
         public async Task<List<GcsEntity>> Search(string s)
         {
             this.q = s;

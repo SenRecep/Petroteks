@@ -97,6 +97,8 @@ namespace Petroteks.MvcUi
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
+            services.Configure<CustomSearchSetting>(Configuration.GetSection("CustomSearchSetting"));
+
             services.AddHttpClient<CustomSearchApi>();
 
             //services.AddDbContext<PetroteksDbContext>(options =>

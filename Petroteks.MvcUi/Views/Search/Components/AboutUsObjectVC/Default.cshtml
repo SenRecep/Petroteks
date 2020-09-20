@@ -1,15 +1,21 @@
 ﻿@model (AboutUsObject Ins, string Value, int Power)
 
-    <div class="card text-center">
-        <div class="card-header">
-            HAKKIMIZDA
-        </div>
-        <div class="card-body py-3">
-            <h5 class="card-title">@Model.Ins.Title</h5>
-            <p class="card-text">@Model.Value</p>
-            <a asp-area="" asp-controller="Home" asp-action="AboutUs" class="btn btn-primary">Sayfaya Git</a>
-        </div>
-        <div class="card-footer text-muted">
-            @Model.Power Eşleşme
-        </div>
+<li>
+
+    <div class="media">
+        <a asp-area="" asp-controller="Home" asp-action="AboutUs">
+            <a href="#" class="pull-left">
+                <i class="circle icofont-street-view"></i>
+            </a>
+            <div class="media-body">
+                <span class="media-meta pull-right">@Model.Power Eşleşme</span>
+                <h4 class="title">
+                    @Model.Ins.Title
+                    <span class="pull-right pagado">(Hakkımızda)</span>
+                </h4>
+                <p class="summary"> @Model.Value </p>
+            </div>
+        </a>
     </div>
+
+</li>

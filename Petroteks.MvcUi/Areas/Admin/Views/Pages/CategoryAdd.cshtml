@@ -4,84 +4,132 @@
     var photoPath = $"~/CategoryImages/{Model.ImagePath}";
 }
 
-<form enctype="multipart/form-data" method="post" class="mt-2">
-    <input type="hidden" asp-for="id" />
-    @if (!string.IsNullOrWhiteSpace(Model.ImagePath))
-    {
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
+    <form enctype="multipart/form-data" method="post" class="mt-2">
+        <input type="hidden" asp-for="id" /> 
+        <div class="row"> 
+            <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-subtitle">Kategori Fotoğrafı</h6>
-                        <img class="img-fluid" src="@photoPath" alt="@Model.Name" asp-append-version="true" />
+                        <h4 class="card-title">Meta Açıklama</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" asp-for="Description" aria-describedby="Description" placeholder="Öncelik">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Anahtar Kelime</h4>
+                        <h6 class="card-subtitle"></h6>
 
-    }
-
-
-
-<div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Kategori Önceliği</h4>
-                <div class="form-group">
-                    <input type="number" class="form-control" asp-for="Priority" aria-describedby="Priority" placeholder="Öncelik">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Kategori İD</h4>
-                <h6 class="card-subtitle">Kategori ağacında numarayı burada giriniz.</h6>
-
-                <div class="form-group">
-                    <input type="number" asp-for="ParentId" class="form-control">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-    <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Kategori İsmi</h4>
-                    <h6 class="card-subtitle">Kategori İsmini burada giriniz</h6>
-
-                    <div class="form-group">
-                        <input type="text" asp-for="Name" class="form-control">
+                        <div class="form-group">
+                            <input type="text" asp-for="Keywords" class="form-control">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Resim Yükle</h4>
-                    <h6 class="card-subtitle">Kategori Fotoğrafını burada giriniz.</h6>
-                    <div class="input-group mb-3">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Meta tags</h4>
+                        <h6 class="card-subtitle"></h6>
 
-                        <div class="custom-file">
-                            <input type="file" name="Image" id="Image" class="custom-file-input">
-                            <label class="custom-file-label">Dosya Seç</label>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" asp-for="MetaTags" placeholder="Meta İnputları"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Kategori İçeriği</h4>
+                        <div class="form-group">
+                            <textarea id="editor1" name="Content">
+                            @Html.Raw(Model.Content)
+                        </textarea>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <center>
-        <button class="btn btn-success" type="submit">Kaydet</button>
-    </center>
-</form>
+        @if (!string.IsNullOrWhiteSpace(Model.ImagePath))
+        {
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle">Kategori Fotoğrafı</h6>
+                            <img class="img-fluid" src="@photoPath" alt="@Model.Name" asp-append-version="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Kategori Önceliği</h4>
+                        <div class="form-group">
+                            <input type="number" class="form-control" asp-for="Priority" aria-describedby="Priority" placeholder="Öncelik">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Kategori İD</h4>
+                        <h6 class="card-subtitle">Kategori ağacında numarayı burada giriniz.</h6>
+
+                        <div class="form-group">
+                            <input type="number" asp-for="ParentId" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Kategori İsmi</h4>
+                        <h6 class="card-subtitle">Kategori İsmini burada giriniz</h6>
+
+                        <div class="form-group">
+                            <input type="text" asp-for="Name" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Resim Yükle</h4>
+                        <h6 class="card-subtitle">Kategori Fotoğrafını burada giriniz.</h6>
+                        <div class="input-group mb-3">
+
+                            <div class="custom-file">
+                                <input type="file" name="Image" id="Image" class="custom-file-input">
+                                <label class="custom-file-label">Dosya Seç</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <center>
+            <button class="btn btn-success" type="submit">Kaydet</button>
+        </center>
+    </form>
 
 
 

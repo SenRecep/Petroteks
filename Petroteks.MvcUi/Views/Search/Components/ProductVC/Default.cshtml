@@ -1,15 +1,21 @@
 ﻿@model (Product Ins, string Value, int Power)
 @inject IRouteTable routeTable
-<div class="card text-center">
-    <div class="card-header">
-        URUN
+
+<li>
+    <div class="media">
+        <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(Model.Ins.SupTitle) , id=Model.Ins.id ,pageTag=routeTable.Get(EntityName.Product,PageType.Detail)})">
+            <a class="pull-left">
+                <i class="circle icofont-street-view"></i>
+            </a>
+            <div class="media-body">
+                <span class="media-meta pull-right">@Model.Power Eşleşme</span>
+                <h4 class="title">
+                    @Model.Ins.Title
+                    <span class="pull-right pagado">(Kategori)</span>
+                </h4>
+                <p class="summary"> @Model.Value </p>
+            </div>
+        </a>
     </div>
-    <div class="card-body py-3">
-        <h5 class="card-title">@Model.Ins.Title</h5>
-        <p class="card-text">@Model.Value</p>
-        <a href="@Url.Action("ProductDetail","Detail",new { produtname=GetFriendlyTitle(Model.Ins.SupTitle) , id=Model.Ins.id ,pageTag=routeTable.Get(EntityName.Product,PageType.Detail)})" class="btn btn-primary">Sayfaya Git</a>
-    </div>
-    <div class="card-footer text-muted">
-        @Model.Power Eşleşme
-    </div>
-</div>
+
+</li>

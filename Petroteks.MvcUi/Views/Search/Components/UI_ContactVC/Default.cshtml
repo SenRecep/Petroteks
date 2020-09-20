@@ -1,15 +1,20 @@
 ﻿@model (UI_Contact Ins, string Value, int Power)
 
-<div class="card text-center">
-    <div class="card-header">
-        ILETISIM
-    </div>
-    <div class="card-body py-3">
-        <h5 class="card-title">Iletisim</h5>
-        <p class="card-text">@Model.Value</p>
-        <a asp-area="" asp-controller="Home" asp-action="Contact" class="btn btn-primary">Sayfaya Git</a>
-    </div>
-    <div class="card-footer text-muted">
-        @Model.Power Eşleşme
-    </div>
-</div> 
+    <li>
+        <div class="media">
+            <a asp-area="" asp-controller="Home" asp-action="Contact">
+                <a class="pull-left">
+                    <i class="circle icofont-street-view"></i>
+                </a>
+                <div class="media-body">
+                    <span class="media-meta pull-right">@Model.Power Eşleşme</span>
+                    <h4 class="title">
+                        İletişim
+                        <span class="pull-right pagado">(İletişim)</span>
+                    </h4>
+                    <p class="summary"> @Model.Value </p>
+                </div>
+            </a>
+        </div>
+
+    </li>

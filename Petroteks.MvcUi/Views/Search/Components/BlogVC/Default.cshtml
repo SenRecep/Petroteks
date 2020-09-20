@@ -1,15 +1,21 @@
 ﻿@model (Blog Ins, string Value, int Power)
 @inject IRouteTable routeTable
-<div class="card text-center">
-    <div class="card-header">
-        BLOG
+
+<li>
+    <div class="media">
+        <a asp-area="" asp-controller="Detail" asp-action="BlogDetail" asp-route-title="@GetFriendlyTitle(Model.Ins.Title)" asp-route-id="@Model.Ins.id" asp-route-blogPageName="@routeTable.Get(EntityName.Blog,PageType.Detail)">
+            <a class="pull-left">
+                <i class="circle icofont-street-view"></i>
+            </a>
+            <div class="media-body">
+                <span class="media-meta pull-right">@Model.Power Eşleşme</span>
+                <h4 class="title">
+                    @Model.Ins.Title
+                    <span class="pull-right pagado">(Blog)</span>
+                </h4>
+                <p class="summary"> @Model.Value </p>
+            </div>
+        </a>
     </div>
-    <div class="card-body py-3">
-        <h5 class="card-title">@Model.Ins.Title</h5>
-        <p class="card-text">@Model.Value</p>
-        <a asp-area="" asp-controller="Detail" asp-action="BlogDetail" asp-route-title="@GetFriendlyTitle(Model.Ins.Title)" asp-route-id="@Model.Ins.id" asp-route-blogPageName="@routeTable.Get(EntityName.Blog,PageType.Detail)" class="btn btn-primary">Sayfaya Git</a>
-    </div>
-    <div class="card-footer text-muted">
-        @Model.Power Eşleşme
-    </div>
-</div>
+
+</li>

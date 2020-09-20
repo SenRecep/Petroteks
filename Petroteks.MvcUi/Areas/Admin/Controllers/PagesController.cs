@@ -556,9 +556,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             Category category = categoryService.Get(x => x.id == id && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             if (category != null)
             {
-                return View("CategoryAdd", new CategoryViewModel() { ParentId = category.Parentid, Name = category.Name, ImagePath = category.PhotoPath });
-            }
-
+                return View("CategoryAdd", new CategoryViewModel() { ParentId = category.Parentid, Name = category.Name, ImagePath = category.PhotoPath,Content=category.Content,Description=category.Description,Keywords=category.Keywords,MetaTags=category.MetaTags });
+            } 
             return View("CategoryAdd", new CategoryViewModel());
 
         }
@@ -589,7 +588,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     {
                         findedCategory.PhotoPath = uniqueFileName;
                     }
-
+                    findedCategory.Description = model.Description;
+                    findedCategory.Content = model.Content;
+                    findedCategory.Keywords = model.Keywords;
+                    findedCategory.MetaTags = model.MetaTags;
                     findedCategory.Language = CurrentLanguage;
                     categoryService.Update(findedCategory);
                     categoryService.Save();
@@ -617,6 +619,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 Category category = new Category()
                 {
                     Name = model.Name,
+                    Content = model.Content,
+                    Description = model.Description,
+                    Keywords = model.Keywords,
+                    MetaTags = model.MetaTags,
                     Parentid = model.ParentId,
                     PhotoPath = uniqueFileName,
                     WebSite = CurrentWebsite,

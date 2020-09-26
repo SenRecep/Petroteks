@@ -2,24 +2,68 @@
 @{
     ViewData["Title"] = "Search Result";
 }
+<style>
+    .contentd{
+        font-family: 'Arial', sans-serif;
+        line-height: 18px;
+        color: gray !important;
+    } 
+    .article, .article a {
+        font-family: 'Arial', sans-serif;
+        line-height: 18px;
+        color:gray!important;
+    } 
+
+    .article-title {
+        font-size: 16px;
+        color: darkblue;
+        font-weight: normal;
+    }
+
+    .article-subheading {
+        font-size: 14px;
+        color: green;
+    }
+
+    .article-description {
+        font-size: 13px;
+    }
+ 
+</style>
+
+
+
+
+
 
 <div class="container" style="margin-top:80px">
-    @await Component.InvokeAsync("SearchInputForm",new {s=ViewBag.SearchKey})
+    @await Component.InvokeAsync("SearchInputForm", new { s = ViewBag.SearchKey })
     @ViewBag.Data
 
+    @foreach (var item in Model)
+    {
+    <div class="media">
+        @if (item.Image != null)
+        {
+            <img class="mr-3 img-responsive rounded" src="@item.Image.Src" alt="@item.Title" width="100" />
+        }
+        else
+        {
+                <div  width="100" style="margin-right:8em!important;"></div>
+        }
+        <div class="media-body">
+            <a href="@item.Link"><h4 class="mt-0 article-title">@Html.Raw(item.Title)</h4></a>
+            <a href="@item.Link"><span class="article-subheading">@Html.Raw(item.FormattedUrl)</span></a>
+            <a href="@item.Link" class="contentd"><div class="article-description">@Html.Raw(item.Snippet)</div></a>
+        </div>
+    </div>
+    }
 
 
 
-    
 
-    <table>
-        <thead>
-            <th>Title</th>
-            <th>Link</th>
-            <th>Url</th>
-            <th>Content</th>
-            <th>Image</th>
-        </thead>
+    @*<table>
+
         <tbody>
             @foreach (var item in Model)
             {
@@ -28,18 +72,9 @@
                     <td>@item.Link</td>
                     <td>@Html.Raw(item.FormattedUrl)</td>
                     <td>@Html.Raw(item.Snippet)</td>
-                    @if (item.Image!=null){
-                      <td><img src="@item.Image.Src" style="width: @item.Image.Width;height: @item.Image.Height;" alt="@item.Title"></td>
-                    }
+                   
                 </tr>
             }
         </tbody>
-        <tfoot>
-            <th>Title</th>
-            <th>Link</th>
-            <th>Url</th>
-            <th>Content</th>
-            <th>Image</th>
-        </tfoot>
-    </table>
+    </table>*@
 </div>

@@ -3,9 +3,9 @@
     <li>
         <div class="media">
             <a href="@Url.Action("CategoryDetail","Detail", new { categoryName=GetFriendlyTitle(Model.Ins.Name) ,  id=Model.Ins.id,pageTag=routeTable.Get(EntityName.Category,PageType.Detail)})">
-                <a class="pull-left">
+                <div class="pull-left">
                     <i class="circle icofont-street-view"></i>
-                </a>
+                </div>
                 <div class="media-body">
                     <span class="media-meta pull-right">@Model.Power Eşleşme</span>
                     <h4 class="title">

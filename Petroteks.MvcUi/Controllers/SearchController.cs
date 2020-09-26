@@ -41,7 +41,7 @@ namespace Petroteks.MvcUi.Controllers
         {
             var entities = await gcsapi.Search(s);
             ViewBag.SearchKey = s;
-            ViewBag.Data = entities.Count;
+            ViewBag.Data = entities?.Count;
             return entities;
         }
 
@@ -56,7 +56,11 @@ namespace Petroteks.MvcUi.Controllers
                     default:
                         return View("ClassicSearchResultPage", classicSearch(s));
                     case SearchTypeInfo.Google:
-                        return View("GoogleSearchResult", await googleSearch(s));
+                       var googleResponse= await googleSearch(s);
+                        if (googleResponse!=null)
+                            return View("GoogleSearchResult", googleResponse);
+                        else
+                        return View("ClassicSearchResultPage", classicSearch(s));
                 }
             }
             else{

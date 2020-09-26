@@ -4,9 +4,9 @@
 <li>
     <div class="media">
         <a asp-area="" asp-controller="Detail" asp-action="BlogDetail" asp-route-title="@GetFriendlyTitle(Model.Ins.Title)" asp-route-id="@Model.Ins.id" asp-route-blogPageName="@routeTable.Get(EntityName.Blog,PageType.Detail)">
-            <a class="pull-left">
+            <div class="pull-left">
                 <i class="circle icofont-street-view"></i>
-            </a>
+            </div>
             <div class="media-body">
                 <span class="media-meta pull-right">@Model.Power Eşleşme</span>
                 <h4 class="title">

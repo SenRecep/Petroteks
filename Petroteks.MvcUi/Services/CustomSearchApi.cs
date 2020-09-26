@@ -31,8 +31,16 @@ namespace GCSAPI
 
         private async Task<dynamic> post()
         {
-            var data = await client.GetStringAsync(link);
-            return JsonConvert.DeserializeObject(data);
+            try
+            {
+                var data = await client.GetStringAsync(link);
+                return JsonConvert.DeserializeObject(data);
+            }
+            catch 
+            {
+                return null;
+            }
+         
         }
         private void entityMapping(dynamic items)
         {
@@ -42,19 +50,24 @@ namespace GCSAPI
         }
         private void startIndexIncrement(dynamic nextPage) => this.startIndex = (int)nextPage?[0]?.startIndex;
 
-        private async Task search()
+        private async Task<bool> search()
         {
             linkInit();
             var data = await post();
-            var nextPage = data.queries.nextPage;
-            if (nextPage != null)
+            if (data!=null)
             {
-                startIndexIncrement(nextPage);
-                entityMapping(data.items);
-                await search();
+                var nextPage = data.queries.nextPage;
+                if (nextPage != null)
+                {
+                    startIndexIncrement(nextPage);
+                    entityMapping(data.items);
+                    await search();
+                }
+                else if (data.items != null)
+                    entityMapping(data.items);
+                return true;
             }
-            else if (data.items != null)
-                entityMapping(data.items);
+            return false;
         }
 
         #endregion
@@ -78,7 +91,8 @@ namespace GCSAPI
             this.q = s;
             entities = new List<GcsEntity>();
             startIndex = 1;
-            await search();
+            if (await search()==false)
+                return null;
             return entities;
         }
 

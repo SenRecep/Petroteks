@@ -8,10 +8,7 @@
     ViewData["Title"] = Model.CurrentCategory.Name;
     ViewData["Description"] = Model.CurrentCategory.Description;
     ViewData["Keywords"] = Model.CurrentCategory.Keywords;
-
-    //"-" + Model.CurrentPage +
-    ViewData["MetaTags"] = $"<meta name='twitter:card' content='summary' /> <meta name='twitter:site' content='{CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentCategory.id + "'/> <meta name='twitter:creator' content='@Petroteks' /> <meta property='og:title' content='" + Model.CurrentCategory.Name + "'> <meta property='og:type' content='website'> <meta property='og:description' content='" + Model.CurrentCategory.Description + "'> <meta property='og:image' content='" + @CurrentWebsite.Name + "/CategoryImages/" + Model.CurrentCategory.PhotoPath + "'> <meta property='og:url' content='{CurrentWebsite.Name}/" + Model.CurrentCategory.Name.Replace(" ", "-") + "-" + Model.CurrentCategory.id + "'/> <meta property='og:title' content='" + Model.CurrentCategory.Name + "' />";
-    ViewData["Keywords"] = "" + Model.CurrentCategory.Keywords;
+    ViewData["MetaTags"] = Model.CurrentCategory.MetaTags;
 }
  
 

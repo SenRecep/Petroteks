@@ -24,7 +24,7 @@ namespace Petroteks.MvcUi.Controllers
             blogService = serviceProvider.GetService<IBlogService>();
             routeTable = serviceProvider.GetService<IRouteTable>();
         }
-
+         
         [Route("Kategori-Detay/{categoryName}-{page:int}-{category:int}")]
         public IActionResult CategoryDetailOld(string categoryName, int page = 1, int category = 0)
         {
@@ -75,7 +75,13 @@ namespace Petroteks.MvcUi.Controllers
         [HttpGet]
         public IActionResult ProductDetailOld(int id, string produtname)
         {
-            return RedirectToAction("ProductDetail", "Detail", new { area = "", pageTag = routeTable.Get(EntityName.Product, PageType.Detail), id = id, produtname = produtname });
+            return RedirectToAction("ProductDetail", "Detail", 
+                new {
+                    area = "",
+                    pageTag = routeTable.Get(EntityName.Product, PageType.Detail),
+                    id = id,
+                    produtname = produtname 
+                });
         }
         [Route("{pageTag}/{id:int}/{produtname}")]
         [HttpGet]

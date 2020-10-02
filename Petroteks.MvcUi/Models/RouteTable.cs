@@ -99,25 +99,23 @@ namespace Petroteks.MvcUi.Models
         public string Get(EntityName entityName, PageType pageType, string langCode)
         {
             if (IsUnLoaded)
-            {
                 Load();
-                return Get(entityName, pageType, langCode);
-            }
-            else
-            {
-                return RouteTableElements?.FirstOrDefault(x =>
-                   x.EntityName == entityName &&
-                   x.LanguageKeyCode == langCode &&
-                   x.PageType == pageType)?.Content;
-            }
+
+            return RouteTableElements?.FirstOrDefault(x =>
+               x.EntityName == entityName &&
+               x.LanguageKeyCode == langCode &&
+               x.PageType == pageType)?.Content;
         }
 
         public bool Exists(string content, EntityName entityName, PageType pageType)
         {
-            return RouteTableElements.FirstOrDefault(x =>
-            x.Content.Equals(content, StringComparison.CurrentCultureIgnoreCase) &&
-            x.EntityName.Equals(entityName) &&
-            x.PageType.Equals(pageType)) != null;
+            if (IsUnLoaded)
+                Load();
+
+            return RouteTableElements?.FirstOrDefault(x =>
+                    x.Content.Equals(content, StringComparison.CurrentCultureIgnoreCase) &&
+                    x.EntityName.Equals(entityName) &&
+                    x.PageType.Equals(pageType)) != null;
 
         }
     }

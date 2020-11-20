@@ -1,7 +1,7 @@
 ﻿<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
   <url>
     <loc>https://petroteks.com</loc>
-    <lastmod>2020-07-07T05:44:08+03:00</lastmod>
+    <lastmod>2020-09-29T15:28:02+03:00</lastmod>
   </url>
   <url>
     <loc>https://petroteks.com/Hakimizda</loc>
@@ -13,6 +13,9 @@
   </url>
   <url>
     <loc>https://petroteks.com/sondaj-kopugu-nedir.html</loc>
+  </url>
+  <url>
+    <loc>https://petroteks.com/Blog-Detay/3/sondaj-kimyasallari</loc>
   </url>
   <url>
     <loc>https://petroteks.com/Bloglar.html</loc>
@@ -251,11 +254,11 @@
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <loc>https://petroteks.com/Urun/20/polythin</loc>
-    <lastmod>2020-04-29T16:17:45+03:00</lastmod>
+    <lastmod>2020-09-26T12:41:40+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <loc>https://petroteks.com/Urun-Detay/polythin-20</loc>
-    <lastmod>2020-04-29T16:17:45+03:00</lastmod>
+    <lastmod>2020-09-26T12:41:40+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <loc>https://petroteks.com/Urun/26/sondaj-kopugu</loc>
@@ -380,6 +383,10 @@
   <url>
     <loc>https://petroteks.com/Blog/Blog-Detay/1/sondaj-kopugu-nedir</loc>
     <lastmod>2020-05-26T14:03:43+03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://petroteks.com/Blog/Blog-Detay/2/sondaj-kimyasallari</loc>
+    <lastmod>2020-09-29T18:54:21+03:00</lastmod>
   </url>
   <url xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <loc>https://petroteks.com/Category/Category-Detail/37/root</loc>

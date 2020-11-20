@@ -350,7 +350,12 @@ namespace Petroteks.MvcUi.Controllers
                         xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("SondajKopugu", "Home")}");
                         xtr.WriteEndElement();
                     }
-
+                    if (siteUrl.Equals("https://petroteks.com"))
+                    {
+                        xtr.WriteStartElement("url");
+                        xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("Sondajkim", "Home")}");
+                        xtr.WriteEndElement();
+                    }
                     xtr.WriteStartElement("url");
                     xtr.WriteElementString("loc", $"{siteUrl}{Url.Action("PetroBlog", "Home", new { blogPageName = routeTable.Get(EntityName.Blog, PageType.List) })}");
                     xtr.WriteEndElement();

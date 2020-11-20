@@ -94,6 +94,12 @@ namespace Petroteks.MvcUi.Controllers
         {
             return View();
         }
+        
+        [Route("Blog-Detay/3/sondaj-kimyasallari")]
+        public IActionResult Sondajkim()
+        {
+            return View();
+        }
         [Route("Hakimizda")]
         public IActionResult AboutUs()
         {

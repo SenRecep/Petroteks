@@ -1,0 +1,26 @@
+﻿@inject IWebsiteCookieService websiteCookieService
+@{
+    Website CurrentWebsite = websiteCookieService.Get("CurrentWebsite");
+}
+@{
+    ViewData["Title"] = "Sondaj Kimyasalları ve Özellikleri | Petroteks";
+    ViewData["Description"] = "Sondaj kimyasalları, sondaj kuyularının delinmesinde hız, sürtünme etkisini dengelemeye yardımcı olmak için kullanılan kimyasallardır.";
+    ViewData["Keywords"] = "Sondaj kimyasalları, Sondaj Kimyasalları Fiyatları, Sondaj Akışkanları Sondaj Çamuru"; 
+}
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-6">
+                <div class="about-img"><img alt="Sondaj Kimyasalları" src="../UpLoadImages/petroteks ürün 1.png" style="width: 100%; height: 100%;"></div>
+            </div>
+
+            <div class="col-lg-7 col-md-6">
+                <div class="about-content">
+                    <h2>Sondaj Kimyasalları</h2>
+
+                    <p><strong>Sondaj Kimyasalları </strong>Sondaj çamuru olarak da adlandırılan sondaj kimyasalları (sondaj akışkanları) , sondaj kuyularının delinmesine yardımcı olmak için kullanılır. Genellikle petrol ve doğal gaz kuyularının delinmesinde ve maden arama sondajlarında kullanılırken, su kuyuları, tünel, zemin etüdü, forekazık işlemleri gibi sondajlar için de kullanılır. Sondaj çamurunun işlevlerinden biri, kesintileri delikten çıkarmaktır. Sondaj kimyasalının üç ana kategorisi şunlardır: dağılmış ve dağılmamış su bazlı çamurlar (DB); genellikle petrol bazlı çamurlar (OB'ler) olarak adlandırılan susuz çamurlar; ve içinde çok çeşitli gazların kullanılabildiği gazlı sondaj kimyasalı. Biçimlendiricilerinin yanı sıra, bunlar çeşitli petrol ve gaz oluşumlarını delmek için uygun polimer ve kil katkı maddeleri ile birlikte kullanılır. Sondaj sıvılarının ana işlevleri, formasyon akışkanlarının kuyu deliğine girmesini önlemek için hidrostatik basınç sağlamak, sondaj sırasında matkap ucunu soğutmak ve temiz tutmak, sondaj kesimleri yapmak ve sondaj sırasında kesintileri kuyu dışına çıkarmak ve sondaj duraklatıldığında sondaj kesintilerini askıya almaktır.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,27 +1,42 @@
 using System;
+using System.IO.Compression;
+using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+
 using GCSAPI;
+
+using ImageMagick;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Concreate;
 using Petroteks.Dal.Abstract;
 using Petroteks.Dal.Concreate.EntityFramework;
-using Petroteks.MvcUi.Constraints;
+using Petroteks.Entities.Concreate;
+using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
+
+using Smidge;
+using Smidge.Cache;
+using Smidge.Options;
 
 namespace Petroteks.MvcUi
 {
     public class Startup
     {
         private readonly string MyAllowSpecificOrigins = "MyPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -99,7 +114,13 @@ namespace Petroteks.MvcUi
 
             services.Configure<CustomSearchSetting>(Configuration.GetSection("CustomSearchSetting"));
 
+            services.Configure<Language>(Configuration.GetSection("DefaultLanguage"));
+
             services.AddHttpClient<CustomSearchApi>();
+
+            services.AddSingleton<ImageOptimizer>();
+
+            services.AddHostedService<ExistingImageOptimizer>();
 
             //services.AddDbContext<PetroteksDbContext>(options =>
             //    options.UseSqlServer(
@@ -120,14 +141,50 @@ namespace Petroteks.MvcUi
             });
 
             services.AddSession();
+
+            services.AddScoped<ICacheService, CacheManager>();
             services.AddMemoryCache();
             services.AddDistributedMemoryCache();
 
+            services.AddResponseCaching();
+
             services.AddRazorPages();
-            IMvcBuilder mvcBuilder = services.AddControllersWithViews();
+
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();
+                options.MimeTypes =
+                    ResponseCompressionDefaults.MimeTypes.Concat(
+                        new[] { "image/svg+xml" });
+            });
+
+
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
+
+            services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
+
+
+            services.AddSmidge(Configuration.GetSection("Smidge"));
+
+            IMvcBuilder mvcBuilder = services.AddControllersWithViews(opts =>
+            {
+                //[ResponseCache(CacheProfileName = “BasicCache”)]
+                opts.CacheProfiles.Add("BasicCache", new CacheProfile
+                {
+                    Duration = (int)TimeSpan.FromMinutes(30).TotalSeconds
+                });
+            });
 #if DEBUG
             mvcBuilder.AddRazorRuntimeCompilation();
 #endif
+
 
 
             services.Configure<IISServerOptions>(options =>
@@ -176,13 +233,45 @@ namespace Petroteks.MvcUi
 
             app.UseCookiePolicy();
 
+            app.UseResponseCaching();
+
+            app.UseResponseCompression();
+
             app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
             app.UseSession();
 
+
             //var routeTable = serviceProvider.GetService<IRouteTable>();
+
+
+
+            BundleEnvironmentOptions bundleEnvironmentOptions = BundleEnvironmentOptions.Create().ForDebug(opts =>
+                       opts.EnableCompositeProcessing()
+                       .EnableFileWatcher()
+                       .SetCacheBusterType<AppDomainLifetimeCacheBuster>()
+                       .CacheControlOptions(enableEtag: false, cacheControlMaxAge: 0)
+                    ).Build();
+
+            app.UseSmidge(manager =>
+            {
+                manager.CreateJs("layout-login-js",
+                    "~/Admin/assets/libs/jquery/dist/jquery.min.js",
+                    "~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ",
+                    "~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js",
+                    "~/Admin/dist/js/notify.js")
+                .WithEnvironmentOptions(bundleEnvironmentOptions);
+
+                manager.CreateCss("layout-login-css",
+                  "~/Admin/dist/css/style.min.css")
+                .WithEnvironmentOptions(bundleEnvironmentOptions);
+
+
+
+
+            });
 
             app.UseEndpoints(endpoints =>
             {

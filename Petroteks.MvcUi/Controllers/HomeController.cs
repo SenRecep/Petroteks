@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Helpers;
 using Petroteks.Entities.ComplexTypes;
@@ -11,6 +14,7 @@ using Petroteks.MvcUi.Areas.Admin.Models;
 using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
+using Petroteks.MvcUi.StringInfos;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -21,15 +25,12 @@ namespace Petroteks.MvcUi.Controllers
         private readonly IPrivacyPolicyObjectService privacyPolicyObjectService;
         private readonly IBlogService blogService;
         private readonly ILanguageService languageService;
-        private readonly ICategoryService categoryService;
         private readonly IDynamicPageService dynamicPageService;
-        private readonly ILanguageCookieService languageCookieService;
-        private readonly IProductService productService;
         private readonly IUI_ContactService uI_ContactService;
         private readonly IEmailService emailService;
         private readonly IRouteTable routeTable;
+        private readonly ICacheService cacheService;
 
-        private readonly UrlControlHelper urlControlHelper;
 
         public HomeController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
@@ -37,26 +38,22 @@ namespace Petroteks.MvcUi.Controllers
             privacyPolicyObjectService = serviceProvider.GetService<IPrivacyPolicyObjectService>();
             blogService = serviceProvider.GetService<IBlogService>();
             languageService = serviceProvider.GetService<ILanguageService>();
-            categoryService = serviceProvider.GetService<ICategoryService>();
             dynamicPageService = serviceProvider.GetService<IDynamicPageService>();
-            languageCookieService = serviceProvider.GetService<ILanguageCookieService>();
-            productService = serviceProvider.GetService<IProductService>();
             emailService = serviceProvider.GetService<IEmailService>();
             uI_ContactService = serviceProvider.GetService<IUI_ContactService>();
             mainPageService = serviceProvider.GetService<IMainPageService>();
-            urlControlHelper = serviceProvider.GetService<UrlControlHelper>();
             routeTable = serviceProvider.GetService<IRouteTable>();
+            cacheService = serviceProvider.GetService<ICacheService>();
         }
 
         [Route("")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            MainPage mainPage;
-            mainPage = mainPageService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
-            if (mainPage == null)
-            {
-                return PreparingPage();
-            }
+            MainPage mainPage = await cacheService.GetAsync($"{CacheInfo.MainPage}-{CurrentWebsite.id}-{CurrentLanguage.id}", () =>
+               mainPageService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id)
+           );
+
+            if (mainPage == null) return PreparingPage();
 
             return View(new MainPageViewModel()
             {
@@ -64,9 +61,11 @@ namespace Petroteks.MvcUi.Controllers
             });
         }
         [Route("Sayfalar/{pageName}-{id:int}")]
-        public IActionResult DynamicPageView(int id)
+        public async Task<IActionResult> DynamicPageView(int id)
         {
-            DynamicPage dynamicPage = dynamicPageService.Get(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true && x.id == id, CurrentLanguage.id);
+            DynamicPage dynamicPage = await cacheService.GetAsync($"{CacheInfo.DynamicPage}-{id}-{CurrentWebsite.id}-{CurrentLanguage.id}", () =>
+               dynamicPageService.Get(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true && x.id == id, CurrentLanguage.id)
+           );
             if (dynamicPage == null)
             {
                 return PreparingPage();
@@ -74,15 +73,19 @@ namespace Petroteks.MvcUi.Controllers
 
             return View(dynamicPage);
         }
+
+
         [Route("{blogPageName}.html")]
-        public IActionResult PetroBlog(string blogPageName)
+        public async Task<IActionResult> PetroBlog(string blogPageName)
         {
             if (routeTable.Exists(blogPageName, Bll.Concreate.EntityName.Blog, Bll.Concreate.PageType.List))
             {
-                ICollection<Blog> blogs = blogService
-               .GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id)
-               .OrderByDescending(x => x.Priority)
-               .ThenBy(x => x.CreateDate).ToList();
+                ICollection<Blog> blogs = await cacheService.GetAsync($"{CacheInfo.OrderedBlogs}-{CurrentWebsite.id}-{CurrentLanguage.id}", () =>
+                 blogService
+                   .GetMany(x => x.WebSiteid == CurrentWebsite.id && x.IsActive == true, CurrentLanguage.id)
+                   .OrderByDescending(x => x.Priority)
+                   .ThenBy(x => x.CreateDate).ToList()
+                );
                 return View(blogs);
             }
             return NotFoundPage();
@@ -94,28 +97,29 @@ namespace Petroteks.MvcUi.Controllers
         {
             return View();
         }
-        
+
         [Route("Blog-Detay/3/sondaj-kimyasallari")]
         public IActionResult Sondajkim()
         {
             return View();
         }
         [Route("Hakimizda")]
-        public IActionResult AboutUs()
+        public async Task<IActionResult> AboutUs()
         {
-            AboutUsObject aboutUsObject;
-            aboutUsObject = aboutUsObjectService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
+            AboutUsObject aboutUsObject = await cacheService.GetAsync($"{CacheInfo.AboutUs}-{CurrentWebsite.id}-{CurrentLanguage.id}", () =>
+             aboutUsObjectService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id)
+         );
             if (aboutUsObject == null)
-            {
                 return PreparingPage();
-            }
 
             return View(aboutUsObject);
         }
         [Route("Iletisim")]
-        public IActionResult Contact()
+        public async Task<IActionResult> Contact()
         {
-            UI_Contact uI_Contact = uI_ContactService.Get(x => x.IsActive == true && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
+            UI_Contact uI_Contact = await cacheService.GetAsync($"{CacheInfo.Contact}-{CurrentWebsite.id}-{CurrentLanguage.id}", () =>
+                uI_ContactService.Get(x => x.IsActive == true && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id)
+        );
             if (uI_Contact == null)
             {
                 return PreparingPage();
@@ -124,16 +128,17 @@ namespace Petroteks.MvcUi.Controllers
             return View(uI_Contact);
         }
         [Route("Gizlilik-Politikasi")]
-        public IActionResult PrivacyPolicy()
+        public async Task<IActionResult> PrivacyPolicy()
         {
-            PrivacyPolicyObject gizlilikpolitikasi;
-            gizlilikpolitikasi = privacyPolicyObjectService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
-            if (gizlilikpolitikasi == null)
+            PrivacyPolicyObject privacyPolicy = await cacheService.GetAsync($"{CacheInfo.PrivacyPolicy}-{CurrentWebsite.id}-{CurrentLanguage.id}", () =>
+                privacyPolicyObjectService.Get(x => x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id)
+        );
+            if (privacyPolicy == null)
             {
                 return PreparingPage();
             }
 
-            return View(gizlilikpolitikasi);
+            return View(privacyPolicy);
         }
 
         [HttpPost]

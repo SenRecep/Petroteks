@@ -12,7 +12,7 @@ namespace Petroteks.MvcUi.Services
         {
             actionContextAccessor = serviceProvider.GetService<IActionContextAccessor>();
         }
-        public (string area, string controller, string action) getCurrnetPage()
+        public (string area, string controller, string action) GetCurrnetPage()
         {
             RouteData rd = actionContextAccessor.ActionContext.RouteData;
             string controller = rd.Values["controller"].ToString();

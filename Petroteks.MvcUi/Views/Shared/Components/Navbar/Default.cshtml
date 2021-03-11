@@ -4,7 +4,7 @@
 @inject IRouteTable routeTable
 @{
     Language CurrentLanguage = languageCookieService.Get("CurrentLanguage");
-    var currentPage = urlControlHepler.getCurrnetPage();
+    var currentPage = urlControlHepler.GetCurrnetPage();
     //var url = Url.Action($"{currentPage.action}", $"{currentPage.controller}", new { area = $"{currentPage.area}" });
 }
 

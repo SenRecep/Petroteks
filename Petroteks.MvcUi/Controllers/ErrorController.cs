@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
 using System;
 using System.Threading;
 
@@ -8,12 +10,20 @@ namespace Petroteks.MvcUi.Controllers
 {
     public class ErrorController : Controller
     {
+        private readonly ILogger<ErrorController> logger;
+
+        public ErrorController(ILogger<ErrorController> logger)
+        {
+            this.logger = logger;
+        }
 
         [Route("Error/500")]
         public IActionResult Error500()
         {
             IExceptionHandlerPathFeature exceptionFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
 
+            logger.LogError($"{exceptionFeature.Error.Message} {exceptionFeature.Path}");
+            logger.LogWarning(exceptionFeature.Error.StackTrace);
             if (exceptionFeature != null)
             {
                 ViewBag.ErrorMessage = exceptionFeature.Error.Message;

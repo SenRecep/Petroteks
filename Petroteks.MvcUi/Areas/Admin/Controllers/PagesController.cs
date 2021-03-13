@@ -223,24 +223,13 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return View(new ProductViewModel());
         }
 
-
         [AdminAuthorize]
         [HttpPost]
         [Route("Urun-Olustur")]
         public IActionResult ProductAdd(ProductViewModel model)
         {
-
             if (ModelState.IsValid)
             {
-                string uniqueFileName = null;
-                if (model.Image != null)
-                {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "ProductImages");
-                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
-                    imageOptimizer.Optimize(filePath, logger);
-                }
                 Category category;
                 category = categoryService.Get(x => x.id == model.Categoryid, CurrentLanguage.id);
                 if (category == null && model.Categoryid == 0)
@@ -261,6 +250,22 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     }
                     category = rootCategory;
                 }
+                else if(category==null && model.Categoryid!=0)
+                {
+                    ModelState.AddModelError("","Girdiğiz kategori kimliği ile bir kategori bulunamadı");
+                    return View(model);
+                }
+
+                string uniqueFileName = null;
+                if (model.Image != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "ProductImages");
+                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                    imageOptimizer.Optimize(filePath, logger);
+                }
+
                 Product product = new Product()
                 {
                     SupTitle = model.SupTitle,
@@ -279,6 +284,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 };
                 productService.Add(product);
                 productService.Save();
+                cacheService.Remove($"{CacheInfo.SubProducts}-{category.id}-{category.Languageid.Value}");
+                cacheService.Remove($"{CacheInfo.OrderedProducts}-{CurrentWebsite.id}-{CurrentLanguage.id}");
             }
             return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
@@ -354,6 +361,9 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
                     productService.Update(findedProduct);
                     productService.Save();
+                    cacheService.Remove($"{CacheInfo.SubProducts}-{category.id}-{category.Languageid.Value}");
+                    cacheService.Remove($"{CacheInfo.OrderedProducts}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+                    cacheService.Remove($"{CacheInfo.Product}-{findedProduct.id}");
                 }
 
             }
@@ -384,6 +394,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 typeof(Product).GetProperties().Where(x => x.Name != "id").ToList().ForEach(item => item.SetValue(right, item.GetValue(left)));
                 productService.Update(right);
                 productService.Save();
+                var lang = right.Category?.Languageid.Value ?? CurrentLanguageId;
+                cacheService.Remove($"{CacheInfo.SubProducts}-{right.Categoryid}-{lang}");
+                cacheService.Remove($"{CacheInfo.OrderedProducts}-{CurrentWebsite.id}-{lang}");
+                cacheService.Remove($"{CacheInfo.Product}-{right.id}");
             }
 
         }
@@ -404,6 +418,9 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             {
                 productService.Delete(product);
                 productService.Save();
+                cacheService.Remove($"{CacheInfo.SubProducts}-{category.id}-{category.Languageid.Value}");
+                cacheService.Remove($"{CacheInfo.OrderedProducts}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+                cacheService.Remove($"{CacheInfo.Product}-{product.id}");
             }
             return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
@@ -444,6 +461,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedBlog.UpdateUserid = LoginUser.id;
                     findedBlog.IsActive = model.IsActive;
                     findedBlog.Language = CurrentLanguage;
+                    findedBlog.Name = model.Name;
                     findedBlog.WebSite = CurrentWebsite;
                     findedBlog.Priority = model.Priority;
                     if (!string.IsNullOrWhiteSpace(uniqueFileName))
@@ -455,6 +473,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedBlog = new Blog()
                     {
                         Title = model.Title,
+                        Name=model.Name,
                         PhotoPath = uniqueFileName,
                         Description = model.Description,
                         MetaTags = model.MetaTags,
@@ -532,6 +551,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedBlog.UpdateDate = DateTime.UtcNow;
                     findedBlog.UpdateUserid = LoginUser.id;
                     findedBlog.IsActive = model.IsActive;
+                    findedBlog.Name = model.Name;
                     findedBlog.Language = CurrentLanguage;
                     findedBlog.WebSite = CurrentWebsite;
                     findedBlog.Priority = model.Priority;
@@ -544,6 +564,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedBlog = new Blog()
                     {
                         Title = model.Title,
+                        Name=model.Name,
                         PhotoPath = uniqueFileName,
                         Description = model.Description,
                         MetaTags = model.MetaTags,
@@ -582,6 +603,42 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         {
 
             return View(new CategoryViewModel());
+        }
+        [AdminAuthorize]
+        [HttpPost]
+        [Route("Kategori-Olustur")]
+        public IActionResult CategoryAdd(CategoryViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName = null;
+                if (model.Image != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "CategoryImages");
+                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                    imageOptimizer.Optimize(filePath, logger);
+                }
+                Category category = new Category()
+                {
+                    Name = model.Name,
+                    Content = model.Content,
+                    Description = model.Description,
+                    Keywords = model.Keywords,
+                    MetaTags = model.MetaTags,
+                    Parentid = model.ParentId,
+                    PhotoPath = uniqueFileName,
+                    WebSite = CurrentWebsite,
+                    CreateUserid = LoginUser.id,
+                    Language = CurrentLanguage,
+                    Priority = model.Priority
+                };
+                categoryService.Add(category);
+                categoryService.Save();
+                cacheService.Remove($"{CacheInfo.OrderedCategories}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+            }
+            return RedirectToAction("CategoryAdd", "Pages", new { area = "Admin" });
         }
 
         [AdminAuthorize]
@@ -632,47 +689,14 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedCategory.Language = CurrentLanguage;
                     categoryService.Update(findedCategory);
                     categoryService.Save();
+                    cacheService.Remove($"{CacheInfo.OrderedCategories}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+                    cacheService.Remove($"{CacheInfo.Category}-{findedCategory.id}-{CurrentWebsite.id}");
                 }
 
             }
             return RedirectToAction("CategoryAdd", "Pages", new { area = "Admin" });
         }
 
-        [AdminAuthorize]
-        [HttpPost]
-        [Route("Kategori-Olustur")]
-        public IActionResult CategoryAdd(CategoryViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                string uniqueFileName = null;
-                if (model.Image != null)
-                {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "CategoryImages");
-                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
-                    imageOptimizer.Optimize(filePath, logger);
-                }
-                Category category = new Category()
-                {
-                    Name = model.Name,
-                    Content = model.Content,
-                    Description = model.Description,
-                    Keywords = model.Keywords,
-                    MetaTags = model.MetaTags,
-                    Parentid = model.ParentId,
-                    PhotoPath = uniqueFileName,
-                    WebSite = CurrentWebsite,
-                    CreateUserid = LoginUser.id,
-                    Language = CurrentLanguage,
-                    Priority = model.Priority
-                };
-                categoryService.Add(category);
-                categoryService.Save();
-            }
-            return RedirectToAction("CategoryAdd", "Pages", new { area = "Admin" });
-        }
 
         [AdminAuthorize]
         [HttpGet]
@@ -684,6 +708,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             {
                 categoryService.Delete(category);
                 categoryService.Save();
+                cacheService.Remove($"{CacheInfo.OrderedCategories}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+                cacheService.Remove($"{CacheInfo.Category}-{category.id}-{CurrentWebsite.id}");
             }
             return RedirectToAction("CategoryAdd", "Pages", new { area = "Admin" });
         }

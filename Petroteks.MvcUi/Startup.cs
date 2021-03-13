@@ -335,17 +335,17 @@ namespace Petroteks.MvcUi
                 toastr.min.css
                  */
 
-                manager.CreateCss("layout-main-css",
-                     "~/NewLayout/css/materialize.min.css",
-                           "~/NewLayout/lib/font-awesome/css/font-awesome.min.css",
-                           "~/NewLayout/lib/animate/animate.min.css",
-                           "~/NewLayout/lib/ionicons/css/ionicons.min.css",
-                           "~/NewLayout/lib/owlcarousel/assets/owl.theme.default.min.css",
-                           "~/NewLayout/lib/owlcarousel/assets/owl.carousel.min.css",
-                           "~/NewLayout/lib/lightbox/css/lightbox.min.css",
-                           "~/NewLayout/vendor/icofont/icofont.min.css",
-                           "~/NewLayout/css/style.css")
-                .WithEnvironmentOptions(bundleEnvironmentOptions);
+                //manager.CreateCss("layout-main-css",
+                //     "~/NewLayout/css/materialize.min.css",
+                //           "~/NewLayout/lib/font-awesome/css/font-awesome.min.css",
+                //           "~/NewLayout/lib/animate/animate.min.css",
+                //           "~/NewLayout/lib/ionicons/css/ionicons.min.css",
+                //           "~/NewLayout/lib/owlcarousel/assets/owl.theme.default.min.css",
+                //           "~/NewLayout/lib/owlcarousel/assets/owl.carousel.min.css",
+                //           "~/NewLayout/lib/lightbox/css/lightbox.min.css",
+                //           "~/NewLayout/vendor/icofont/icofont.min.css",
+                //           "~/NewLayout/css/style.css")
+                //.WithEnvironmentOptions(bundleEnvironmentOptions);
 
                 #endregion
 

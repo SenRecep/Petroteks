@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Mvc;
+
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Concreate;
 using Petroteks.Entities.Concreate;
 using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Petroteks.MvcUi.Services;
+using Petroteks.MvcUi.StringInfos;
 
 namespace Petroteks.MvcUi.Controllers
 {
@@ -16,6 +21,7 @@ namespace Petroteks.MvcUi.Controllers
         private readonly ICategoryService categoryService;
         private readonly IBlogService blogService;
         private readonly IRouteTable routeTable;
+        private readonly ICacheService cacheService;
 
         public DetailController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
@@ -23,6 +29,7 @@ namespace Petroteks.MvcUi.Controllers
             categoryService = serviceProvider.GetService<ICategoryService>();
             blogService = serviceProvider.GetService<IBlogService>();
             routeTable = serviceProvider.GetService<IRouteTable>();
+            cacheService = serviceProvider.GetService<ICacheService>();
         }
          
         [Route("Kategori-Detay/{categoryName}-{page:int}-{category:int}")]
@@ -39,15 +46,22 @@ namespace Petroteks.MvcUi.Controllers
                 });
         }
         [Route("{pageType}/{pageTag}/{id:int}/{categoryName}")]
-        public IActionResult CategoryDetail(string pageType, string pageTag, int id)
+        public async Task<IActionResult> CategoryDetail(string pageType, string pageTag, int id)
         {
             if (routeTable.Exists(pageTag, EntityName.Category, PageType.Detail) && routeTable.Exists(pageType, EntityName.Category, PageType.Normal))
             {
-                Category Category = categoryService.GetAllLanguageCategory(x => x.id == id && x.WebSiteid == CurrentWebsiteId && x.IsActive == true);
+                Category Category = await cacheService.GetAsync($"{CacheInfo.Category}-{id}-{CurrentWebsite.id}", () =>
+                     categoryService.GetAllLanguageCategory(x => x.id == id && x.WebSiteid == CurrentWebsiteId && x.IsActive == true)
+                 );
+
                 if (Category != null)
                 {
-                    List<Category> subCategories = categoryService.GetMany(x => x.WebSite == CurrentWebsite && x.Parentid == Category.id && x.IsActive == true, Category.Languageid.Value).OrderByDescending(x => x.Priority).ToList();
-                    ICollection<Product> products = productService.GetMany(x => x.Categoryid == Category.id && x.IsActive == true, Category.Languageid.Value);
+                    List<Category> subCategories = await cacheService.GetAsync($"{CacheInfo.SubCategoryies}-{id}-{CurrentWebsite.id}-{Category.Languageid.Value}", () =>
+                     categoryService.GetMany(x => x.WebSite == CurrentWebsite && x.Parentid == Category.id && x.IsActive == true, Category.Languageid.Value).OrderByDescending(x => x.Priority).ToList()
+                     );
+                    ICollection<Product> products = await cacheService.GetAsync($"{CacheInfo.SubProducts}-{id}-{Category.Languageid.Value}", () =>
+                      productService.GetMany(x => x.Categoryid == Category.id && x.IsActive == true, Category.Languageid.Value)
+                    );
                     if (Category.Languageid != CurrentLanguage.id)
                     {
                         LoadLanguage(true, Category.Languageid);
@@ -85,14 +99,18 @@ namespace Petroteks.MvcUi.Controllers
         }
         [Route("{pageTag}/{id:int}/{produtname}")]
         [HttpGet]
-        public IActionResult ProductDetail(string pageTag, int id)
+        public async Task<IActionResult> ProductDetail(string pageTag, int id)
         {
             if (routeTable.Exists(pageTag, EntityName.Product, PageType.Detail))
             {
-                Product product = productService.GetAllLanguageProduct(x => x.id == id && x.IsActive == true);
+                Product product = await cacheService.GetAsync($"{CacheInfo.Product}-{id}", () =>
+                     productService.GetAllLanguageProduct(x => x.id == id && x.IsActive == true)
+                 );
                 if (product != null)
                 {
-                    Category category = categoryService.GetAllLanguageCategory(x => x.IsActive && x.WebSiteid == CurrentWebsite.id && x.id == product.Categoryid);
+                    Category category = await cacheService.GetAsync($"{CacheInfo.Category}-product-{id}", () =>
+                          categoryService.GetAllLanguageCategory(x => x.IsActive && x.WebSiteid == CurrentWebsite.id && x.id == product.Categoryid)
+                     );
                     if (category != null)
                     {
                         if (product?.Languageid != CurrentLanguage.id)
@@ -112,11 +130,14 @@ namespace Petroteks.MvcUi.Controllers
         }
 
         [Route("Blog/{blogPageName}/{id:int}/{title}")]
-        public IActionResult BlogDetail(string blogPageName, int id)
+        public async Task<IActionResult> BlogDetail(string blogPageName, int id)
         {
             if (routeTable.Exists(blogPageName, EntityName.Blog, PageType.Detail))
             {
-                Blog findedBlog = blogService.GetAllLanguageBlog(x => x.id == id && x.IsActive == true && x.WebSiteid == CurrentWebsiteId);
+                Blog findedBlog = await cacheService.GetAsync($"{CacheInfo.Blog}-{id}-{CurrentWebsite.id}", () =>
+                    blogService.GetAllLanguageBlog(x => x.id == id && x.IsActive == true && x.WebSiteid == CurrentWebsiteId)
+                );
+
                 if (findedBlog != null)
                 {
 

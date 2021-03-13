@@ -1,10 +1,17 @@
 using Imageflow.Fluent;
+
+using ImageMagick;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
+using Petroteks.MvcUi.ExtensionMethods;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,15 +22,19 @@ namespace Petroteks.Pages
 {
     public class ImageBrowserModel : PageModel
     {
-        public ImageBrowserModel(IConfiguration config, IWebHostEnvironment env)
+        public ImageBrowserModel(IConfiguration config, IWebHostEnvironment env,ImageOptimizer imageOptimizer,ILogger<ImageOptimizer> logger)
         {
             _config = config;
             _env = env;
+            this.imageOptimizer = imageOptimizer;
+            this.logger = logger;
         }
 
         //properties
         private readonly IConfiguration _config;
         private readonly IWebHostEnvironment _env;
+        private readonly ImageOptimizer imageOptimizer;
+        private readonly ILogger<ImageOptimizer> logger;
 
         [BindProperty]
         public string ResizeMessage { get; set; }
@@ -186,7 +197,7 @@ namespace Petroteks.Pages
                 UploadedImageFile.CopyTo(stream);
                 byte[] image = await ResizeImageBytes(stream.ToArray(), 1024, 1024); //make 1024x1024 the largest image size
                 System.IO.File.WriteAllBytes(FileImageFolder + filename, image);
-
+                imageOptimizer.Optimize(FileImageFolder + filename, logger);
                 ImageListValue = filename;
                 await OnPostSelectImageAsync();
             }

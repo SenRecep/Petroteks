@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using ImageMagick;
+
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
 using Petroteks.Bll.Abstract;
 using Petroteks.Entities.ComplexTypes;
 using Petroteks.Entities.Concreate;
@@ -7,6 +11,9 @@ using Petroteks.MvcUi.Areas.Admin.Models;
 using Petroteks.MvcUi.Attributes;
 using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
+using Petroteks.MvcUi.Services;
+using Petroteks.MvcUi.StringInfos;
+
 using System;
 using System.IO;
 using System.Linq;
@@ -25,9 +32,12 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         private readonly IBlogService blogService;
         private readonly IUI_NavbarService uI_NavbarService;
         private readonly IUI_FooterService uI_FooterService;
-        private readonly IUI_ContactService uI_ContactService;
         private readonly ILanguageService languageService;
-        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IWebHostEnvironment hostingEnvironment;
+        private readonly IUI_ContactService uI_ContactService;
+        private readonly ImageOptimizer imageOptimizer;
+        private readonly ILogger<ImageOptimizer> logger;
+        private readonly ICacheService cacheService;
         #endregion
         #region CTOR
 
@@ -41,9 +51,12 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             blogService = serviceProvider.GetService<IBlogService>();
             uI_NavbarService = serviceProvider.GetService<IUI_NavbarService>();
             uI_FooterService = serviceProvider.GetService<IUI_FooterService>();
-            uI_ContactService = serviceProvider.GetService<IUI_ContactService>();
             languageService = serviceProvider.GetService<ILanguageService>();
-            hostingEnvironment = serviceProvider.GetService<IHostingEnvironment>();
+            uI_ContactService = serviceProvider.GetService<IUI_ContactService>();
+            hostingEnvironment = serviceProvider.GetService<IWebHostEnvironment>();
+            cacheService = serviceProvider.GetService<ICacheService>();
+            imageOptimizer = serviceProvider.GetService<ImageOptimizer>();
+            logger = serviceProvider.GetService<ILogger<ImageOptimizer>>();
         }
         #endregion
         #region Pages
@@ -92,6 +105,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 mainPageService.Update(mainPage);
             }
             mainPageService.Save();
+            cacheService.Remove($"{CacheInfo.MainPage}-{CurrentWebsite.id}-{CurrentLanguage.id}");
             return View(mainPage);
         }
 
@@ -138,6 +152,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 aboutUsObjectService.Update(aboutus);
             }
             aboutUsObjectService.Save();
+            cacheService.Remove($"{CacheInfo.AboutUs}-{CurrentWebsite.id}-{CurrentLanguage.id}");
             return View(aboutus);
         }
 
@@ -185,6 +200,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 privacyPolicyObjectService.Update(privacyPage);
             }
             privacyPolicyObjectService.Save();
+            cacheService.Remove($"{CacheInfo.PrivacyPolicy}-{CurrentWebsite.id}-{CurrentLanguage.id}");
             return View(privacyPage);
         }
 
@@ -207,23 +223,13 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             return View(new ProductViewModel());
         }
 
-
         [AdminAuthorize]
         [HttpPost]
         [Route("Urun-Olustur")]
         public IActionResult ProductAdd(ProductViewModel model)
         {
-
             if (ModelState.IsValid)
             {
-                string uniqueFileName = null;
-                if (model.Image != null)
-                {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "ProductImages");
-                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
-                }
                 Category category;
                 category = categoryService.Get(x => x.id == model.Categoryid, CurrentLanguage.id);
                 if (category == null && model.Categoryid == 0)
@@ -244,6 +250,22 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     }
                     category = rootCategory;
                 }
+                else if(category==null && model.Categoryid!=0)
+                {
+                    ModelState.AddModelError("","Girdiğiz kategori kimliği ile bir kategori bulunamadı");
+                    return View(model);
+                }
+
+                string uniqueFileName = null;
+                if (model.Image != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "ProductImages");
+                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                    imageOptimizer.Optimize(filePath, logger);
+                }
+
                 Product product = new Product()
                 {
                     SupTitle = model.SupTitle,
@@ -262,6 +284,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 };
                 productService.Add(product);
                 productService.Save();
+                cacheService.Remove($"{CacheInfo.SubProducts}-{category.id}-{category.Languageid.Value}");
+                cacheService.Remove($"{CacheInfo.OrderedProducts}-{CurrentWebsite.id}-{CurrentLanguage.id}");
             }
             return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
@@ -309,6 +333,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                     model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                    imageOptimizer.Optimize(filePath, logger);
                 }
                 if (findedProduct != null)
                 {
@@ -336,6 +361,9 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
                     productService.Update(findedProduct);
                     productService.Save();
+                    cacheService.Remove($"{CacheInfo.SubProducts}-{category.id}-{category.Languageid.Value}");
+                    cacheService.Remove($"{CacheInfo.OrderedProducts}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+                    cacheService.Remove($"{CacheInfo.Product}-{findedProduct.id}");
                 }
 
             }
@@ -366,6 +394,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 typeof(Product).GetProperties().Where(x => x.Name != "id").ToList().ForEach(item => item.SetValue(right, item.GetValue(left)));
                 productService.Update(right);
                 productService.Save();
+                var lang = right.Category?.Languageid.Value ?? CurrentLanguageId;
+                cacheService.Remove($"{CacheInfo.SubProducts}-{right.Categoryid}-{lang}");
+                cacheService.Remove($"{CacheInfo.OrderedProducts}-{CurrentWebsite.id}-{lang}");
+                cacheService.Remove($"{CacheInfo.Product}-{right.id}");
             }
 
         }
@@ -386,6 +418,9 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             {
                 productService.Delete(product);
                 productService.Save();
+                cacheService.Remove($"{CacheInfo.SubProducts}-{category.id}-{category.Languageid.Value}");
+                cacheService.Remove($"{CacheInfo.OrderedProducts}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+                cacheService.Remove($"{CacheInfo.Product}-{product.id}");
             }
             return RedirectToAction("ProductAdd", "Pages", new { area = "Admin" });
         }
@@ -412,46 +447,50 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.PhotoPath.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                     model.PhotoPath.CopyTo(new FileStream(filePath, FileMode.Create));
+                    imageOptimizer.Optimize(filePath, logger);
                 }
-                Blog blog = new Blog()
-                {
-                    Title = model.Title,
-                    PhotoPath = uniqueFileName,
-                    Description = model.Description,
-                    MetaTags = model.MetaTags,
-                    Keywords = model.Keywords,
-                    Content = model.Content,
-                    CreateUserid = LoginUser.id,
-                    IsActive = model.IsActive,
-                    WebSite = CurrentWebsite,
-                    Language = CurrentLanguage,
-                    Priority = model.Priority
-                };
-                Blog findedBlog = blogService.Get(x => x.Title.Equals(blog.Title) && x.WebSite == CurrentWebsite, CurrentLanguage.id);
+                Blog findedBlog = blogService.Get(x => x.Title.Equals(model.Title) && x.WebSite == CurrentWebsite, CurrentLanguage.id);
                 if (findedBlog != null)
                 {
-                    findedBlog.Description = blog.Description;
-                    findedBlog.MetaTags = blog.MetaTags;
-                    findedBlog.Keywords = blog.Keywords;
-                    findedBlog.Content = blog.Content;
-                    findedBlog.Title = blog.Title;
+                    findedBlog.Description = model.Description;
+                    findedBlog.MetaTags = model.MetaTags;
+                    findedBlog.Keywords = model.Keywords;
+                    findedBlog.Content = model.Content;
+                    findedBlog.Title = model.Title;
                     findedBlog.UpdateDate = DateTime.UtcNow;
-                    findedBlog.UpdateUserid = blog.CreateUserid;
-                    findedBlog.IsActive = blog.IsActive;
+                    findedBlog.UpdateUserid = LoginUser.id;
+                    findedBlog.IsActive = model.IsActive;
                     findedBlog.Language = CurrentLanguage;
-                    findedBlog.Priority = blog.Priority;
-                    if (!string.IsNullOrWhiteSpace(blog.PhotoPath))
-                    {
-                        findedBlog.PhotoPath = blog.PhotoPath;
-                    }
-
+                    findedBlog.Name = model.Name;
+                    findedBlog.WebSite = CurrentWebsite;
+                    findedBlog.Priority = model.Priority;
+                    if (!string.IsNullOrWhiteSpace(uniqueFileName))
+                        findedBlog.PhotoPath = uniqueFileName;
                     blogService.Update(findedBlog);
                 }
                 else
                 {
-                    blogService.Add(blog);
-                    blogService.Save();
+                    findedBlog = new Blog()
+                    {
+                        Title = model.Title,
+                        Name=model.Name,
+                        PhotoPath = uniqueFileName,
+                        Description = model.Description,
+                        MetaTags = model.MetaTags,
+                        Keywords = model.Keywords,
+                        Content = model.Content,
+                        CreateUserid = LoginUser.id,
+                        CreateDate = DateTime.UtcNow,
+                        IsActive = model.IsActive,
+                        WebSite = CurrentWebsite,
+                        Language = CurrentLanguage,
+                        Priority = model.Priority
+                    };
+                    blogService.Add(findedBlog);
                 }
+                blogService.Save();
+                cacheService.Remove($"{CacheInfo.OrderedBlogs}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+                cacheService.Remove($"{CacheInfo.Blog}-{findedBlog.id}-{CurrentWebsite.id}");
             }
             return RedirectToAction("BlogAdd", "Pages", new { area = "Admin" });
         }
@@ -479,6 +518,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             {
                 blog.IsActive = false;
                 blogService.Save();
+                cacheService.Remove($"{CacheInfo.OrderedBlogs}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+                cacheService.Remove($"{CacheInfo.Blog}-{blog.id}-{CurrentWebsite.id}");
                 return Json("Başarılı");
             }
             return Json("Basarisiz");
@@ -490,8 +531,16 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                string uniqueFileName = null;
+                if (model.PhotoPath != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "BlogImages");
+                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.PhotoPath.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.PhotoPath.CopyTo(new FileStream(filePath, FileMode.Create));
+                    imageOptimizer.Optimize(filePath, logger);
+                }
                 Blog findedBlog = blogService.Get(m => m.id == id, CurrentLanguage.id);
-
                 if (findedBlog != null)
                 {
                     findedBlog.Description = model.Description;
@@ -502,29 +551,37 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedBlog.UpdateDate = DateTime.UtcNow;
                     findedBlog.UpdateUserid = LoginUser.id;
                     findedBlog.IsActive = model.IsActive;
+                    findedBlog.Name = model.Name;
                     findedBlog.Language = CurrentLanguage;
+                    findedBlog.WebSite = CurrentWebsite;
                     findedBlog.Priority = model.Priority;
+                    if (!string.IsNullOrWhiteSpace(uniqueFileName))
+                        findedBlog.PhotoPath = uniqueFileName;
                     blogService.Update(findedBlog);
-                    blogService.Save();
                 }
-
                 else
                 {
-                    Blog blog = new Blog()
+                    findedBlog = new Blog()
                     {
                         Title = model.Title,
+                        Name=model.Name,
+                        PhotoPath = uniqueFileName,
                         Description = model.Description,
                         MetaTags = model.MetaTags,
                         Keywords = model.Keywords,
                         Content = model.Content,
                         CreateUserid = LoginUser.id,
+                        CreateDate = DateTime.UtcNow,
                         IsActive = model.IsActive,
+                        WebSite = CurrentWebsite,
                         Language = CurrentLanguage,
                         Priority = model.Priority
                     };
-                    blogService.Add(blog);
-                    blogService.Save();
+                    blogService.Add(findedBlog);
                 }
+                blogService.Save();
+                cacheService.Remove($"{CacheInfo.OrderedBlogs}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+                cacheService.Remove($"{CacheInfo.Blog}-{findedBlog.id}-{CurrentWebsite.id}");
             }
 
             return RedirectToAction("BlogList", "Pages", new { area = "Admin" });
@@ -547,6 +604,42 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
 
             return View(new CategoryViewModel());
         }
+        [AdminAuthorize]
+        [HttpPost]
+        [Route("Kategori-Olustur")]
+        public IActionResult CategoryAdd(CategoryViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName = null;
+                if (model.Image != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "CategoryImages");
+                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                    imageOptimizer.Optimize(filePath, logger);
+                }
+                Category category = new Category()
+                {
+                    Name = model.Name,
+                    Content = model.Content,
+                    Description = model.Description,
+                    Keywords = model.Keywords,
+                    MetaTags = model.MetaTags,
+                    Parentid = model.ParentId,
+                    PhotoPath = uniqueFileName,
+                    WebSite = CurrentWebsite,
+                    CreateUserid = LoginUser.id,
+                    Language = CurrentLanguage,
+                    Priority = model.Priority
+                };
+                categoryService.Add(category);
+                categoryService.Save();
+                cacheService.Remove($"{CacheInfo.OrderedCategories}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+            }
+            return RedirectToAction("CategoryAdd", "Pages", new { area = "Admin" });
+        }
 
         [AdminAuthorize]
         [HttpGet]
@@ -556,8 +649,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             Category category = categoryService.Get(x => x.id == id && x.WebSiteid == CurrentWebsite.id, CurrentLanguage.id);
             if (category != null)
             {
-                return View("CategoryAdd", new CategoryViewModel() { ParentId = category.Parentid, Name = category.Name, ImagePath = category.PhotoPath,Content=category.Content,Description=category.Description,Keywords=category.Keywords,MetaTags=category.MetaTags });
-            } 
+                return View("CategoryAdd", new CategoryViewModel() { ParentId = category.Parentid, Name = category.Name, ImagePath = category.PhotoPath, Content = category.Content, Description = category.Description, Keywords = category.Keywords, MetaTags = category.MetaTags });
+            }
             return View("CategoryAdd", new CategoryViewModel());
 
         }
@@ -576,6 +669,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                     model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                    imageOptimizer.Optimize(filePath, logger);
                 }
                 if (findedCategory != null)
                 {
@@ -595,46 +689,14 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     findedCategory.Language = CurrentLanguage;
                     categoryService.Update(findedCategory);
                     categoryService.Save();
+                    cacheService.Remove($"{CacheInfo.OrderedCategories}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+                    cacheService.Remove($"{CacheInfo.Category}-{findedCategory.id}-{CurrentWebsite.id}");
                 }
 
             }
             return RedirectToAction("CategoryAdd", "Pages", new { area = "Admin" });
         }
 
-        [AdminAuthorize]
-        [HttpPost]
-        [Route("Kategori-Olustur")]
-        public IActionResult CategoryAdd(CategoryViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                string uniqueFileName = null;
-                if (model.Image != null)
-                {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "CategoryImages");
-                    uniqueFileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + model.Image.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                    model.Image.CopyTo(new FileStream(filePath, FileMode.Create));
-                }
-                Category category = new Category()
-                {
-                    Name = model.Name,
-                    Content = model.Content,
-                    Description = model.Description,
-                    Keywords = model.Keywords,
-                    MetaTags = model.MetaTags,
-                    Parentid = model.ParentId,
-                    PhotoPath = uniqueFileName,
-                    WebSite = CurrentWebsite,
-                    CreateUserid = LoginUser.id,
-                    Language = CurrentLanguage,
-                    Priority = model.Priority
-                };
-                categoryService.Add(category);
-                categoryService.Save();
-            }
-            return RedirectToAction("CategoryAdd", "Pages", new { area = "Admin" });
-        }
 
         [AdminAuthorize]
         [HttpGet]
@@ -646,6 +708,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
             {
                 categoryService.Delete(category);
                 categoryService.Save();
+                cacheService.Remove($"{CacheInfo.OrderedCategories}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+                cacheService.Remove($"{CacheInfo.Category}-{category.id}-{CurrentWebsite.id}");
             }
             return RedirectToAction("CategoryAdd", "Pages", new { area = "Admin" });
         }
@@ -681,6 +745,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                         if (!System.IO.File.Exists(filePath))
                         {
                             model.IconCode.CopyTo(new FileStream(filePath, FileMode.Create));
+                            imageOptimizer.Optimize(filePath, logger);
                         }
                     }
                     language = new Language()
@@ -694,6 +759,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                     };
                     languageService.Add(language);
                     languageService.Save();
+                    cacheService.Remove($"{CacheInfo.Languages}");
                 }
             }
 
@@ -744,6 +810,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 uI_NavbarService.Update(navbar);
             }
             uI_NavbarService.Save();
+            cacheService.Remove($"{CacheInfo.Navbar}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+
             return View(navbar);
         }
 
@@ -784,6 +852,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 uI_FooterService.Update(footer);
             }
             uI_FooterService.Save();
+            cacheService.Remove($"{CacheInfo.Footer}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+
             return View(footer);
         }
         [AdminAuthorize]
@@ -823,6 +893,8 @@ namespace Petroteks.MvcUi.Areas.Admin.Controllers
                 uI_ContactService.Update(contact);
             }
             uI_ContactService.Save();
+            cacheService.Remove($"{CacheInfo.Contact}-{CurrentWebsite.id}-{CurrentLanguage.id}");
+
             return View(contact);
         }
         #endregion

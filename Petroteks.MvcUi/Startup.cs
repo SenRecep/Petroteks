@@ -1,27 +1,42 @@
 using System;
+using System.IO.Compression;
+using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+
 using GCSAPI;
+
+using ImageMagick;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using Petroteks.Bll.Abstract;
 using Petroteks.Bll.Concreate;
 using Petroteks.Dal.Abstract;
 using Petroteks.Dal.Concreate.EntityFramework;
-using Petroteks.MvcUi.Constraints;
+using Petroteks.Entities.Concreate;
+using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
+
+using Smidge;
+using Smidge.Cache;
+using Smidge.Options;
 
 namespace Petroteks.MvcUi
 {
     public class Startup
     {
         private readonly string MyAllowSpecificOrigins = "MyPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -99,7 +114,13 @@ namespace Petroteks.MvcUi
 
             services.Configure<CustomSearchSetting>(Configuration.GetSection("CustomSearchSetting"));
 
+            services.Configure<Language>(Configuration.GetSection("DefaultLanguage"));
+
             services.AddHttpClient<CustomSearchApi>();
+
+            services.AddSingleton<ImageOptimizer>();
+
+            services.AddHostedService<ExistingImageOptimizer>();
 
             //services.AddDbContext<PetroteksDbContext>(options =>
             //    options.UseSqlServer(
@@ -120,14 +141,50 @@ namespace Petroteks.MvcUi
             });
 
             services.AddSession();
+
+            services.AddScoped<ICacheService, CacheManager>();
             services.AddMemoryCache();
             services.AddDistributedMemoryCache();
 
+            services.AddResponseCaching();
+
             services.AddRazorPages();
-            IMvcBuilder mvcBuilder = services.AddControllersWithViews();
+
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();
+                options.MimeTypes =
+                    ResponseCompressionDefaults.MimeTypes.Concat(
+                        new[] { "image/svg+xml" });
+            });
+
+
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
+
+            services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
+
+
+            services.AddSmidge(Configuration.GetSection("Smidge"));
+
+            IMvcBuilder mvcBuilder = services.AddControllersWithViews(opts =>
+            {
+                //[ResponseCache(CacheProfileName = “BasicCache”)]
+                opts.CacheProfiles.Add("BasicCache", new CacheProfile
+                {
+                    Duration = (int)TimeSpan.FromMinutes(30).TotalSeconds
+                });
+            });
 #if DEBUG
             mvcBuilder.AddRazorRuntimeCompilation();
 #endif
+
 
 
             services.Configure<IISServerOptions>(options =>
@@ -176,13 +233,124 @@ namespace Petroteks.MvcUi
 
             app.UseCookiePolicy();
 
+            app.UseResponseCaching();
+
+            app.UseResponseCompression();
+
             app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
             app.UseSession();
 
+
             //var routeTable = serviceProvider.GetService<IRouteTable>();
+
+
+
+            BundleEnvironmentOptions bundleEnvironmentOptions = BundleEnvironmentOptions.Create().ForDebug(opts =>
+                       opts.EnableCompositeProcessing()
+                       .EnableFileWatcher()
+                       .SetCacheBusterType<AppDomainLifetimeCacheBuster>()
+                       .CacheControlOptions(enableEtag: false, cacheControlMaxAge: 0)
+                    ).Build();
+
+            app.UseSmidge(manager =>
+            {
+                #region Login Layout
+                //toastr.min.js cdn den geliyor onu halletmeye calis
+                manager.CreateJs("layout-login-js",
+                           "~/Admin/assets/libs/jquery/dist/jquery.min.js",
+                           "~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ",
+                           "~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js",
+                           "~/Admin/dist/js/notify.js")
+                       .WithEnvironmentOptions(bundleEnvironmentOptions);
+
+                //toastr.min.css cdn den geliyor onu halletmeye calis
+                manager.CreateCss("layout-login-css",
+                  "~/Admin/dist/css/style.min.css")
+                .WithEnvironmentOptions(bundleEnvironmentOptions);
+
+                #endregion
+
+                #region Admin Layout
+                //jquery-ui.js cdn den geliyor onu halletmeye calis
+                //jquery-confirm.min.js cdn den geliyor onu halletmeye calis
+                //toastr.min.js cdn den geliyor onu halletmeye calis
+                //ckeditor.js  cdn den geliyor onu halletmeye calis (olmuyordu sanirim)
+                manager.CreateJs("layout-admin-js",
+                           "~/js/site.js",
+                           "~/Admin/assets/libs/jquery/dist/jquery.min.js",
+                           "~/Admin/dist/js/tabulator.js",
+                           "~/Admin/dist/js/resize_table.js",
+                           "~/Admin/assets/libs/popper.js/dist/umd/popper.min.js",
+                           "~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js",
+                           "~/Admin/dist/js/notify.js",
+                           "~/Admin/dist/js/app-style-switcher.js",
+                           "~/Admin/dist/js/feather.min.js",
+                           "~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js",
+                           "~/Admin/dist/js/sidebarmenu.js",
+                           "~/Admin/dist/js/custom.min.js")
+                       .WithEnvironmentOptions(bundleEnvironmentOptions);
+
+                //toastr.min.css cdn den geliyor onu halletmeye calis
+                //jquery-ui.css cdn den geliyor onu halletmeye calis
+                //jquery-confirm.min.css cdn den geliyor onu halletmeye calis
+                manager.CreateCss("layout-admin-css",
+                  "~/Admin/dist/css/tabulator.min.css",
+                  "~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css",
+                  "~/Admin/dist/css/style.min.css")
+                .WithEnvironmentOptions(bundleEnvironmentOptions);
+
+                #endregion
+
+                #region Main Layout
+
+                /*
+                 jquery.min.js
+                toastr.min.js
+                tether.min.js
+                bootstrap.min.js  cdn den iki adet bootstrap cagiriliyor
+                jquery.touchSwipe.min.js
+                 */
+                manager.CreateJs("layout-main-js",
+                           "~/NewLayout/js/materialize.js",
+                           "~/NewLayout/js/bootstrap-touch-slider.js",
+                           "~/NewLayout/lib/easing/easing.min.js",
+                           "~/NewLayout/lib/mobile-nav/mobile-nav.js",
+                           "~/NewLayout/lib/wow/wow.min.js",
+                           "~/NewLayout/lib/waypoints/waypoints.min.js",
+                           "~/NewLayout/lib/counterup/counterup.min.js",
+                           "~/NewLayout/lib/owlcarousel/owl.carousel.min.js",
+                           "~/NewLayout/lib/isotope/isotope.pkgd.min.js",
+                           "~/NewLayout/lib/lightbox/js/lightbox.min.js",
+                           "~/NewLayout/js/main.js")
+                       .WithEnvironmentOptions(bundleEnvironmentOptions);
+
+
+                /*
+                 google fonts
+                bootstrap.min.css cdn den iki adet bootstrap cagiriliyor
+                pro.fontawesome 
+                toastr.min.css
+                 */
+
+                manager.CreateCss("layout-main-css",
+                     "~/NewLayout/css/materialize.min.css",
+                           "~/NewLayout/lib/font-awesome/css/font-awesome.min.css",
+                           "~/NewLayout/lib/animate/animate.min.css",
+                           "~/NewLayout/lib/ionicons/css/ionicons.min.css",
+                           "~/NewLayout/lib/owlcarousel/assets/owl.theme.default.min.css",
+                           "~/NewLayout/lib/owlcarousel/assets/owl.carousel.min.css",
+                           "~/NewLayout/lib/lightbox/css/lightbox.min.css",
+                           "~/NewLayout/vendor/icofont/icofont.min.css",
+                           "~/NewLayout/css/style.css")
+                .WithEnvironmentOptions(bundleEnvironmentOptions);
+
+                #endregion
+
+
+            });
 
             app.UseEndpoints(endpoints =>
             {

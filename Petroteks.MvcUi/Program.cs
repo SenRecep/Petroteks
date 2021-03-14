@@ -13,7 +13,7 @@ namespace Petroteks.MvcUi
 {
     public class Program
     {
-        public static int Main(string[] args)
+       public static Serilog.ILogger SeriLogConf()
         {
             var logTemplate = "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}";
 
@@ -24,11 +24,15 @@ namespace Petroteks.MvcUi
                 .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
                 .MinimumLevel.Override("System", LogEventLevel.Warning)
                 .MinimumLevel.Override("Microsoft.AspNetCore.Authentication", LogEventLevel.Information)
-                .WriteTo.Console(new RenderedCompactJsonFormatter())
                 .WriteTo.Debug(outputTemplate: DateTime.Now.ToString())
-                .WriteTo.Console(outputTemplate: logTemplate, theme: AnsiConsoleTheme.Code)
+                .WriteTo.Console(outputTemplate: logTemplate, theme: AnsiConsoleTheme.Literate)
                 .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day, outputTemplate: logTemplate)
                 .CreateLogger();
+            return Log.Logger;
+        }
+
+        public static int Main(string[] args)
+        {
             try
             {
                 var host = CreateHostBuilder(args).Build();
@@ -54,7 +58,7 @@ namespace Petroteks.MvcUi
                         webBuilder.UseStartup<Startup>()
                         .ConfigureLogging((hostingContext, config) => { 
                             config.ClearProviders();
-                            config.AddSerilog();
+                            config.AddSerilog(SeriLogConf());
                         });
                     });
     }

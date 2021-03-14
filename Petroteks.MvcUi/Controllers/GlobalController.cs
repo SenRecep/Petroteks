@@ -63,7 +63,7 @@ namespace Petroteks.MvcUi.Controllers
 
         private void LoadWebsite()
         {
-            if (!cacheService.Get($"{CacheInfo.Websites}") || WebsiteContext.Websites==null || CurrentWebsite == null)
+            if (!cacheService.Get($"{CacheInfo.Websites}") || WebsiteContext.Websites == null || CurrentWebsite == null)
             {
                 WebsiteContext.Websites = cacheService.Get($"{CacheInfo.Websites}", () => websiteService.GetMany(x => x.IsActive == true));
 
@@ -84,9 +84,11 @@ namespace Petroteks.MvcUi.Controllers
 
                     if (!CurrentWebsite.Name.Contains("localhost"))
                     {
-                        var localhosts = WebsiteContext.Websites.Where(w => w.Name.Contains("localhost"));
-                        foreach (var item in localhosts)
-                            WebsiteContext.Websites.Remove(item);
+                        var localhosts = WebsiteContext.Websites.Where(w => w.Name.Contains("localhost")).ToList();
+                        if (localhosts != null)
+                            foreach (var item in localhosts)
+                                WebsiteContext.Websites.Remove(item);
+
                         WebsiteContext.Websites = cacheService.UpdateGet($"{CacheInfo.Websites}", () => websiteService.GetMany(x => x.IsActive == true));
 
                     }
@@ -108,7 +110,7 @@ namespace Petroteks.MvcUi.Controllers
         }
         public void LoadLanguage(bool decision = false, int? id = null)
         {
-            if (LanguageContext.WebsiteLanguages == null || !cacheService.Get($"{CacheInfo.Languages}")  ||  decision || CurrentLanguage == null)
+            if (LanguageContext.WebsiteLanguages == null || !cacheService.Get($"{CacheInfo.Languages}") || decision || CurrentLanguage == null)
             {
                 LanguageContext.WebsiteLanguages = cacheService.Get($"{CacheInfo.Languages}", () => languageService.GetMany(x => x.IsActive == true && x.WebSiteid == CurrentWebsite.id));
 

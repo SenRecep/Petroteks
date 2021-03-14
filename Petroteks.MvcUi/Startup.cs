@@ -233,6 +233,8 @@ namespace Petroteks.MvcUi
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseCookiePolicy();
 
             app.UseResponseCaching();
@@ -242,9 +244,6 @@ namespace Petroteks.MvcUi
             app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
-
-            app.UseSession();
-
 
             //var routeTable = serviceProvider.GetService<IRouteTable>();
 

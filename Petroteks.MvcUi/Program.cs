@@ -1,6 +1,7 @@
 using System;
 
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -60,6 +61,8 @@ namespace Petroteks.MvcUi
                             config.ClearProviders();
                             config.AddSerilog(SeriLogConf());
                         });
+                    }).ConfigureAppConfiguration((context,config)=> {
+                        config.AddJsonFile("appsettings.json",optional:false,reloadOnChange:true);
                     });
     }
 }

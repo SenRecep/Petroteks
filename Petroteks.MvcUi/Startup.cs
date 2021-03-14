@@ -27,6 +27,8 @@ using Petroteks.MvcUi.ExtensionMethods;
 using Petroteks.MvcUi.Models;
 using Petroteks.MvcUi.Services;
 
+using Serilog;
+
 using Smidge;
 using Smidge.Cache;
 using Smidge.Options;

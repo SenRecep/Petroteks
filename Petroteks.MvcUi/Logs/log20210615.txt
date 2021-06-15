@@ -1,0 +1,589 @@
+[20:51:31 Information] 
+Starting host...
+
+[20:51:33 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[20:51:33 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[20:51:33 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[20:51:33 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[20:51:33 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[20:51:33 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[20:51:33 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[20:51:33 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi
+
+[20:51:36 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[20:51:42 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-main-js', debug? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/materialize.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\ade4e8e6.js, watching? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/materialize.js' in 22ms
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/bootstrap-touch-slider.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\b86badc8.js, watching? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/bootstrap-touch-slider.js' in 0ms
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/easing/easing.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\a18db8c0.js, watching? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/easing/easing.min.js' in 0ms
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/mobile-nav/mobile-nav.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\c7d3ff92.js, watching? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/mobile-nav/mobile-nav.js' in 0ms
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/wow/wow.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\7cdabb7b.js, watching? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/wow/wow.min.js' in 0ms
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/waypoints/waypoints.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\ba015996.js, watching? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/waypoints/waypoints.min.js' in 0ms
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/counterup/counterup.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\536184c9.js, watching? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/counterup/counterup.min.js' in 0ms
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\4f4979d5.js, watching? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js' in 0ms
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/isotope/isotope.pkgd.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\60f053d2.js, watching? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/isotope/isotope.pkgd.min.js' in 0ms
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/lightbox/js/lightbox.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\d8d04db6.js, watching? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/lightbox/js/lightbox.min.js' in 6ms
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/main.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\739b92e8.js, watching? False ...
+
+[20:51:42 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/main.js' in 0ms
+
+[20:51:42 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-main-js' in 593ms
+
+[20:52:30 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-css', debug? False ...
+
+[20:52:30 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\d4cc0b7a.css, watching? False ...
+
+[20:52:30 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-js', debug? False ...
+
+[20:52:30 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\5e0caa37.js, watching? False ...
+
+[20:52:30 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/style.min.css' in 24ms
+
+[20:52:30 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/jquery/dist/jquery.min.js' in 0ms
+
+[20:52:30 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\511893bd.js , watching? False ...
+
+[20:52:30 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-css' in 190ms
+
+[20:52:30 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ' in 0ms
+
+[20:52:30 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\e02faee3.js, watching? False ...
+
+[20:52:30 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js' in 0ms
+
+[20:52:30 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\6c9e74a6.js, watching? False ...
+
+[20:52:30 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/notify.js' in 0ms
+
+[20:52:30 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-js' in 285ms
+
+[20:52:36 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-css', debug? False ...
+
+[20:52:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/tabulator.min.css', type: Css, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\8be76d6a.css, watching? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/tabulator.min.css' in 0ms
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css', type: Css, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\dc54ca01.css, watching? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css' in 1ms
+
+[20:52:37 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-js', debug? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/js/site.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\df42ccd9.js, watching? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\d4cc0b7a.css, watching? False
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/js/site.js' in 0ms
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\5e0caa37.js, watching? False
+
+[20:52:37 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-css' in 80ms
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/tabulator.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\d1b98240.js, watching? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/tabulator.js' in 60ms
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/resize_table.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\97bede38.js, watching? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/resize_table.js' in 0ms
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\3213a33b.js, watching? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js' in 0ms
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\e02faee3.js, watching? False
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\6c9e74a6.js, watching? False
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/app-style-switcher.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\d40a60c4.js, watching? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/app-style-switcher.js' in 0ms
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/feather.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\130a87db.js, watching? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/feather.min.js' in 0ms
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\21a85bd4.js, watching? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' in 0ms
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/sidebarmenu.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\d9599f4a.js, watching? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/sidebarmenu.js' in 0ms
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/custom.min.js', type: Js, cacheFile: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DESKTOP-71EU8A2\1\6b3ab9cb.js, watching? False ...
+
+[20:52:37 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/custom.min.js' in 0ms
+
+[20:52:37 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-js' in 671ms
+
+[20:54:16 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 12
+
+[20:54:36 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[20:56:22 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[22:15:18 Information] 
+Starting host...
+
+[22:15:18 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[22:15:18 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[22:15:18 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[22:15:18 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[22:15:18 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[22:15:18 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[22:15:18 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[22:15:18 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi
+
+[22:15:23 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[22:16:20 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass1_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[22:16:30 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass1_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[22:21:43 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at Petroteks.MvcUi.Areas.Admin.Models.Mail.SendMail(String body) in C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\Areas\Admin\Models\Mail.cs:line 26
+   at Petroteks.MvcUi.Controllers.HomeController.Contact(Iletisim model) in C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi\Controllers\HomeController.cs:line 154
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[22:22:21 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 12
+
+[22:22:43 Information] 
+Starting host...
+
+[22:22:43 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[22:22:43 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[22:22:43 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[22:22:43 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[22:22:43 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[22:22:44 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[22:22:44 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[22:22:44 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi
+
+[22:22:48 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[22:23:06 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass1_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[22:23:10 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass1_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[22:23:20 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass1_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[22:25:31 Information] 
+Starting host...
+
+[22:25:32 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[22:25:32 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[22:25:32 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[22:25:32 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[22:25:32 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[22:25:32 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[22:25:32 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[22:25:32 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\CASPER\source\repos\Petroteks\Petroteks.MvcUi
+
+[22:25:36 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+

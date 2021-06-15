@@ -130,3 +130,31 @@
 
 })(jQuery);
 
+$('#gonder').click(function () {
+    var Ýsim = $("#Ýsim").val();
+    var Email = $("#Email").val();
+    var Konu = $("#Konu").val();
+    var Mesaj = $("#Mesaj").val();
+    var model = {
+        Ýsim: Ýsim,
+        Email: Email,
+        Konu: Konu,
+        Mesaj: Mesaj
+    };
+
+
+    $.ajax({
+        url: "/Home/Contact",
+        type: "POST",
+        data: { model: model },
+        success: function (response) {
+            toastr.success(response);
+        },
+        failure: function (response) {
+            toastr.error(response);
+        },
+        error: function (response) {
+            toastr.error(response);
+        }
+    });
+});

@@ -1,0 +1,39 @@
+[18:32:13 Information] 
+Starting host...
+
+[18:32:19 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[18:32:19 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[18:32:19 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[18:32:19 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[18:32:19 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[18:32:19 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[18:32:19 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[18:32:19 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[18:32:19 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[18:32:19 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[18:32:26 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[18:32:26 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 1
+

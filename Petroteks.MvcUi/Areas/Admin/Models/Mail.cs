@@ -10,7 +10,7 @@ namespace Petroteks.MvcUi.Areas.Admin.Models
             MailAddress fromAddress = new MailAddress("petroteksiletisim@gmail.com", "PETROTEKS İLETİŞİM BİLDİRİMİ");
             MailAddress toAddress = new MailAddress("petroteksiletisim@gmail.com");
             const string subject = "PETROTEKS İletişim Bildirimi";
-            using (SmtpClient smtp = new SmtpClient
+            SmtpClient smtpClient = new SmtpClient
             {
                 Host = "smtp.gmail.com",
                 Port = 587,
@@ -19,13 +19,10 @@ namespace Petroteks.MvcUi.Areas.Admin.Models
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(fromAddress.Address, "1parola1")
                 //trololol kısmı e-posta adresinin şifresi
-            })
-            {
-                using (MailMessage message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body })
-                {
-                    smtp.Send(message);
-                }
-            }
+            };
+            using SmtpClient smtp = smtpClient;
+            using MailMessage message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body };
+            smtp.Send(message);
 
         }
     }

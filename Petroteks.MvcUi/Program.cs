@@ -7,16 +7,15 @@ using Microsoft.Extensions.Logging;
 
 using Serilog;
 using Serilog.Events;
-using Serilog.Formatting.Compact;
 using Serilog.Sinks.SystemConsole.Themes;
 
 namespace Petroteks.MvcUi
 {
     public class Program
     {
-       public static Serilog.ILogger SeriLogConf()
+        public static Serilog.ILogger SeriLogConf()
         {
-            var logTemplate = "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}";
+            string logTemplate = "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}";
 
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
@@ -36,7 +35,7 @@ namespace Petroteks.MvcUi
         {
             try
             {
-                var host = CreateHostBuilder(args).Build();
+                IHost host = CreateHostBuilder(args).Build();
 
                 Log.Information("Starting host...");
                 host.Run();
@@ -57,12 +56,14 @@ namespace Petroteks.MvcUi
                     .ConfigureWebHostDefaults(webBuilder =>
                     {
                         webBuilder.UseStartup<Startup>()
-                        .ConfigureLogging((hostingContext, config) => { 
+                        .ConfigureLogging((hostingContext, config) =>
+                        {
                             config.ClearProviders();
                             config.AddSerilog(SeriLogConf());
                         });
-                    }).ConfigureAppConfiguration((context,config)=> {
-                        config.AddJsonFile("appsettings.json",optional:false,reloadOnChange:true);
+                    }).ConfigureAppConfiguration((context, config) =>
+                    {
+                        config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
                     });
     }
 }

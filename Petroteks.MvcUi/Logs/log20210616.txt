@@ -351,3 +351,39 @@ Start ExistingImageOptimizer
 [00:50:29 Debug] Smidge.Controllers.SmidgeController
 Returning bundle 'layout-main-js' from cache
 
+[14:33:55 Information] 
+Starting host...
+
+[14:33:58 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:33:58 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:33:58 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:33:58 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:33:58 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:33:58 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:33:58 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:33:58 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:33:58 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:34:00 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:35:48 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+

@@ -228,7 +228,6 @@ namespace Petroteks.MvcUi
                   }
             });
 
-
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -253,9 +252,8 @@ namespace Petroteks.MvcUi
                        opts.EnableCompositeProcessing()
                        .EnableFileWatcher()
                        .SetCacheBusterType<AppDomainLifetimeCacheBuster>()
-                       .CacheControlOptions(enableEtag: false, cacheControlMaxAge: 0)
+                       .CacheControlOptions(enableEtag: true, cacheControlMaxAge: (int)(new TimeSpan(365, 0, 0, 0)).TotalSeconds)
                     ).Build();
-
             app.UseSmidge(manager =>
             {
                 #region Login Layout

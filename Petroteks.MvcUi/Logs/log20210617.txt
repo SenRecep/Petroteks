@@ -1,0 +1,2909 @@
+[01:38:52 Information] 
+Starting host...
+
+[01:38:54 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[01:38:54 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[01:38:54 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[01:38:54 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[01:38:54 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[01:38:54 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[01:38:54 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[01:38:54 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[01:38:55 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[01:38:57 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[01:39:22 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[01:41:58 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 12
+
+[01:55:28 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-css' from cache
+
+[01:55:28 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-js' from cache
+
+[01:55:32 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[01:55:32 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[02:21:34 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[11:07:46 Information] 
+Starting host...
+
+[11:07:48 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[11:07:48 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[11:07:48 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[11:07:48 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[11:07:48 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[11:07:48 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[11:07:48 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[11:07:48 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[11:07:48 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[11:07:52 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[11:08:25 Warning] Microsoft.AspNetCore.Session.SessionMiddleware
+Error unprotecting the session cookie.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+[11:09:38 Warning] Microsoft.AspNetCore.Session.SessionMiddleware
+Error unprotecting the session cookie.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+[11:09:38 Warning] Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider
+The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider could not be loaded.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider.LoadTempData(HttpContext context)
+
+[11:09:38 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-js' from cache
+
+[11:09:38 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-css' from cache
+
+[11:09:53 Warning] Microsoft.AspNetCore.Session.SessionMiddleware
+Error unprotecting the session cookie.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+[11:09:53 Warning] Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider
+The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider could not be loaded.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider.LoadTempData(HttpContext context)
+
+[11:10:29 Warning] Microsoft.AspNetCore.Session.SessionMiddleware
+Error unprotecting the session cookie.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+[11:10:29 Warning] Microsoft.AspNetCore.Session.SessionMiddleware
+Error unprotecting the session cookie.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+[11:10:29 Warning] Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider
+The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider could not be loaded.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider.LoadTempData(HttpContext context)
+
+[11:12:00 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 12
+
+[11:16:13 Information] 
+Starting host...
+
+[11:16:14 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[11:16:14 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[11:16:14 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[11:16:14 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[11:16:14 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[11:16:14 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[11:16:14 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[11:16:14 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\Source\Repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[11:16:14 Warning] Microsoft.AspNetCore.Session.SessionMiddleware
+Error unprotecting the session cookie.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+[11:16:18 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[11:16:41 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[11:16:51 Warning] Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider
+The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider could not be loaded.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider.LoadTempData(HttpContext context)
+
+[11:16:51 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-css' from cache
+
+[11:16:51 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-js' from cache
+
+[11:16:54 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[11:16:54 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[11:16:54 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[11:16:58 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[11:16:58 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[11:16:59 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[11:17:06 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[11:17:06 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[11:17:07 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[11:17:11 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[11:18:09 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[11:18:14 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-css' from cache
+
+[11:18:14 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-js' from cache
+
+[11:18:18 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[11:18:18 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[11:18:20 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[11:18:20 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[11:18:21 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[11:18:27 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[11:18:27 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[11:18:27 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[11:18:39 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[11:18:39 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[11:18:39 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[11:18:47 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[11:18:47 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[11:18:47 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[11:22:39 Information] 
+Starting host...
+
+[11:22:40 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[11:22:40 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[11:22:40 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[11:22:40 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[11:22:40 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[11:22:40 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[11:22:40 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[11:22:40 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[11:22:40 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[11:22:44 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[11:23:00 Warning] Microsoft.AspNetCore.Session.SessionMiddleware
+Error unprotecting the session cookie.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+[11:23:12 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[11:23:16 Warning] Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider
+The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider could not be loaded.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider.LoadTempData(HttpContext context)
+
+[11:23:16 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-css' from cache
+
+[11:23:16 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-js' from cache
+
+[11:23:19 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[11:23:19 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[11:24:35 Information] 
+Starting host...
+
+[11:24:36 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[11:24:36 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[11:24:36 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[11:24:36 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[11:24:36 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[11:24:36 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[11:24:36 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[11:24:36 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[11:24:36 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[11:24:40 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[11:25:08 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-main-js', debug? False ...
+
+[11:25:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/materialize.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ade4e8e6.js, watching? False ...
+
+[11:25:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/materialize.js' in 36ms
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/bootstrap-touch-slider.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\b86badc8.js, watching? False ...
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/bootstrap-touch-slider.js' in 0ms
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/easing/easing.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\a18db8c0.js, watching? False ...
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/easing/easing.min.js' in 0ms
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/mobile-nav/mobile-nav.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\c7d3ff92.js, watching? False ...
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/mobile-nav/mobile-nav.js' in 0ms
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/wow/wow.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\7cdabb7b.js, watching? False ...
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/wow/wow.min.js' in 0ms
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/waypoints/waypoints.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ba015996.js, watching? False ...
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/waypoints/waypoints.min.js' in 0ms
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/counterup/counterup.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\536184c9.js, watching? False ...
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/counterup/counterup.min.js' in 0ms
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\4f4979d5.js, watching? False ...
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js' in 0ms
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/isotope/isotope.pkgd.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\60f053d2.js, watching? False ...
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/isotope/isotope.pkgd.min.js' in 0ms
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/lightbox/js/lightbox.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d8d04db6.js, watching? False ...
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/lightbox/js/lightbox.min.js' in 13ms
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/main.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\739b92e8.js, watching? False ...
+
+[11:25:09 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/main.js' in 0ms
+
+[11:25:09 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-main-js' in 962ms
+
+[11:25:41 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[11:26:14 Information] 
+Starting host...
+
+[11:26:15 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[11:26:15 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[11:26:15 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[11:26:15 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[11:26:15 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[11:26:15 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[11:26:15 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[11:26:15 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[11:26:15 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[11:26:19 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[11:26:26 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[11:26:31 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-js', debug? False ...
+
+[11:26:31 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-css', debug? False ...
+
+[11:26:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d4cc0b7a.css, watching? False ...
+
+[11:26:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\5e0caa37.js, watching? False ...
+
+[11:26:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/jquery/dist/jquery.min.js' in 5ms
+
+[11:26:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\511893bd.js , watching? False ...
+
+[11:26:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/style.min.css' in 73ms
+
+[11:26:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ' in 9ms
+
+[11:26:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\e02faee3.js, watching? False ...
+
+[11:26:31 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-css' in 291ms
+
+[11:26:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js' in 10ms
+
+[11:26:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6c9e74a6.js, watching? False ...
+
+[11:26:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/notify.js' in 1ms
+
+[11:26:31 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-js' in 506ms
+
+[11:26:35 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-css', debug? False ...
+
+[11:26:35 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/tabulator.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\8be76d6a.css, watching? False ...
+
+[11:26:35 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-js', debug? False ...
+
+[11:26:35 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/js/site.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\df42ccd9.js, watching? False ...
+
+[11:26:35 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/js/site.js' in 0ms
+
+[11:26:35 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/tabulator.min.css' in 4ms
+
+[11:26:35 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\5e0caa37.js, watching? False
+
+[11:26:35 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/tabulator.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d1b98240.js, watching? False ...
+
+[11:26:35 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\dc54ca01.css, watching? False ...
+
+[11:26:35 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css' in 1ms
+
+[11:26:35 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d4cc0b7a.css, watching? False
+
+[11:26:35 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-css' in 194ms
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/tabulator.js' in 42ms
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/resize_table.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\97bede38.js, watching? False ...
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/resize_table.js' in 0ms
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\3213a33b.js, watching? False ...
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js' in 0ms
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\e02faee3.js, watching? False
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6c9e74a6.js, watching? False
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/app-style-switcher.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d40a60c4.js, watching? False ...
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/app-style-switcher.js' in 0ms
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/feather.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\130a87db.js, watching? False ...
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/feather.min.js' in 1ms
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\21a85bd4.js, watching? False ...
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' in 0ms
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/sidebarmenu.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d9599f4a.js, watching? False ...
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/sidebarmenu.js' in 0ms
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/custom.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6b3ab9cb.js, watching? False ...
+
+[11:26:36 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/custom.min.js' in 0ms
+
+[11:26:36 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-js' in 1186ms
+
+[11:46:21 Information] 
+Starting host...
+
+[11:46:22 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[11:46:22 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[11:46:22 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[11:46:22 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[11:46:22 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[11:46:23 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[11:46:23 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[11:46:23 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[11:46:23 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[11:46:40 Information] 
+Starting host...
+
+[11:46:41 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[11:46:41 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[11:46:41 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[11:46:41 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[11:46:41 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[11:46:41 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[11:46:41 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[11:46:41 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[11:46:41 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[11:46:45 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[11:46:57 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-main-js', debug? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/materialize.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ade4e8e6.js, watching? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/materialize.js' in 25ms
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/bootstrap-touch-slider.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\b86badc8.js, watching? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/bootstrap-touch-slider.js' in 0ms
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/easing/easing.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\a18db8c0.js, watching? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/easing/easing.min.js' in 0ms
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/mobile-nav/mobile-nav.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\c7d3ff92.js, watching? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/mobile-nav/mobile-nav.js' in 0ms
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/wow/wow.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\7cdabb7b.js, watching? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/wow/wow.min.js' in 0ms
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/waypoints/waypoints.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ba015996.js, watching? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/waypoints/waypoints.min.js' in 0ms
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/counterup/counterup.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\536184c9.js, watching? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/counterup/counterup.min.js' in 0ms
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\4f4979d5.js, watching? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js' in 0ms
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/isotope/isotope.pkgd.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\60f053d2.js, watching? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/isotope/isotope.pkgd.min.js' in 0ms
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/lightbox/js/lightbox.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d8d04db6.js, watching? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/lightbox/js/lightbox.min.js' in 17ms
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/main.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\739b92e8.js, watching? False ...
+
+[11:46:57 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/main.js' in 0ms
+
+[11:46:57 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-main-js' in 549ms
+
+[11:47:00 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-css', debug? False ...
+
+[11:47:00 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d4cc0b7a.css, watching? False ...
+
+[11:47:00 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-js', debug? False ...
+
+[11:47:00 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\5e0caa37.js, watching? False ...
+
+[11:47:00 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/jquery/dist/jquery.min.js' in 0ms
+
+[11:47:00 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\511893bd.js , watching? False ...
+
+[11:47:00 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ' in 2ms
+
+[11:47:00 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\e02faee3.js, watching? False ...
+
+[11:47:00 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js' in 1ms
+
+[11:47:00 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6c9e74a6.js, watching? False ...
+
+[11:47:00 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/style.min.css' in 93ms
+
+[11:47:00 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/notify.js' in 2ms
+
+[11:47:01 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-js' in 316ms
+
+[11:47:01 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-css' in 377ms
+
+[11:47:03 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-css', debug? False ...
+
+[11:47:03 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/tabulator.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\8be76d6a.css, watching? False ...
+
+[11:47:03 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-js', debug? False ...
+
+[11:47:03 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/js/site.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\df42ccd9.js, watching? False ...
+
+[11:47:03 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/js/site.js' in 1ms
+
+[11:47:03 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/tabulator.min.css' in 1ms
+
+[11:47:03 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\5e0caa37.js, watching? False
+
+[11:47:03 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/tabulator.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d1b98240.js, watching? False ...
+
+[11:47:03 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\dc54ca01.css, watching? False ...
+
+[11:47:03 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css' in 1ms
+
+[11:47:03 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d4cc0b7a.css, watching? False
+
+[11:47:03 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-css' in 131ms
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/tabulator.js' in 36ms
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/resize_table.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\97bede38.js, watching? False ...
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/resize_table.js' in 0ms
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\3213a33b.js, watching? False ...
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js' in 0ms
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\e02faee3.js, watching? False
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6c9e74a6.js, watching? False
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/app-style-switcher.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d40a60c4.js, watching? False ...
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/app-style-switcher.js' in 0ms
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/feather.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\130a87db.js, watching? False ...
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/feather.min.js' in 0ms
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\21a85bd4.js, watching? False ...
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' in 0ms
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/sidebarmenu.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d9599f4a.js, watching? False ...
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/sidebarmenu.js' in 0ms
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/custom.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6b3ab9cb.js, watching? False ...
+
+[11:47:04 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/custom.min.js' in 0ms
+
+[11:47:04 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-js' in 602ms
+
+[12:13:36 Information] 
+Starting host...
+
+[12:13:37 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[12:13:37 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[12:13:37 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[12:13:37 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[12:13:37 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[12:13:38 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[12:13:38 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[12:13:38 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[12:13:38 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[12:13:41 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[12:14:06 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[12:14:10 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-css' from cache
+
+[12:14:10 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-js' from cache
+
+[12:14:13 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[12:14:13 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[12:14:49 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[12:24:09 Information] 
+Starting host...
+
+[12:24:10 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[12:24:10 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[12:24:10 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[12:24:10 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[12:24:10 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[12:24:10 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[12:24:10 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[12:24:10 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[12:24:10 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[12:24:14 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[12:24:23 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[12:24:35 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-css' from cache
+
+[12:24:35 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-js' from cache
+
+[12:24:38 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[12:24:38 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[12:26:39 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[13:55:59 Information] 
+Starting host...
+
+[13:56:00 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[13:56:00 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[13:56:00 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[13:56:00 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[13:56:00 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[13:56:00 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[13:56:00 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[13:56:00 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[13:56:00 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[13:56:04 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[13:57:45 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[13:57:58 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[13:58:34 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[13:59:20 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[13:59:20 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 12
+
+[14:01:52 Information] 
+Starting host...
+
+[14:01:54 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:01:54 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:01:54 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:01:54 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:01:54 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:01:54 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:01:54 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:01:54 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:01:54 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:01:58 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:02:07 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:02:26 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:02:42 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:03:40 Information] 
+Starting host...
+
+[14:03:41 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:03:41 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:03:41 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:03:41 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:03:41 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:03:41 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:03:41 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:03:41 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:03:41 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:03:45 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:03:51 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:04:02 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:04:20 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:04:26 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:04:57 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:05:08 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:05:23 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[14:05:51 Information] 
+Starting host...
+
+[14:05:52 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:05:52 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:05:52 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:05:52 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:05:52 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:05:52 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:05:52 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:05:52 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:05:52 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:05:56 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:06:11 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-main-js', debug? False ...
+
+[14:06:11 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/materialize.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ade4e8e6.js, watching? False ...
+
+[14:06:11 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/materialize.js' in 31ms
+
+[14:06:11 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/bootstrap-touch-slider.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\b86badc8.js, watching? False ...
+
+[14:06:11 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/bootstrap-touch-slider.js' in 0ms
+
+[14:06:11 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/easing/easing.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\a18db8c0.js, watching? False ...
+
+[14:06:11 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/easing/easing.min.js' in 0ms
+
+[14:06:11 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/mobile-nav/mobile-nav.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\c7d3ff92.js, watching? False ...
+
+[14:06:11 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/mobile-nav/mobile-nav.js' in 0ms
+
+[14:06:11 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/wow/wow.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\7cdabb7b.js, watching? False ...
+
+[14:06:11 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/wow/wow.min.js' in 0ms
+
+[14:06:11 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/waypoints/waypoints.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ba015996.js, watching? False ...
+
+[14:06:12 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/waypoints/waypoints.min.js' in 0ms
+
+[14:06:12 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/counterup/counterup.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\536184c9.js, watching? False ...
+
+[14:06:12 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/counterup/counterup.min.js' in 0ms
+
+[14:06:12 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\4f4979d5.js, watching? False ...
+
+[14:06:12 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js' in 0ms
+
+[14:06:12 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/isotope/isotope.pkgd.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\60f053d2.js, watching? False ...
+
+[14:06:12 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/isotope/isotope.pkgd.min.js' in 0ms
+
+[14:06:12 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/lightbox/js/lightbox.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d8d04db6.js, watching? False ...
+
+[14:06:12 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/lightbox/js/lightbox.min.js' in 13ms
+
+[14:06:12 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/main.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\739b92e8.js, watching? False ...
+
+[14:06:12 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/main.js' in 0ms
+
+[14:06:17 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-main-js' in 5888ms
+
+[14:06:39 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:09:14 Information] 
+Starting host...
+
+[14:09:15 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:09:15 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:09:15 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:09:15 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:09:15 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:09:15 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:09:15 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:09:15 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:09:15 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:09:19 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:09:26 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-main-js', debug? False ...
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/materialize.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ade4e8e6.js, watching? False ...
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/materialize.js' in 35ms
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/bootstrap-touch-slider.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\b86badc8.js, watching? False ...
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/bootstrap-touch-slider.js' in 0ms
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/easing/easing.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\a18db8c0.js, watching? False ...
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/easing/easing.min.js' in 0ms
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/mobile-nav/mobile-nav.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\c7d3ff92.js, watching? False ...
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/mobile-nav/mobile-nav.js' in 0ms
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/wow/wow.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\7cdabb7b.js, watching? False ...
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/wow/wow.min.js' in 0ms
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/waypoints/waypoints.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ba015996.js, watching? False ...
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/waypoints/waypoints.min.js' in 0ms
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/counterup/counterup.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\536184c9.js, watching? False ...
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/counterup/counterup.min.js' in 0ms
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\4f4979d5.js, watching? False ...
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js' in 0ms
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/isotope/isotope.pkgd.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\60f053d2.js, watching? False ...
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/isotope/isotope.pkgd.min.js' in 0ms
+
+[14:09:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/lightbox/js/lightbox.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d8d04db6.js, watching? False ...
+
+[14:09:27 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/lightbox/js/lightbox.min.js' in 15ms
+
+[14:09:27 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/main.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\739b92e8.js, watching? False ...
+
+[14:09:27 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/main.js' in 0ms
+
+[14:09:27 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-main-js' in 765ms
+
+[14:10:25 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[14:11:10 Information] 
+Starting host...
+
+[14:11:11 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:11:11 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:11:11 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:11:11 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:11:11 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:11:11 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:11:11 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:11:11 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:11:11 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:11:15 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:11:31 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:12:20 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:12:44 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:12:51 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[14:12:51 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 1
+
+[14:14:49 Information] 
+Starting host...
+
+[14:14:50 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:14:50 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:14:50 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:14:50 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:14:50 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:14:50 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:14:50 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:14:50 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:14:50 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:14:54 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:15:20 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-main-js', debug? False ...
+
+[14:15:20 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/materialize.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ade4e8e6.js, watching? False ...
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/materialize.js' in 64ms
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/bootstrap-touch-slider.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\b86badc8.js, watching? False ...
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/bootstrap-touch-slider.js' in 0ms
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/easing/easing.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\a18db8c0.js, watching? False ...
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/easing/easing.min.js' in 0ms
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/mobile-nav/mobile-nav.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\c7d3ff92.js, watching? False ...
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/mobile-nav/mobile-nav.js' in 0ms
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/wow/wow.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\7cdabb7b.js, watching? False ...
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/wow/wow.min.js' in 0ms
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/waypoints/waypoints.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ba015996.js, watching? False ...
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/waypoints/waypoints.min.js' in 0ms
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/counterup/counterup.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\536184c9.js, watching? False ...
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/counterup/counterup.min.js' in 0ms
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\4f4979d5.js, watching? False ...
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js' in 0ms
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/isotope/isotope.pkgd.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\60f053d2.js, watching? False ...
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/isotope/isotope.pkgd.min.js' in 0ms
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/lightbox/js/lightbox.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d8d04db6.js, watching? False ...
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/lightbox/js/lightbox.min.js' in 9ms
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/main.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\739b92e8.js, watching? False ...
+
+[14:15:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/main.js' in 0ms
+
+[14:15:21 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-main-js' in 720ms
+
+[14:15:57 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:16:13 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-css', debug? False ...
+
+[14:16:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d4cc0b7a.css, watching? False ...
+
+[14:16:13 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-js', debug? False ...
+
+[14:16:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\5e0caa37.js, watching? False ...
+
+[14:16:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/jquery/dist/jquery.min.js' in 1ms
+
+[14:16:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\511893bd.js , watching? False ...
+
+[14:16:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ' in 2ms
+
+[14:16:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\e02faee3.js, watching? False ...
+
+[14:16:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js' in 0ms
+
+[14:16:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6c9e74a6.js, watching? False ...
+
+[14:16:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/notify.js' in 0ms
+
+[14:16:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/style.min.css' in 103ms
+
+[14:16:13 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-css' in 432ms
+
+[14:16:14 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-js' in 783ms
+
+[14:16:17 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-css', debug? False ...
+
+[14:16:18 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-js', debug? False ...
+
+[14:16:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/tabulator.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\8be76d6a.css, watching? False ...
+
+[14:16:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/js/site.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\df42ccd9.js, watching? False ...
+
+[14:16:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/js/site.js' in 2ms
+
+[14:16:18 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\5e0caa37.js, watching? False
+
+[14:16:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/tabulator.min.css' in 25ms
+
+[14:16:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/tabulator.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d1b98240.js, watching? False ...
+
+[14:16:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\dc54ca01.css, watching? False ...
+
+[14:16:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css' in 3ms
+
+[14:16:18 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d4cc0b7a.css, watching? False
+
+[14:16:18 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-css' in 355ms
+
+[14:16:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/tabulator.js' in 115ms
+
+[14:16:18 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/resize_table.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\97bede38.js, watching? False ...
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/resize_table.js' in 0ms
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\3213a33b.js, watching? False ...
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js' in 0ms
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\e02faee3.js, watching? False
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6c9e74a6.js, watching? False
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/app-style-switcher.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d40a60c4.js, watching? False ...
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/app-style-switcher.js' in 0ms
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/feather.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\130a87db.js, watching? False ...
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/feather.min.js' in 0ms
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\21a85bd4.js, watching? False ...
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' in 0ms
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/sidebarmenu.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d9599f4a.js, watching? False ...
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/sidebarmenu.js' in 0ms
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/custom.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6b3ab9cb.js, watching? False ...
+
+[14:16:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/custom.min.js' in 0ms
+
+[14:16:19 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-js' in 1810ms
+
+[14:16:23 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[14:16:23 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[14:16:23 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[14:16:27 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:16:33 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:16:39 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:23:44 Information] 
+Starting host...
+
+[14:23:45 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:23:45 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:23:45 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:23:45 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:23:45 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:23:45 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:23:45 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:23:45 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:23:45 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:23:48 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[14:23:49 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:23:49 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 0
+
+[14:24:02 Information] 
+Starting host...
+
+[14:24:03 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:24:03 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:24:03 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:24:03 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:24:03 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:24:03 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:24:03 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:24:03 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:24:03 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:24:07 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:24:18 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-main-js', debug? False ...
+
+[14:24:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/materialize.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595258585968814\ade4e8e6\26d782df.js, watching? True ...
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/materialize.js' in 34ms
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/bootstrap-touch-slider.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595258585968814\b86badc8\7c2f6f19.js, watching? True ...
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/bootstrap-touch-slider.js' in 0ms
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/easing/easing.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595258585968814\a18db8c0\37f47087.js, watching? True ...
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/easing/easing.min.js' in 0ms
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/mobile-nav/mobile-nav.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595258585968814\c7d3ff92\49ea1361.js, watching? True ...
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/mobile-nav/mobile-nav.js' in 0ms
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/wow/wow.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595258585968814\7cdabb7b\303d77e8.js, watching? True ...
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/wow/wow.min.js' in 0ms
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/waypoints/waypoints.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595258585968814\ba015996\a0e40ef1.js, watching? True ...
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/waypoints/waypoints.min.js' in 0ms
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/counterup/counterup.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595258585968814\536184c9\1d81da7a.js, watching? True ...
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/counterup/counterup.min.js' in 0ms
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595258585968814\4f4979d5\12e67d12.js, watching? True ...
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js' in 0ms
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/isotope/isotope.pkgd.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595258585968814\60f053d2\c77054ab.js, watching? True ...
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/isotope/isotope.pkgd.min.js' in 0ms
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/lightbox/js/lightbox.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595258585968814\d8d04db6\79464641.js, watching? True ...
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/lightbox/js/lightbox.min.js' in 9ms
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/main.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595258585968814\739b92e8\933d51ad.js, watching? True ...
+
+[14:24:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/main.js' in 0ms
+
+[14:24:19 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-main-js' in 757ms
+
+[14:24:50 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:27:10 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 12
+
+[14:27:41 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[14:36:57 Information] 
+Starting host...
+
+[14:36:58 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:36:58 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:36:58 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:36:58 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:36:58 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:36:58 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:36:58 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:36:58 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:36:58 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:37:00 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[14:37:02 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:37:02 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 0
+
+[14:37:16 Information] 
+Starting host...
+
+[14:37:17 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:37:17 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:37:17 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:37:17 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:37:17 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:37:17 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:37:17 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:37:17 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:37:17 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:37:21 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[14:37:22 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:37:22 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 0
+
+[14:38:19 Information] 
+Starting host...
+
+[14:38:19 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:38:19 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:38:19 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:38:19 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:38:19 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:38:19 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:38:19 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:38:19 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:38:19 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:38:24 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:38:26 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[14:38:27 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 0
+
+[14:44:37 Information] 
+Starting host...
+
+[14:44:37 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:44:37 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:44:37 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:44:37 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:44:37 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:44:37 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:44:37 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:44:37 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:44:37 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:44:42 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:44:55 Warning] Microsoft.AspNetCore.Session.SessionMiddleware
+Error unprotecting the session cookie.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+[14:45:05 Warning] Microsoft.AspNetCore.Session.SessionMiddleware
+Error unprotecting the session cookie.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+[14:45:08 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-main-js', debug? False ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/materialize.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\ade4e8e6\26d782df.js, watching? True ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/materialize.js' in 26ms
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/bootstrap-touch-slider.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\b86badc8\7c2f6f19.js, watching? True ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/bootstrap-touch-slider.js' in 0ms
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/easing/easing.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\a18db8c0\37f47087.js, watching? True ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/easing/easing.min.js' in 0ms
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/mobile-nav/mobile-nav.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\c7d3ff92\49ea1361.js, watching? True ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/mobile-nav/mobile-nav.js' in 0ms
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/wow/wow.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\7cdabb7b\303d77e8.js, watching? True ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/wow/wow.min.js' in 0ms
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/waypoints/waypoints.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\ba015996\a0e40ef1.js, watching? True ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/waypoints/waypoints.min.js' in 0ms
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/counterup/counterup.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\536184c9\1d81da7a.js, watching? True ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/counterup/counterup.min.js' in 0ms
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\4f4979d5\12e67d12.js, watching? True ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js' in 0ms
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/isotope/isotope.pkgd.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\60f053d2\c77054ab.js, watching? True ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/isotope/isotope.pkgd.min.js' in 0ms
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/lightbox/js/lightbox.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\d8d04db6\79464641.js, watching? True ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/lightbox/js/lightbox.min.js' in 16ms
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/main.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\739b92e8\933d51ad.js, watching? True ...
+
+[14:45:08 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/main.js' in 0ms
+
+[14:45:08 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-main-js' in 903ms
+
+[14:45:25 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-css', debug? False ...
+
+[14:45:25 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-js', debug? False ...
+
+[14:45:25 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\d4cc0b7a\57f15878.css, watching? True ...
+
+[14:45:25 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\5e0caa37\1f2d3115.js, watching? True ...
+
+[14:45:25 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/jquery/dist/jquery.min.js' in 2ms
+
+[14:45:25 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\511893bd\841c684d.js , watching? True ...
+
+[14:45:25 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ' in 2ms
+
+[14:45:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\e02faee3\39ff90c6.js, watching? True ...
+
+[14:45:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js' in 0ms
+
+[14:45:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\6c9e74a6\d70fb9a0.js, watching? True ...
+
+[14:45:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/notify.js' in 1ms
+
+[14:45:26 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/style.min.css' in 97ms
+
+[14:45:26 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-css' in 334ms
+
+[14:45:26 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-js' in 395ms
+
+[14:45:31 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-css', debug? False ...
+
+[14:45:31 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-js', debug? False ...
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/tabulator.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\8be76d6a\e4f79724.css, watching? True ...
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/js/site.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\df42ccd9\30f0d6d1.js, watching? True ...
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/js/site.js' in 0ms
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\5e0caa37\1f2d3115.js, watching? True
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/tabulator.min.css' in 0ms
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/tabulator.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\d1b98240\7c35b5bd.js, watching? True ...
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\dc54ca01\ac017022.css, watching? True ...
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css' in 1ms
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\d4cc0b7a\57f15878.css, watching? True
+
+[14:45:31 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-css' in 126ms
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/tabulator.js' in 29ms
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/resize_table.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\97bede38\4c7cbc6a.js, watching? True ...
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/resize_table.js' in 0ms
+
+[14:45:31 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\3213a33b\42b7e1dd.js, watching? True ...
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js' in 0ms
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\e02faee3\39ff90c6.js, watching? True
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\6c9e74a6\d70fb9a0.js, watching? True
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/app-style-switcher.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\d40a60c4\8d99f6db.js, watching? True ...
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/app-style-switcher.js' in 0ms
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/feather.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\130a87db\8b4c5e24.js, watching? True ...
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/feather.min.js' in 0ms
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\21a85bd4\7458303a.js, watching? True ...
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' in 0ms
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/sidebarmenu.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\d9599f4a\bf630d03.js, watching? True ...
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/sidebarmenu.js' in 0ms
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/custom.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595271055075572\6b3ab9cb\6a0bfc4a.js, watching? True ...
+
+[14:45:32 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/custom.min.js' in 0ms
+
+[14:45:32 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-js' in 762ms
+
+[14:47:59 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+ExistingImageOptimizer Work done Error Count : 12
+
+[14:52:46 Information] 
+Starting host...
+
+[14:52:46 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:52:46 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:52:46 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:52:46 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:52:46 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:52:47 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:52:47 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:52:47 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:52:47 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:52:51 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:53:03 Warning] Microsoft.AspNetCore.Session.SessionMiddleware
+Error unprotecting the session cookie.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+[14:53:13 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-main-js', debug? False ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/materialize.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595275927464363\ade4e8e6\26d782df.js, watching? True ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/materialize.js' in 26ms
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/bootstrap-touch-slider.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595275927464363\b86badc8\7c2f6f19.js, watching? True ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/bootstrap-touch-slider.js' in 0ms
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/easing/easing.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595275927464363\a18db8c0\37f47087.js, watching? True ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/easing/easing.min.js' in 0ms
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/mobile-nav/mobile-nav.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595275927464363\c7d3ff92\49ea1361.js, watching? True ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/mobile-nav/mobile-nav.js' in 0ms
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/wow/wow.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595275927464363\7cdabb7b\303d77e8.js, watching? True ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/wow/wow.min.js' in 0ms
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/waypoints/waypoints.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595275927464363\ba015996\a0e40ef1.js, watching? True ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/waypoints/waypoints.min.js' in 0ms
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/counterup/counterup.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595275927464363\536184c9\1d81da7a.js, watching? True ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/counterup/counterup.min.js' in 0ms
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595275927464363\4f4979d5\12e67d12.js, watching? True ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js' in 0ms
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/isotope/isotope.pkgd.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595275927464363\60f053d2\c77054ab.js, watching? True ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/isotope/isotope.pkgd.min.js' in 0ms
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/lightbox/js/lightbox.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595275927464363\d8d04db6\79464641.js, watching? True ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/lightbox/js/lightbox.min.js' in 10ms
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/main.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\637595275927464363\739b92e8\933d51ad.js, watching? True ...
+
+[14:53:13 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/main.js' in 0ms
+
+[14:53:13 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-main-js' in 415ms
+
+[14:53:23 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-main-js' from cache
+
+[14:54:02 Information] Microsoft.Hosting.Lifetime
+Application is shutting down...
+
+[14:54:38 Information] 
+Starting host...
+
+[14:54:38 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[14:54:38 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[14:54:38 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[14:54:38 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[14:54:38 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[14:54:38 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[14:54:38 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[14:54:38 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[14:54:38 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[14:54:43 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[14:55:20 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-main-js', debug? False ...
+
+[14:55:20 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/materialize.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ade4e8e6.js, watching? False ...
+
+[14:55:20 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/materialize.js' in 40ms
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/bootstrap-touch-slider.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\b86badc8.js, watching? False ...
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/bootstrap-touch-slider.js' in 1ms
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/easing/easing.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\a18db8c0.js, watching? False ...
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/easing/easing.min.js' in 0ms
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/mobile-nav/mobile-nav.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\c7d3ff92.js, watching? False ...
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/mobile-nav/mobile-nav.js' in 0ms
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/wow/wow.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\7cdabb7b.js, watching? False ...
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/wow/wow.min.js' in 0ms
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/waypoints/waypoints.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\ba015996.js, watching? False ...
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/waypoints/waypoints.min.js' in 0ms
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/counterup/counterup.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\536184c9.js, watching? False ...
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/counterup/counterup.min.js' in 0ms
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\4f4979d5.js, watching? False ...
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/owlcarousel/owl.carousel.min.js' in 0ms
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/isotope/isotope.pkgd.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\60f053d2.js, watching? False ...
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/isotope/isotope.pkgd.min.js' in 0ms
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/lib/lightbox/js/lightbox.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d8d04db6.js, watching? False ...
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/lib/lightbox/js/lightbox.min.js' in 11ms
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/NewLayout/js/main.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\739b92e8.js, watching? False ...
+
+[14:55:21 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/NewLayout/js/main.js' in 0ms
+
+[14:55:21 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-main-js' in 666ms
+
+[15:11:05 Information] 
+Starting host...
+
+[15:11:07 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[15:11:07 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[15:11:07 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[15:11:07 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[15:11:07 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[15:11:07 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[15:11:07 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[15:11:07 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[15:11:07 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[15:11:11 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[15:12:34 Warning] Microsoft.AspNetCore.Session.SessionMiddleware
+Error unprotecting the session cookie.
+System.Security.Cryptography.CryptographicException: The payload was invalid.
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.DangerousUnprotect(Byte[] protectedData, Boolean ignoreRevocationErrors, Boolean& requiresMigration, Boolean& wasRevoked)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+[15:13:18 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-css', debug? False ...
+
+[15:13:18 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-login-js', debug? False ...
+
+[15:13:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\5e0caa37.js, watching? False ...
+
+[15:13:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d4cc0b7a.css, watching? False ...
+
+[15:13:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/jquery/dist/jquery.min.js' in 16ms
+
+[15:13:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\511893bd.js , watching? False ...
+
+[15:13:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js ' in 13ms
+
+[15:13:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/style.min.css' in 111ms
+
+[15:13:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\e02faee3.js, watching? False ...
+
+[15:13:18 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js' in 16ms
+
+[15:13:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6c9e74a6.js, watching? False ...
+
+[15:13:19 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/notify.js' in 1ms
+
+[15:13:19 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-css' in 799ms
+
+[15:13:19 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-login-js' in 1181ms
+
+[15:13:23 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-css', debug? False ...
+
+[15:13:23 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/css/tabulator.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\8be76d6a.css, watching? False ...
+
+[15:13:23 Debug] Smidge.Controllers.SmidgeController
+Processing bundle 'layout-admin-js', debug? False ...
+
+[15:13:23 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/js/site.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\df42ccd9.js, watching? False ...
+
+[15:13:23 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/js/site.js' in 0ms
+
+[15:13:23 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/jquery/dist/jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\5e0caa37.js, watching? False
+
+[15:13:23 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/tabulator.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d1b98240.js, watching? False ...
+
+[15:13:23 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/css/tabulator.min.css' in 4ms
+
+[15:13:23 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\dc54ca01.css, watching? False ...
+
+[15:13:23 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/bootstrap/dist/css/tabulator_bootstrap.min.css' in 35ms
+
+[15:13:23 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/css/style.min.css', type: Css, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d4cc0b7a.css, watching? False
+
+[15:13:23 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-css' in 668ms
+
+[15:13:23 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/tabulator.js' in 57ms
+
+[15:13:24 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/resize_table.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\97bede38.js, watching? False ...
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/resize_table.js' in 0ms
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\3213a33b.js, watching? False ...
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/popper.js/dist/umd/popper.min.js' in 0ms
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\e02faee3.js, watching? False
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+File already in cache '~/Admin/dist/js/notify.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6c9e74a6.js, watching? False
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/app-style-switcher.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d40a60c4.js, watching? False ...
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/app-style-switcher.js' in 0ms
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/feather.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\130a87db.js, watching? False ...
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/feather.min.js' in 1ms
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\21a85bd4.js, watching? False ...
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' in 1ms
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/sidebarmenu.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\d9599f4a.js, watching? False ...
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/sidebarmenu.js' in 0ms
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processing file '~/Admin/dist/js/custom.min.js', type: Js, cacheFile: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi\App_Data\smidge\Cache\DANIGA\1\6b3ab9cb.js, watching? False ...
+
+[15:13:24 Debug] Smidge.FileProcessors.PreProcessManager
+Processed file '~/Admin/dist/js/custom.min.js' in 0ms
+
+[15:13:25 Debug] Smidge.Controllers.SmidgeController
+Processed bundle 'layout-admin-js' in 1943ms
+
+[15:13:31 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[15:13:31 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
+[15:13:31 Error] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware
+An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Could not parse tabulator_bootstrap.min.css.map as a valid smidge path
+   at Smidge.Models.RequestModel..ctor(String valueName, IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper)
+   at Smidge.Models.BundleRequestModel..ctor(IUrlManager urlManager, IActionContextAccessor accessor, IRequestHelper requestHelper, IBundleManager bundleManager, CacheBusterResolver cacheBusterResolver)
+   at ResolveService(ILEmitResolverBuilderRuntimeContext , ServiceProviderEngineScope )
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinder.BindModelAsync(ModelBindingContext bindingContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCaching.ResponseCachingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Session.SessionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+

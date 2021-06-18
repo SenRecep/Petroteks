@@ -1,0 +1,45 @@
+[10:12:34 Information] 
+Starting host...
+
+[10:12:36 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-login-js' with 4 files
+
+[10:12:36 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-login-css' with 1 files
+
+[10:12:36 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-admin-js' with 12 files
+
+[10:12:36 Debug] Smidge.BundleManager
+Creating Css bundle 'layout-admin-css' with 3 files
+
+[10:12:36 Debug] Smidge.BundleManager
+Creating Js bundle 'layout-main-js' with 11 files
+
+[10:12:36 Information] Microsoft.Hosting.Lifetime
+Now listening on: http://localhost:5068
+
+[10:12:36 Information] Microsoft.Hosting.Lifetime
+Application started. Press Ctrl+C to shut down.
+
+[10:12:36 Information] Microsoft.Hosting.Lifetime
+Hosting environment: Development
+
+[10:12:36 Information] Microsoft.Hosting.Lifetime
+Content root path: C:\Users\recep\source\repos\SenRecep\Petroteks\Petroteks.MvcUi
+
+[10:12:39 Information] Petroteks.MvcUi.Services.ExistingImageOptimizer
+Start ExistingImageOptimizer
+
+[10:12:56 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-js' from cache
+
+[10:12:56 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-login-css' from cache
+
+[10:12:59 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-css' from cache
+
+[10:12:59 Debug] Smidge.Controllers.SmidgeController
+Returning bundle 'layout-admin-js' from cache
+
